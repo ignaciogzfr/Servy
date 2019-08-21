@@ -15,7 +15,7 @@
 <!-- Toastr Alerts CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Registro</title>
 </head>
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
 
