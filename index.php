@@ -28,7 +28,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Servy 2</title>
+  <title>Servy</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
