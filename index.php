@@ -225,7 +225,7 @@
                             </div>
                             <button class="btn btn-success btn-md" type="submit">Iniciar</button>
                         <h5>No tienes cuenta?</h5>
-                        <h6><a href="registro.html" target="_blank">Registrate!</a></h6>
+                        <h6><a href="registro.php" target="_blank">Registrate!</a></h6>
                       </div>
                       
             </div>
