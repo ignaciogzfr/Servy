@@ -23,6 +23,7 @@
 
 <div class="container bg-white" style="padding-bottom: 200px; width: 70%;">
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:vista-detalles-maestro.php
 	<div class="container text-center w-70" style="padding-top:70px;">
 =======
@@ -31,6 +32,12 @@
 =======
 	<div class="container text-center w-70" style="padding-top:70px;">
 >>>>>>> jd
+=======
+	<div class="container text-center w-70" style="padding-top:70px;">
+=======
+	<div class="container text-center w-70 pt-4">
+>>>>>>> dwded
+>>>>>>> dwded
 		<h3> Usuario</h3>
 		<hr class="featurette-divider">
 	</div>
@@ -84,6 +91,7 @@
 
 		</div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD:vista-detalles-maestro.php
 		<div class="text-right mt-4"><button  class="btn btn-md btn-secondary mt-4 float-right"> <i class="fas fa-arrow-left"></i> volver</button></div>
 			
@@ -91,12 +99,22 @@
 =======
 		<div class="text-right mt-4"><button  class="btn btn-md btn-secondary mt-4"> <i class="fas fa-arrow-left"></i> volver</button></div>
 =======
+=======
+>>>>>>> dwded
 		<div class="text-right mt-4"><button  class="btn btn-md btn-secondary mt-4 float-right"> <i class="fas fa-arrow-left"></i> volver</button></div>
 >>>>>>> jd
 			
 </div>
 
+<<<<<<< HEAD
 >>>>>>> dwded:vista-detalles-maestro.php
+=======
+=======
+		<div class="text-right mt-4"><button  class="btn btn-md btn-secondary mt-4"> <i class="fas fa-arrow-left"></i> volver</button></div>
+			
+</div>
+>>>>>>> dwded
+>>>>>>> dwded
 
 
 
