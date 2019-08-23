@@ -163,46 +163,9 @@
 
 
 <!-- Footer -->
-<footer class="page-footer mdb-color font-small lighten-1 text-white">
-
-  <!-- Copyright -->
-  <div class="row text-center">
-    
-  <div class="col col-md-3 my-2"><img src="img/placeholder.png" alt="" width="100"></div>
-  <div class="col col-md-3 mt-2">OJO, Servy provee un servicio de atencion, la aplicacion no se hace responsable si los tecnicos no cumplen satisfactoriamente con el servicio requerido.</div>
-  <div class="col col-md-3 mt-2">Links</div>
-
-  </div>
-  <!-- Copyright -->
-
-</footer>
+<?php require_once 'componentes/footer.php' ?>
 <!-- Footer -->
 
-
-
-
-
-
-<!-- Menu Toggle Script -->
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- JQuery -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/js/mdb.min.js"></script>
-<!-- Toastr Alerts JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-
-<script>
- $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
 	
 </body>
 </html>
