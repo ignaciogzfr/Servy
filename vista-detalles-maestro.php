@@ -19,16 +19,16 @@
 	<meta charset="UTF-8">
 	<title></title>
 </head>
-<body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
+<body style="font-family: 'Noto Sans JP', sans-serif; background-color: #45526e;">
 
-
-	<div class="container text-center mt-4 w-75">
+<div class="container bg-white" style="padding-bottom: 200px; width: 70%;">
+	<div class="container text-center w-70 pt-4">
 		<h3> Usuario</h3>
 		<hr class="featurette-divider">
 	</div>
 		
 
-		<div class="row text-center w-75 mx-auto">
+		<div class="row text-center w-70 mx-auto">
 			
 		<div class="col">
 			<h6><i class="fas fa-phone"></i> Contactos del Maestro:</h6>
@@ -45,7 +45,7 @@
 		</div>
 		
 
-		<div class="container text-center w-75 mt-4">
+		<div class="container text-center w-70 mt-4">
 			<hr class="featurette-divider">
 			<h3> -Informacion extra-</h3>
 
@@ -55,7 +55,7 @@
 				<div class="col"><h6>Experiencias</h6></div>
 			</div>
 				
-			<div class="row">
+			<div class="row border-top	">
 				
 				 <div class="col mt-4">
 				 		
@@ -68,12 +68,16 @@
 					</ul>
 				 </div>
 
-				 <div class="col mt-4">
+				 <div class="col mt-4 border-left">
 				 	<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam nulla, impedit velit. Impedit tenetur beatae rem minima commodi maiores, accusantium totam! Facere, quia, voluptatum sapiente mollitia cumque quam. Assumenda, pariatur?</p>
 				 </div>
 			</div>
+				
 
 		</div>
+		<div class="text-right mt-4"><button  class="btn btn-md btn-secondary mt-4"> <i class="fas fa-arrow-left"></i> volver</button></div>
+			
+</div>
 
 
 
