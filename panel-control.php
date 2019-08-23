@@ -38,13 +38,53 @@
 
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
 
+<<<<<<< HEAD
 <?php require_once 'componentes/sidenav-cliente.php' ?>
+=======
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="mdb-color  text-white border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading mdb-color">Menu</div>
+      <div class="list-group list-group-flush text-white">
+        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-1 text-white"> <img src="img/placeholder.png" width="30" class="rounded-circle" /> usuario</a>
+        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Servicios</a>
+        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Informacion</a>
+        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Contactanos</a>
+        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-2 text-white ">Cerrar sesion <i class="fas fa-power-off"></i></a>
+      </div>
+    </div>
+>>>>>>> Creo que esta todo
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
+<<<<<<< HEAD
 <?php require_once 'componentes/navbar.php' ?>
+=======
+     <nav class="navbar navbar-expand-lg navbar-dark main-color border-bottom">
+        <button class="btn btn-primary" id="menu-toggle" ><i class="fas fa-bars"></i></button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item mr-4">
+              <a class="nav-link" href="#">Ayuda</a>
+            </li>
+            <li class="nav-item mr-4">
+              <a class="nav-link" href="#">Servicios</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Cerrar sesion<i class="fas fa-user-circle"></i></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+>>>>>>> Creo que esta todo
 
 				<div class="container">
 					<h1 class="text-center mt-2"> Panel de control</h1>
@@ -65,7 +105,12 @@
                 <button class="btn btn-md btn-primary"><i class="fas fa-edit"></i> Editar mi perfil</button>
                 <button class="btn btn-md btn-primary">Buscar usuarios</button>
                 <button class="btn btn-md btn-primary">Buscar publicaciones</button>
+<<<<<<< HEAD
         
+=======
+                <button class="btn btn-md btn-primary">Ver denuncias</button>
+                <button class="btn btn-md btn-primary">Ver reportes mensuales</button>
+>>>>>>> Creo que esta todo
             </div>
 
             </div>
