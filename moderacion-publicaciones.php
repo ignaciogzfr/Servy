@@ -79,35 +79,98 @@
       </nav>
 
 				<div class="container">
-					<h1 class="text-center mt-2"> Panel de control</h1>
+					<h1 class="text-center mt-2"> Moderacion - Publicaciones</h1>
 					<hr class="featurette-divider">
 				</div>
 
+
+      <div class="container w-80">     
+
+              <ul class="list-group text-center">
+              <li class="list-group-item  text-white mdb-color lighten-1 text-center">   <div class="row">
+                  <div class="col pt-1">
+                    Nombre usuario
+                  </div>    
+                  <div class="col pt-1">
+                    Servicio
+                  </div>
+                  <div class="col pt-1">
+                    Tipo de publicacion
+                  </div>
+                  <div class="col">
+                    Ver
+                  </div>
+                  <div class="col">
+                      Acciones
+                  </div>
+                </div> </li>
+
+
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col pt-1">
+                    Usuario
+                  </div>    
+                  <div class="col pt-1">
+                    Eletrico
+                  </div>
+                  <div class="col pt-1">
+                    Tipo-publicacion
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-sm btn-info">ver publicacion</button>
+                  </div>
+                  <div class="col">
+                         <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Moderar
+                        </button>
+                              <div class="dropdown-menu">
+
+                                   <a class="dropdown-item" href="#"><i class="fas fa-ban"></i> Sancionar</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-lock-open"></i> Quitar sancion</a>
+                           
+                              </div>
+                  </div>
+                </div> 
+              
+              </li>
+                
+                      <li class="list-group-item">
+                <div class="row">
+                  <div class="col pt-1">
+                    Usuario
+                  </div>    
+                  <div class="col pt-1">
+                    Eletrico
+                  </div>
+                  <div class="col pt-1">
+                    Tipo-publicacion
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-sm btn-info">ver publicacion</button>
+                  </div>
+                  <div class="col">
+                         <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Moderar
+                        </button>
+                              <div class="dropdown-menu">
+
+                                   <a class="dropdown-item" href="#"><i class="fas fa-ban"></i> Sancionar</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-lock-open"></i> Quitar sancion</a>
+                           
+                              </div>
+                  </div>
+                </div> 
+              
+              </li>
       
-      <div class="container text-center w-75">
-
-        <div class="row">
-          
-            <div class="col">
-              <h6>Usuario <p class="text-success">[Moderador]</p></h6>
-               <img src="img/placeholder.png" width="150" class="rounded" />
-            </div>
-            <div class="col">
-                <div class="btn-group-vertical">
-                <button class="btn btn-md btn-primary"><i class="fas fa-edit"></i> Editar perfil</button>
-                <button class="btn btn-md btn-primary">Buscar usuarios</button>
-                <button class="btn btn-md btn-primary">Buscar publicaciones</button>
-                <button class="btn btn-md btn-primary">Ver denuncias</button>
-                <button class="btn btn-md btn-primary">Ver reportes mensuales</button>
-            </div>
-
-            </div>
-
-        </div>
 
 
+             
+              </ul>
+  
+    </div>
 
-      </div>
 	           
 
 
