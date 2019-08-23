@@ -11,16 +11,27 @@
   <title>Servy</title>
 
 <?php require_once 'componentes/links.php' ?>
-
+<?php require_once 'componentes/sidenav.php' ?>
 </head>
 
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
 
-<?php require_once 'componentes/sidenav.php' ?>
+
+<<<<<<< Updated upstream
     <!-- Page Content -->
     <div id="page-content-wrapper">
       <?php require_once 'componentes/navbar.php' ?>
     <div class="container-fluid">
+=======
+    <!-- Sidebar -->
+    <?php require_once 'componentes/sidenav.php' ?>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+    <?php require_once 'componentes/navbar.php'; ?>
+
+      <div class="container-fluid">
+>>>>>>> Stashed changes
         
   <div class="jumbotron text-center mt-3  mdb-color lighten-2 text-white">
   <h2 class="display-4">Bienvenido a Servy!</h2>
