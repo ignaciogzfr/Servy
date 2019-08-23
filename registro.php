@@ -49,11 +49,11 @@
             <li class="nav-item mr-4">
               <a class="nav-link" href="#">Ayuda</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item mr-4">
               <a class="nav-link" href="#">Servicios</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="#">Cerrar sesion<i class="fas fa-user-circle"></i></a>
+              <a class="nav-link" href="#">iniciar sesion<i class="fas fa-user-circle"></i></a>
             </li>
           </ul>
         </div>
