@@ -17,22 +17,15 @@
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
 
 
-<<<<<<< Updated upstream
     <!-- Page Content -->
     <div id="page-content-wrapper">
       <?php require_once 'componentes/navbar.php' ?>
     <div class="container-fluid">
-=======
-    <!-- Sidebar -->
-    <?php require_once 'componentes/sidenav.php' ?>
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-    <?php require_once 'componentes/navbar.php'; ?>
+    <!-- Sidebar -->
 
       <div class="container-fluid">
->>>>>>> Stashed changes
-        
+
   <div class="jumbotron text-center mt-3  mdb-color lighten-2 text-white">
   <h2 class="display-4">Bienvenido a Servy!</h2>
   <p class="lead">Servy es una aplicacion que provee servicios tecnicos a quienes lo necesiten.</p>
@@ -100,14 +93,14 @@
 
     </div>
     <!-- /#page-content-wrapper -->
-
+<?php require_once 'componentes/footer.php' ?>
   </div>
   <!-- /#wrapper -->
 
 
 
 
-<?php require_once 'componentes/footer.php' ?>
+
 <!-- Footer -->
 
 
@@ -128,13 +121,6 @@
 });
   </script>
 
-
-<script>
- $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
 
 
 
