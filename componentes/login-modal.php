@@ -1,6 +1,6 @@
 <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" style="height: 500px; width: 500px;">
 
             <div class="modal-header mdb-color">
 
@@ -10,9 +10,9 @@
 
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body pt-5">
 
-                      <div class="container text-center">
+                      <div class="text-center">
 
 
                             <div class="form-group">
