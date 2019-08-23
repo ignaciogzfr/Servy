@@ -31,8 +31,7 @@
 		<div class="row text-center w-75 mx-auto">
 			
 		<div class="col">
-
-			<h6><i class="fas fa-phone"></i>Contactos del Maestro:</h6>
+			<h6><i class="fas fa-phone"></i> Contactos del Maestro:</h6>
 
 			
 
