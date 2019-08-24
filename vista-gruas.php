@@ -39,6 +39,7 @@
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php require_once 'componentes/sidenav.php' ?>
 =======
   <div class="d-flex" id="wrapper">
@@ -55,11 +56,15 @@
       </div>
     </div>
 >>>>>>> Creo que esta todo
+=======
+<?php require_once 'componentes/sidenav.php' ?>
+>>>>>>> jd
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <?php require_once 'componentes/navbar.php' ?>
 =======
@@ -85,6 +90,9 @@
         </div>
       </nav>
 >>>>>>> Creo que esta todo
+=======
+<?php require_once 'componentes/navbar.php' ?>
+>>>>>>> jd
 
 				<div class="container">
 					<h1 class="text-center mt-2"> Servicios - Gruas</h1>
@@ -148,6 +156,7 @@
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php require_once 'componentes/footer.php' ?>
 =======
 <!-- Footer -->
@@ -172,6 +181,9 @@
 </footer>
 <!-- Footer -->
 >>>>>>> Creo que esta todo
+=======
+<?php require_once 'componentes/footer.php' ?>
+>>>>>>> jd
 
 
 

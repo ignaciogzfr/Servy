@@ -39,6 +39,7 @@
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php require_once 'componentes/sidenav-cliente.php' ?>
 =======
   <div class="d-flex" id="wrapper">
@@ -55,11 +56,15 @@
       </div>
     </div>
 >>>>>>> Creo que esta todo
+=======
+<?php require_once 'componentes/sidenav-cliente.php' ?>
+>>>>>>> jd
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <?php require_once 'componentes/navbar.php' ?>
 =======
@@ -85,6 +90,9 @@
         </div>
       </nav>
 >>>>>>> Creo que esta todo
+=======
+<?php require_once 'componentes/navbar.php' ?>
+>>>>>>> jd
 
 				<div class="container">
 					<h1 class="text-center mt-2"> Panel de control</h1>
