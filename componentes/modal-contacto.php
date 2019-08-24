@@ -1,6 +1,6 @@
-<div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog pt-4 mx-auto">
-        <div class="modal-content" style="height: 370px; width: 500px;">
+<div id="contacto-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="height: 500px; width: 500px;">
 
             <div class="modal-header mdb-color">
 
