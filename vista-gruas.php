@@ -79,36 +79,55 @@
       </nav>
 
 				<div class="container">
-					<h1 class="text-center mt-2"> Panel de control</h1>
+					<h1 class="text-center mt-2"> Servicios - Gruas</h1>
 					<hr class="featurette-divider">
 				</div>
+<div class="container">
 
-      
-      <div class="container text-center w-75">
-
-        <div class="row">
-          
-            <div class="col">
-              <h6>Usuario <p class="text-success">[Moderador]</p></h6>
-               <img src="img/placeholder.png" width="150" class="rounded" />
-            </div>
-            <div class="col">
-                <div class="btn-group-vertical">
-                <button class="btn btn-md btn-primary"><i class="fas fa-edit"></i> Editar perfil</button>
-                <button class="btn btn-md btn-primary">Buscar usuarios</button>
-                <button class="btn btn-md btn-primary">Buscar publicaciones</button>
-                <button class="btn btn-md btn-primary">Ver denuncias</button>
-                <button class="btn btn-md btn-primary">Ver reportes mensuales</button>
-            </div>
-
-            </div>
-
-        </div>
+		
 
 
+					<div class="container mt-2"><!-- INICIO LISTA DE SERVICIOS-->
+						<div class="list-group">
 
-      </div>
-	           
+						  <a data-target="#map-modal" data-toggle="modal" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+						    <div class="d-flex w-100 justify-content-between">
+						      <h5 class="mb-2 h5">Titulo</h5>
+						      <small>tipo de servicio</small>
+						      <small> fecha</small>
+						    </div>
+						    <p class="mb-2">DESCRIPCION: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat blanditiis sint mollitia quam veniam quod harum, sequi, animi, voluptatum impedit ex maxime cumque magni eius ipsam facere dolorum laudantium laborum.</p>
+						    <small>Pedido por : Usuario</small>
+						  </a>
+
+						 <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+						    <div class="d-flex w-100 justify-content-between">
+						      <h5 class="mb-2 h5">Titulo</h5>
+						      <small>tipo de servicio</small>
+						      <small> fecha</small>
+						    </div>
+						    <p class="mb-2">DESCRIPCION: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat blanditiis sint mollitia quam veniam quod harum, sequi, animi, voluptatum impedit ex maxime cumque magni eius ipsam facere dolorum laudantium laborum.</p>
+						    <small>Pedido por : Usuario</small>
+						  </a>
+
+						   <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+						    <div class="d-flex w-100 justify-content-between">
+						      <h5 class="mb-2 h5">Titulo</h5>
+						      <small>tipo de servicio</small>
+						      <small> fecha</small>
+						    </div>
+						    <p class="mb-2">DESCRIPCION: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat blanditiis sint mollitia quam veniam quod harum, sequi, animi, voluptatum impedit ex maxime cumque magni eius ipsam facere dolorum laudantium laborum.</p>
+						    <small>Pedido por : Usuario</small>
+						  </a>
+				</div>
+			</div><!-- FINLISTA DE SERVICIOS-->
+
+
+				<div class="text-center mb-3"><button class="btn btn-primary"> ver mas</button></div>
+</div>
+
+
+	
 
 
     </div>
@@ -144,8 +163,8 @@
 
 
 
-<div id="resumen-maestro-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+<div id="map-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
 
             <div class="modal-header mdb-color">
@@ -156,33 +175,12 @@
 
             </div>
 
-            <div class="modal-body mx-auto text-center ">
-                   
+            <div class="modal-body mx-auto text-center">
+                      <h5 class="text-center"> direccion</h5>
 
-                        <div class="row">
-                           
-                           <div class="col">
-                             
-                           <img src="img/placeholder.png" width="100" class="rounded" />
+                          <div class="container"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d53259.30717784582!2d-70.6576384!3d-33.4569472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2scl!4v1566338608491!5m2!1ses-419!2scl" width="400" height="350" frameborder="0" style="border:0" allowfullscreen></iframe></div>
 
-                           </div> 
-
-                            <div class="col text-left">
-                              Nombre: usuario
-                              correo: usuario@usuario.com
-                            </div>
-
-                            <div class="col text-left">
-                              Telefono: +569 123423424
-
-                            </div>
-
-
-
-                        </div>
-
-                    <div class="mt-3"> <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" >Cerrar</button>
-                     <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" >ver detalles</button></div>
+                     <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" >Cerrar</button>
             </div>
         </div>
     </div>

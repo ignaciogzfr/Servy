@@ -19,10 +19,30 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-      <?php require_once 'componentes/navbar.php' ?>
-    <div class="container-fluid">
+      
+ <nav class="navbar navbar-expand-lg navbar-dark main-color border-bottom">
+        <button class="btn btn-primary" id="menu-toggle" ><i class="fas fa-bars"></i></button>
 
-    <!-- Sidebar -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+     <button class="btn btn-warning" data-target="#pedir-grua-modal" data-toggle="modal"><i class="fas fa-wrench" style="font-size: 15px;"></i> <i class="fas fa-truck-pickup" style="font-size: 20px;"></i></button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item mr-4">
+              <a class="nav-link" href="#">Ayuda</a>
+            </li>
+            <li class="nav-item mr-4">
+              <a class="nav-link" href="#">Servicios</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">iniciar sesion<i class="fas fa-user-circle"></i></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
       <div class="container-fluid">
 
@@ -109,6 +129,92 @@
 <?php require_once 'componentes/scripts.php' ?>
 
 
+            <div class="modal-body">
+
+                      <div class="container text-center">
+
+
+                            <div class="form-group">
+                            <input type="text" id="" class="form-control" placeholder="Correo">
+                            </div>
+
+
+                            <div class="form-group">
+                            <input id="" class="form-control mt-3" placeholder="contraseña" type="password">
+                            </div>
+                            <button class="btn btn-success btn-md" type="submit">Iniciar</button>
+                        <h5>No tienes cuenta?</h5>
+                        <h6><a href="registro.html" target="_blank">Registrate!</a></h6>
+                      </div>
+                      
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="pedir-grua-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header mdb-color">
+
+                <h4 id="titulo-loginregistro " class="text-center text-white"> Pedir una grua</h4>
+
+                <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true">×</button>
+
+            </div>
+
+            <div class="modal-body  text-center">
+                      <h5 class="text-center"> direccion</h5>
+
+                          <div class="container"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d53259.30717784582!2d-70.6576384!3d-33.4569472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2scl!4v1566338608491!5m2!1ses-419!2scl" width="400" height="350" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+
+                         <div class="row text-center">
+                           
+                            <div class="col pt-2">
+                              <p> ¿Esta es su ubicacion actual?</p>
+                            </div>
+                            <div class="col"> <button class=" btn btn-sm btn-info"><i class="fas fa-globe-americas"></i> No, desubicao </button> </div>
+                         </div>
+
+                          <div class="form-group">
+                         <input type="email" class="form-control"  placeholder="Nombre">
+                          </div>
+                                <div class="form-group">
+                         <input type="email" class="form-control"  placeholder="Telefono">
+                          </div>
+                          <div class="form-group">
+                         <textarea name="" class="form-control" id="" cols="30" rows="3" placeholder="Breve descripcion"></textarea>
+                          </div>
+
+                        
+                            <select id="inputState" class="form-control">
+                              <option selected>tipo de automovil...</option>
+                              <option>...</option>
+                            </select>
+                             
+
+
+
+                     <button type="button" class="btn btn-sm btn-secondary pt-2" data-dismiss="modal" >Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Menu Toggle Script -->
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/js/mdb.min.js"></script>
+<!-- Toastr Alerts JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
 <script>
