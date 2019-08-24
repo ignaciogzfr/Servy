@@ -38,45 +38,13 @@
 
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
 
-  <div class="d-flex" id="wrapper">
-
-    <!-- Sidebar -->
-    <div class="mdb-color  text-white border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading mdb-color">Menu</div>
-      <div class="list-group list-group-flush text-white">
-        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-1 text-white"> <img src="img/placeholder.png" width="30" class="rounded-circle" /> usuario</a>
-        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Servicios</a>
-        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Informacion</a>
-        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Contactanos</a>
-        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-2 text-white ">Cerrar sesion <i class="fas fa-power-off"></i></a>
-      </div>
-    </div>
+<?php require_once 'componentes/sidenav.php' ?>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-     <nav class="navbar navbar-expand-lg navbar-dark main-color border-bottom">
-        <button class="btn btn-primary" id="menu-toggle" ><i class="fas fa-bars"></i></button>
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item mr-4">
-              <a class="nav-link" href="#">Ayuda</a>
-            </li>
-            <li class="nav-item mr-4">
-              <a class="nav-link" href="#">Servicios</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Cerrar sesion<i class="fas fa-user-circle"></i></a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+<?php require_once 'componentes/navbar.php' ?>
 
 				<div class="container">
 					<h1 class="text-center mt-2"> Servicios - Gruas</h1>
@@ -139,27 +107,7 @@
 
 
 
-<!-- Footer -->
-<footer class="page-footer mdb-color font-small lighten-1 text-white">
-
-  <!-- Copyright -->
-  <div class="row text-center">
-    
-  <div class="col col-md-4 my-2"><img src="img/placeholder.png" height="100" width="100"></div>
-  <div class="col col-md-4 mt-2">OJO, Servy provee un servicio de atencion, la aplicacion no se hace responsable si los tecnicos no cumplen satisfactoriamente con el servicio requerido.</div>
-  <div class="col col-md-4 mt-2">
-    <div class="row">
-    <a class="col col-md-12 my-1"href="#">Link1</a>
-    <a class="col col-md-12 my-1"href="#">Link2</a>
-    <a class="col col-md-12 my-1"href="#">Link3</a>
-    </div>
-  </div>
-
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
+<?php require_once 'componentes/footer.php' ?>
 
 
 
