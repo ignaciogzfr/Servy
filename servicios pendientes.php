@@ -79,36 +79,55 @@
       </nav>
 
 				<div class="container">
-					<h1 class="text-center mt-2"> Panel de control</h1>
+					<h1 class="text-center mt-2"> Mis servicios</h1>
 					<hr class="featurette-divider">
 				</div>
+<div class="container">
 
-      
-      <div class="container text-center w-75">
-
-        <div class="row">
-          
-            <div class="col">
-              <h6>Usuario <p class="text-success">[Moderador]</p></h6>
-               <img src="img/placeholder.png" width="150" class="rounded" />
-            </div>
-            <div class="col">
-                <div class="btn-group-vertical">
-                <button class="btn btn-md btn-primary"><i class="fas fa-edit"></i> Editar perfil</button>
-                <button class="btn btn-md btn-primary">Buscar usuarios</button>
-                <button class="btn btn-md btn-primary">Buscar publicaciones</button>
-                <button class="btn btn-md btn-primary">Ver denuncias</button>
-                <button class="btn btn-md btn-primary">Ver reportes mensuales</button>
-            </div>
-
-            </div>
-
-        </div>
+		
 
 
+					<div class="container mt-2"><!-- INICIO LISTA DE SERVICIOS-->
+						<div class="list-group">
 
-      </div>
-	           
+						  <a class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+						    <div class="d-flex w-100 justify-content-between">
+						      <h5 class="mb-2 h5">Titulo</h5>
+						      <small>tipo de servicio</small>
+						      <small> fecha</small>
+						    </div>
+						    <p class="mb-2">DESCRIPCION: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat blanditiis sint mollitia quam veniam quod harum, sequi, animi, voluptatum impedit ex maxime cumque magni eius ipsam facere dolorum laudantium laborum.</p>
+						    <small>confirmado por : <button class="btn btn-info btn-sm" data-target="#resumen-maestro-modal" data-toggle="modal" >usuario</button></small>
+						  </a>
+
+						 <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+						    <div class="d-flex w-100 justify-content-between">
+						      <h5 class="mb-2 h5">Titulo</h5>
+						      <small>tipo de servicio</small>
+						      <small> fecha</small>
+						    </div>
+						    <p class="mb-2">DESCRIPCION: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat blanditiis sint mollitia quam veniam quod harum, sequi, animi, voluptatum impedit ex maxime cumque magni eius ipsam facere dolorum laudantium laborum.</p>
+						    <small>confirmado por: <button class="btn btn-sm btn-danger">pendiente</button></small>
+						  </a>
+
+						   <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+						    <div class="d-flex w-100 justify-content-between">
+						      <h5 class="mb-2 h5">Titulo</h5>
+						      <small>tipo de servicio</small>
+						      <small> fecha</small>
+						    </div>
+						    <p class="mb-2">DESCRIPCION: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat blanditiis sint mollitia quam veniam quod harum, sequi, animi, voluptatum impedit ex maxime cumque magni eius ipsam facere dolorum laudantium laborum.</p>
+						    <small>Pedido por : Usuario</small>
+						  </a>
+				</div>
+			</div><!-- FINLISTA DE SERVICIOS-->
+
+
+				<div class="text-center mb-3"><button class="btn btn-primary"> ver mas</button></div>
+</div>
+
+
+	
 
 
     </div>
