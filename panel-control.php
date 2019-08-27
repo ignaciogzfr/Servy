@@ -65,8 +65,7 @@
                 <button class="btn btn-md btn-primary"><i class="fas fa-edit"></i> Editar perfil</button>
                 <button class="btn btn-md btn-primary">Buscar usuarios</button>
                 <button class="btn btn-md btn-primary">Buscar publicaciones</button>
-                <button class="btn btn-md btn-primary">Ver denuncias</button>
-                <button class="btn btn-md btn-primary">Ver reportes mensuales</button>
+        
             </div>
 
             </div>
