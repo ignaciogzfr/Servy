@@ -9,7 +9,7 @@ Class publicaciones{
 		$con = Conexion::conectar();
 		$sql = $con->prepare("SELECT * FROM publicacion");
 		$sql->execute();
-		return $sql->fecthAll(PDO::FECTH_ASSOC);
+		return $sql->fetchAll(PDO::FETCH_ASSOC);
 
 	}
 
