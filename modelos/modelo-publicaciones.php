@@ -2,12 +2,12 @@
 
 require_once("conexion.php");
 
-Class Usuarios{
+Class publicaciones{
 
-	static public function getUsuarios(){
+	static public function getPublicaciones(){
 
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT * FROM usuario");
+		$sql = $con->prepare("SELECT * FROM publicacion");
 		$sql->execute();
 		return $sql->fecthAll(PDO::FECTH_ASSOC);
 
