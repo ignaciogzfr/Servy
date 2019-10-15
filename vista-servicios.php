@@ -73,15 +73,28 @@
 
 		<div class="row text-center">
 
-				<div class="col col-sm" >
-					<select class="custom-select">
-				 	 <option selected>seleccionar servicio</option>
-				 	 <option>1</option>
-				 	 <option>2</option>
-				 	 <option>3</option>
-					</select>
-				</div>
+      <div class="col col-sm" >
+          <select class="custom-select">
+            <option selected>seleccionar servicio</option>
+<?php 
+require_once("modelos/modelo-servicios.php");
+  $servi = Servicios::getServicios();
 
+  for($i=0;$i<count($servi); $i++){
+
+      echo('
+           
+           <option>'.$servi[$i]["tipo_servicio"].'</option>
+         
+        
+');
+
+  }
+
+?>  
+</select>
+        </div>
+				
 			<div class="col col-sm">		
         		 <input type="date" class="form-control" id="" name="">
          	 </div>
@@ -105,7 +118,7 @@
 						 <?php 
                 require_once("modelos/modelo-publicaciones.php");
 
-                  $publi = publicaciones::getPublicaciones();
+                  $publi = Publicaciones::getPublicaciones();
 
 
                   if(count($publi)==0){
@@ -115,21 +128,21 @@
                                   </div>');
 
                   }else{
-                      var_dump($publi);
-              //         for ($i=0; $i<count($publi); $i++){
 
-              //           echo (' <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
-              //   <div class="d-flex w-100 justify-content-between">
-              //     <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
-              //     <small>tipo de servicio</small>
-              //     <small> fecha</small>
-              //   </div>
-              //   <p class="mb-2">DESCRIPCION: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat blanditiis sint mollitia quam veniam quod harum, sequi, animi, voluptatum impedit ex maxime cumque magni eius ipsam facere dolorum laudantium laborum.</p>
-              //   <small>Pedido por : Usuario</small>
-              // </a>');
+                      for ($i=0; $i<count($publi); $i++){
+
+                        echo (' <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
+                  <small>'.$publi[$i]["tipo_servicio"].'</small>
+                  <small> '.$publi[$i]["fecha_hora_publicacion"].'</small>
+                </div>
+                <p class="mb-2">DESCRIPCION: '.$publi[$i]["detalle_publicacion"].'</p>
+                <small>Pedido por : '.$publi[$i]["nombre_usuario"].'</small>
+              </a>');
 
 
-              //         }
+                      }
                   }
 
 
