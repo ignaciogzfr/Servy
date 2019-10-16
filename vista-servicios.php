@@ -2,21 +2,10 @@
 <html lang="en">
 <head>
 	
+<?php require_once("componentes/links.php");
+      require_once("componentes/scripts.php");
 
-
- <link rel="stylesheet" href="styles/styles.css">
-<!-- Gooogle Fonts API-->
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet"> 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet">
-
-
-<!-- Toastr Alerts CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  ?>
 
 
   <meta charset="utf-8">
@@ -84,15 +73,28 @@
 
 		<div class="row text-center">
 
-				<div class="col col-sm" >
-					<select class="custom-select">
-				 	 <option selected>seleccionar servicio</option>
-				 	 <option>1</option>
-				 	 <option>2</option>
-				 	 <option>3</option>
-					</select>
-				</div>
+      <div class="col col-sm" >
+          <select class="custom-select">
+            <option selected>seleccionar servicio</option>
+<?php 
+require_once("modelos/modelo-servicios.php");
+  $servi = Servicios::getServicios();
 
+  for($i=0;$i<count($servi); $i++){
+
+      echo('
+           
+           <option>'.$servi[$i]["tipo_servicio"].'</option>
+         
+        
+');
+
+  }
+
+?>  
+</select>
+        </div>
+				
 			<div class="col col-sm">		
         		 <input type="date" class="form-control" id="" name="">
          	 </div>
@@ -113,35 +115,40 @@
 					<div class="container mt-2"><!-- INICIO LISTA DE SERVICIOS-->
 						<div class="list-group">
 
-						  <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
-						    <div class="d-flex w-100 justify-content-between">
-						      <h5 class="mb-2 h5">Titulo</h5>
-						      <small>tipo de servicio</small>
-						      <small> fecha</small>
-						    </div>
-						    <p class="mb-2">DESCRIPCION: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat blanditiis sint mollitia quam veniam quod harum, sequi, animi, voluptatum impedit ex maxime cumque magni eius ipsam facere dolorum laudantium laborum.</p>
-						    <small>Pedido por : Usuario</small>
-						  </a>
+						 <?php 
+                require_once("modelos/modelo-publicaciones.php");
 
-						 <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
-						    <div class="d-flex w-100 justify-content-between">
-						      <h5 class="mb-2 h5">Titulo</h5>
-						      <small>tipo de servicio</small>
-						      <small> fecha</small>
-						    </div>
-						    <p class="mb-2">DESCRIPCION: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat blanditiis sint mollitia quam veniam quod harum, sequi, animi, voluptatum impedit ex maxime cumque magni eius ipsam facere dolorum laudantium laborum.</p>
-						    <small>Pedido por : Usuario</small>
-						  </a>
+                  $publi = Publicaciones::getPublicaciones();
 
-						   <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
-						    <div class="d-flex w-100 justify-content-between">
-						      <h5 class="mb-2 h5">Titulo</h5>
-						      <small>tipo de servicio</small>
-						      <small> fecha</small>
-						    </div>
-						    <p class="mb-2">DESCRIPCION: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat blanditiis sint mollitia quam veniam quod harum, sequi, animi, voluptatum impedit ex maxime cumque magni eius ipsam facere dolorum laudantium laborum.</p>
-						    <small>Pedido por : Usuario</small>
-						  </a>
+
+                  if(count($publi)==0){
+
+                      echo('<div class="alert alert-primary" role="alert">
+                                          No hay publicaciones 
+                                  </div>');
+
+                  }else{
+
+                      for ($i=0; $i<count($publi); $i++){
+
+                        echo (' <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
+                  <small>'.$publi[$i]["tipo_servicio"].'</small>
+                  <small> '.$publi[$i]["fecha_hora_publicacion"].'</small>
+                </div>
+                <p class="mb-2">DESCRIPCION: '.$publi[$i]["detalle_publicacion"].'</p>
+                <small>Pedido por : '.$publi[$i]["nombre_usuario"].'</small>
+              </a>');
+
+
+                      }
+                  }
+
+
+              ?>
+
+
 				</div>
 			</div><!-- FINLISTA DE SERVICIOS-->
 
