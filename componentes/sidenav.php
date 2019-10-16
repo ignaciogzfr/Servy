@@ -1,8 +1,8 @@
 
-  <div class="d-flex" id="wrapper" tabindex="-1">
+  <div class="d-flex toggled" id="wrapper" tabindex="-1">
 
     <!-- Sidebar -->
-    <div class="mdb-color fixed text-white border-right" id="sidebar-wrapper">
+    <div class="mdb-color text-white border-right" id="sidebar-wrapper">
 
 
       <div class="sidebar-heading mdb-color">Menu</div>

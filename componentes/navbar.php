@@ -1,7 +1,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark main-color rounded sticky-top">
         <button class="btn btn-primary" id="menu-toggle" ><i class="fas fa-bars"></i></button>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
         <button class="btn btn-warning" data-target="#pedir-grua-modal" data-toggle="modal"><i class="fas fa-wrench" style="font-size: 15px;"></i> <i class="fas fa-truck-pickup" style="font-size: 20px;"></i></button>
         </button>
