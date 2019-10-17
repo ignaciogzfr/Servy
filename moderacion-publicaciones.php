@@ -83,6 +83,7 @@
                 <th>Nombre de usuario</th>
                 <th>Servicio</th>
                 <th>Tipo de publicacion</th>
+                <th>Estado</th>
                 <th>ver</th>
                 <th>Acciones</th>
             
@@ -103,6 +104,7 @@ if(count($publi)){
                 <td>'.$publi[$i]["nombre_usuario"].'</td>
                 <td>'.$publi[$i]["tipo_servicio"].'</td>
                 <td>'.$publi[$i]["tipo_publicacion"].'</td>
+                <td>'.$publi[$i]["estado_publicacion"].'
 
 
                 <td>
@@ -112,7 +114,7 @@ if(count($publi)){
                 <td>     
                          <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>
                         <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#"><i class="fas fa-ban"></i> Sancionar</a>
+                        <button class="dropdown-item btn-sancionar-publicacion" type="button" value="'.$publi[$i]["id_publicacion"].'"><i class="fas fa-ban"></i> Sancionar</button>
                         <a class="dropdown-item" href="#"><i class="fas fa-lock-open"></i> Quitar sancion</a>
                         </div>
                </td>
