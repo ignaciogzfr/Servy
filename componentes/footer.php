@@ -6,7 +6,11 @@
   <div class="row text-center">
     
   <div class="col col-md-4 my-2"><img src="img/logo.png" style="height: 75px"></div>
-  <div class="col col-md-4 mt-2">OJO, Servy provee un servicio de atencion, la aplicacion no se hace responsable si los tecnicos no cumplen satisfactoriamente con el servicio requerido.</div>
+  
+  <div class="col col-md-4 mt-2">
+    <h5>Atención</h5>
+    <h6>OJO, Servy provee un servicio de atencion, la aplicacion no se hace responsable si los tecnicos no cumplen satisfactoriamente con el servicio requerido.</h6>
+  </div>
   <div class="col col-md-4 mt-2">
       <h5>Links Utiles</h5>
       <ul class="list-unstyled">
