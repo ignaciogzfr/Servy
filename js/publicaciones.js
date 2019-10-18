@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
-	console
-	$(".btn-sancionar-publicacion").on("click",sancionarPublicacion)
 
+	$(".btn-sancionar-publicacion").on("click",sancionarPublicacion)
+	$(".btn-quitar-sancion-publicacion").on("click",quitarSancionPublicacion)
 
 
 	function sancionarPublicacion(event){
@@ -17,6 +17,21 @@ $(document).ready(function(){
 			data: 'op=sancionarPublicacion&id='+id
 
 
+
+
+		})
+	}
+
+	function quitarSancionPublicacion(event){
+
+		var id = $(this).val();
+		console.log(id);
+
+		$.ajax({
+
+			method: 'POST',
+			url:'controladores/publicaciones-controller.php',
+			data: 'op=quitarSancionPublicacion&id='+id
 
 
 		})
