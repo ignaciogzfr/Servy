@@ -27,3 +27,4 @@
 
 
     </div>
+    <?php require_once 'login-modal.php'; ?>
