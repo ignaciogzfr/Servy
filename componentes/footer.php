@@ -1,11 +1,10 @@
 <!-- Footer -->
-<br>
 <footer class="page-footer mdb-color font-small lighten-1 text-white">
 
-  <!-- Copyright -->
+
   <div class="row text-center">
     
-  <div class="col col-md-4 my-2"><img src="img/logo.png" style="height: 75px"></div>
+  <div class="col col-md-4 mt-4"><img src="img/logo.png" style="height: 75px"></div>
   
   <div class="col col-md-4 mt-2">
     <h5>Atención</h5>
@@ -27,6 +26,5 @@
   </div>
 
   </div>
-  <!-- Copyright -->
 
 </footer>

@@ -1,4 +1,4 @@
-<div id="pedir-grua-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="modal-pedir-grua" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
