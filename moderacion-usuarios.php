@@ -80,6 +80,7 @@
                 <th>Nombre de usuario</th>
                 <th>Email</th>
                 <th>Tipo usuario</th>
+                <th>Estado</th>
                 <th>Perfil</th>
                 <th>Acciones</th>
             </tr>
@@ -99,6 +100,7 @@ if(count($user)){
                 <td>'.$user[$i]["nombre_usuario"].'</td>
                 <td>'.$user[$i]["email_usuario"].'</td>
                 <td>'.$user[$i]["tipo_usuario"].'</td>
+                 <td>'.$user[$i]["estado_usuario"].'</td>
 
 
                 <td>
@@ -108,8 +110,8 @@ if(count($user)){
                 <td>     
                          <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>
                         <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#"><i class="fas fa-ban"></i> Sancionar</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-lock-open"></i> Quitar sancion</a>
+                        <button class="dropdown-item btn-sancionar-usuario" type="button" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-ban"></i> Sancionar</button>
+                        <button class="dropdown-item btn-quitar-sancion-usuario" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-lock-open"></i> Quitar sancion</button>
                         </div>
                </td>
                
