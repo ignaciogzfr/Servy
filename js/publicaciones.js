@@ -1,6 +1,4 @@
 $(document).ready(function(){
-
-	console
 	$(".btn-sancionar-publicacion").on("click",sancionarPublicacion)
 
 

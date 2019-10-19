@@ -18,4 +18,5 @@
 <script type="text/javascript" src="js/navbar.js"></script>
 <script type="text/javascript" src="js/publicaciones.js" ></script>
 <script type="text/javascript" src="js/datatable.js"></script>
+<script type="text/javascript" src="js/usuarios.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
