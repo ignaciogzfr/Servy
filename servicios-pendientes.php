@@ -3,23 +3,7 @@
 <head>
 	
 
-
- <link rel="stylesheet" href="styles/styles.css">
-<!-- Gooogle Fonts API-->
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet"> 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet">
-
-
-<!-- Toastr Alerts CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
-
-
+<?php require_once 'componentes/links.php'; ?>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,11 +12,6 @@
 
   <title>Servy</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
 
 </head>
 
@@ -108,28 +87,7 @@
 
 
 
-
-<!-- Footer -->
-<footer class="page-footer mdb-color font-small lighten-1 text-white">
-
-  <!-- Copyright -->
-  <div class="row text-center">
-    
-  <div class="col col-md-4 my-2"><img src="img/placeholder.png" height="100" width="100"></div>
-  <div class="col col-md-4 mt-2">OJO, Servy provee un servicio de atencion, la aplicacion no se hace responsable si los tecnicos no cumplen satisfactoriamente con el servicio requerido.</div>
-  <div class="col col-md-4 mt-2">
-    <div class="row">
-    <a class="col col-md-12 my-1"href="#">Link1</a>
-    <a class="col col-md-12 my-1"href="#">Link2</a>
-    <a class="col col-md-12 my-1"href="#">Link3</a>
-    </div>
-  </div>
-
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
+<?php require_once 'componentes/footer.php'; ?>
 
 
 

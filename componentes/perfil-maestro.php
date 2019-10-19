@@ -4,12 +4,21 @@
 	
 
 
- 
+ <link rel="stylesheet" href="styles/styles.css">
+<!-- Gooogle Fonts API-->
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet"> 
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet">
 
-<?php require_once("componentes/links.php");
-      require_once("componentes/scripts.php");
 
-  ?>
+<!-- Toastr Alerts CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+
 
 
   <meta charset="utf-8">
@@ -70,80 +79,53 @@
       </nav>
 
 				<div class="container">
-					<h1 class="text-center mt-2"> Moderacion - usuarios</h1>
+					<h1 class="text-center mt-2"> Perfil</h1>
 					<hr class="featurette-divider">
 				</div>
- <div class="container">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>Nombre de usuario</th>
-                <th>Email</th>
-                <th>Tipo usuario</th>
-                <th>Estado</th>
-                <th>Perfil</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-         <tbody>
 
-<?php 
+      
+      <div class="container  w-75">
 
-require_once("modelos/modelo-usuarios.php");
+        <div class="row">
+          
+            <div class="col">
+               <img src="img/placeholder.png" width="150" class="rounded" />
+            </div>
+            <div class="col">
+            <p>Nombre:</p>
+            <p class="pt-2">Email:</p>
+            <p class="pt-2">Telefono:</p>
+            <p class="pt-2">Direccion:</p>
 
-$user= usuarios::getUsuarios();
-if(count($user)){
+            </div>
+            <div class="col">
+              <input type="text" class="form-control mb-2" placeholder="usuario" disabled>
+              <input type="text" class="form-control mb-2" placeholder="correo@correo" disabled>
+              <input type="text" class="form-control mb-2" placeholder="+56912345678" disabled>
+              <input type="text" class="form-control mb-2" placeholder="Direccion 123" disabled>
 
-  for($i=0;$i<count($user); $i++){
+            </div>
 
-  echo(' <tr>
-                <td>'.$user[$i]["nombre_usuario"].'</td>
-                <td>'.$user[$i]["email_usuario"].'</td>
-                <td>'.$user[$i]["tipo_usuario"].'</td>
-                 <td>'.$user[$i]["estado_usuario"].'</td>
+        </div>
 
+        <p>Experiencias:</p>
+            <textarea class="form-control" disabled rows="3"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, exercitationem dolores officia aut cumque, consequatur voluptatem accusantium debitis qui deserunt, natus deleniti nobis quis sapiente laudantium minus mollitia soluta harum.</textarea>
 
-                <td>
-                    <button class="btn btn-sm btn-info">ver perfil</button>
-                </td>
+            <p class="pt-2">Certificados:</p>
 
-                <td>     
-                         <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>
-                        <div class="dropdown-menu">
-                        <button class="dropdown-item btn-sancionar-usuario" type="button" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-ban"></i> Sancionar</button>
-                        <button class="dropdown-item btn-quitar-sancion-usuario" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-lock-open"></i> Quitar sancion</button>
-                        </div>
-               </td>
-               
-            </tr>
-    ');
+            <div class="row">
+              
+              <div class="col">
+                <input type="text" class="form-control mb-2" placeholder="certificado 1" disabled>
+              </div>
+              <div class="col">
+                <input type="text" class="form-control mb-2" placeholder="certificado 2" disabled>
+              </div>
+            </div>
 
-  }
+            <div class="container text-right pb-4"><button class="btn btn-md btn-primary"><i class="fas fa-edit"></i> Editar</button></div>
 
-
-}
-
-
- ?>
-
-         
-       
-           
-           
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>Nombre de usuario</th>
-                <th>Email</th>
-                <th>Tipo usuario</th>
-                <th>Perfil</th>
-                <th>Acciones</th>
-            </tr>
-        </tfoot>
-    </table>
-          </div>
-
-
+      </div>
 	           
 
 
@@ -154,6 +136,29 @@ if(count($user)){
   <!-- /#wrapper -->
 
 
+
+
+<!-- Footer -->
+<footer class="page-footer mdb-color font-small lighten-1 text-white">
+
+  <!-- Copyright -->
+  <div class="row text-center">
+    
+  <div class="col col-md-4 my-2"><img src="img/placeholder.png" height="100" width="100"></div>
+  <div class="col col-md-4 mt-2">OJO, Servy provee un servicio de atencion, la aplicacion no se hace responsable si los tecnicos no cumplen satisfactoriamente con el servicio requerido.</div>
+  <div class="col col-md-4 mt-2">
+    <div class="row">
+    <a class="col col-md-12 my-1"href="#">Link1</a>
+    <a class="col col-md-12 my-1"href="#">Link2</a>
+    <a class="col col-md-12 my-1"href="#">Link3</a>
+    </div>
+  </div>
+
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 
 
 
@@ -201,11 +206,27 @@ if(count($user)){
     </div>
 </div>
 
-<!-- Footer -->
-<?php require_once 'componentes/footer.php' ?>
-<!-- Footer -->
+
+<!-- Menu Toggle Script -->
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- JQuery -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/js/mdb.min.js"></script>
+<!-- Toastr Alerts JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
+<script>
+ $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 	
 </body>
 </html>

@@ -62,7 +62,7 @@
             </div>
             <div class="col">
                 <div class="btn-group-vertical">
-                <button class="btn btn-md btn-primary"><i class="fas fa-edit"></i> Editar perfil</button>
+                <button class="btn btn-md btn-primary"><i class="fas fa-edit"></i> Editar mi perfil</button>
                 <button class="btn btn-md btn-primary">Buscar usuarios</button>
                 <button class="btn btn-md btn-primary">Buscar publicaciones</button>
         
