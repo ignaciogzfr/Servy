@@ -23,6 +23,7 @@
 		<h6 class="text-primary">Los campos que contienen el simbolo * son obligatorios.</h6>
 		<h6 class="text-primary">Para iniciar sesión, necesitamos que tu correo electronico sea autentico</h6>
 		<h6 class="text-primary">Las contraseñas deben tener un minimo de 6 caracteres, recomendamos uso de Mayusculas y numeros</h6>
+		<h6 class="text-primary">Si eres un Maestro/Profesional, necesitamos minimo 1 certificado y 1 tipo de servicio que ofrezca.</h6>
 
 		</div>
 	 <hr class="featurette-divider"></div>
@@ -31,15 +32,15 @@
     		<nav>
                 <div class="nav nav-tabs nav-fill mb-4">
 
-                <a class="nav-item nav-link" data-toggle="tab" href="#tab-cliente">Cliente</a>
+                <a class="nav-item nav-link active" data-toggle="tab" href="#tab-cliente">Cliente</a>
 
-                <a class="nav-item nav-link active" data-toggle="tab" href="#tab-maestro">Maestro</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#tab-maestro">Maestro</a>
 
                 </div>
 
     		</nav>
 
-  <div class="tab-pane fade  show mx-auto w-75" id="tab-cliente" >
+  <div class="tab-pane active fade  show mx-auto w-75" id="tab-cliente" >
 
 			<form id="form-registro-cliente" autocomplete="off" method="POST">
 
@@ -118,7 +119,7 @@
 
 
 
-		<div class="tab-pane active show fade mx-auto w-75" id="tab-maestro">
+		<div class="tab-pane fade mx-auto w-75" id="tab-maestro">
 				<form id="form-registro-maestro" method="POST" autocomplete="off">
 					
 					<div class="form-group">
