@@ -21,21 +21,15 @@ $('#lista-certificados-maestro').on('click','.btn-quitar-certificado',function(e
 
 function registrarUsuario(event){
 	event.preventDefault()
-
-	$('.btn-registro-maestro').attr('disabled','disabled')
-	$('.btn-registro-maestro').text("")
-	$('.btn-registro-maestro').append('<i class="fas fa-spinner fa-spin"></i> Registrando Cuenta...')
 	var datos = new FormData(this);
 
+	console.log(datos.get('tipo-registro'));
 	if($(this).find(".tipo-registro").val()=="Cliente"){
-	var datos = new FormData(this);
 
-
-	if(datos.get('fp-registro') == "" ){
+	if(datos.get('fp-registro') == '' ){
 		datos.set('fp-registro','img/placeholder-person.png')
 	}
-
-
+	console.log(datos.get('fp-registro'));
 	$.ajax({
 		method: 'POST',
 		url: 'controladores/usuarios-controller.php',
@@ -57,6 +51,9 @@ function registrarUsuario(event){
 	else{
 
 
+	$('.btn-registro-maestro').attr('disabled','disabled')
+	$('.btn-registro-maestro').text("")
+	$('.btn-registro-maestro').append('<i class="fas fa-spinner fa-spin"></i> Registrando Cuenta...')
 
 	var servicios = new Array();
 	var certificados = new Array();
