@@ -60,7 +60,7 @@
 
 					<div class="col-md-4">
 						<label for="inputPass">Contraseña *</label>
-						<input id="inputPass" class="form-control" type="password" pattern=".{6,}"  placeholder="Nadie podrá ver" name="pass-registro" required="">
+						<input id="inputPass" class="form-control" type="password" pattern=".{6,}"  name="pass-registro" required="" style="font-size: 10px;">
 					</div>
 
 					<div class="col-md-8">
@@ -93,7 +93,7 @@
 						<hr>
 				<div class="container">
 					<label for="inputDir">Dirección *</label>
-					<input id="inputDir" type="text" class="form-control"  placeholder="Direccion Siempreviva #321 Pobl. Avenida 123" name="dir-registro" required="">
+					<input id="inputDir" type="text" class="form-control" name="dir-registro" required="">
 				</div>
 						
 
@@ -132,7 +132,7 @@
 
 						 <div class="form-group">
 					   		<label for="pass-maestro">Contraseña *</label>
-					    	<input type="password" pattern=".{6,}" class="form-control"  placeholder="Nadie podrá ver" name="pass-registro" required>
+					    	<input type="password" id="pass-maestro" pattern=".{6,}" class="form-control" name="pass-registro" required style="font-size: 10px;">
 					 	</div>
 					    <div class="form-group col-md-6">
 					      <label for="nombre-maestro">Tu Nombre *</label>
@@ -142,7 +142,7 @@
 
 					  <div class="form-group">
 					    <label for="dir-maestro">Direccion *</label>
-					    <input type="text" id="dir-maestro" class="form-control"  placeholder="Avenida Siempreviva 2001" name="dir-registro" required>
+					    <input type="text" id="dir-maestro" class="form-control"  name="dir-registro" required>
 					  </div>
 
 					<div class="row">
