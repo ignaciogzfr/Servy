@@ -39,9 +39,9 @@
 
     		</nav>
 
-  <div class="tab-pane fade  show mx-auto w-75" id="tab-cliente">
+  <div class="tab-pane fade  show mx-auto w-75" id="tab-cliente" >
 
-			<form action="modelos/modelo-registro.php" method="POST">
+			<form id="form-registro-cliente" autocomplete="off" method="POST">
 
 				<div class="form-row form-group">
 
@@ -81,7 +81,7 @@
 
 						<div class="col"> 
 							<div class="custom-file mt-4">
-							<input type="file" class="custom-file-input" id="customFileLang" lang="es" name="fp-registro" value="img/placeholder.png">
+							<input type="file" class="custom-file-input" id="customFileLang" lang="es" name="fp-registro" value="img/placeholder.png" accept="image/png,image/jpeg,image/jpg">
 							<label class="custom-file-label" for="customFileLang">Foto de Perfil</label>
 							</div>
 						</div>
@@ -100,46 +100,63 @@
 
 					<hr class="featurette-divider">
 					 
-					  <button class="btn btn-success float-right mb-5" type="submit" name="tipo-registro" id="btn-registro-cliente" value="Cliente">Registrarme</button>
-					 
+					  <button class="btn btn-success float-right mb-5 btn-registro-cliente" type="submit" id="btn-registro-cliente">Registrarme</button>
+					  <input type="hidden" name="op" value="registrarUsuario">
+					  <input type="hidden" class="tipo-registro" name="tipo-registro" value="Cliente">
 					</form>										
 		</div>	
+		<!--./Form Cliente  -->
+
+
+
+
+
+
+
+
+
+
+
 
 		<div class="tab-pane active show fade mx-auto w-75" id="tab-maestro">
-				<form action="modelos/modelo-registro.php" method="GET">
+				<form id="form-registro-maestro" method="POST" autocomplete="off">
 					
 					<div class="form-group">
-						<label for="mail-registro">Correo Electrónico</label>
-						<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro">						
+						<label for="mail-registro">Correo Electrónico *</label>
+						<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required>						
 					</div>
 
 
 					  <div class="form-row">
+
+						 <div class="form-group">
+					   		<label for="pass-maestro">Contraseña *</label>
+					    	<input type="password" pattern=".{6,}" class="form-control"  placeholder="Nadie podrá ver" name="pass-registro" required>
+					 	</div>
 					    <div class="form-group col-md-6">
-					      <label for="nombre-maestro">Tu Nombre</label>
-					      <input type="text" class="form-control"  placeholder="Nombre" name="nombre-registro">
-					    </div>
-					    <div class="form-group col-md-6">
-					      <label for="fono-maestro">Numero telefonico</label>
-					      <input type="text" class="form-control" placeholder="+569 11223344" name="fono-registro">
+					      <label for="nombre-maestro">Tu Nombre *</label>
+					      <input type="text" class="form-control"  placeholder="Nombre" name="nombre-registro" required>
 					    </div>
 					  </div>
+
 					  <div class="form-group">
-					    <label for="dir-maestr">Direccion</label>
-					    <input type="text" class="form-control"  placeholder="Avenida Siempreviva 2001" name="dir-registro">
+					    <label for="dir-maestro">Direccion *</label>
+					    <input type="text" id="dir-maestro" class="form-control"  placeholder="Avenida Siempreviva 2001" name="dir-registro" required>
 					  </div>
 
 					<div class="row">
-
+							
 						<div class="col-md-5">
-						 <div class="form-group">
-					   		<label for="pass-maestro">Contraseña</label>
-					    	<input type="password" class="form-control"  placeholder="Nadie podrá ver" name="pass-registro">
-					 	</div>
+						<div class="form-group">
+							<label for="fono-maestro">Numero telefonico *</label>
+							<input type="text" class="form-control" placeholder="+569 11223344" name="fono-registro" required>
+						</div>
+
 
 						<div class="form-group">
 						 <label for="serv-maestro">Servicio(s) que proporciona</label>
-						      <select id="inputState" class="form-control" name="serv-registro" multiple="">
+						      <select id="serv-maestro" class="form-control" name="serv-registro" multiple="" style="width:100%">
+						      	<option value="0" disabled="">Puede escribir en la caja de texto para buscar</option>
 						      	<?php 
 						      	require_once 'modelos/modelo-servicios.php';
 						      	$tipos = Servicios::getServicios();
@@ -149,8 +166,8 @@
 						      	 ?>
      						 </select>
 						</div>
-
-						</div>
+					</div>
+						
 					
 					<div class="col-md-7 mt-1">
 						<h6 class="text-center">Foto de Perfil</h6>
@@ -163,21 +180,27 @@
 
 							<div class="col"> 
 								<div class="custom-file mt-3">
-								  <input type="file" class="custom-file-input" id="fp-registro" lang="es" name="fp-registro">
+								  <input type="file" class="custom-file-input" id="fp-registro" lang="es" name="fp-registro" accept="image/x-png,image/jpeg" value="img/placeholder.png">
 								  <label class="custom-file-label" for="fp-registro">Seleccionar Archivo</label>
 								</div>
 							</div>
 					</div>
 
 					</div>
-
-				</div>
+					</div>
 
 			 	<div class="form-group">
 					    <label for="cert-maestro">Certificados</label>
 					    <div class="container row">
 					    <input id="cert-maestro" type="text" class="form-control col-md-11 mt-2"  placeholder="Titulado en..." name="certificados-registro">
-						<button class="btn btn-success"><i class="fas fa-plus-circle" style="font-size: 20px"></i></button>
+						<button type="button" class="btn btn-success btn-agregar-certificado"><i class="fas fa-plus-circle" style="font-size: 20px"></i></button>
+						<div class="container">
+							<ul id="lista-certificados-maestro">
+								<li class="w-75">1Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet<button type="button" class="btn btn-quitar-certificado btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button></li>
+								<li>2Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet<button type="button" class="btn btn-quitar-certificado btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button></li>
+								<li>3Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet<button type="button" class="btn btn-quitar-certificado btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button></li>
+							</ul>
+						</div>
 						</div>
 			  	</div>
 
@@ -195,9 +218,10 @@
 
 					<hr class="featurette-divider">
 					 
-					  <button type="submit" class="btn btn-success float-right mb-5" id="btn-registro-maestro" name="tipo-registro" value="Maestro">Registrarme</button>
-					  
-					</form>	
+					  <button type="submit" class="btn btn-success float-right mb-5 btn-registro-maestro" id="btn-registro-maestro">Registrarme</button>
+					  <input type="hidden" name="op" value="registrarUsuario">
+					  <input type="hidden" class="tipo-registro" name="tipo-registro" value="Maestro">
+					</form>	<!-- ./Form-Maestro -->
 			</div>
 		
 		</div>

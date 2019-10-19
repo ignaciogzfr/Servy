@@ -17,13 +17,13 @@
 
 <?php require_once 'componentes/navbar.php'; ?>
 
-				<div class="container">
+				<div>
 					<h1 class="text-center mt-2"> Perfil</h1>
 					<hr class="featurette-divider">
 				</div>
 
       
-      <div class="container  w-75">
+      <div class="container w-75">
 
         <div class="row">
           
@@ -56,8 +56,6 @@
     </div>
     <!-- /#page-content-wrapper -->
 
-  </div>
-  <!-- /#wrapper -->
 
 
 

@@ -17,7 +17,6 @@ body{
 
      width: 200px;
      background:white;
-     border-right: 3px solid #eee;
 
 
 
@@ -130,6 +129,7 @@ body {
 
 #page-content-wrapper {
   min-width: 100vw;
+  min-height: 85vh;
 }
 
 #wrapper.toggled #sidebar-wrapper {
