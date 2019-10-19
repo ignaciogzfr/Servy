@@ -102,7 +102,7 @@
 					<hr class="featurette-divider">
  					  <input type="hidden" name="op" value="registrarUsuario">
 					  <input type="hidden" class="tipo-registro" name="tipo-registro" value="Cliente">
-					  <button class="btn btn-success float-right mb-5 btn-registro-cliente" type="submit" id="btn-registro-cliente">Registrarme</button>
+					  <button class="btn btn-success float-right mb-5" type="submit" id="btn-registro-cliente">Registrarme</button>
 
 					</form>										
 		</div>	
@@ -219,7 +219,7 @@
 
 					<hr class="featurette-divider">
 					 
-					  <button type="submit" class="btn btn-success float-right mb-5 btn-registro-maestro" id="btn-registro-maestro">Registrarme</button>
+					  <button type="submit" class="btn btn-success float-right mb-5" id="btn-registro-maestro">Registrarme</button>
 					  <input type="hidden" name="op" value="registrarUsuario">
 					  <input type="hidden" class="tipo-registro" name="tipo-registro" value="Maestro">
 					</form>	<!-- ./Form-Maestro -->
