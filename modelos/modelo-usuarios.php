@@ -73,7 +73,7 @@ Class Usuarios{
 		$sql->bindParam(":direccion",$dir,PDO::PARAM_STR);
 
 		$sql->execute();		
-
+		return 'CREADO';
 
 	
 		}

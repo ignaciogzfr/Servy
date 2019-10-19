@@ -100,10 +100,10 @@
 
 
 					<hr class="featurette-divider">
-					 
-					  <button class="btn btn-success float-right mb-5 btn-registro-cliente" type="submit" id="btn-registro-cliente">Registrarme</button>
-					  <input type="hidden" name="op" value="registrarUsuario">
+ 					  <input type="hidden" name="op" value="registrarUsuario">
 					  <input type="hidden" class="tipo-registro" name="tipo-registro" value="Cliente">
+					  <button class="btn btn-success float-right mb-5 btn-registro-cliente" type="submit" id="btn-registro-cliente">Registrarme</button>
+
 					</form>										
 		</div>	
 		<!--./Form Cliente  -->
@@ -181,7 +181,7 @@
 
 							<div class="col"> 
 								<div class="custom-file mt-3">
-								  <input type="file" class="custom-file-input" id="fp-registro" lang="es" name="fp-registro" accept="image/x-png,image/jpeg" value="img/placeholder.png">
+								  <input type="file" class="custom-file-input"  lang="es" name="fp-registro" accept="image/x-png,image/jpeg" value="img/placeholder.png">
 								  <label class="custom-file-label" for="fp-registro">Seleccionar Archivo</label>
 								</div>
 							</div>
