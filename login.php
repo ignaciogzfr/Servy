@@ -31,7 +31,7 @@
 			</div>
 
 			<div class="text-center mt-2">
-				<button type="submit" class="btn btn-primary btn-block">Login</button>
+				<button type="submit" class="btn btn-primary btn-block">Ingresar</button>
 			</div>	
 			<h6 class="alert alert-info mt-2">No tienes una cuenta?<a href="registro.php"> ¡Registrate!</a></h6>
 			
