@@ -26,6 +26,9 @@ function registrarUsuario(event){
 	console.log(datos.get('tipo-registro'));
 	if($(this).find(".tipo-registro").val()=="Cliente"){
 
+	$('#btn-registro-cliente').attr('disabled','disabled')
+	$('#btn-registro-cliente').text("")
+	$('#btn-registro-cliente').append('<i class="fas fa-spinner fa-spin"></i> Registrando Cuenta...')
 	if(datos.get('fp-registro') == '' ){
 		datos.set('fp-registro','img/placeholder-person.png')
 	}
@@ -51,9 +54,9 @@ function registrarUsuario(event){
 	else{
 
 
-	$('.btn-registro-maestro').attr('disabled','disabled')
-	$('.btn-registro-maestro').text("")
-	$('.btn-registro-maestro').append('<i class="fas fa-spinner fa-spin"></i> Registrando Cuenta...')
+	$('#btn-registro-maestro').attr('disabled','disabled')
+	$('#btn-registro-maestro').text("")
+	$('#btn-registro-maestro').append('<i class="fas fa-spinner fa-spin"></i> Registrando Cuenta...')
 
 	var servicios = new Array();
 	var certificados = new Array();

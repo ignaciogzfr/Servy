@@ -72,7 +72,13 @@ Class Usuarios{
 		$sql->bindParam(":tipo",$tipo,PDO::PARAM_STR);
 		$sql->bindParam(":direccion",$dir,PDO::PARAM_STR);
 
-		$sql->execute();		
+		$sql->execute();
+
+		$id = $con->lastInsertId();
+
+		@session_start();
+
+
 		return 'CREADO';
 
 	
