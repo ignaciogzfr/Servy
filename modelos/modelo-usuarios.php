@@ -12,7 +12,32 @@ Class Usuarios{
 		return $sql->fetchAll(PDO::FETCH_ASSOC); 
 
 	}
+	static public function sancionarUsuario($id){
+			//actualiza el estado del usuario
+		$con = Conexion::conectar();
+		$sql = $con->prepare("UPDATE usuario SET estado_usuario = 'Sancionado' WHERE id_usuario = :id");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+		if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
 
+	}
+
+	static public function quitarSancionUsuario($id){
+			//actualiza el estado del usuario
+		$con = Conexion::conectar();
+		$sql = $con->prepare("UPDATE usuario SET estado_usuario = 'Activo' WHERE id_usuario = :id");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+		if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
+
+	}
+	
 	static public function loginUsuario($mail,$pass){
 
 	$con = Conexion::conectar();
