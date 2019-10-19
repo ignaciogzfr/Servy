@@ -47,25 +47,25 @@
 				<div class="form-row form-group">
 
 					<div class="col-md-4">
-						<label for="inputNombre">Tu Nombre</label>
-						<input type="text" class="form-control"  placeholder="Nombre" name="nombre-registro">
+						<label for="inputNombre">Tu Nombre *</label>
+						<input type="text" class="form-control"  placeholder="Nombre" name="nombre-registro" required="">
 					</div>
 					<div class="col-md-8">
-						<label for="inputDir">Correo Electrónico</label>
-						<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro">
+						<label for="inputDir">Correo Electrónico *</label>
+						<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="">
 					</div>
 
 				</div>
 				<div class="form-row form-group">
 
 					<div class="col-md-4">
-						<label for="inputPass">Contraseña</label>
-						<input id="inputPass" class="form-control" type="password" pattern=".{6,}"  placeholder="Nadie podrá ver" name="pass-registro">
+						<label for="inputPass">Contraseña *</label>
+						<input id="inputPass" class="form-control" type="password" pattern=".{6,}"  placeholder="Nadie podrá ver" name="pass-registro" required="">
 					</div>
 
 					<div class="col-md-8">
-							<label for="inputFono">Numero telefonico</label>
-							<input type="text" class="form-control" placeholder="+56 9 12345678" name="fono-registro">
+							<label for="inputFono">Numero telefonico *</label>
+							<input type="text" class="form-control" placeholder="+56 9 12345678" name="fono-registro" required="">
 					</div>
 
 				</div>
@@ -92,8 +92,8 @@
 						<br>
 						<hr>
 				<div class="container">
-					<label for="inputDir">Dirección</label>
-					<input id="inputDir" type="text" class="form-control"  placeholder="Direccion Siempreviva #321 Pobl. Avenida 123" name="dir-registro">
+					<label for="inputDir">Dirección *</label>
+					<input id="inputDir" type="text" class="form-control"  placeholder="Direccion Siempreviva #321 Pobl. Avenida 123" name="dir-registro" required="">
 				</div>
 						
 
@@ -156,8 +156,8 @@
 
 						<div class="form-group">
 						 <label for="serv-maestro">Servicio(s) que proporciona</label>
-						      <select id="serv-maestro" class="form-control" name="serv-registro" multiple="" style="width:100%">
-						      	<option value="0" disabled="">Puede escribir en la caja de texto para buscar</option>
+						      <select id="serv-maestro" class="form-control" name="serv-registro" multiple="" style="width:100%" required="">
+						      	<option value="" disabled="">Puede escribir en la caja de texto para buscar</option>
 						      	<?php 
 						      	require_once 'modelos/modelo-servicios.php';
 						      	$tipos = Servicios::getServicios();
