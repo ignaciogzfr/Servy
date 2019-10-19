@@ -14,8 +14,7 @@ require_once 'conexion.php';
 	$sql->execute();
 	$datos = $sql->fetchAll(PDO::FETCH_ASSOC);
 	if (count($datos) == 1) {
-			var_dump($datos);
-	}
+		echo('<script> location.href="../perfil.php"</script>');	}
 	else{
 		echo('<script> location.href="../login.php?error=1"</script>');
 	}

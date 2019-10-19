@@ -33,13 +33,12 @@
 			<div class="text-center mt-2">
 				<button type="submit" class="btn btn-primary btn-block">Login</button>
 			</div>	
-
+			<h6 class="alert alert-info mt-2">No tienes una cuenta?<a href="registro.php"> ¡Registrate!</a></h6>
+			
 			<?php if (isset($_GET['error'])) {
 				echo '<hr>';
 				echo ("<h6 class='alert-danger w-100 py-2'>Ocurrió un error intentando iniciar sesión. Por favor, reingrese su mail/contraseña.</h6>");
-			}else{
-				echo 'NO';
-			} 
+			}
 			?>		
 			
 		</div>
