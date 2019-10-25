@@ -1,6 +1,6 @@
 <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog pt-4 mx-auto">
-        <div class="modal-content" style="height: 370px; width: 500px;">
+        <div class="modal-content" style="height: 450px; width: 500px;">
 
             <div class="modal-header mdb-color">
 
@@ -10,23 +10,25 @@
 
             </div>
 
-            <div class="modal-body pt-5">
+            <div class="modal-body mt-3">
 
                       <div class="text-center">
 
 
                             <div class="form-group">
-                            <input type="text" id="" class="form-control" placeholder="Correo">
+                            <label for="mail-login-modal"><h4>Correo electrónico</h4></label>
+                            <input type="text" id="mail-login-modal" class="form-control" placeholder="Correo" name="mail-login">
                             </div>
 
 
                             <div class="form-group">
-                            <input id="" class="form-control mt-3" placeholder="contraseña" type="password">
+                            <label for="pass-login-modal"><h4>Contraseña</h4></label>
+                            <input id="pass-login-modal" class="form-control mt-3" placeholder="contraseña" type="password" name="pass-login">
                             </div>
                             <button class="btn btn-success btn-md" type="submit">Iniciar</button>
                             <br>
                         <h5>No tienes cuenta?</h5>
-                        <h6><a href="registro.php" target="_blank">Registrate!</a></h6>
+                        <h6><a href="registro.php" target="_blank">¡Registrate!</a></h6>
                       </div>
                       
             </div>
