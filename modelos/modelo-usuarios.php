@@ -12,20 +12,7 @@ Class Usuarios{
 		return $sql->fetchAll(PDO::FETCH_ASSOC); 
 
 	}
-
-
-	static public function verUsuario($id){
-
-		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT * FROM usuario WHERE id_usuario = :id");
-		$sql->bindParam(":id",$id,PDO::PARAM_INT);
-		$sql->execute();
-		return $sql->fetchAll(PDO::FETCH_ASSOC);
-
-	}
-
-
-
+	
 	static public function sancionarUsuario($id){
 			//actualiza el estado del usuario
 		$con = Conexion::conectar();
@@ -51,17 +38,6 @@ Class Usuarios{
 		}
 
 	}
-	
-	static public function loginUsuario($mail,$pass){
-
-	$con = Conexion::conectar();
-	$sql = $con->prepare("SELECT * FROM usuario WHERE email_usuario = :mail AND pass_usuario = :pass");
-	$sql->bindParam(":mail",$mail,PDO::PARAM_STR);
-	$sql->bindParam(":pass",$pass,PDO::PARAM_STR);
-
-	$sql->execute();
-	return $sql->fetchAll(PDO::FETCH_ASSOC);
-	}
 
 	static public function registrarCliente($mail,$pass,$nombre,$fono,$fp,$dir,$tipo){
 
@@ -86,8 +62,26 @@ Class Usuarios{
 		$sql->bindParam(":tipo",$tipo,PDO::PARAM_STR);
 		$sql->bindParam(":direccion",$dir,PDO::PARAM_STR);
 
-		$sql->execute();		
-		return 'CREADO';
+		if($sql->execute()){
+		$id = $con->lastInsertId();
+
+		@session_start();
+		$_SESSION['id'] = $id;
+		$_SESSION['tipo'] = $tipo;
+		$_SESSION['nombre'] = $nombre;
+		$_SESSION['fono'] = $fono;
+		$_SESSION['fp'] = $fp;
+		$_SESSION['estado'] = 'Activo';
+		$_SESSION['direccion'] = $dir;
+		return $id;
+		}else{
+		return 'ERROR';
+		}
+
+
+
+
+
 
 	
 		}

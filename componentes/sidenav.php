@@ -1,4 +1,3 @@
-
   <div class="d-flex toggled" id="wrapper" tabindex="-1">
 
     <!-- Sidebar -->
@@ -11,11 +10,7 @@
 
         <button data-toggle="modal" data-target="#login-modal" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Iniciar Sesion <i class="fas fa-user-circle"></i></button>
 
-        <a href="perfil.php" target="_blank"class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mi Perfil - Cliente</a>
-        <a href="perfil.php" target="_blank"class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mi Perfil - Maestro</a>
-        <a href="panel-control.php" target="_blank"class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Panel de Control</a>
-
-        <a href="servicios-pendientes.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mis Publicaciones</a>
+        <a href="perfil.php" target="_blank" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mi Perfil - Cliente</a>
 
         <button data-toggle="modal" data-target="modal-contacto" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Informacion</button>
 
