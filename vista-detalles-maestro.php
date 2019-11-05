@@ -75,7 +75,7 @@
 				
 
 		</div>
-		<div class="text-right mt-4"><button  class="btn btn-md btn-secondary mt-4 float-right"> <i class="fas fa-arrow-left"></i> volver</button></div>
+		<div class="text-right mt-4"><a class="btn btn-md btn-secondary mt-4 float-right" href="vista-servicios.php"><i class="fas fa-arrow-left"></i> volver</a></div>
 			
 </div>
 
