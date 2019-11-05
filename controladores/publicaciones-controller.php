@@ -15,6 +15,11 @@ require_once("../modelos/modelo-publicaciones.php");
 			}
 
 
+			public function publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle){
+				$respuesta = Publicaciones::publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle)
+			}
+
+
 	}
 
 
@@ -29,6 +34,10 @@ $op= $_POST["op"];
 			$response = new gestorPublicaciones();
 			$response-> QuitarSancionPublicacion($_POST["id"]);
 			break;
+
+		case'publicarServicio';
+		$response = new gestorPublicaciones();
+		$response-> PublicarServicio($_POST["id-usuario"],$_POST["tipo-publicacion"],$_POST["titulo-publi"],$_POST["direccion-publi"],$_POST["tipo-serv"],$_POST["detalle-publi"],)
 		
 		
 	}
