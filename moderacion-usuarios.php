@@ -104,7 +104,7 @@ if(count($user)){
 
 
                 <td>
-                    <button class="btn btn-sm btn-info">ver perfil</button>
+                    <a class="btn btn-sm btn-info" type="button" href="vista-usuario.php?usuario='.$user[$i]["id_usuario"].'" target="_blank">ver perfil</a>
                 </td>
 
                 <td>     
