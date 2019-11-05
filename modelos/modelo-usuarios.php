@@ -26,6 +26,14 @@ Class Usuarios{
 
 	}
 
+	static public function getPerfilUsuario($id){
+	$con = Conexion::conectar();
+	$sql = $con->prepare('SELECT * FROM usuario WHERE id_usuario = :id');
+	$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->execute();
+	return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 
 	static public function verUsuario($id){
 
