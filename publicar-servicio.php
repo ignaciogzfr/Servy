@@ -105,25 +105,19 @@
 
 <!-- INICIO DEL FORMULARIO -->
 <div class="container my-4" style="width: 70%;">
-  <form>
+  <form id="form-publicar-servicio" method="POST" autocomplete="off">
   <div class="form-row">
-
     <div class="form-group col-md-6">
-      <label for="inputEmail4">Tu Nombre</label>
-      <input type="email" class="form-control"  placeholder="Nombre">
-    </div>
-
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Fono de Contacto</label>
-      <input type="text" class="form-control" placeholder="+569 11223344">
+      <label for="titulopubli"> Titulo</label>
+      <input type="text" class="form-control" name="titulo-publi" placeholder="Titulo">
     </div>
 
   </div>
 
   <div class="form-group">
-    <label for="inputAddress">Direccion</label>
+    <label for="dir">Direccion</label>
     <button class="btn btn-secondary btn-sm">Geolocalizar</button>
-    <input type="text" class="form-control"  placeholder="Avenida Siempreviva 2001">
+    <input type="text" class="form-control" name="direccion-publi" placeholder="Avenida Siempreviva 2001">
   </div>
 
 
@@ -132,21 +126,38 @@
    
     <div class="form-group col-md-12">
       <label for="inputState">Tipo de servicio</label>
-      <select id="inputState" class="form-control">
-        <option selected>Seleccionar...</option>
-        <option>...</option>
-      </select>
+                <select class="custom-select">
+            <option selected>seleccionar servicio</option>
+<?php 
+require_once("modelos/modelo-servicios.php");
+  $servi = Servicios::getServicios();
+
+  for($i=0;$i<count($servi); $i++){
+
+      echo('
+           
+           <option name="tipo-serv" value="'.$servi[$i]["id_tipo_servicio"].'">'.$servi[$i]["tipo_servicio"].'</option>
+         
+        
+');
+
+  }
+
+?>  
+</select>
     </div>
     
   </div>
 
        <div class="form-group">
-  <label for="exampleFormControlTextarea3">Detalle</label>
-  <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" rows="7"></textarea>
+  <label for="">Detalle</label>
+  <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" name="detalle-publi" rows="7"></textarea>
 </div>
- 
-  <button type="button" class="btn btn-primary" id="btn-publicarProblema">Publicar Problema</button>
-  <a class="btn btn-info" data-toggle="popover-hover"><i class="fas fa-question"></i></a>
+    <input type="hidden" name="op" value="publicarServicio">
+    <input type="hidden" name="id-usuario" value="1">
+    <input type="hidden" name="tipo-publicacion" value="1">
+    <button type="submit" class="btn btn-success float-right mb-5 btn-publicar-servicio" id="btn-publicar-servicio">Publicar problema</button>
+
 </form>
 </div>
     
