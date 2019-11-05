@@ -8,6 +8,11 @@
         </li>
 
         <li class="nav-item">
+        <?php echo '<a class="nav-link" href="perfil.php?id='.$_SESSION['id'].'">Mi Perfil</a>' ?>
+        
+        </li>
+
+        <li class="nav-item">
         <a class="nav-link" href="vista-servicios.php?tipo=oferta" target="_blank">Servicios</a>
         </li>
 
