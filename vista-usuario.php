@@ -60,7 +60,7 @@
 
         
 
-            <div class="container text-right pb-4"><button class="btn btn-md btn-primary"><i class="fas fa-edit"></i> Editar</button></div>
+
 
       </div>
              
