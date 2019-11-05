@@ -20,6 +20,27 @@ Class Usuarios{
 	return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	static public function getServiciosMaestro($id){
+	$con = Conexion::conectar();
+	$sql = $con->prepare('SELECT t.tipo_servicio FROM usuario u, servicios_maestro s, tipo_servicio t WHERE u.id_usuario = :id AND s.id_usuario = u.id_usuario AND s.id_tipo_servicio = t.id_tipo_servicio AND s.estado_servicio_maestro = "Activo"');
+	$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->execute();
+	return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+	static public function getExperienciaMaestro($id){
+	$con = Conexion::conectar();
+	$sql = $con->prepare('SELECT u.id_usuario, e.* FROM usuario u, experiencias_maestro e WHERE u.id_usuario = :id AND u.id_usuario = e.id_usuario');
+	$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->execute();	
+	}
+	static public function getCertificadosMaestro($id){
+	$con = Conexion::conectar();
+	$sql = $con->prepare('SELECT c.id_certificado, c.nombre_certificado FROM usuario u, certificados_maestro c WHERE u.id_usuario = :id AND c.id_usuario = u.id_usuario');
+	$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->execute();
+	return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	static public function sancionarUsuario($id){
 			//actualiza el estado del usuario
 		$con = Conexion::conectar();
@@ -80,7 +101,7 @@ Class Usuarios{
 		$_SESSION['fp'] = $fp;
 		$_SESSION['estado'] = 'Activo';
 		$_SESSION['direccion'] = $dir;
-		return 'CREADO';
+		return $id;
 		}else{
 		return 'ERROR';
 		}
