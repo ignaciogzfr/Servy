@@ -2,6 +2,7 @@ $(document).ready(function(){
 
 	$(".btn-sancionar-publicacion").on("click",sancionarPublicacion)
 	$(".btn-quitar-sancion-publicacion").on("click",quitarSancionPublicacion)
+	$('#form-publicar-servicio').on('submit',publicarServicio)
 
 
 	function sancionarPublicacion(event){
@@ -36,7 +37,23 @@ $(document).ready(function(){
 		})
 	}
 
+	function publicarServicio(event){
+			event.preventDefault()
+			var datos = new FormData(this);
+			console.log(datos.get('id-usuario'));
+		/*	$.ajax({
 
+				method: 'POST',
+				url: 'controladores/publicaciones-controller.php'
+				data: datos,
+
+
+
+
+			})*/
+
+
+	}
 
 
 })
