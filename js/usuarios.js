@@ -32,7 +32,7 @@ function registrarUsuario(event){
 	$('#btn-registro-cliente').text("")
 	$('#btn-registro-cliente').append('<i class="fas fa-spinner fa-spin"></i> Registrando Cuenta...')
 	if(fp === undefined){
-		datos.set('fp-registro','img/placeholder-person.png')
+		datos.set('fp-registro','img/placeholder-person.jpg')
 		console.log('cambiado')
 	}
 	$.ajax({
@@ -44,9 +44,10 @@ function registrarUsuario(event){
     	processData: false,
 		success:function(response){
 			console.log(response)
-			if(response == "CREADO"){
-				location.href = 'perfil.php';
+			if(response != "ERROR"){
+				location.href = 'perfil.php?id='+response;
 			}else{
+				location.href= 'registro.php?error=1'
 			}
 		}
 	})
