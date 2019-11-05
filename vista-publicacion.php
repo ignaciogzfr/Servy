@@ -71,82 +71,38 @@
       </nav>
 
 				<div class="container">
-					<h1 class="text-center mt-2"> Moderacion - Publicaciones</h1>
+					<h1 class="text-center mt-2"> Ver publicacion</h1>
 					<hr class="featurette-divider">
 				</div>
 
 
-         <div class="container">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>Nombre de usuario</th>
-                <th>Servicio</th>
-                <th>Tipo de publicacion</th>
-                <th>Estado</th>
-                <th>ver</th>
-                <th>Acciones</th>
+
+        <?php 
+            require_once("modelos/modelo-publicaciones.php");
+
+            $publi = publicaciones::verPublicacion($_GET["publicacion"]);
+          
+
+              echo('
+  <div class="container text-center">
+
+      <div class="row">
+        <div class="col"> pedido por: '.$publi[0]["nombre_usuario"].'</div>
+        <div class="col">tipo servicio: '.$publi[0]["tipo_servicio"].' </div>
+        <div class="col">'.$publi[0]["fecha_hora_publicacion"].'</div>
+
+      </div>
+  <hr class="featurette-divider">
+          <h3>'.$publi[0]["titulo_publicacion"].'</h3>
+      <p>'.$publi[0]["detalle_publicacion"].'</p>
+          <p>'.$publi[0]["direccion_publicacion"].'</p>
+   </div>');
             
-            </tr>
-        </thead>
-         <tbody>
 
-<?php 
+         ?>
 
-require_once("modelos/modelo-publicaciones.php");
-
-$publi = Publicaciones::getPublicaciones();
-if(count($publi)){
-
-  for($i=0;$i<count($publi); $i++){
-
-  echo(' <tr>
-                <td>'.$publi[$i]["nombre_usuario"].'</td>
-                <td>'.$publi[$i]["tipo_servicio"].'</td>
-                <td>'.$publi[$i]["tipo_publicacion"].'</td>
-                <td>'.$publi[$i]["estado_publicacion"].'
-
-
-                <td>
-                    <a class="btn btn-sm btn-info" type="button" href="vista-publicacion.php?publicacion='.$publi[$i]["id_publicacion"].'" target="_blank">ver publicacion</a>
-                </td>
-
-                <td>     
-                         <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>
-                        <div class="dropdown-menu">
-                        <button class="dropdown-item btn-sancionar-publicacion" type="button" value="'.$publi[$i]["id_publicacion"].'"><i class="fas fa-ban"></i> Sancionar</button>
-                        
-                        <button class="dropdown-item btn-quitar-sancion-publicacion" value="'.$publi[$i]["id_publicacion"].'"><i class="fas fa-lock-open"></i> Quitar sancion</button>
-                        </div>
-               </td>
-               
-            </tr>
-    ');
-
-  }
-
-
-}
-
-
- ?>
-
+  
          
-       
-           
-           
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>Nombre de usuario</th>
-                <th>Servicio</th>
-                <th>Tipo de publicacion</th>
-                <th>ver</th>
-                <th>Acciones</th>
-            </tr>
-        </tfoot>
-    </table>
-          </div>
        
 
 
