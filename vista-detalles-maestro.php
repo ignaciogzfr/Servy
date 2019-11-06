@@ -22,31 +22,7 @@
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #45526e;">
 
 <div class="container bg-white" style="padding-bottom: 200px; width: 70%;">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD:vista-detalles-maestro.php
 	<div class="container text-center w-70" style="padding-top:70px;">
-=======
-	<div class="container text-center w-70 pt-4">
->>>>>>> dwded:vista-detalles-maestro.php
-=======
-	<div class="container text-center w-70" style="padding-top:70px;">
->>>>>>> jd
-=======
-=======
->>>>>>> jd
-	<div class="container text-center w-70" style="padding-top:70px;">
-=======
-	<div class="container text-center w-70 pt-4">
->>>>>>> dwded
-<<<<<<< HEAD
->>>>>>> dwded
-=======
-=======
-	<div class="container text-center w-70" style="padding-top:70px;">
->>>>>>> jd
->>>>>>> jd
 		<h3> Usuario</h3>
 		<hr class="featurette-divider">
 	</div>
@@ -99,37 +75,9 @@
 				
 
 		</div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD:vista-detalles-maestro.php
-		<div class="text-right mt-4"><button  class="btn btn-md btn-secondary mt-4 float-right"> <i class="fas fa-arrow-left"></i> volver</button></div>
+		<div class="text-right mt-4"><a class="btn btn-md btn-secondary mt-4 float-right" href="vista-servicios.php"><i class="fas fa-arrow-left"></i> volver</a></div>
 			
 </div>
-=======
-		<div class="text-right mt-4"><button  class="btn btn-md btn-secondary mt-4"> <i class="fas fa-arrow-left"></i> volver</button></div>
-=======
-=======
->>>>>>> dwded
-=======
->>>>>>> jd
-		<div class="text-right mt-4"><button  class="btn btn-md btn-secondary mt-4 float-right"> <i class="fas fa-arrow-left"></i> volver</button></div>
->>>>>>> jd
-			
-</div>
-
-<<<<<<< HEAD
->>>>>>> dwded:vista-detalles-maestro.php
-=======
-=======
-		<div class="text-right mt-4"><button  class="btn btn-md btn-secondary mt-4"> <i class="fas fa-arrow-left"></i> volver</button></div>
-=======
-		<div class="text-right mt-4"><button  class="btn btn-md btn-secondary mt-4 float-right"> <i class="fas fa-arrow-left"></i> volver</button></div>
->>>>>>> jd
-			
-</div>
->>>>>>> dwded
->>>>>>> dwded
 
 
 
