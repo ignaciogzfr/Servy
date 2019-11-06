@@ -1,4 +1,4 @@
-<div class="container  w-75">
+<div class="container w-75 mb-5">
 
         <div class="row">
           
@@ -18,52 +18,50 @@
 
             </div>
             <div class="col-md-8">
-  <?php echo '<input type="text" class="form-control my-1" placeholder="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1" placeholder="'.$datos[0]['email_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1" placeholder="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1" placeholder="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['email_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
 
             </div>
 
         </div>
 
-
         <div class="mt-2">
           <p>Experiencias</p>
-            <?php 
-                $servicios = Usuarios::getServiciosMaestro($_GET['id']);
-                $certificados = Usuarios::getCertificadosMaestro($_GET['id']);
-                $experiencia = Usuarios::getExperienciaMaestro($_GET['id']);
-            echo '<textarea class="form-control" disabled rows="3">'.$experiencia[0]['detalle_experiencia'].'</textarea>';
-            if(isset($_SESSION['id']) && $_SESSION['id']==$_GET['id']){
-                echo '<div class="text-center"><button type="button" class="btn btn-md btn-primary"><i class="fas fa-edit"></i> Editar</button></div>';
-              } ?> 
+            <?php
+                $id = $_GET['id'];
+                $servicios = Usuarios::getServiciosMaestro($id);
+                $certificados = Usuarios::getCertificadosMaestro($id);
+                $experiencia = Usuarios::getExperienciaMaestro($id);
+            echo '<textarea class="form-control exp-maestro" disabled rows="3">'.$experiencia[0]['detalle_experiencia'].'</textarea>';
+?> 
           <div class="row">
             <div class="col-md-6">
               <p class="pt-2">Certificados</p>
                 <?php 
-                if(count($certificados)==1){
-                echo '<input type="text" class="form-control mb-2" placeholder="'.$certificados[0]['nombre_certificado'].'" disabled>';
-                }elseif(count($certificados)>1){
-                for($i = 0; $i<count($certificados); $i++);
-                echo '<input type="text" class="form-control mb-2" placeholder="'.$certificados[$i]['nombre_certificado'].'" disabled>';
-                }else{
-                echo 'No existe nada';
-                }
+                for($i = 0; $i < count($certificados); $i++){
+                echo '<input type="text" class="form-control mb-2" placeholder="'.$certificados[$i]['nombre_certificado'].'" disabled>';}
+
                  ?>                              
                 
             </div>
             <div class="col-md-6">
               <p class="pt-2">Servicios que proporciona</p>
               <?php 
-              for($i = 0; $i < count($servicios); $i++)
-              echo '<input type="text" class="form-control mb-2" placeholder="'.$servicios[$i]['tipo_servicio'].'" disabled>'; ?>                            
+              for($i = 0; $i < count($servicios); $i++){
+              echo '<input type="text" class="form-control mb-2" placeholder="'.$servicios[$i]['tipo_servicio'].'" disabled>';} ?>                            
 
             </div>
-              
+   
 
            </div>
-   
+             <div class="float-right">
+            <?php 
+            if(isset($_SESSION['id']) && $_SESSION['id']==$_GET['id']){
+                echo '<div class="my-3"><button type="button" class="btn btn-md btn-primary btn-preparar-edit"><i class="fas fa-edit"></i> Editar</button></div>';
+              }   ?>
+          </div> 
                 
 
 

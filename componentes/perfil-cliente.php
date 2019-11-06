@@ -1,4 +1,4 @@
-<div class="container w-75">
+<div class="container w-75 mb-5">
 
         <div class="row mt-4">
           
@@ -19,13 +19,13 @@
             </div>
             <div class="col-md-8">
 <form class="form-editar-cliente">
-  <?php echo '<input type="text" class="form-control my-1" placeholder="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1" placeholder="'.$datos[0]['email_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1" placeholder="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1" placeholder="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['email_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
             <?php
-              if(isset($_SESSION['id'])==$_GET['id']){
-                echo '<div class="text-center"><button type="button" class="btn btn-md btn-primary"><i class="fas fa-edit"></i> Editar</button></div>';
+              if(isset($_SESSION['id']) && $_SESSION['id']==$_GET['id']){
+                echo '<div class="text-center div-botones-editar"><button type="button" class="btn btn-md btn-primary btn-preparar-edit"><i class="fas fa-edit"></i> Editar</button></div>';
               } ?>
 </form>
             </div>

@@ -54,10 +54,10 @@ Class GestorUsuarios{
 			$filename = md5($fp['tmp_name']).$extension;
 			$ruta_imagen = 'img/fotos-usuarios/'.$filename;
 			if(move_uploaded_file($fp['tmp_name'],"../".$ruta_imagen)){
-			$respuesta = Usuarios::registrarMaestro($mail,$pass,$nombre,$fono,$ruta_imagen,$dir,$tipo);
+			$respuesta = Usuarios::registrarMaestro($mail,$pass,$nombre,$fono,$ruta_imagen,$dir,$tipo,$servicios,$certificados,$exp);
 			}
 		}else{
-			$respuesta = Usuarios::registrarMaestro($mail,$pass,$nombre,$fono,$fp,$dir,$tipo);
+			$respuesta = Usuarios::registrarMaestro($mail,$pass,$nombre,$fono,$fp,$dir,$tipo,$servicios,$certificados,$exp);
 		}
 		
 		echo $respuesta;

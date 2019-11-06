@@ -3,6 +3,7 @@ $(".btn-sancionar-usuario").on("click",sancionarUsuario)
 $(".btn-quitar-sancion-usuario").on("click",quitarSancionUsuario)
 $('#form-registro-cliente').on('submit',registrarUsuario);
 $('#form-registro-maestro').on('submit',registrarUsuario);
+$('.btn-preparar-edit').on('click',prepararFormEditar);
 $('.fp-registro').on('change',function(){
 	previewFP(this)
 })
@@ -25,13 +26,14 @@ $('#lista-certificados-maestro').on('click','.btn-quitar-certificado',function(e
 function registrarUsuario(event){
 	event.preventDefault()
 	var datos = new FormData(this);
-	var fp = $('#fp-registro-cliente')[0].files[0]
+	var fpc = $('#fp-registro-cliente')[0].files[0]
+	var fpm = $('#fp-registro-maestro')[0].files[0]
 	if($(this).find(".tipo-registro").val()=="Cliente"){
 
 	$('#btn-registro-cliente').attr('disabled','disabled')
 	$('#btn-registro-cliente').text("")
 	$('#btn-registro-cliente').append('<i class="fas fa-spinner fa-spin"></i> Registrando Cuenta...')
-	if(fp === undefined){
+	if(fpc === undefined){
 		datos.set('fp-registro','img/placeholder-person.jpg')
 		console.log('cambiado')
 	}
@@ -70,10 +72,9 @@ function registrarUsuario(event){
 	$('#lista-certificados-maestro li').each(function(i){
 		certificados.push($(this).text())
 	})
-
-
-	if(datos.get('fp-registro') == "" ){
-		datos.set('fp-registro','img/placeholder-person.png')
+	if(fpm === undefined){
+		datos.set('fp-registro','img/placeholder-person.jpg')
+		console.log('cambiado')
 	}
 	datos.append('servicios',JSON.stringify(servicios))
 	datos.append('certificados',JSON.stringify(certificados))
@@ -86,8 +87,9 @@ function registrarUsuario(event){
     	contentType: false,
     	processData: false,
 		success:function(response){
-			if(response=='Listo'){
-				location.href= 'perfil.php'
+			console.log(response)
+			if($.isNumeric(response)){
+				location.href= 'perfil.php?id='+response
 			}
 		}
 	})
@@ -147,4 +149,13 @@ $.ajax({
 
 })
 }
+
+function prepararFormEditar(event){
+	$('.input-dato-basico').removeAttr('disabled');
+	$('.exp-maestro').removeAttr('disabled');
+	$('.div-botones-editar').children().remove();
+	$('.div-botones-editar').append(`<button type="button" class="btn btn-success btn-md btn-editar-perfil">AAAAAA</button><button type="button" class="btn btn-danger btn-md">CANCELAR</button>`);
+}
+
+
 })
