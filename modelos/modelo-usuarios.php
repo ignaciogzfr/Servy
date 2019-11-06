@@ -29,9 +29,10 @@ Class Usuarios{
 	}
 	static public function getExperienciaMaestro($id){
 	$con = Conexion::conectar();
-	$sql = $con->prepare('SELECT u.id_usuario, e.* FROM usuario u, experiencias_maestro e WHERE u.id_usuario = :id AND u.id_usuario = e.id_usuario');
+	$sql = $con->prepare('SELECT e.detalle_experiencia FROM usuario u, experiencias_maestro e WHERE u.id_usuario = :id AND u.id_usuario = e.id_usuario');
 	$sql->bindParam(":id",$id,PDO::PARAM_INT);
-	$sql->execute();	
+	$sql->execute();
+	return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
 	static public function getCertificadosMaestro($id){
 	$con = Conexion::conectar();
@@ -167,7 +168,7 @@ Class Usuarios{
 
 
 			$con->commit();
-			return 'Listo';
+			return $id;
 			} catch (PDOException $e) {
 				$con->rollBack();
 				return $e;
