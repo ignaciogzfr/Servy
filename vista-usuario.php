@@ -28,40 +28,88 @@
 
         <?php 
             require_once("modelos/modelo-usuarios.php");
-            $user = Usuarios::verUsuario($_GET["usuario"]);
+            $user = Usuarios::verUsuarioCliente($_GET["usuario"]);
+            $userm = Usuarios::verUsuarioMaestro($_GET["usuario"]);
+            $certificados = Usuarios::getCertificadosMaestro($_GET["usuario"]);
+            $experiencia = Usuarios::getExperienciaMaestro($_GET["usuario"]);
+            $servicios = Usuarios::getServiciosMaestro($_GET["usuario"]);
 
-            
+            if($user[0]["tipo_usuario"]=='Cliente'){
 
-               echo('<div class="row">
-          
-            <div class="col">
-               <img src="'.$user[0]["foto_perfil"].'" width="150" class="rounded" />
-            </div>
-            <div class="col">
-            <p>Nombre:</p>
-            <p>Email:</p>
-            <p>Telefono:</p>
-            <p>Direccion:</p>
+           echo('<div class="row">
+                    
+                      <div class="col">
+                         <img src="'.$user[0]["foto_perfil"].'" width="150" class="rounded" />
+                      </div>
+                      <div class="col">
+                      <p>Nombre:</p>
+                      <p>Email:</p>
+                      <p>Telefono:</p>
+                      <p>Direccion:</p>
 
-            </div>
-            <div class="col">
-             <input type="text" class="form-control mb-2" placeholder="'.$user[0]["nombre_usuario"].'" disabled>
-              <input type="text" class="form-control mb-2" placeholder="'.$user[0]["email_usuario"].'" disabled>
-              <input type="text" class="form-control mb-2" placeholder="'.$user[0]["fono_usuario"].'" disabled>
-              <input type="text" class="form-control mb-2" placeholder="'.$user[0]["direccion_usuario"].'" disabled>
+                      </div>
+                      <div class="col">
+                       <input type="text" class="form-control mb-2" placeholder="'.$user[0]["nombre_usuario"].'" disabled>
+                        <input type="text" class="form-control mb-2" placeholder="'.$user[0]["email_usuario"].'" disabled>
+                        <input type="text" class="form-control mb-2" placeholder="'.$user[0]["fono_usuario"].'" disabled>
+                        <input type="text" class="form-control mb-2" placeholder="'.$user[0]["direccion_usuario"].'" disabled>
 
-            </div>
+                      </div>
 
-        </div>');
+                  </div>');
+
+            }else{
+
+                echo ('<div class="row">
+                    
+                      <div class="col">
+                         <img src="'.$userm[0]["foto_perfil"].'" width="150" class="rounded" />
+                      </div>
+                      <div class="col">
+                      <p>Nombre:</p>
+                      <p>Email:</p>
+                      <p>Telefono:</p>
+                      <p>Direccion:</p>
+
+                      </div>
+                      <div class="col">
+                       <input type="text" class="form-control mb-2" placeholder="'.$userm[0]["nombre_usuario"].'" disabled>
+                        <input type="text" class="form-control mb-2" placeholder="'.$userm[0]["email_usuario"].'" disabled>
+                        <input type="text" class="form-control mb-2" placeholder="'.$userm[0]["fono_usuario"].'" disabled>
+                        <input type="text" class="form-control mb-2" placeholder="'.$userm[0]["direccion_usuario"].'" disabled>
+
+                      </div>
+
+                      
+
+                  </div>
+                    <p>certificados:</p>
+                    
+                  ');
+                  for($i=0;$i<count($certificados);$i++){
+                       echo(' <input type="text" class="form-control mb-2 col-4" placeholder="'.$certificados[$i]["nombre_certificado"].'" disabled>');
+              }
+                  
+                   echo(' <p>experiencias:</p>
+                <textarea type="text" class="form-control mb-2" disabled rows="3">'.$experiencia[0]["detalle_experiencia"].'</textarea>
+                <p>Servicios proporcionados:</p>');
+                 
+             
+
+                for($i = 0; $i < count($servicios); $i++){
+                     echo ('<input type="text" class="form-control mb-2 col-2" placeholder="'.$servicios[$i]["tipo_servicio"].'" disabled>');
+                   }
+
+            }
+
+
            
 
            
          ?>
 
-        
-
-
-
+ 
+          
       </div>
              
 
@@ -71,7 +119,6 @@
 
   </div>
   <!-- /#wrapper -->
-
 
 
 
