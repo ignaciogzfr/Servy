@@ -56,10 +56,19 @@ Class Usuarios{
 	}
 
 
-	static public function verUsuario($id){
+	static public function verUsuarioCliente($id){
 
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT * FROM usuario WHERE id_usuario = :id");
+		$sql = $con->prepare("SELECT u.* FROM usuario u WHERE id_usuario = :id");
+			$sql->bindParam(":id",$id,PDO::PARAM_INT);
+			$sql->execute();
+			return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+
+	static public function verUsuarioMaestro($id){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("SELECT u.*, e.detalle_experiencia, c.nombre_certificado FROM usuario u, experiencias_maestro e, certificados_maestro c WHERE u.id_usuario = :id and e.id_usuario = u.id_usuario and c.id_usuario = u.id_usuario");
 			$sql->bindParam(":id",$id,PDO::PARAM_INT);
 			$sql->execute();
 			return $sql->fetchAll(PDO::FETCH_ASSOC);

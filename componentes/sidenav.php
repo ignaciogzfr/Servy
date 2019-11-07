@@ -10,8 +10,6 @@
 
         <button data-toggle="modal" data-target="#login-modal" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Iniciar Sesion <i class="fas fa-user-circle"></i></button>
 
-        <a href="perfil.php" target="_blank" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mi Perfil - Cliente</a>
-
         <button data-toggle="modal" data-target="modal-contacto" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Informacion</button>
 
 
