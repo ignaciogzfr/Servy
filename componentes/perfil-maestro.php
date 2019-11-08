@@ -18,10 +18,13 @@
 
             </div>
             <div class="col-md-8">
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['email_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
+<form class="form-editar-maestro">
+  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="nombre" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="mail" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="fono" value="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="dir" value="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
+  <input type="hidden" value="Maestro" id='tipo-editar-perfil'>
+  <input type="hidden" value="editarPerfilBasicoM" name="op">
 
             </div>
 
@@ -29,13 +32,23 @@
 
         <div class="mt-2">
           <p>Experiencias</p>
-            <?php
+<?php
                 $id = $_GET['id'];
                 $servicios = Usuarios::getServiciosMaestro($id);
                 $certificados = Usuarios::getCertificadosMaestro($id);
                 $experiencia = Usuarios::getExperienciaMaestro($id);
-            echo '<textarea class="form-control exp-maestro" disabled rows="3">'.$experiencia[0]['detalle_experiencia'].'</textarea>';
-?> 
+            echo '<textarea class="form-control exp-maestro input-dato-basico" disabled rows="3" name="exp">'.$experiencia[0]['detalle_experiencia'].'</textarea>';
+            echo '<input type="hidden" name="id" value="'.$datos[0]['id_usuario'].'">';
+?>
+</form>
+
+<?php 
+            if(isset($_SESSION['id']) && $_SESSION['id']==$_GET['id']){
+                echo '<div class="text-center div-botones-editar"><button type="button" class="btn btn-md btn-primary btn-preparar-edit" value="'.$_GET['id'].'"><i class="fas fa-edit"></i> Editar</button></div>';
+              }   
+?>
+
+
           <div class="row">
             <div class="col-md-6">
               <p class="pt-2">Certificados</p>
@@ -57,10 +70,7 @@
 
            </div>
              <div class="float-right">
-            <?php 
-            if(isset($_SESSION['id']) && $_SESSION['id']==$_GET['id']){
-                echo '<div class="my-3"><button type="button" class="btn btn-md btn-primary btn-preparar-edit"><i class="fas fa-edit"></i> Editar</button></div>';
-              }   ?>
+
           </div> 
                 
 

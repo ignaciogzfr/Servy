@@ -7,7 +7,27 @@ Class GestorUsuarios{
 		$respuesta = Usuarios::loginUsuario($mail,$pass);
 		echo($respuesta);
 	}
-
+	public function editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir){
+		$respuesta = Usuarios::editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir);
+		echo $respuesta;
+	}
+	public function editarPerfilBasicoM($id,$nombre,$mail,$fono,$dir,$exp){
+		$respuesta = Usuarios::editarPerfilBasicoM($id,$nombre,$mail,$fono,$dir,$exp);
+		echo $respuesta;
+	}
+	public function editarPerfilFP($id,$fp){
+		$respuesta = Usuarios::editarPerfilFP($id,$fp);
+		echo $respuesta;
+	}
+	public function editarPerfilServicios($id,$servicios){
+		$respuesta = Usuarios::editarPerfilServicios($id,$servicios);
+		echo $respuesta;
+	}
+	public function editarPerfilCertificados($id,$certificados){
+		$respuesta = Usuarios::editarPerfilCertificados($id,$certificados);
+		echo $respuesta;
+	}
+	
 	public function registrarCliente($mail,$pass,$nombre,$fono,$fp,$dir,$tipo){
 
 		if(is_array($fp)){
@@ -105,14 +125,44 @@ switch ($op) {
 		break;
 		}
 		case 'sancionarUsuario':
-		$response = new  gestorUsuarios();
-		$response-> SancionarUsuario($_POST["id"]);
+		$response = new GestorUsuarios();
+		$response->SancionarUsuario($_POST["id"]);
 		break;
 		case 'quitarSancionUsuario':
-		$response = new gestorUsuarios();
-		$response-> QuitarSancionUsuario($_POST["id"]);
+		$response = new GestorUsuarios();
+		$response->QuitarSancionUsuario($_POST["id"]);
 		break;
- 	default:
+
+		case 'editarPerfilBasicoC':
+		$response = new GestorUsuarios();
+		$response->editarPerfilBasicoC($_POST['id'],$_POST['nombre'],$_POST['mail'],$_POST['fono'],$_POST['dir']);
+		break;
+
+		case 'editarPerfilBasicoM':
+		$response = new GestorUsuarios();
+		$response->editarPerfilBasicoM($_POST['id'],$_POST['nombre'],$_POST['mail'],$_POST['fono'],$_POST['dir'],$_POST['exp']);
+		break;
+
+		case 'editarPerfilFP':
+		$response = new GestorUsuarios();
+		$response->editarPerfilFP($_POST['id']);
+		break;
+
+		case 'editarPerfilServicios':
+		$response = new GestorUsuarios();
+		$response->editarPerfilServicios($_POST['id']);
+		break;
+
+		case 'editarPerfilCertificados':
+		$response = new GestorUsuarios();
+		$response->editarPerfilCertificados($_POST['id']);	
+		break;
+
+		case '':
+					
+		break; 	
+
+		default:
  		# code...
  		break;
  } ?>
