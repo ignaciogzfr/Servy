@@ -144,18 +144,20 @@ switch ($op) {
 		break;
 
 		case 'editarPerfilFP':
-		$response = new GestorUsuarios();
-		$response->editarPerfilFP($_POST['id']);
+		$response = new GestorUsuarios($);
+		$response->editarPerfilFP($_POST['id'],$_FILES['fp']);
 		break;
 
 		case 'editarPerfilServicios':
 		$response = new GestorUsuarios();
-		$response->editarPerfilServicios($_POST['id']);
+		$servicios = json_decode($_POST['servicios']);
+		$response->editarPerfilServicios($_POST['id'],$servicios);
 		break;
 
 		case 'editarPerfilCertificados':
 		$response = new GestorUsuarios();
-		$response->editarPerfilCertificados($_POST['id']);	
+		$certificados = json_decode($_POST['certificados']);
+		$response->editarPerfilCertificados($_POST['id'],$certificados);	
 		break;
 
 		case '':
