@@ -29,9 +29,10 @@ Class Usuarios{
 	}
 	static public function getExperienciaMaestro($id){
 	$con = Conexion::conectar();
-	$sql = $con->prepare('SELECT u.id_usuario, e.* FROM usuario u, experiencias_maestro e WHERE u.id_usuario = :id AND u.id_usuario = e.id_usuario');
+	$sql = $con->prepare('SELECT e.detalle_experiencia FROM usuario u, experiencias_maestro e WHERE u.id_usuario = :id AND u.id_usuario = e.id_usuario');
 	$sql->bindParam(":id",$id,PDO::PARAM_INT);
-	$sql->execute();	
+	$sql->execute();
+	return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
 	static public function getCertificadosMaestro($id){
 	$con = Conexion::conectar();
@@ -40,6 +41,14 @@ Class Usuarios{
 	$sql->execute();
 	return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
+
+
+// FIN CONSULTAS GET
+
+
+
+
+// CONSULTAS RESPECTO A SANCIONES
 
 	static public function sancionarUsuario($id){
 			//actualiza el estado del usuario
@@ -67,6 +76,10 @@ Class Usuarios{
 
 	}
 
+// FIN CONSULTAS SANCIONES
+
+
+// CONSULTAS INSERT/REGISTRO
 	static public function registrarCliente($mail,$pass,$nombre,$fono,$fp,$dir,$tipo){
 
 
@@ -167,12 +180,118 @@ Class Usuarios{
 
 
 			$con->commit();
-			return 'Listo';
+			return $id;
 			} catch (PDOException $e) {
 				$con->rollBack();
 				return $e;
 			}
 	}
+// FIN CONSULTAS REGISTRO
+
+
+// CONSULTAS UPDATE/EDITAR
+
+	static public function editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir){
+	$con = Conexion::conectar();
+	$sql = $con->prepare('UPDATE usuario SET nombre_usuario = :nombre, email_usuario = :mail, fono_usuario = :fono, direccion_usuario = :dir WHERE id_usuario = :id');
+	$sql->bindParam(':id',$id,PDO::PARAM_INT);
+	$sql->bindParam(':nombre',$nombre,PDO::PARAM_STR);
+	$sql->bindParam(':mail',$mail,PDO::PARAM_STR);
+	$sql->bindParam(':fono',$fono,PDO::PARAM_STR);
+	$sql->bindParam(':dir',$dir,PDO::PARAM_STR);
+	$sql->execute();
+	return 'OK';
+	}
+
+
+
+
+
+	static public function editarPerfilBasicoM($id,$nombre,$mail,$fono,$dir,$exp){
+	$con = Conexion::conectar();
+	try{
+	$con->beginTransaction();
+	$sql = $con->prepare('UPDATE usuario SET nombre_usuario = :nombre, email_usuario = :mail, fono_usuario = :fono, direccion_usuario = :dir WHERE id_usuario = :id');
+	$sql->bindParam(':id',$id,PDO::PARAM_INT);
+	$sql->bindParam(':nombre',$nombre,PDO::PARAM_STR);
+	$sql->bindParam(':mail',$mail,PDO::PARAM_STR);
+	$sql->bindParam(':fono',$fono,PDO::PARAM_STR);
+	$sql->bindParam(':dir',$dir,PDO::PARAM_STR);
+	$sql->execute();
+
+	$sql1 = $con->prepare('UPDATE experiencias_maestro SET detalle_experiencia = :exp WHERE id_usuario = :id');
+	$sql1->bindParam(':id',$id,PDO::PARAM_INT);
+	$sql1->bindParam(':exp',$exp,PDO::PARAM_STR);
+	$sql1->execute();
+	$con->commit();
+	return 'OK';
+	}
+	catch(PDOException $e){
+	$con->rollBack();
+	return $e;
+	}
+
+
+
+
+
+	}
+	static public function editarPerfilFP($id,$fp){
+	$con = Conexion::conectar();
+	$sql = $con->prepare('UPDATE usuario SET foto_perfil = :fp WHERE id_usuario = :id');
+	$sql->bindParam(':id',$id,PDO::PARAM_INT);
+	$sql->bindParam(':fp',$fp,PDO::PARAM_STR);
+	$sql->execute();
+	return 'OK';
+	}
+
+
+
+
+
+	static public function editarPerfilServicios($id,$servicios){
+	$con = Conexion::conectar();
+	try{
+	$con->beginTransaction();	
+	for($i = 0; $i<count($servicios);$i++){
+	$sql = $con->prepare('UPDATE ');
+	$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->bindParam(':servicio',$servicios[$i],PDO::PARAM_INT)
+	$sql->execute();
+	}
+	$con->commit();
+	return 'OK';
+	}
+	catch(PDOException $e){
+		$con->rollBack();
+		return $e;
+	}
+	}
+
+
+
+
+
+
+	static public function editarPerfilCertificados($id,$certificados){
+	$con = Conexion::conectar();
+	try{
+	$con->beginTransaction();	
+	for($i = 0; $i<count($certificados);$i++){
+	$sql = $con->prepare('UPDATE ');
+	$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->bindParam(':certificado',$certificados[$i],PDO::PARAM_STR)
+	$sql->execute();
+	}
+	$con->commit();
+	return 'OK';
+	}
+	catch(PDOException $e){
+		$con->rollBack();
+		return $e;
+	}
+	}
+
 	}
 
 

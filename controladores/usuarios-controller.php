@@ -7,7 +7,27 @@ Class GestorUsuarios{
 		$respuesta = Usuarios::loginUsuario($mail,$pass);
 		echo($respuesta);
 	}
-
+	public function editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir){
+		$respuesta = Usuarios::editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir);
+		echo $respuesta;
+	}
+	public function editarPerfilBasicoM($id,$nombre,$mail,$fono,$dir,$exp){
+		$respuesta = Usuarios::editarPerfilBasicoM($id,$nombre,$mail,$fono,$dir,$exp);
+		echo $respuesta;
+	}
+	public function editarPerfilFP($id,$fp){
+		$respuesta = Usuarios::editarPerfilFP($id,$fp);
+		echo $respuesta;
+	}
+	public function editarPerfilServicios($id,$servicios){
+		$respuesta = Usuarios::editarPerfilServicios($id,$servicios);
+		echo $respuesta;
+	}
+	public function editarPerfilCertificados($id,$certificados){
+		$respuesta = Usuarios::editarPerfilCertificados($id,$certificados);
+		echo $respuesta;
+	}
+	
 	public function registrarCliente($mail,$pass,$nombre,$fono,$fp,$dir,$tipo){
 
 		if(is_array($fp)){
@@ -54,10 +74,10 @@ Class GestorUsuarios{
 			$filename = md5($fp['tmp_name']).$extension;
 			$ruta_imagen = 'img/fotos-usuarios/'.$filename;
 			if(move_uploaded_file($fp['tmp_name'],"../".$ruta_imagen)){
-			$respuesta = Usuarios::registrarMaestro($mail,$pass,$nombre,$fono,$ruta_imagen,$dir,$tipo);
+			$respuesta = Usuarios::registrarMaestro($mail,$pass,$nombre,$fono,$ruta_imagen,$dir,$tipo,$servicios,$certificados,$exp);
 			}
 		}else{
-			$respuesta = Usuarios::registrarMaestro($mail,$pass,$nombre,$fono,$fp,$dir,$tipo);
+			$respuesta = Usuarios::registrarMaestro($mail,$pass,$nombre,$fono,$fp,$dir,$tipo,$servicios,$certificados,$exp);
 		}
 		
 		echo $respuesta;
@@ -105,14 +125,46 @@ switch ($op) {
 		break;
 		}
 		case 'sancionarUsuario':
-		$response = new  gestorUsuarios();
-		$response-> SancionarUsuario($_POST["id"]);
+		$response = new GestorUsuarios();
+		$response->SancionarUsuario($_POST["id"]);
 		break;
 		case 'quitarSancionUsuario':
-		$response = new gestorUsuarios();
-		$response-> QuitarSancionUsuario($_POST["id"]);
+		$response = new GestorUsuarios();
+		$response->QuitarSancionUsuario($_POST["id"]);
 		break;
- 	default:
+
+		case 'editarPerfilBasicoC':
+		$response = new GestorUsuarios();
+		$response->editarPerfilBasicoC($_POST['id'],$_POST['nombre'],$_POST['mail'],$_POST['fono'],$_POST['dir']);
+		break;
+
+		case 'editarPerfilBasicoM':
+		$response = new GestorUsuarios();
+		$response->editarPerfilBasicoM($_POST['id'],$_POST['nombre'],$_POST['mail'],$_POST['fono'],$_POST['dir'],$_POST['exp']);
+		break;
+
+		case 'editarPerfilFP':
+		$response = new GestorUsuarios($);
+		$response->editarPerfilFP($_POST['id'],$_FILES['fp']);
+		break;
+
+		case 'editarPerfilServicios':
+		$response = new GestorUsuarios();
+		$servicios = json_decode($_POST['servicios']);
+		$response->editarPerfilServicios($_POST['id'],$servicios);
+		break;
+
+		case 'editarPerfilCertificados':
+		$response = new GestorUsuarios();
+		$certificados = json_decode($_POST['certificados']);
+		$response->editarPerfilCertificados($_POST['id'],$certificados);	
+		break;
+
+		case '':
+					
+		break; 	
+
+		default:
  		# code...
  		break;
  } ?>

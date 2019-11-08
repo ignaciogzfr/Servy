@@ -21,7 +21,7 @@
   <h1 class="text-center mt-2"> Perfil</h1>
   <hr class="featurette-divider">
 </div>
-<?php 
+<?php
 require_once 'modelos/modelo-usuarios.php';
 $id = $_GET['id'];
 $perfil = Usuarios::getPerfilUsuario($id);
