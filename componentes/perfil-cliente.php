@@ -19,13 +19,16 @@
             </div>
             <div class="col-md-8">
 <form class="form-editar-cliente">
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['email_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" placeholder="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" name="nombre" class="form-control my-1 input-dato-basico nombre-editar-perfil" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" name="mail" class="form-control my-1 input-dato-basico mail-editar-perfil" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" name="fono" class="form-control my-1 input-dato-basico fono-editar-perfil" value="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" name="dir" class="form-control my-1 input-dato-basico dir-editar-perfil" value="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
+  <input type="hidden" value="Cliente" id="tipo-editar-perfil">
+  <input type="hidden" value="editarPerfilBasicoC" name="op">
             <?php
               if(isset($_SESSION['id']) && $_SESSION['id']==$_GET['id']){
-                echo '<div class="text-center div-botones-editar"><button type="button" class="btn btn-md btn-primary btn-preparar-edit"><i class="fas fa-edit"></i> Editar</button></div>';
+                echo '<div class="text-center div-botones-editar"><button type="button" class="btn btn-md btn-primary btn-preparar-edit" value="'.$_GET['id'].'"><i class="fas fa-edit"></i> Editar</button></div>';
+                echo '<input type="hidden" name="id" value="'.$datos[0]['id_usuario'].'">';
               } ?>
 </form>
             </div>
