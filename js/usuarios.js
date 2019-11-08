@@ -48,8 +48,8 @@ function registrarUsuario(event){
     	processData: false,
 		success:function(response){
 			console.log(response)
-			if(response != "ERROR"){
-				location.href = 'perfil.php?id='+response;
+			if($.isNumeric(response)){
+				location.href = 'login.php'
 			}else{
 				location.href= 'registro.php?error=1'
 			}
@@ -187,8 +187,9 @@ $.ajax({
 	url: 'controladores/usuarios-controller.php',
 	data: datos,
 	success:function(response){
-		console.log(response)
+		if(response=='OK'){
 
+		}
 	}
 
 })

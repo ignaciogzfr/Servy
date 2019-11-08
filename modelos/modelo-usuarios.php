@@ -202,6 +202,11 @@ Class Usuarios{
 	$sql->execute();
 	return 'OK';
 	}
+
+
+
+
+
 	static public function editarPerfilBasicoM($id,$nombre,$mail,$fono,$dir,$exp){
 	$con = Conexion::conectar();
 	try{
@@ -225,20 +230,35 @@ Class Usuarios{
 	$con->rollBack();
 	return $e;
 	}
+
+
+
+
+
 	}
-	static public function editarPerfilFP(){
+	static public function editarPerfilFP($id,$fp){
 	$con = Conexion::conectar();
-	$sql = $con->prepare('UPDATE ');
+	$sql = $con->prepare('UPDATE usuario SET foto_perfil = :fp WHERE id_usuario = :id');
+	$sql->bindParam(':id',$id,PDO::PARAM_INT);
+	$sql->bindParam(':fp',$fp,PDO::PARAM_STR);
 	$sql->execute();
 	return 'OK';
 	}
-	static public function editarPerfilServicios(){
+
+
+
+
+
+	static public function editarPerfilServicios($id,$servicios){
 	$con = Conexion::conectar();
 	try{
 	$con->beginTransaction();	
-	
+	for($i = 0; $i<count($servicios);$i++){
 	$sql = $con->prepare('UPDATE ');
+	$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->bindParam(':servicio',$servicios[$i],PDO::PARAM_INT)
 	$sql->execute();
+	}
 	$con->commit();
 	return 'OK';
 	}
@@ -247,13 +267,22 @@ Class Usuarios{
 		return $e;
 	}
 	}
-	static public function editarPerfilCertificados(){
+
+
+
+
+
+
+	static public function editarPerfilCertificados($id,$certificados){
 	$con = Conexion::conectar();
 	try{
 	$con->beginTransaction();	
-	
+	for($i = 0; $i<count($certificados);$i++){
 	$sql = $con->prepare('UPDATE ');
+	$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->bindParam(':certificado',$certificados[$i],PDO::PARAM_STR)
 	$sql->execute();
+	}
 	$con->commit();
 	return 'OK';
 	}
