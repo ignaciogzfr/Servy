@@ -144,7 +144,7 @@ switch ($op) {
 		break;
 
 		case 'editarPerfilFP':
-		$response = new GestorUsuarios($);
+		$response = new GestorUsuarios();
 		$response->editarPerfilFP($_POST['id'],$_FILES['fp']);
 		break;
 
