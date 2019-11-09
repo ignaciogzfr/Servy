@@ -15,4 +15,5 @@
         } 
   ?>
 </nav>
+<?php require_once 'login-modal.php'; ?>
 <?php require_once 'modal-pedir-grua.php'; ?>
