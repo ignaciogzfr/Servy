@@ -188,7 +188,9 @@ $.ajax({
 	data: datos,
 	success:function(response){
 		if(response=='OK'){
-
+			console.log('CAMBIADO');
+			$('.input-dato-basico').attr('disabled','disabled');
+			alert('Fue cambiado con exito!')
 		}
 	}
 
