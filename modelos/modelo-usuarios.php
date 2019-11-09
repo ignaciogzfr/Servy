@@ -256,7 +256,7 @@ Class Usuarios{
 	for($i = 0; $i<count($servicios);$i++){
 	$sql = $con->prepare('UPDATE ');
 	$sql->bindParam(":id",$id,PDO::PARAM_INT);
-	$sql->bindParam(':servicio',$servicios[$i],PDO::PARAM_INT)
+	$sql->bindParam(':servicio',$servicios[$i],PDO::PARAM_INT);
 	$sql->execute();
 	}
 	$con->commit();
@@ -280,7 +280,7 @@ Class Usuarios{
 	for($i = 0; $i<count($certificados);$i++){
 	$sql = $con->prepare('UPDATE ');
 	$sql->bindParam(":id",$id,PDO::PARAM_INT);
-	$sql->bindParam(':certificado',$certificados[$i],PDO::PARAM_STR)
+	$sql->bindParam(':certificado',$certificados[$i],PDO::PARAM_STR);
 	$sql->execute();
 	}
 	$con->commit();
