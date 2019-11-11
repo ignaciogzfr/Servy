@@ -3,6 +3,7 @@
 <head>
 <?php require_once 'componentes/links.php'; ?>
 	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="img/logo.png" />
 	<title>Registro</title>
 </head>
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
@@ -68,7 +69,7 @@
 
 					<div class="col-md-6">
 							<label for="fono-registro-cliente">Numero telefonico *</label>
-							<input id="fono-registro-cliente" type="text" class="form-control" placeholder="+56 9 12345678" name="fono-registro" required="">
+							<input id="fono-registro-cliente" type="text" pattern="[0-9]" class="form-control" placeholder="99999999" style="font-style:italic" maxlength="8" name="fono-registro" required="">
 					</div>
 
 				</div>
@@ -148,7 +149,7 @@
 						<div class="col-md-5">
 						<div class="form-group">
 							<label for="fono-maestro">Numero telefonico *</label>
-							<input id="fono-maestro" type="text" class="form-control" placeholder="+569 11223344" name="fono-registro" required>
+							<input id="fono-maestro" type="text" class="form-control" placeholder="99999999" pattern="[0-9]" maxlength="8" style="font-style:italic" name="fono-registro" required>
 						</div>
 
 
@@ -195,9 +196,7 @@
 						<button type="button" class="btn btn-success btn-agregar-certificado"><i class="fas fa-plus-circle" style="font-size: 20px"></i></button>
 						<div class="container">
 							<ul id="lista-certificados-maestro">
-								<li class="w-75">1Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet<button type="button" class="btn btn-quitar-certificado btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button></li>
-								<li>2Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet<button type="button" class="btn btn-quitar-certificado btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button></li>
-								<li>3Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet<button type="button" class="btn btn-quitar-certificado btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button></li>
+								<!--listado de certificados -->
 							</ul>
 						</div>
 						</div>
