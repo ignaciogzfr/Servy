@@ -8,6 +8,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button> 
   <?php 
         @session_start();
+        //Al cargar este componente se valida si eisten datos en la variable sesion, la que se asigna cuando se realiza un login o registro
         if (isset($_SESSION['id'])){
           require_once 'navbar-usuario.php';
         }else{
@@ -15,5 +16,6 @@
         } 
   ?>
 </nav>
+<!--componentes-->
 <?php require_once 'login-modal.php'; ?>
 <?php require_once 'modal-pedir-grua.php'; ?>
