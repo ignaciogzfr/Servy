@@ -1,25 +1,36 @@
   <div class="d-flex toggled" id="wrapper" tabindex="-1">
 
-    <!-- Sidebar -->
-    <div class="mdb-color text-white" id="sidebar-wrapper">
+    <!-- Sidebar --> 
+    <?php
+    //Se revisa si existe una sesion en la que comparar
+        if(isset($_SESSION['tipo'])){
+    //Si existe se añade el resiltado del tipo del cliente a una variable local que la compara y carga su navegador presonal correspondiente
+        $tipo = $_SESSION['tipo'];
 
+switch ($tipo) {
 
-      <div class="sidebar-heading mdb-color">Menu</div>
+    case 'Administrador':
+        require_once 'sidenav-admin.php';
+    break;
 
-      <div class="list-group list-group-flush text-white mt-3">
+    case 'Cliente':
+        require_once 'sidenav-cliente.php';
+    break;
 
-        <button data-toggle="modal" data-target="#login-modal" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Iniciar Sesion <i class="fas fa-user-circle"></i></button>
+    case 'Maestro':
+        require_once 'sidenav-maestro.php';
+    break;
 
-        <a href="perfil.php" target="_blank" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mi Perfil - Cliente</a>
+    default:
+        require_once 'sidenav-guest.php';
+    break;
+                }
 
-        <button data-toggle="modal" data-target="modal-contacto" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Informacion</button>
+}else{
+  //caso de que no exista una sesion
+  require_once 'sidenav-guest.php';
+}
 
-
-
-        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-2 text-white ">Cerrar sesion <i class="fas fa-power-off"></i></a>
-
-      </div>
-
-
+?>
     </div>
     <?php require_once 'login-modal.php'; ?>
