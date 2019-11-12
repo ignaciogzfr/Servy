@@ -5,7 +5,7 @@
             <div class="col-md-2">
             <?php 
             require_once 'modelos/modelo-usuarios.php';
-
+              
             $datos = Usuarios::getPerfilUsuario($_GET['id']); 
             echo '<img src="'.$datos[0]['foto_perfil'].'" alt="img/placeholder-person.jpg" width="150" height="150" class="rounded my-2">'
              ?>

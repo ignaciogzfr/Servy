@@ -1,3 +1,6 @@
+//cuando se llama a este archivo, este se encarga de "escuchar" las funciones del docuemnto donde esta siendo llamado
+//y a traves de este metodo puede obtener informacion del formulario o campos y carga una funcion para administrarla
+//correctamente
 $(document).ready(function(){
 $(".btn-sancionar-usuario").on("click",sancionarUsuario)
 $(".btn-quitar-sancion-usuario").on("click",quitarSancionUsuario)
@@ -27,6 +30,7 @@ $('#lista-certificados-maestro').on('click','.btn-quitar-certificado',function(e
 
 function registrarUsuario(event){
 	event.preventDefault()
+		// asignacion de datos tomados del formulario registro-cliente
 	var datos = new FormData(this);
 	var fpc = $('#fp-registro-cliente')[0].files[0]
 	var fpm = $('#fp-registro-maestro')[0].files[0]
@@ -42,7 +46,8 @@ function registrarUsuario(event){
 		datos.set('fp-registro','img/placeholder-person.jpg')
 		console.log('cambiado')
 	}
-		//Se llama al componente de usuarios-controller entregandole el paquete de datos
+		//Se llama al componente de usuarios-controller entregandole el paquete de datos y esperar
+		//de este una respuesta
 	$.ajax({
 		method: 'POST',
 		url: 'controladores/usuarios-controller.php',
@@ -52,24 +57,27 @@ function registrarUsuario(event){
     	processData: false,
 		success:function(response){
 			console.log(response)
+			//una ves que obtine la respuesta puede tener 2 resultados 
+			//1) se crea el usuario y obtiene su id de usuario lo que carga su pagina de perfil
+			//2) no se registra o obtubo un error lo que muestra un error a traves del metodo get
 			if($.isNumeric(response)){
-				location.href = 'login.php'
+				location.href= 'perfil.php?id='+response;
 			}else{
-				location.href= 'registro.php?error=1'
+				location.href= 'registro.php?error=1';
 			}
 		}
 	})
 
 
 	}
-
+		//registro caso maestro
 	else{
 
-
+		//Animacion del boton registro
 	$('#btn-registro-maestro').attr('disabled','disabled')
 	$('#btn-registro-maestro').text("")
 	$('#btn-registro-maestro').append('<i class="fas fa-spinner fa-spin"></i> Registrando Cuenta...')
-		//Registro caso maestro
+		//se crean vectores para acomodar la lista de todos los certificados y servicios
 	var servicios = new Array();
 	var certificados = new Array();
 	$('#serv-maestro option:selected').each(function(i){
@@ -78,12 +86,16 @@ function registrarUsuario(event){
 	$('#lista-certificados-maestro li').each(function(i){
 		certificados.push($(this).text())
 	})
+		//caso de foto de perfil nula
 	if(fpm === undefined){
 		datos.set('fp-registro','img/placeholder-person.jpg')
 		console.log('cambiado')
 	}
+		//aqui se asignan los vectores como objetos json y se almacenan el el paquete de datos
 	datos.append('servicios',JSON.stringify(servicios))
 	datos.append('certificados',JSON.stringify(certificados))
+		//Se llama al componente de usuarios-controller entregandole el paquete de datos y 
+		//esperar de este una respuesta
 	$.ajax({
 		method: 'POST',
 		url: 'controladores/usuarios-controller.php',
@@ -94,8 +106,13 @@ function registrarUsuario(event){
     	processData: false,
 		success:function(response){
 			console.log(response)
+			//una ves que obtine la respuesta puede tener 2 resultados 
+			//1) se crea el usuario y obtiene su id de usuario lo que carga su pagina de perfil
+			//2) no se registra o obtubo un error lo que muestra un error a traves del metodo get
 			if($.isNumeric(response)){
-				location.href= 'perfil.php?id='+response
+				location.href= 'perfil.php?id='+response;
+			}else{
+				location.href= 'registro.php?error=1';
 			}
 		}
 	})
@@ -105,10 +122,13 @@ function registrarUsuario(event){
 }
 
 function previewFP(input){
-	console.log(input.id)
+	console.log(input.id);
 	if(input.files && input.files[0]){
+
 			console.log(input.files);
+
 			var reader = new FileReader();
+
 			reader.onload = function(e){
 				if(input.id == 'fp-registro-cliente'){
 					$('#fp-cliente-preview').attr('src', e.target.result)
@@ -125,38 +145,37 @@ function previewFP(input){
 
 
 function sancionarUsuario(event){
+	//al sancionar un usuario su id se encuentra en el boton
 		var id = $(this).val();
 		console.log(id);
-
-
+	//Llamada a el controlador para que este obtenga los datos del formulario y esta realize
+	//la llamada al modelo para que realize la consulta con el id obtenido del boton
 $.ajax({
 	method: 'POST',
 	url: 'controladores/usuarios-controller.php',
 	data: 'op=sancionarUsuario&id='+id
-
-
-
-
 })
 }
 
-function quitarSancionUsuario(event){
 
+function quitarSancionUsuario(event){
+	//al sancionar un usuario su id se encuentra en el boton
 var id = $(this).val();
 console.log(id);
-
+	//Llamada a el controlador para que este obtenga los datos del formulario y esta realize
+	//la llamada al modelo para que realize la consulta con el id obtenido del boton
 $.ajax({
-
 	method: 'POST',
 	url:'controladores/usuarios-controller.php',
 	data: 'op=quitarSancionUsuario&id='+id
-
-
 })
 }
 
+
 function prepararFormEditar(event){
 	var id = $(this).val();
+	//Esta funcion cuando se llama del perfil, habilita los campos para que puedan ser editados, elimina el boton editar
+	//y añade los botone "cancelar" y "confirmar" en ambos de ellos se encuentra sla id del usuario para que se utilicen em modelo-usuario
 	$('.input-dato-basico').removeAttr('disabled');
 	$('.exp-maestro').removeAttr('disabled');
 	$('.div-botones-editar').children().remove();
@@ -167,6 +186,8 @@ function prepararFormEditar(event){
 
 function cancelarFormEditar(event){
 var id = $(this).val()
+	//Cuando se cancela una modificacion los atributos los inputs se deshabilitan los botones de confirmar y calcelar
+	//se eliminan y se vuelve a cargar el boton editar
 $('.input-dato-basico').attr('disabled','disabled');
 	$('.div-botones-editar').children().remove();
 	$('.div-botones-editar').append(`
@@ -186,11 +207,13 @@ if($('#tipo-editar-perfil').val()==='Cliente'){
 	console.log(2)
 	var datos = $('.form-editar-maestro').serialize();
 }
+	//envio de paquete con los datos obtenido del controlador para que se ejecuten las consultas en modelo-usuarios
 $.ajax({
 	method : 'POST',
 	url: 'controladores/usuarios-controller.php',
 	data: datos,
 	success:function(response){
+	//una ves que se realiza la consulta y obtiene una respuesta, los campos ya cambiados son bloqueados 
 		if(response=='OK'){
 			console.log('CAMBIADO');
 			$('.input-dato-basico').attr('disabled','disabled');
