@@ -9,11 +9,11 @@
 
       <div class="list-group list-group-flush text-white">
 
-        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Iniciar Sesion <i class="fas fa-user-circle"></i></a>
+        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Administrar publicaciones<i class="fas fa-user-circle"></i></a>
 
-        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Servicios</a>
+        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Administrar usuarios</a>
 
-        <button data-toggle="modal" data-target="modal-contacto" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Informacion</button>
+        <button data-toggle="modal" data-target="modal-contacto" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Reportes</button>
 
         <a href="panel-control.php" target="_blank" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Panel de Control</a>
         
