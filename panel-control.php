@@ -25,8 +25,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Servy 2</title>
+  <link rel="shortcut icon" href="img/logo.png" />
+  <title>Panel de control</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -37,15 +37,18 @@
 </head>
 
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
-
+    <!--  sidenav -->
 <?php require_once 'componentes/sidenav-cliente.php' ?>
-    <!-- /#sidebar-wrapper -->
+    <!-- fin sidenav -->
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
+    
+    
+    <!-- navegador superior-->
+  <?php require_once 'componentes/navbar.php' ?>
+    <!-- fin navegador superior-->
 
-<?php require_once 'componentes/navbar.php' ?>
-
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
 				<div class="container">
 					<h1 class="text-center mt-2"> Panel de control</h1>
 					<hr class="featurette-divider">
@@ -87,73 +90,14 @@
 
 
 
-<!-- Footer -->
-<footer class="page-footer mdb-color font-small lighten-1 text-white">
-
-  <!-- Copyright -->
-  <div class="row text-center">
-    
-  <div class="col col-md-4 my-2"><img src="img/placeholder.png" height="100" width="100"></div>
-  <div class="col col-md-4 mt-2">OJO, Servy provee un servicio de atencion, la aplicacion no se hace responsable si los tecnicos no cumplen satisfactoriamente con el servicio requerido.</div>
-  <div class="col col-md-4 mt-2">
-    <div class="row">
-    <a class="col col-md-12 my-1"href="#">Link1</a>
-    <a class="col col-md-12 my-1"href="#">Link2</a>
-    <a class="col col-md-12 my-1"href="#">Link3</a>
-    </div>
-  </div>
-
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
+    <!-- Footer -->
+    <?php require_once('componentes/footer.php'); ?>
+    <!-- Footer -->
 
 
-
-<div id="resumen-maestro-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <div class="modal-header mdb-color">
-
-                <h4 id="titulo-loginregistro " class="text-center text-white"> Usuario</h4>
-
-                <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true">×</button>
-
-            </div>
-
-            <div class="modal-body mx-auto text-center ">
-                   
-
-                        <div class="row">
-                           
-                           <div class="col">
-                             
-                           <img src="img/placeholder.png" width="100" class="rounded" />
-
-                           </div> 
-
-                            <div class="col text-left">
-                              Nombre: usuario
-                              correo: usuario@usuario.com
-                            </div>
-
-                            <div class="col text-left">
-                              Telefono: +569 123423424
-
-                            </div>
-
-
-
-                        </div>
-
-                    <div class="mt-3"> <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" >Cerrar</button>
-                     <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" >ver detalles</button></div>
-            </div>
-        </div>
-    </div>
-</div>
+    <!--modal resumen maestro-->
+    <?php require_once('componentes/modal-resumen-maestro'); ?>
+    <!-- fin de modal resumen maestro-->
 
 
 <!-- Menu Toggle Script -->

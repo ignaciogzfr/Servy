@@ -9,11 +9,11 @@
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
 
 
+    
 	<?php require_once 'componentes/sidenav.php'; ?>		
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-
 	<?php require_once 'componentes/navbar.php'; ?>
 
 
@@ -40,7 +40,7 @@
                 </div>
 
     		</nav>
-
+    		<!--inicio form cliente-->
   <div class="tab-pane active fade  show mx-auto w-75" id="tab-cliente" >
 
 			<form id="form-registro-cliente" autocomplete="off" method="POST">
@@ -105,7 +105,7 @@
 
 					</form>										
 		</div>	
-		<!--./Form Cliente  -->
+		<!--termino form Cliente  -->
 
 
 
@@ -117,7 +117,7 @@
 
 
 
-
+		<!--inicio de form maestro-->
 		<div class="tab-pane fade mx-auto w-75" id="tab-maestro">
 				<form id="form-registro-maestro" method="POST" autocomplete="off">
 					
@@ -209,11 +209,6 @@
 
 
 
-					
-						
-
-
-
 					<hr class="featurette-divider">
 					 
 					  <button type="submit" class="btn btn-success float-right mb-5" id="btn-registro-maestro">Registrarme</button>
@@ -221,15 +216,11 @@
 					  <input type="hidden" class="tipo-registro" name="tipo-registro" value="Maestro">
 					</form>	
 
-					<!-- ./Form-Maestro -->
+					<!-- termino form Maestro -->
 			</div>
 		</div>
 	</div>
 </div>
-
-
-
-
 
 <!-- Footer -->
 <?php require_once 'componentes/footer.php'; ?>

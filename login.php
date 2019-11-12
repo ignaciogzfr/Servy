@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Login</title>
+	<link rel="shortcut icon" href="img/logo.png" />
+	<title>Ingreso a la pagina</title>
 	<?php require_once 'componentes/links.php' ?>
 </head>
 

@@ -12,7 +12,7 @@
 
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
   <?php require_once 'componentes/links.php'; ?>
-  <?php require_once 'componentes/sidenav-cliente.php'; ?>
+  <?php require_once 'componentes/sidenav'; ?>
 <div id="page-content-wrapper">
 
 <?php require_once 'componentes/navbar.php'; ?>

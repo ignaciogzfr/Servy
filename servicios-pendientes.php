@@ -9,8 +9,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Servy</title>
+  <link rel="shortcut icon" href="img/logo.png" />
+  <title>Mis servicios pendientes</title>
 
 
 </head>
@@ -18,23 +18,20 @@
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
 
 
+
     <!-- Sidebar -->
 <?php require_once 'componentes/sidenav.php' ?>
     <!-- /#sidebar-wrapper -->
-
-    <!-- Page Content -->
     <div id="page-content-wrapper">
-
 <?php require_once 'componentes/navbar.php' ?>
 
 				<div class="container">
 					<h1 class="text-center mt-2"> Mis servicios</h1>
 					<hr class="featurette-divider">
 				</div>
-<div class="container">
 
-		
 
+				<div class="container">
 
 					<div class="container mt-2"><!-- INICIO LISTA DE SERVICIOS-->
 						<div class="list-group">
@@ -71,12 +68,9 @@
 				</div>
 			</div><!-- FINLISTA DE SERVICIOS-->
 
-
 				<div class="text-center mb-3"><button class="btn btn-primary"> ver mas</button></div>
 </div>
 
-
-	
 
 
     </div>
@@ -88,10 +82,9 @@
 
 
 <?php require_once 'componentes/footer.php'; ?>
-
-
-
 <?php require_once  'componentes/modal-resumen-maestro.php' ?>
+
+
 
 
 <!-- Menu Toggle Script -->

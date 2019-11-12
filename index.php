@@ -7,10 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
+  <link rel="shortcut icon" href="img/logo.png" />
   <title>Servy</title>
 
 <?php require_once 'componentes/links.php' ?>
+
+    <div id="page-content-wrapper">
 <?php require_once 'componentes/sidenav.php' ?>
 </head>
 
@@ -18,9 +20,10 @@
 
 
     <!-- Page Content -->
-    <div id="page-content-wrapper">
+   
+    <!--navegador-->
     <?php require_once 'componentes/navbar.php' ?>
-
+    <!-- fin navegador-->
       <div class="container-fluid">
 
   <div class="jumbotron text-center mt-3  mdb-color lighten-2 text-white">
