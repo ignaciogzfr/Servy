@@ -3,6 +3,8 @@
 require_once '../modelos/modelo-usuarios.php';
 
 Class GestorUsuarios{
+	//esta clase controla las condiciones sobre los datos y sus posibles incongruencias
+	//enviando una respuesta de cada consulta ejecutada en los modelos a usuarios.js para que maneje los datos de la respuesta y se redireccione a las pagina correctas 
 	public function loginUsuario($mail,$pass){
 		$respuesta = Usuarios::loginUsuario($mail,$pass);
 		echo($respuesta);
@@ -95,9 +97,13 @@ Class GestorUsuarios{
 	}
 }
 
+//al ser llamado este componente carga el metodo post con la operacion de donde esta ciendo llamado
+
+//Se asigna a $op el contenido de la operacion del formulado de donde esta siendo llamado
 $op = $_POST["op"];
 switch ($op) {
-
+// segun su contenido se llama a las funciones de la clase gestor de usuario y envia los parametros
+// obtenidos a traves del metodo post(inputs)
 		case 'login':
 		$response = new GestorUsuarios();
 		$response->loginUsuario($_POST["mail-login"],$_POST["pass-login"]);

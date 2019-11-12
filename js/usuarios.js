@@ -30,15 +30,19 @@ function registrarUsuario(event){
 	var datos = new FormData(this);
 	var fpc = $('#fp-registro-cliente')[0].files[0]
 	var fpm = $('#fp-registro-maestro')[0].files[0]
+		//Registro caso cliente
 	if($(this).find(".tipo-registro").val()=="Cliente"){
-
+		//Animacion del boton registro
 	$('#btn-registro-cliente').attr('disabled','disabled')
 	$('#btn-registro-cliente').text("")
 	$('#btn-registro-cliente').append('<i class="fas fa-spinner fa-spin"></i> Registrando Cuenta...')
+		//Si la variable que se le entrego la ruta de la imagen esta sin definir o nula se asignara 
+		//al paquete de datos un valor predeterminado
 	if(fpc === undefined){
 		datos.set('fp-registro','img/placeholder-person.jpg')
 		console.log('cambiado')
 	}
+		//Se llama al componente de usuarios-controller entregandole el paquete de datos
 	$.ajax({
 		method: 'POST',
 		url: 'controladores/usuarios-controller.php',
@@ -65,7 +69,7 @@ function registrarUsuario(event){
 	$('#btn-registro-maestro').attr('disabled','disabled')
 	$('#btn-registro-maestro').text("")
 	$('#btn-registro-maestro').append('<i class="fas fa-spinner fa-spin"></i> Registrando Cuenta...')
-
+		//Registro caso maestro
 	var servicios = new Array();
 	var certificados = new Array();
 	$('#serv-maestro option:selected').each(function(i){

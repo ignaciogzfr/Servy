@@ -219,12 +219,12 @@
 					  <button type="submit" class="btn btn-success float-right mb-5" id="btn-registro-maestro">Registrarme</button>
 					  <input type="hidden" name="op" value="registrarUsuario">
 					  <input type="hidden" class="tipo-registro" name="tipo-registro" value="Maestro">
-					</form>	<!-- ./Form-Maestro -->
+					</form>	
+
+					<!-- ./Form-Maestro -->
 			</div>
-		
 		</div>
 	</div>
-
 </div>
 
 
