@@ -26,7 +26,7 @@
 <?php require_once 'componentes/navbar.php' ?>
 
 				<div class="container">
-					<h1 class="text-center mt-2"> Mis servicios</h1>
+					<h1 class="text-center mt-2"> Mis servicios | pedidos</h1>
 					<hr class="featurette-divider">
 				</div>
 

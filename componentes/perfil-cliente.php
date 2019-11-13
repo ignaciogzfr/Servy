@@ -2,14 +2,18 @@
 
         <div class="row mt-4">
           
-            <div class="col-md-2">
+            <div class="col-md-4 text-center">
             <?php 
             require_once 'modelos/modelo-usuarios.php';
               
             $datos = Usuarios::getPerfilUsuario($_GET['id']); 
             echo '<img src="'.$datos[0]['foto_perfil'].'" alt="img/placeholder-person.jpg" width="150" height="150" class="rounded my-2">'
              ?>
-            </div>
+<?php
+if(isset($_SESSION['id']) && $_GET['id'] == $_SESSION['id']){
+  echo '<button class="btn btn-md btn-primary btn-modal-fp" value="'.$_GET['id'].'" data-toggle="modal" data-target="#modal-editar-fp"><i class="fas fa-edit"></i> Modificar Foto de Perfil</button>';}
+?>
+          </div>
             <div class="col-md-2">
 
             <p class="text-muted my-3">Nombre:</p>
@@ -17,7 +21,7 @@
             <p class="text-muted my-3">Telefono:</p>
             <p class="text-muted my-3">Direccion:</p>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-6">
 <form class="form-editar-cliente">
   <?php echo '<input type="text" name="nombre" class="form-control my-1 input-dato-basico nombre-editar-perfil" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
   <?php echo '<input type="text" name="mail" class="form-control my-1 input-dato-basico mail-editar-perfil" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>

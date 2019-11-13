@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="shortcut icon" href="img/logo.png" />
@@ -51,6 +51,11 @@ elseif(!isset($perfil[0])){
 
 
 <?php require_once 'componentes/footer.php'; ?>
+<?php 
+if(isset($_SESSION['id']) && $_SESSION['id']==$_GET['id']){
+require_once 'componentes/modal-editar-fp.php'; 
+}
+ ?>
 <?php require_once 'componentes/scripts.php' ?>
 </body>
 </html>

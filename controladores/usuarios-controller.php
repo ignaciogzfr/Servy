@@ -17,8 +17,28 @@ Class GestorUsuarios{
 		$respuesta = Usuarios::editarPerfilBasicoM($id,$nombre,$mail,$fono,$dir,$exp);
 		echo $respuesta;
 	}
-	public function editarPerfilFP($id,$fp){
-		$respuesta = Usuarios::editarPerfilFP($id,$fp);
+	public function editarPerfilFP($id,$fp,$actual){
+			if(is_array($fp)){
+				$extension = '';
+				if($fp["type"] == "image/jpeg"){
+				$extension = ".jpeg";
+				}elseif($fp["type"] == "image/jpg"){
+				$extension = ".jpg";
+				}elseif($fp["type"] == "image/png"){
+				$extension = ".png";
+				}else{
+				echo("ERROR EXTENSION");
+				}
+
+				$ruta_imagen = "";
+				$filename = md5($fp['tmp_name']).$extension;
+				$ruta_imagen = 'img/fotos-usuarios/'.$filename;
+				if(move_uploaded_file($fp['tmp_name'],"../".$ruta_imagen)){
+				unlink('../'.$actual);
+				$respuesta = Usuarios::editarPerfilFP($id,$ruta_imagen);
+				}
+			}
+
 		echo $respuesta;
 	}
 	public function editarPerfilServicios($id,$servicios){
@@ -151,7 +171,7 @@ switch ($op) {
 
 		case 'editarPerfilFP':
 		$response = new GestorUsuarios();
-		$response->editarPerfilFP($_POST['id'],$_FILES['fp']);
+		$response->editarPerfilFP($_POST['id'],$_FILES['fp'],$_POST['fp-actual']);
 		break;
 
 		case 'editarPerfilServicios':

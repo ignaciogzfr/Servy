@@ -2,22 +2,28 @@
 
         <div class="row">
           
-            <div class="col-md-2">
+            <div class="col-md-4 text-center">
              <?php 
               require_once 'modelos/modelo-usuarios.php';
-
               $datos = Usuarios::getPerfilUsuario($_GET['id']); 
               echo '<img src="'.$datos[0]['foto_perfil'].'" alt="img/placeholder-person.jpg" width="150" height="150" class="rounded my-2">'
                ?>
+<?php
+if(isset($_SESSION['id']) && $_GET['id'] == $_SESSION['id']){
+  echo '<button class="btn btn-md btn-primary btn-modal-fp" value="'.$_GET['id'].'" data-toggle="modal" data-target="#modal-editar-fp"><i class="fas fa-edit"></i> Modificar Foto de Perfil</button>';
+}
+?>
             </div>
-            <div class="col-md-2">
-            <p>Nombre:</p>
-            <p class="pt-2">Email:</p>
-            <p class="pt-2">Telefono:</p>
-            <p class="pt-2">Direccion:</p>
 
-            </div>
-            <div class="col-md-8">
+        <div class="col-md-2">
+
+            <p class="text-muted my-3">Nombre:</p>
+            <p class="text-muted my-3">Email:</p>
+            <p class="text-muted my-3">Telefono:</p>
+            <p class="text-muted my-3">Direccion:</p>
+
+        </div>
+            <div class="col-md-6">
 <form class="form-editar-maestro">
   <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="nombre" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
   <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="mail" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
@@ -50,8 +56,8 @@
 
 
           <div class="row">
-            <div class="col-md-6">
-              <p class="pt-2">Certificados</p>
+            <div class="col-md-6 text-center">
+              <p class="mt-2">Certificados</p>
                 <?php 
                 for($i = 0; $i < count($certificados); $i++){
                 echo '<input type="text" class="form-control mb-2" placeholder="'.$certificados[$i]['nombre_certificado'].'" disabled>';}
@@ -59,8 +65,8 @@
                  ?>                              
                 
             </div>
-            <div class="col-md-6">
-              <p class="pt-2">Servicios que proporciona</p>
+            <div class="col-md-6 text-center">
+              <p class="mt-2">Servicios que proporciona</p>
               <?php 
               for($i = 0; $i < count($servicios); $i++){
               echo '<input type="text" class="form-control mb-2" placeholder="'.$servicios[$i]['tipo_servicio'].'" disabled>';} ?>                            
@@ -69,14 +75,7 @@
    
 
            </div>
-             <div class="float-right">
-
-          </div> 
-                
-
-
         </div>
 
 
       </div>
-	           

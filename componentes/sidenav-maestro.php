@@ -1,5 +1,3 @@
-  <div class="d-flex" id="wrapper">
-
     <!-- Sidebar -->
     <div class="mdb-color  text-white border-right" id="sidebar-wrapper">
       <div class="sidebar-heading mdb-color text-center">Usuario</div>

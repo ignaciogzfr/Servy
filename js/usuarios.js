@@ -4,11 +4,10 @@
 $(document).ready(function(){
 $(".btn-sancionar-usuario").on("click",sancionarUsuario)
 $(".btn-quitar-sancion-usuario").on("click",quitarSancionUsuario)
+
+
 $('#form-registro-cliente').on('submit',registrarUsuario);
 $('#form-registro-maestro').on('submit',registrarUsuario);
-$('.div-botones-editar').on('click','.btn-preparar-edit',prepararFormEditar);
-$('.div-botones-editar').on('click','.btn-cancelar-edit',cancelarFormEditar)
-$('.div-botones-editar').on('click','.btn-editar-perfil',editarPerfil)
 $('.fp-registro').on('change',function(){
 	previewFP(this)
 })
@@ -28,9 +27,18 @@ $('#lista-certificados-maestro').on('click','.btn-quitar-certificado',function(e
 
 
 
-function registrarUsuario(event){
-	event.preventDefault()
-		// asignacion de datos tomados del formulario registro-cliente
+$('.div-botones-editar').on('click','.btn-preparar-edit',prepararFormEditar);
+$('.div-botones-editar').on('click','.btn-cancelar-edit',cancelarFormEditar)
+$('.div-botones-editar').on('click','.btn-editar-perfil',editarPerfil)
+$('#form-cambiar-fp').on('submit',editarPerfilFP)
+// asignacion de datos tomados del formulario registro-cliente
+
+
+
+
+
+function registrarUsuario(e){
+	e.preventDefault()
 	var datos = new FormData(this);
 	var fpc = $('#fp-registro-cliente')[0].files[0]
 	var fpm = $('#fp-registro-maestro')[0].files[0]
@@ -120,6 +128,8 @@ function registrarUsuario(event){
 	}
 
 }
+// FIN FUNCION
+
 
 function previewFP(input){
 	console.log(input.id);
@@ -132,20 +142,23 @@ function previewFP(input){
 			reader.onload = function(e){
 				if(input.id == 'fp-registro-cliente'){
 					$('#fp-cliente-preview').attr('src', e.target.result)
-				}else if(input.id == 'fp-registro-maestro'){
+				}else 
+				if(input.id == 'fp-registro-maestro'){
 					$('#fp-maestro-preview').attr('src', e.target.result)
+				}else
+				if(input.id == 'fp-cambiar-imagen'){
+					$('#fp-cambio-preview').attr('src', e.target.result)
 				}
 
 			}
 			reader.readAsDataURL(input.files[0]);
 		}	
 }
+// FIN FUNCION
 
 
 
-
-function sancionarUsuario(event){
-	//al sancionar un usuario su id se encuentra en el boton
+function sancionarUsuario(e){
 		var id = $(this).val();
 		console.log(id);
 	//Llamada a el controlador para que este obtenga los datos del formulario y esta realize
@@ -156,7 +169,11 @@ $.ajax({
 	data: 'op=sancionarUsuario&id='+id
 })
 }
+// FIN FUNCION
 
+
+
+function quitarSancionUsuario(e){
 
 function quitarSancionUsuario(event){
 	//al sancionar un usuario su id se encuentra en el boton
@@ -170,9 +187,11 @@ $.ajax({
 	data: 'op=quitarSancionUsuario&id='+id
 })
 }
+// FIN FUNCION
 
 
-function prepararFormEditar(event){
+
+function prepararFormEditar(e){
 	var id = $(this).val();
 	//Esta funcion cuando se llama del perfil, habilita los campos para que puedan ser editados, elimina el boton editar
 	//y añade los botone "cancelar" y "confirmar" en ambos de ellos se encuentra sla id del usuario para que se utilicen em modelo-usuario
@@ -183,8 +202,9 @@ function prepararFormEditar(event){
 		<button type="button" class="btn btn-success btn-md btn-editar-perfil" value="${id}">Confirmar</button>
 		<button type="button" class="btn btn-danger btn-md btn-cancelar-edit" value="${id}">Cancelar</button>`);
 }
+// FIN FUNCION
 
-function cancelarFormEditar(event){
+function cancelarFormEditar(e){
 var id = $(this).val()
 	//Cuando se cancela una modificacion los atributos los inputs se deshabilitan los botones de confirmar y calcelar
 	//se eliminan y se vuelve a cargar el boton editar
@@ -196,10 +216,10 @@ $('.input-dato-basico').attr('disabled','disabled');
 		</button>
 		`);
 }
+// FIN FUNCION
 
 
-
-function editarPerfil(event){
+function editarPerfil(e){
 if($('#tipo-editar-perfil').val()==='Cliente'){
 	console.log(1)
 	var datos = $('.form-editar-cliente').serialize();
@@ -222,10 +242,29 @@ $.ajax({
 	}
 
 })
+}
+// Fin funcion
 
 
-
-
+function editarPerfilFP(e){
+e.preventDefault();
+var imagen = new FormData(this);
+$.ajax({
+	method: 'POST',
+	url: 'controladores/usuarios-controller.php',
+	data: imagen,
+    cache: false,
+	contentType: false,
+	processData: false,
+	success:function(r){
+		console.log(r)
+	}
+})
 }
 
-})
+
+
+
+
+// FIN FUNCION READY DOCUMENT 
+}) 
