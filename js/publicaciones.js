@@ -2,7 +2,10 @@ $(document).ready(function(){
 
 	$(".btn-sancionar-publicacion").on("click",sancionarPublicacion)
 	$(".btn-quitar-sancion-publicacion").on("click",quitarSancionPublicacion)
-	$('#form-publicar-servicio').on('submit',publicarServicio)
+	$('#form-publicar-servicios').on('submit',publicarServicio);
+	$('#select-tipo-servicio').select2({
+	width : 'resolve'
+})
 
 
 	function sancionarPublicacion(event){
@@ -38,21 +41,31 @@ $(document).ready(function(){
 	}
 
 	function publicarServicio(event){
-			event.preventDefault()
-			var datos = new FormData(this);
-			console.log(datos.get('id-usuario'));
-		/*	$.ajax({
+				event.preventDefault();
+				var datos = new FormData(this);
+				console.log(datos.get('op'));
+
+			$.ajax({
 
 				method: 'POST',
-				url: 'controladores/publicaciones-controller.php'
+				url: 'controladores/publicaciones-controller.php',
 				data: datos,
-
-
-
-
-			})*/
-
-
+				cache: false,
+    			contentType: false,
+    			processData: false,
+				success:function(response){
+	        		if(response!=''){
+	        			swal({
+						title : '¡Tu publicacion ha sido enviada con excito!',
+						text : 'Ahora solo hay que esperar que se apruebe y que un Maestro la tome.',
+						icon : 'success'
+					})
+					/*.then(function(){
+						location.href = 'index.php'
+					})*/
+	        		}
+	        	}
+			})
 	}
 
 
