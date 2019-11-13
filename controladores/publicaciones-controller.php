@@ -16,7 +16,8 @@ require_once("../modelos/modelo-publicaciones.php");
 
 
 			public function publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle){
-				$respuesta = Publicaciones::publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle)
+		$respuesta = Publicaciones::publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle);
+		echo($respuesta);
 			}
 
 
@@ -37,7 +38,16 @@ $op= $_POST["op"];
 
 		case'publicarServicio';
 		$response = new gestorPublicaciones();
-		$response-> PublicarServicio($_POST["id-usuario"],$_POST["tipo-publicacion"],$_POST["titulo-publi"],$_POST["direccion-publi"],$_POST["tipo-serv"],$_POST["detalle-publi"],)
+		$response-> publicarServicio($_POST["id-usuario"],$_POST["tipo-publicacion"],$_POST["titulo-publi"],$_POST["direccion-publi"],$_POST["tipo-serv"],$_POST["detalle-publi"]);
+		break;
+
+		case '':
+					
+		break; 	
+
+		default:
+ 		# code...
+ 		break;
 		
 		
 	}
