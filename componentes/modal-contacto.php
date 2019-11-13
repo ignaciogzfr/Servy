@@ -4,7 +4,7 @@
 
             <div class="modal-header mdb-color">
 
-                <h3 id="titulo-loginregistro" class="text-white">Inicia sesion</h3>
+                <h3 class="text-white">Inicia sesion</h3>
 
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 
@@ -21,7 +21,7 @@
 
 
                             <div class="form-group">
-                            <input id="" class="form-control mt-3" placeholder="contraseña" type="password">
+                            <input class="form-control mt-3" placeholder="contraseña" type="password">
                             </div>
                             <button class="btn btn-success btn-md" type="submit">Iniciar</button>
                             <br>

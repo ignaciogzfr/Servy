@@ -49,6 +49,11 @@ elseif(!isset($perfil[0])){
 
 
 <?php require_once 'componentes/footer.php'; ?>
+<?php 
+if(isset($_SESSION['id']) && $_SESSION['id']==$_GET['id']){
+require_once 'componentes/modal-editar-fp.php'; 
+}
+ ?>
 <?php require_once 'componentes/scripts.php' ?>
 </body>
 </html>

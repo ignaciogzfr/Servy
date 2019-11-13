@@ -1,11 +1,10 @@
 $(document).ready(function(){
 $(".btn-sancionar-usuario").on("click",sancionarUsuario)
 $(".btn-quitar-sancion-usuario").on("click",quitarSancionUsuario)
+
+
 $('#form-registro-cliente').on('submit',registrarUsuario);
 $('#form-registro-maestro').on('submit',registrarUsuario);
-$('.div-botones-editar').on('click','.btn-preparar-edit',prepararFormEditar);
-$('.div-botones-editar').on('click','.btn-cancelar-edit',cancelarFormEditar)
-$('.div-botones-editar').on('click','.btn-editar-perfil',editarPerfil)
 $('.fp-registro').on('change',function(){
 	previewFP(this)
 })
@@ -25,8 +24,18 @@ $('#lista-certificados-maestro').on('click','.btn-quitar-certificado',function(e
 
 
 
-function registrarUsuario(event){
-	event.preventDefault()
+$('.div-botones-editar').on('click','.btn-preparar-edit',prepararFormEditar);
+$('.div-botones-editar').on('click','.btn-cancelar-edit',cancelarFormEditar)
+$('.div-botones-editar').on('click','.btn-editar-perfil',editarPerfil)
+$('#form-cambiar-fp').on('submit',editarPerfilFP)
+
+
+
+
+
+
+function registrarUsuario(e){
+	e.preventDefault()
 	var datos = new FormData(this);
 	var fpc = $('#fp-registro-cliente')[0].files[0]
 	var fpm = $('#fp-registro-maestro')[0].files[0]
@@ -99,6 +108,8 @@ function registrarUsuario(event){
 	}
 
 }
+// FIN FUNCION
+
 
 function previewFP(input){
 	console.log(input.id)
@@ -108,19 +119,23 @@ function previewFP(input){
 			reader.onload = function(e){
 				if(input.id == 'fp-registro-cliente'){
 					$('#fp-cliente-preview').attr('src', e.target.result)
-				}else if(input.id == 'fp-registro-maestro'){
+				}else 
+				if(input.id == 'fp-registro-maestro'){
 					$('#fp-maestro-preview').attr('src', e.target.result)
+				}else
+				if(input.id == 'fp-cambiar-imagen'){
+					$('#fp-cambio-preview').attr('src', e.target.result)
 				}
 
 			}
 			reader.readAsDataURL(input.files[0]);
 		}	
 }
+// FIN FUNCION
 
 
 
-
-function sancionarUsuario(event){
+function sancionarUsuario(e){
 		var id = $(this).val();
 		console.log(id);
 
@@ -135,8 +150,11 @@ $.ajax({
 
 })
 }
+// FIN FUNCION
 
-function quitarSancionUsuario(event){
+
+
+function quitarSancionUsuario(e){
 
 var id = $(this).val();
 console.log(id);
@@ -150,8 +168,11 @@ $.ajax({
 
 })
 }
+// FIN FUNCION
 
-function prepararFormEditar(event){
+
+
+function prepararFormEditar(e){
 	var id = $(this).val();
 	$('.input-dato-basico').removeAttr('disabled');
 	$('.exp-maestro').removeAttr('disabled');
@@ -160,8 +181,9 @@ function prepararFormEditar(event){
 		<button type="button" class="btn btn-success btn-md btn-editar-perfil" value="${id}">Confirmar</button>
 		<button type="button" class="btn btn-danger btn-md btn-cancelar-edit" value="${id}">Cancelar</button>`);
 }
+// FIN FUNCION
 
-function cancelarFormEditar(event){
+function cancelarFormEditar(e){
 var id = $(this).val()
 $('.input-dato-basico').attr('disabled','disabled');
 	$('.div-botones-editar').children().remove();
@@ -171,10 +193,10 @@ $('.input-dato-basico').attr('disabled','disabled');
 		</button>
 		`);
 }
+// FIN FUNCION
 
 
-
-function editarPerfil(event){
+function editarPerfil(e){
 if($('#tipo-editar-perfil').val()==='Cliente'){
 	console.log(1)
 	var datos = $('.form-editar-cliente').serialize();
@@ -195,10 +217,29 @@ $.ajax({
 	}
 
 })
+}
+// Fin funcion
 
 
-
-
+function editarPerfilFP(e){
+e.preventDefault();
+var imagen = new FormData(this);
+$.ajax({
+	method: 'POST',
+	url: 'controladores/usuarios-controller.php',
+	data: imagen,
+    cache: false,
+	contentType: false,
+	processData: false,
+	success:function(r){
+		console.log(r)
+	}
+})
 }
 
-})
+
+
+
+
+// FIN FUNCION READY DOCUMENT 
+}) 
