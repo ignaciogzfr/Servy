@@ -12,7 +12,7 @@
         
         <button data-toggle="modal" data-target="modal-contacto" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Informacion gruas</button>
 
-        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-2 text-white ">Solicitar servicios <i class="fas fa-power-off"></i></a>
+        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-2 text-white ">Solicitar servicios</a>
 
       </div>
 

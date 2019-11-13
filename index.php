@@ -22,10 +22,10 @@
     <!-- Page Content -->
    
     <!--navegador-->
-    <?php require_once 'componentes/navbar.php' ?>
+    
     <!-- fin navegador-->
       <div class="container-fluid">
-
+<?php require_once 'componentes/navbar.php' ?>
   <div class="jumbotron text-center mt-3  mdb-color lighten-2 text-white">
   <h2 class="display-4">Bienvenido a Servy!</h2>
   <p class="lead">Servy es una aplicacion que provee servicios tecnicos a quienes lo necesiten.</p>
@@ -35,7 +35,7 @@
   </div> 
 
 
-      </div>
+      
 
 
         <div class="container-fluid text-center mb-4"> <h3>¿Necesitas ayuda rapida?</h3> Puedes usarlo sin registrarte ;)<hr class="featurette-divider"></div>
@@ -94,7 +94,7 @@
     </div>
     <!-- /#page-content-wrapper -->
   </div>
-
+</div>
   <!-- /#wrapper -->
 
 

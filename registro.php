@@ -146,7 +146,7 @@
 
 					<div class="row">
 							
-						<div class="col-md-5">
+					<div class="col-md-5">
 						<div class="form-group">
 							<label for="fono-maestro">Numero telefonico *</label>
 							<input id="fono-maestro" type="text" class="form-control" placeholder="99999999" pattern="[0-9]" maxlength="8" style="font-style:italic" name="fono-registro" required>
@@ -155,8 +155,11 @@
 
 						<div class="form-group">
 						 <label for="serv-maestro">Servicio(s) que proporciona</label>
+						 
 						      <select id="serv-maestro" class="form-control" name="serv-registro" multiple="" style="width:100%" required="">
+
 						      	<option value="" disabled="">Puede escribir en la caja de texto para buscar</option>
+
 						      	<?php 
 						      	require_once 'modelos/modelo-servicios.php';
 						      	$tipos = Servicios::getServicios();
