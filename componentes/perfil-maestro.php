@@ -17,10 +17,10 @@ if(isset($_SESSION['id']) && $_GET['id'] == $_SESSION['id']){
 
         <div class="col-md-2">
 
-            <p>Nombre:</p>
-            <p class="pt-2">Email:</p>
-            <p class="pt-2">Telefono:</p>
-            <p class="pt-2">Direccion:</p>
+            <p class="text-muted my-3">Nombre:</p>
+            <p class="text-muted my-3">Email:</p>
+            <p class="text-muted my-3">Telefono:</p>
+            <p class="text-muted my-3">Direccion:</p>
 
         </div>
             <div class="col-md-6">
