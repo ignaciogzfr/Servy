@@ -1,23 +1,19 @@
   <div class="d-flex toggled" id="wrapper" tabindex="-1">
 
-    <!-- Sidebar -->
-    <div class="mdb-color text-white" id="sidebar-wrapper">
+<?php 
+if(isset($_SESSION['tipo'])){
+if($_SESSION['tipo'] == 'Cliente'){
+  require_once 'componentes/sidenav-cliente.php';
+}
+elseif($_SESSION['tipo'] == 'Administrador'){
+  require_once 'componentes/sidenav-admin.php';
+}
+elseif($_SESSION['tipo'] == 'Maestro'){
+  require_once 'componentes/sidenav-maestro.php';
+}
+}elseif(!isset($_SESSION['id'])){
+  require_once 'componentes/sidenav-guest.php';
+} ?>
 
 
-      <div class="sidebar-heading mdb-color">Menu</div>
-
-      <div class="list-group list-group-flush text-white mt-3">
-
-        <button data-toggle="modal" data-target="#login-modal" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Iniciar Sesion <i class="fas fa-user-circle"></i></button>
-
-        <button data-toggle="modal" data-target="modal-contacto" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Informacion</button>
-
-
-
-        <a href="#" class="list-group-item list-group-item-action mdb-color lighten-2 text-white ">Cerrar sesion <i class="fas fa-power-off"></i></a>
-
-      </div>
-
-
-    </div>
     <?php require_once 'login-modal.php'; ?>

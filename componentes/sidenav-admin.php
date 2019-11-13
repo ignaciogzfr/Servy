@@ -1,7 +1,3 @@
-
-  <div class="d-flex" id="wrapper" tabindex="-1">
-
-    <!-- Sidebar -->
     <div class="mdb-color  text-white border-right" id="sidebar-wrapper">
 
 
