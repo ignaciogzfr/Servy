@@ -28,7 +28,7 @@
       
 <?php require_once 'componentes/navbar.php'; ?>
 
-
+<?php @session_start(); ?>
 
 
 <!-- INICIO DEL FORMULARIO -->
@@ -83,15 +83,22 @@ require_once("modelos/modelo-servicios.php");
   <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" name="detalle-publi" rows="7"></textarea>
 </div>
    
-    <input type="hidden" name="id-usuario" value="1">
-     <input type="hidden" name="op" value="publicarServicio">
+    
+ <?php
+ 
+   
+
+          echo ('<input type="hidden" placeholder="'.$_GET["id"].'" name="id-usuario" value="'.$_GET["id"].'">');
+       
+?>
+    <input type="hidden" name="op" value="publicarServicio">
     <input type="hidden" name="tipo-publicacion" value="1">
     <button type="submit" class="btn btn-success float-right mb-5 btn-publicar-servicio" id="btn-publicar-servicio">Publicar problema</button>
 
 </form>
 
 </div>
-    
+   
 <!-- FIN DEL FORMULARIO -->
 
 

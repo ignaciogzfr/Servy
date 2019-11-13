@@ -61,12 +61,12 @@ Class Publicaciones{
 				id_usuario,
 				tipo_publicacion,
 				titulo_publicacion,
-				direccion_publicacio,
+				direccion_publicacion,
 				id_tipo_servicio,
 				detalle_publicacion,
 				fecha_hora_publicacion,
-				estado_publicacion) VALUES (:idusu,:tipopu,:direccion,:direccion,:tiposerv,:detalle,NOW(),'Pendiente')");
-			$sql->bindParam(":idusu",$idusu,PDO::PARAM_INT);
+				estado_publicacion) VALUES (:idus,:tipopu,:direccion,:direccion,:tiposerv,:detalle,NOW(),'Pendiente')");
+			$sql->bindParam(":idus",$idus,PDO::PARAM_INT);
 			$sql->bindParam(":tipopu",$tipopu,PDO::PARAM_INT);
 			$sql->bindParam(":titulo",$direccion,PDO::PARAM_STR);
 			$sql->bindParam(":direccion",$direccion,PDO::PARAM_STR);
