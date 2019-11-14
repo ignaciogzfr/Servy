@@ -37,7 +37,7 @@ $('#form-cambiar-fp').on('submit',editarPerfilFP)
 
 
 
-function registrarUsuario(e){
+function registrarUsuario(event){
 	e.preventDefault()
 	var datos = new FormData(this);
 	var fpc = $('#fp-registro-cliente')[0].files[0]
@@ -173,7 +173,18 @@ $.ajax({
 
 
 
-function quitarSancionUsuario(e){
+function sancionarUsuario(event){
+	//al sancionar un usuario su id se encuentra en el boton
+		var id = $(this).val();
+		console.log(id);
+	//Llamada a el controlador para que este obtenga los datos del formulario y esta realize
+	//la llamada al modelo para que realize la consulta con el id obtenido del boton
+$.ajax({
+	method: 'POST',
+	url: 'controladores/usuarios-controller.php',
+	data: 'op=sancionarUsuario&id='+id
+})
+}
 
 function quitarSancionUsuario(event){
 	//al sancionar un usuario su id se encuentra en el boton
