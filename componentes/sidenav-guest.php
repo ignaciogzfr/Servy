@@ -2,7 +2,7 @@
     <div class="mdb-color  text-white border-right" id="sidebar-wrapper">
 
 
-      <div class="sidebar-heading mdb-color">Menu</div>
+      <div class="sidebar-heading mdb-color">Menu invitado</div>
 
       <div class="list-group list-group-flush text-white">
 

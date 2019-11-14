@@ -2,6 +2,7 @@
 
 <?php 
 //Se revisa si existe una sesion en la que comparar
+session_start();
 if(isset($_SESSION['tipo'])){
 //Si existe se añade el resiltado del tipo del cliente a una variable local que la compara y carga su navegador presonal correspondiente
 if($_SESSION['tipo'] == 'Cliente'){

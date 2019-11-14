@@ -1,8 +1,8 @@
-  <div class="d-flex" id="wrapper">
+
 
     <!-- Sidebar -->
     <div class="mdb-color  text-white border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading mdb-color text-center">Usuario</div>
+      <div class="sidebar-heading mdb-color text-center">Cliente</div>
       <div class="text-center">
         <img class="rounded" src="img/placeholder.png" height="80px">
       </div>
