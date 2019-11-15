@@ -1,6 +1,7 @@
   <div class="d-flex toggled" id="wrapper" tabindex="-1">
 
 <?php 
+@session_start();
 if(isset($_SESSION['tipo'])){
 if($_SESSION['tipo'] == 'Cliente'){
   require_once 'componentes/sidenav-cliente.php';

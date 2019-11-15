@@ -1,7 +1,7 @@
 <div class="modal fade" id="modal-editar-fp" aria-hidden='true'>
   <div class="modal-dialog modal-lg rounded-0">
     <div class="modal-content">
-		<form id="form-cambiar-fp">
+		<form id="form-cambiar-fp" method="POST">
 
 	      <div class="modal-header text-white main-color" >
 	        Editar Foto de perfil
