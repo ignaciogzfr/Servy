@@ -3,18 +3,21 @@
 <?php 
 @session_start();
 if(isset($_SESSION['tipo'])){
-if($_SESSION['tipo'] == 'Cliente'){
-  require_once 'componentes/sidenav-cliente.php';
+switch ($_SESSION['tipo']){
+	case 'Cliente':
+	require_once 'componentes/sidenav-cliente.php';
+	break;
+	case 'Maestro':
+	require_once 'componentes/sidenav-maestro.php';
+	break;
+	case 'Administrador':
+	require_once 'componentes/sidenav-admin.php';
+		break;
+}}
+else{
+	require_once 'componentes/sidenav-guest.php';
 }
-elseif($_SESSION['tipo'] == 'Administrador'){
-  require_once 'componentes/sidenav-admin.php';
-}
-elseif($_SESSION['tipo'] == 'Maestro'){
-  require_once 'componentes/sidenav-maestro.php';
-}
-}elseif(!isset($_SESSION['id'])){
-  require_once 'componentes/sidenav-guest.php';
-} ?>
+?>
 
 
     <?php require_once 'login-modal.php'; ?>

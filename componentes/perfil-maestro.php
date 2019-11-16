@@ -1,4 +1,4 @@
-<div class="container w-75 mb-5">
+<div class="container mb-5">
 
         <div class="row">
           
@@ -11,6 +11,7 @@
               $sesion = false;
              }
               require_once 'modelos/modelo-usuarios.php';
+              require_once 'modelos/modelo-servicios.php';
               $datos = Usuarios::getPerfilUsuario($_GET['id']); 
               echo '<img src="'.$datos[0]['foto_perfil'].'" alt="img/placeholder-person.jpg" width="150" height="150" class="rounded my-2">'
                ?>
@@ -64,13 +65,13 @@ if($sesion == true){
           <div class="row my-3">
             <div class="col-md-8">
               <div class="text-center">
-              <p class="mt-2">Certificados <?php if($sesion == true){echo '<button class="btn btn-md btn-success btn-agregar-certificados"><i class="fas fa-plus"></i></button>';} ?></p>
+              <p class="mt-2">Certificados <?php if($sesion == true){echo '<button class="btn btn-md btn-success btn-agregar-certificados-edit" value="'.$_GET['id'].'" total="'.count($certificados).'"><i class="fas fa-plus"></i></button>';} ?></p>
               
               </div>
               <div class="certificados-edit list-unstyled">
                 <?php 
                 if(count($certificados)==0){
-                echo '<h5 class="alert alert-primary">No se ha indicado ningun certificado al respecto de los servicios que proporciona este usuario.</h5>';
+                echo '<h5 class="alert alert-primary alerta-c">No se ha indicado ningun certificado al respecto de los servicios que proporciona este usuario.</h5>';
                 }
                 else{
 
@@ -79,31 +80,33 @@ if($sesion == true){
                     if($sesion == true){
                     echo '
                     <div class="row my-3">
-                    <button class="btn btn-danger btn-eliminar-certificado" style="width:38px; height:40px; display: none;">
+                    <button class="btn btn-danger btn-eliminar-certificado" style="width:38px; height:40px; display: none;" value="'.$certificados[$i]['id_certificado'].'">
                     <i class="fas fa-trash"></i>
                     </button>
                     <li class="my-3">'.$certificados[$i]['nombre_certificado'].'</li>
                     </div>';
                     }else{
-                    echo '<input type="text" class="form-control mb-2" placeholder="'.$certificados[$i]['nombre_certificado'].'" disabled>';
+                    echo '<input type="text" class="form-control mb-2 certificado-edit" value="'.$certificados[$i]['nombre_certificado'].'" id="'.$certificados[$i]['id_certificado'].'" disabled>';
                     }
                   }
                 }
 
-                 ?>  
+                 ?>
+
               </div>
+<div class="text-center div-botones-certificado">
 <?php                 
  if($sesion == true){
-echo '<div class="text-center"><button class="btn btn-md btn-danger btn-eliminar-certificados" value="'.$_GET['id'].'">Eliminar Certificados</button></div>';}
-?>
-
+echo '<button type="button" class="btn btn-md btn-danger btn-preparar-eliminar-c" value="'.$_GET['id'].'">Eliminar Certificados</button>';}
+?>  
+</div>
 
             </div>
             <div class="col-md-4">
 
 
               <div class="text-center">
-              <p class="mt-2">Servicios que proporciona <?php if($sesion == true){echo '<button class="btn btn-md btn-success btn-agregar-certificados"><i class="fas fa-plus"></i></button>';} ?></p>
+              <p class="mt-2">Servicios que proporciona <?php if($sesion == true){echo '<button class="btn btn-md btn-success btn-agregar-servicios-edit" total="'.count($servicios).'"><i class="fas fa-plus"></i></button>';} ?></p>
               </div>
 
 
@@ -111,28 +114,64 @@ echo '<div class="text-center"><button class="btn btn-md btn-danger btn-eliminar
 
                     <?php 
                     if(count($servicios)==0){
-                    echo '<h5 class="alert alert-primary">No se ha indicado ninguno de los tipos de servicios a los que atiende este usuario.</h5>';
+                    echo '<h5 class="alert alert-primary alerta-s">No se ha indicado ninguno de los tipos de servicios a los que atiende este usuario.</h5>';
                     }
                     else{
 
                       for($i = 0; $i < count($servicios); $i++){
 
                         if($sesion == true){
-                        echo '<div class="row my-3"><li class="my-3">'.$servicios[$i]['tipo_servicio'].'</li><button class="btn btn-danger btn-eliminar-servicio offset-1" style="width:38px; height:40px; display:none;"><i class="fas fa-trash"></i></button></div>';
+                        echo '
+                        <div class="row my-3">
+
+                          <li class="my-3">
+                          '.$servicios[$i]['tipo_servicio'].'
+                          </li>
+
+                          <button class="btn btn-danger btn-eliminar-servicio offset-1" style="width:38px; height:40px; display:none;">
+                          <i class="fas fa-trash"></i>
+                          </button>
+
+                        </div>';
                         }else{
-                        echo '<input type="text" class="form-control mb-2" placeholder="'.$servicios[$i]['tipo_servicio'].'" disabled>';  
+                        echo '<input type="text" class="form-control mb-2 servicio-edit" value="'.$servicios[$i]['tipo_servicio'].'" id="'.$servicios[$i]['id_servicio_maestro'].'" disabled>';  
                         }
 
                       }
-                      if($sesion == true){
-                      echo '<div class="text-center"><button class="btn btn-md btn-danger btn-eliminar-servicios" value="'.$_GET['id'].'">Eliminar Servicios</button></div>';
-                      }
+                    } 
+
+
+                   ?> 
+
+                 </div>
+
+
+                 <div class="serv-maestro-div" style="display: none;"> 
+
+
+                  <select id="serv-maestro" class="form-control" name="serv-registro" multiple="" style="width:100%" required="">
+                    <option value="" disabled="">Puede escribir en la caja de texto para buscar</option>
+                    <?php 
+                    require_once 'modelos/modelo-servicios.php';
+                    $tipos = Servicios::getServicios();
+                    for ($i=0; $i<count($tipos); $i++){ 
+                      echo('<option value="'.$tipos[$i]["id_tipo_servicio"].'">'.$tipos[$i]["tipo_servicio"].'');
                     }
-                    ?> 
+                     ?>
+                 </select> 
 
-                </div> 
 
-
+                </div>                  
+                
+<div class="text-center div-botones-servicios">
+<?php 
+if($sesion == true){
+echo '<div class="text-center"><button type="button" class="btn btn-md btn-danger btn-preparar-eliminar-s" value="'.$_GET['id'].'">Dar Servicios de baja</button></div>';
+  }   
+?>
+</div>
+               
+</div>
             </div>
            </div>
         </div>
