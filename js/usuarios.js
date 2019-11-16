@@ -26,7 +26,10 @@ $('#lista-certificados-maestro').on('click','.btn-quitar-certificado',function(e
 })
 
 
-
+$('.certificados-edit').on('click','.btn-eliminar-certificados', prepararEditCertificados);
+$('.servicios-edit').on('click','.btn-servicios-edit', prepararEditServicios);
+$('.btn-agregar-certificados').on('click',prepararAgregarCertificado);
+$('.btn-agregar-servicios').on('click',prepararAgregarServicio);
 $('.div-botones-editar').on('click','.btn-preparar-edit',prepararFormEditar);
 $('.div-botones-editar').on('click','.btn-cancelar-edit',cancelarFormEditar)
 $('.div-botones-editar').on('click','.btn-editar-perfil',editarPerfil)
@@ -273,6 +276,61 @@ $.ajax({
 })
 }
 
+
+function prepararEditCertificados(e){
+var certificados = new Array();
+var id = $(this).val();
+$('.certificados-edit .certificado-edit').each(function(i){
+		certificados.push($(this).val())
+	})
+console.log(certificados)
+
+}
+function prepararAgregarCertificado(e){
+$('.certificados-edit').append(`
+	<div class="row">
+	<input class="form-control col-md-8 mt-2" type="text">
+	<button class="btn btn-sm btn-success btn-agregar-c"><i class="fas fa-check"></i></button>
+	<button class="btn btn-sm btn-danger btn-cancelar-c"><i class="fas fa-times"></i></button></div>`)
+}
+
+function cancelarAgregarCertificado(e){
+$(this).closest('.row').empty();
+}
+
+
+function editPerfilCertificados(e){
+e.preventDefault();
+var certificados = new Array();
+$('.certificados-edit .certificado-edit').each(function(i){
+	certificados.push($(this).val());
+})
+console.log(certificados)
+}
+
+
+function prepararEditServicios(e){
+console.log('HOLA MUNDO')
+var servicios = new Array();
+var id = $(this).val();
+$('.servicios-edit .servicio-edit').each(function(i){
+		servicios.push($(this).val())
+	})
+console.log(servicios)
+}
+
+function prepararAgregarServicio(e){
+$('.servicios-edit').append('<li>HOLA MUNDO!</li>')
+}
+
+function editarPerfilServicios(e){
+e.preventDefault();
+var servicios = new Array();
+$('.servicios-edit .servicio-edit').each(function(i){
+	servicios.push($(this).val());
+})
+console.log(servicios)
+}
 
 
 
