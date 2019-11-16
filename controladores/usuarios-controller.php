@@ -126,12 +126,13 @@ Class GestorUsuarios{
 
 //Se asigna a $op el contenido de la operacion del formulado de donde esta siendo llamado
 $op = $_POST["op"];
-if isset($_POST['servivcios']){
-	$servicios = json_decode($_POST['servicios'])
+if (isset($_POST['certificados'])) {
+	$certificados = json_decode($_POST['certificados']);
 }
-if isset($_POST['certificados']){
-	$certificados = json_decode($_POST['certificados'])
-}
+
+if (isset($_POST['servicios'])) {
+	$servicios = json_decode($_POST['servicios']);
+} 
 switch ($op) {
 // segun su contenido se llama a las funciones de la clase gestor de usuario y envia los parametros
 // obtenidos a traves del metodo post(inputs)
@@ -185,13 +186,11 @@ switch ($op) {
 
 		case 'editarPerfilServicios':
 		$response = new GestorUsuarios();
-		$servicios = json_decode($_POST['servicios']);
 		$response->editarPerfilServicios($_POST['id'],$servicios);
 		break;
 
 		case 'editarPerfilCertificados':
 		$response = new GestorUsuarios();
-		$certificados = json_decode($_POST['certificados']);
 		$response->editarPerfilCertificados($_POST['id'],$certificados);	
 		break;
 
