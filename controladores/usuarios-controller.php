@@ -114,14 +114,14 @@ Class GestorUsuarios{
 		echo ($respuesta);
 	}
 }
-
 $op = $_POST["op"];
-if isset($_POST['servivcios']){
-	$servicios = json_decode($_POST['servicios'])
+if (isset($_POST['certificados'])) {
+	$certificados = json_decode($_POST['certificados']);
 }
-if isset($_POST['certificados']){
-	$certificados = json_decode($_POST['certificados'])
-}
+
+if (isset($_POST['servicios'])) {
+	$servicios = json_decode($_POST['servicios']);
+} 
 switch ($op) {
 
 		case 'login':
@@ -174,13 +174,11 @@ switch ($op) {
 
 		case 'editarPerfilServicios':
 		$response = new GestorUsuarios();
-		$servicios = json_decode($_POST['servicios']);
 		$response->editarPerfilServicios($_POST['id'],$servicios);
 		break;
 
 		case 'editarPerfilCertificados':
 		$response = new GestorUsuarios();
-		$certificados = json_decode($_POST['certificados']);
 		$response->editarPerfilCertificados($_POST['id'],$certificados);	
 		break;
 

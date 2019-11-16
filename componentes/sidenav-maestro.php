@@ -1,8 +1,8 @@
     <!-- Sidebar -->
     <div class="mdb-color  text-white border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading mdb-color text-center">Usuario</div>
+      <div class="sidebar-heading mdb-color text-center"><?php echo $_SESSION['nombre'] ?></div>
       <div class="text-center">
-        <img class="rounded" src="img/placeholder.png" height="80px">
+        <?php echo '<img class="rounded" src="'.$_SESSION['fp'].'" height="80">' ?>
       </div>
       <div class="list-group list-group-flush text-white pt-5">
         <a href="">Mis publicaciones</a>

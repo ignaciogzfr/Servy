@@ -1,93 +1,156 @@
 $(document).ready(function(){
-
-
-
-
-$('.div-botones-certificado').on('click', '.btn-preparar-eliminar-c', prepararEliminarCertificados);
-$('.div-botones-servicios').on('click','.btn-preparar-eliminar-s', prepararEliminarServicios);
-
+$('#serv-maestro-edit').select2({
+	width : 'resolve'
+})
 
 $('.btn-agregar-certificados-edit').on('click',prepararAgregarCertificado);
 $('.btn-agregar-servicios-edit').on('click',prepararAgregarServicio);
 
-$('.certificados-edit').on('click','.btn-eliminar-fila-c',eliminarInputAgregarC)
-$('.servicios-edit').on('click','.btn-eliminar-fila-s',eliminarInputAgregarS)
+$('.div-botones-certificado').on('click','.btn-agregar-c',editarPerfilCertificados);
+$('.div-botones-servicios').on('click','.btn-agregar-s',editarPerfilServicios)
+
+
+$('.certificados-edit').on('click','.btn-agregar-fila-c',agregarFilaCertificado)
+$('.serv-maestro-div').on('click', '.btn-agregar-fila-s', agregarFilaServicio)
+
+
+$('.certificados-edit').on('click','.btn-eliminar-fila-c',cancelarAccionCertificado)
+$('.serv-maestro-div').on('click','.btn-eliminar-fila-s',cancelarAccionServicio)
+
+
+$('.certificados-edit').on('click','.btn-eliminar-certificado',eliminarFilaC)
+$('.servicios-edit').on('click','.btn-eliminar-servicio',eliminarFilaS)
+
 
 $('.div-botones-certificado').on('click','.btn-retroceder-c',cancelarAccionCertificado)
 $('.div-botones-servicios').on('click','.btn-retroceder-s',cancelarAccionServicio)
 
 
-function prepararEliminarCertificados(e){
-var id = $(this).val();
-$('.btn-eliminar-certificado').css('display','');
-$('.div-botones-certificado').empty();
-
-$('.div-botones-certificado').append(
-`
-<button class="btn btn-md btn-danger btn-agregar-c" value="${id}">Guardar Cambios</button>
-<button class="btn btn-md btn-primary btn-retroceder-c">Cancelar</button>
-`)
-}
-
 
 function prepararAgregarCertificado(e){
-var id = $(this).val()
-console.log(id)
+$('.btn-eliminar-certificado').css('display','')
+$('.btn-agregar-certificados-edit').css('display','none');
 $('.div-botones-certificado').empty();
 $('.div-botones-certificado').append(
 `
-<button class="btn btn-md btn-success btn-agregar-c" value="${id}">Guardar Cambios</button>
-<button class="btn btn-md btn-primary btn-retroceder-c" value="${id}">Cancelar</button>
+<button class="btn btn-md btn-success btn-agregar-c" >Guardar Cambios</button>
+<button class="btn btn-md btn-primary btn-retroceder-c" >Cancelar</button>
 `)
 if($('.btn-agregar-certificados-edit').attr('total')==0){
-	$('.alerta-c').remove();
+	$('.alerta-c').css('display','none');
 }
 $('.certificados-edit').append(`
 	<div class="row fila-input-c">
-	<input class="form-control col-md-8 mt-2 certificado-edit" type="text">
+	<input class="form-control col-md-8 mt-2 certificado-agregar-edit" type="text" value="Escriba su certificado aqui">
+	<button class="btn btn-sm btn-success btn-agregar-fila-c" type="button"><i class="fas fa-check"></i></button>
 	<button class="btn btn-sm btn-danger btn-eliminar-fila-c" type="button"><i class="fas fa-times"></i></button></div>`)
 }
 
 function cancelarAccionCertificado(e){
 var id = $('.div-botones-certificado .btn-agregar-c').val();
 console.log(id)
-$('.btn-eliminar-certificado').css('display','none');
 $('.div-botones-certificado').empty();
-$('.div-botones-certificado').append(`
-<button type="button" class="btn btn-md btn-danger btn-preparar-eliminar-c" value="${id}">Eliminar Certificados</button>
-`)
+$('.fila-input-c').remove();
+$('.btn-agregar-certificados-edit').css('display','')
+$('.fila-edit-nuevo-c').remove();
+$('.btn-eliminar-certificado').css('display','none');
+if($('.btn-agregar-certificados-edit').attr('total')==0){
+	$('.alerta-c').css('display','');
 }
+}
+
+function agregarFilaCertificado(e){
+var cert = $('.certificado-agregar-edit').val();
+$('.certificados-edit').append(`
+                <div class="row my-3 fila-edit-nuevo-c">
+                    <button class="btn btn-danger btn-eliminar-certificado" style="width:38px; height:40px;">
+                    <i class="fas fa-trash"></i>
+                    </button>
+                    <li class="my-3 listado-certificados">${cert}</li>
+                    </div>
+`);
+$('.btn-agregar-certificado-edit').css('display','')
+}
+
+
+
+
+
+
 
 function eliminarInputAgregarC(e){
 $(this).parent('.fila-input-c').remove();
+$('.btn-agregar-certificado-edit').css('display','')
 }
 function eliminarInputAgregarS(e){
 $(this).closest('.fila-input-s').remove();
+$('.btn-agregar-servicio-edit').css('display','')
+}
+function eliminarFilaC(e){
+	$(this).parent().remove();
+}
+function eliminarFilaS(e){
+	$(this).parent().remove();
 }
 
-function agregarCertificado(e){
+
+
+
+
+
+
+
+
+function editarPerfilCertificados(e){
 e.preventDefault();
+var id = $('#id-perfil-edit').val()
 var certificados = new Array();
-$('.certificados-edit .certificado-edit').each(function(i){
-	certificados.push($(this).val());
+
+$('.certificados-edit .listado-certificados').each(function(i){
+	certificados.push($(this).text());
 })
-console.log(certificados)
+$.ajax({
+	method : 'POST',
+	url : 'controladores/usuarios-controller.php',
+	data : 'op=editarPerfilCertificados&id='+id+'&certificados='+JSON.stringify(certificados),
+	success:function(response){
+		if(response == 'OK'){
+			alert('LOS CAMBIOS FUERON REALIZADOS');
+			location.reload()
+		}
+	}
+})
 }
 
 
-function prepararEliminarServicios(e){
-var id = $(this).val()
-$('.btn-eliminar-servicio').css('display','');
-$('.div-botones-servicios').empty();
 
-$('.div-botones-servicios').append(
-`
-<button class="btn btn-md btn-danger btn-agregar-s" value="${id}">Guardar Cambios</button>
-<button class="btn btn-md btn-primary btn-retroceder-s value="${id}"">Cancelar</button>
-`)
-console.log(id)
+
+
+
+
+
+
+
+
+
+
+
+function editarPerfilServicios(e){
+var id = $('#id-perfil-edit').val();
+var servicios = new Array()
+$('.servicios-edit .listado-servicios').each(function(i){
+	servicios.push($(this).val())
+})
+$.ajax({
+	method : 'POST',
+	url : 'controladores/usuarios-controller.php',
+	data : 'op=editarPerfilServicios&id='+id+'&servicios='+JSON.stringify(servicios),
+	success:function(r){
+		console.log(r)
+	}
+})
+$('.btn-eliminar-servicio').css('display','none')
 }
-
 
 function cancelarAccionServicio(e){
 var id = $(this).val();
@@ -95,9 +158,10 @@ console.log(id)
 $('.btn-eliminar-servicio').css('display','none')
 $('.serv-maestro-div').css('display','none');
 $('.div-botones-servicios').empty();
-$('.div-botones-servicios').append(`
-<button type="button" class="btn btn-md btn-danger btn-preparar-eliminar-s" value="${id}">Dar Servicios de baja</button>
-`)
+$('.fila-edit-nuevo-s').remove();
+if($('.btn-agregar-servicios-edit').attr('total')==0){
+	$('.alerta-s').css('display','')
+}
 
 }
 
@@ -107,6 +171,7 @@ var id = $(this).val()
 if($('.btn-agregar-servicios-edit').attr('total')==0){
 	$('.alerta-s').remove();
 }
+$('.btn-eliminar-servicio').css('display','')
 $('.serv-maestro-div').css('display','');
 $('.div-botones-servicios').empty();
 $('.div-botones-servicios').append(
@@ -118,13 +183,22 @@ $('.div-botones-servicios').append(
 
 }
 
-function agregarServicio(e){
-e.preventDefault();
-var servicios = new Array();
-$('.servicios-edit .servicio-edit').each(function(i){
-	servicios.push($(this).val());
-})
-console.log(servicios)
+function agregarFilaServicio(e){
+var id = $('#serv-maestro-edit option:selected').val();
+var nombre = $('#serv-maestro-edit option:selected').text();
+
+$('.servicios-edit').append(`
+                <div class="row my-3 fila-edit-nuevo-s">
+                    
+                    <li class="my-3 listado-servicio" value="${id}">${nombre}</li>
+                    <button class="btn btn-danger btn-eliminar-servicio" style="width:38px; height:40px;">
+                    <i class="fas fa-trash"></i>
+                    </button>
+                    </div>
+`);
+
 }
+
+
 
 })
