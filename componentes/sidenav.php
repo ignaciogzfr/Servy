@@ -1,7 +1,6 @@
   <div class="d-flex toggled" id="wrapper" tabindex="-1">
 
 <?php 
-@session_start();
 //Se revisa si existe una sesion en la que comparar
 session_start();
 if(isset($_SESSION['tipo'])){

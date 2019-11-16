@@ -1,3 +1,5 @@
+
+<!--Referencias a los estilos de la pagina para sus componentes y derivados-->
 <link rel="stylesheet" href="styles/styles.css">
 <!-- Gooogle Fonts API-->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet"> 

@@ -1,5 +1,5 @@
 <?php
-
+/*Se utiliza para concetar con la base de datos remota para acceder a esta se necesita crear una cuenta en la apgian principal y iniciar una base de datos, luego se crea un objeto de conección que sera utilizado en componentes y modelos para obtener datos y relizar consultas*/
 class Conexion{
 	static public function conectar(){
 		$link = new PDO("mysql:host=remotemysql.com:3306;dbname=hd8LHE0bKS",'hd8LHE0bKS','DqLSfCRNXs',

@@ -1,5 +1,5 @@
 <?php 
-
+/*Se cargan las consultas y sus exepciones*/
 require_once("../modelos/modelo-publicaciones.php");
 
 	Class gestorPublicaciones{
@@ -22,7 +22,7 @@ require_once("../modelos/modelo-publicaciones.php");
 
 	}
 
-
+/*Segun la operacion obtenida del formulario podemos llamar a los constructores y enviarle parametros de este mismo*/
 $op= $_POST["op"];
 
 	switch ($op) {

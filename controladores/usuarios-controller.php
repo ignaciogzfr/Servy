@@ -66,6 +66,8 @@ Class GestorUsuarios{
 
 			$ruta_imagen = "";
 			$filename = md5($fp['tmp_name']).$extension;
+			/*Se asigna a la variable la ruta que contiene la localizacion en las carpetas de las iamgenes
+			de usuarios y su nombre encriptado ademas de su extencion */
 			$ruta_imagen = 'img/fotos-usuarios/'.$filename;
 			if(move_uploaded_file($fp['tmp_name'],"../".$ruta_imagen)){
 			$respuesta = Usuarios::registrarCliente($mail,$pass,$nombre,$fono,$ruta_imagen,$dir,$tipo);
@@ -91,10 +93,13 @@ Class GestorUsuarios{
 			}else{
 				echo("ERROR EXTENSION");
 			}
-
+			//se inicia una variable
 			$ruta_imagen = "";
 			$filename = md5($fp['tmp_name']).$extension;
+			/*Se asigna a la variable la ruta que contiene la localizacion en las carpetas de las iamgenes
+			de usuarios y su nombre encriptado ademas de su extencion */
 			$ruta_imagen = 'img/fotos-usuarios/'.$filename;
+
 			if(move_uploaded_file($fp['tmp_name'],"../".$ruta_imagen)){
 			$respuesta = Usuarios::registrarMaestro($mail,$pass,$nombre,$fono,$ruta_imagen,$dir,$tipo,$servicios,$certificados,$exp);
 			}

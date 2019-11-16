@@ -1,3 +1,4 @@
+//modelo de las tablas de datos para almacenar los datos de las consultas
 $(document).ready(function() {
     $('#example').DataTable({
 

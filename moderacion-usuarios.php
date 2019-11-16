@@ -8,7 +8,6 @@
 
 <?php require_once("componentes/links.php");
       require_once("componentes/scripts.php");
-
   ?>
 
 

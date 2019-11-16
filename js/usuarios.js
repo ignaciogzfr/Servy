@@ -39,7 +39,7 @@ $('#form-cambiar-fp').on('submit',editarPerfilFP)
 
 
 
-
+// funciones de usuarios
 function registrarUsuario(event){
 	e.preventDefault()
 	var datos = new FormData(this);
@@ -131,7 +131,7 @@ function registrarUsuario(event){
 	}
 
 }
-// FIN FUNCION
+
 
 
 function previewFP(input){
@@ -157,7 +157,7 @@ function previewFP(input){
 			reader.readAsDataURL(input.files[0]);
 		}	
 }
-// FIN FUNCION
+
 
 
 
@@ -172,7 +172,7 @@ $.ajax({
 	data: 'op=sancionarUsuario&id='+id
 })
 }
-// FIN FUNCION
+
 
 
 
@@ -189,6 +189,7 @@ $.ajax({
 })
 }
 
+
 function quitarSancionUsuario(event){
 	//al sancionar un usuario su id se encuentra en el boton
 var id = $(this).val();
@@ -201,7 +202,7 @@ $.ajax({
 	data: 'op=quitarSancionUsuario&id='+id
 })
 }
-// FIN FUNCION
+
 
 
 
@@ -216,7 +217,9 @@ function prepararFormEditar(e){
 		<button type="button" class="btn btn-success btn-md btn-editar-perfil" value="${id}">Confirmar</button>
 		<button type="button" class="btn btn-danger btn-md btn-cancelar-edit" value="${id}">Cancelar</button>`);
 }
-// FIN FUNCION
+
+
+
 
 function cancelarFormEditar(e){
 var id = $(this).val()
@@ -230,7 +233,7 @@ $('.input-dato-basico').attr('disabled','disabled');
 		</button>
 		`);
 }
-// FIN FUNCION
+
 
 
 function editarPerfil(e){
