@@ -31,6 +31,7 @@ if(isset($perfil[0])){
       require_once 'componentes/perfil-cliente.php';
     }elseif($perfil[0]['tipo_usuario']=='Maestro'){
       require_once 'componentes/perfil-maestro.php';
+
     }elseif($perfil[0]['tipo_usuario']=='Administrador'){
       require_once 'componentes/perfil-cliente.php';
     }
@@ -56,6 +57,10 @@ if(isset($_SESSION['id']) && $_SESSION['id']==$_GET['id']){
 require_once 'componentes/modal-editar-fp.php'; 
 }
  ?>
-<?php require_once 'componentes/scripts.php' ?>
+<?php require_once 'componentes/scripts.php';
+if($perfil[0]['tipo_usuario']=='Maestro'){
+echo '<script type="text/javascript" src="js/perfil-maestro.js"></script>';} ?>
+
+
 </body>
 </html>

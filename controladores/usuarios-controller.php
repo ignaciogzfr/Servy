@@ -126,6 +126,12 @@ Class GestorUsuarios{
 
 //Se asigna a $op el contenido de la operacion del formulado de donde esta siendo llamado
 $op = $_POST["op"];
+if isset($_POST['servivcios']){
+	$servicios = json_decode($_POST['servicios'])
+}
+if isset($_POST['certificados']){
+	$certificados = json_decode($_POST['certificados'])
+}
 switch ($op) {
 // segun su contenido se llama a las funciones de la clase gestor de usuario y envia los parametros
 // obtenidos a traves del metodo post(inputs)
@@ -144,8 +150,6 @@ switch ($op) {
 
 		break;
 		}else{
-		$servicios = json_decode($_POST['servicios']);
-		$certificados = json_decode($_POST['certificados']);
 		$response = new GestorUsuarios();
 
 		if(isset($_FILES['fp-registro'])){
@@ -191,11 +195,4 @@ switch ($op) {
 		$response->editarPerfilCertificados($_POST['id'],$certificados);	
 		break;
 
-		case '':
-					
-		break; 	
-
-		default:
- 		# code...
- 		break;
  } ?>
