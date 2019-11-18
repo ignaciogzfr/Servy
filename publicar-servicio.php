@@ -49,28 +49,20 @@
 <hr class="featurette-divider">
   <div class="form-row">
    
-    <div class="form-group col-md-12">
-      <label for="inputState">Tipo de servicio</label>
-                <select class="custom-select">
-            <option selected>seleccionar servicio</option>
-<?php 
-require_once("modelos/modelo-servicios.php");
-  $servi = Servicios::getServicios();
+          <div class="form-group col-md-12">
+            <label for="inputState">Tipo de servicio</label>
+              <select class="custom-select" name="tipo-servicio">
+                  <option selected disabled>Selecciona el Tipo de Servicio</option>
+                      <?php 
+                      require_once("modelos/modelo-servicios.php");
+                      $servicios = Servicios::getServicios();
+                      for($i=0;$i<count($servi); $i++){
+                        echo('<option value="'.$servicios[$i]["id_tipo_servicio"].'">'.$servicios[$i]["tipo_servicio"].'</option>');
+                      }
 
-  for($i=0;$i<count($servi); $i++){
-
-      echo('
-           
-           <option name="tipo-serv" value="'.$servi[$i]["id_tipo_servicio"].'">'.$servi[$i]["tipo_servicio"].'</option>
-         
-        
-');
-
-  }
-
-?>  
-</select>
-    </div>
+                      ?>  
+              </select>
+          </div>
     
   </div>
 
@@ -98,18 +90,6 @@ require_once("modelos/modelo-servicios.php");
 <?php require_once 'componentes/footer.php'; ?>
 
 
-<!-- Menu Toggle Script -->
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- JQuery -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/js/mdb.min.js"></script>
-<!-- Toastr Alerts JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 
 <script>
