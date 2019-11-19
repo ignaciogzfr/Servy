@@ -85,11 +85,7 @@ require_once("modelos/modelo-servicios.php");
    
     
  <?php
- 
-   
-
-          echo ('<input type="hidden" placeholder="'.$_GET["id"].'" name="id-usuario" value="'.$_GET["id"].'">');
-       
+          echo ('<input type="hidden" placeholder="'.$_GET["id"].'" name="id-usuario" value="'.$_GET["id"].'">');   
 ?>
     <input type="hidden" name="op" value="publicarServicio">
     <input type="hidden" name="tipo-publicacion" value="1">
@@ -108,8 +104,7 @@ require_once("modelos/modelo-servicios.php");
   </div>
   <!-- /#wrapper -->
 
-<?php require_once 'componentes/footer.php';
-   ?>
+<?php require_once 'componentes/footer.php';?>
 
 
 

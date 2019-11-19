@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -12,7 +12,7 @@
 
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
   <?php require_once 'componentes/links.php'; ?>
-  <?php require_once 'componentes/sidenav-cliente.php'; ?>
+  <?php require_once 'componentes/sidenav.php'; ?>
 <div id="page-content-wrapper">
 
 <?php require_once 'componentes/navbar.php'; ?>
@@ -31,6 +31,7 @@ if(isset($perfil[0])){
       require_once 'componentes/perfil-cliente.php';
     }elseif($perfil[0]['tipo_usuario']=='Maestro'){
       require_once 'componentes/perfil-maestro.php';
+
     }
     
 }
@@ -49,6 +50,15 @@ elseif(!isset($perfil[0])){
 
 
 <?php require_once 'componentes/footer.php'; ?>
-<?php require_once 'componentes/scripts.php' ?>
+<?php 
+if(isset($_SESSION['id']) && $_SESSION['id']==$_GET['id']){
+require_once 'componentes/modal-editar-fp.php'; 
+}
+ ?>
+<?php require_once 'componentes/scripts.php';
+if($perfil[0]['tipo_usuario']=='Maestro'){
+echo '<script type="text/javascript" src="js/perfil-maestro.js"></script>';} ?>
+
+
 </body>
 </html>
