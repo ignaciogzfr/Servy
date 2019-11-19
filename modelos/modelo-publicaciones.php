@@ -51,40 +51,34 @@ Class Publicaciones{
 	}
 
 	
-	// static public function publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle){
+	static public function publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle){
 
-	// 	try{
-
-
-	// 		$con = Conexion::conectar();
-	// 		$sql = $con->prepare("INSERT INTO publicacion(
-	// 			id_usuario,
-	// 			tipo_publicacion,
-	// 			titulo_publicacion,
-	// 			direccion_publicacio,
-	// 			id_tipo_servicio,
-	// 			detalle_publicacion,
-	// 			fecha_hora_publicacion,
-	// 			estado_publicacion) VALUES (:id,:tp,:tit,:dir,:idtp,:det,NOW(),'Pendiente')");
-	// 		$sql->bindParam(":id",$id,PDO::PARAM_INT);
-	// 		$sql->bindParam(":tp",$id,PDO::PARAM_INT);
-	// 		$sql->bindParam(":tit",$id,PDO::PARAM_STR);
-	// 		$sql->bindParam(":dir",$id,PDO::PARAM_STR);
-	// 		$sql->bindParam(":idtp",$id,PDO::PARAM_INT);
-	// 		$sql->bindParam(":det",$id,PDO::PARAM_STR);
-	// 		if($sql->execute()){
-	// 		return "ok";
-	// 	}else{
-	// 		return "error";
-	// 	}
-			
-
-	// 	}
+	
 
 
+			$con = Conexion::conectar();
+			$sql = $con->prepare("INSERT INTO publicacion(
+				id_usuario,
+				tipo_publicacion,
+				titulo_publicacion,
+				direccion_publicacion,
+				id_tipo_servicio,
+				detalle_publicacion,
+				fecha_hora_publicacion,
+				estado_publicacion) VALUES (:idus,:tipopu,:direccion,:direccion,:tiposerv,:detalle,NOW(),'Pendiente')");
+			$sql->bindParam(":idus",$idus,PDO::PARAM_INT);
+			$sql->bindParam(":tipopu",$tipopu,PDO::PARAM_INT);
+			$sql->bindParam(":titulo",$direccion,PDO::PARAM_STR);
+			$sql->bindParam(":direccion",$direccion,PDO::PARAM_STR);
+			$sql->bindParam(":tiposerv",$tiposerv,PDO::PARAM_INT);
+			$sql->bindParam(":detalle",$detalle,PDO::PARAM_STR);
+			if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
 
-
-	// }
+	}
 
 	}
 		

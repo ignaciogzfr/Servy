@@ -4,7 +4,10 @@
 <head>
 
 
-  <?php require_once 'componentes/links.php'; ?>
+<?php require_once("componentes/links.php");
+      require_once("componentes/scripts.php");
+
+  ?>
 
 
 
@@ -25,12 +28,13 @@
       
 <?php require_once 'componentes/navbar.php'; ?>
 
-
+<?php @session_start(); ?>
 
 
 <!-- INICIO DEL FORMULARIO -->
 <div class="container my-4" style="width: 70%;">
-  <form id="form-publicar-servicio" method="POST" autocomplete="off">
+     
+  <form id="form-publicar-servicios" method="POST" autocomplete="off">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="titulopubli"> Titulo</label>
@@ -49,20 +53,28 @@
 <hr class="featurette-divider">
   <div class="form-row">
    
-          <div class="form-group col-md-12">
-            <label for="inputState">Tipo de servicio</label>
-              <select class="custom-select" name="tipo-servicio">
-                  <option selected disabled>Selecciona el Tipo de Servicio</option>
-                      <?php 
-                      require_once("modelos/modelo-servicios.php");
-                      $servicios = Servicios::getServicios();
-                      for($i=0;$i<count($servi); $i++){
-                        echo('<option value="'.$servicios[$i]["id_tipo_servicio"].'">'.$servicios[$i]["tipo_servicio"].'</option>');
-                      }
+    <div class="form-group col-md-12">
+      <label for="inputState">Tipo de servicio</label>
+                <select class="custom-select" id="select-tipo-servicio" name="tipo-serv">
+            <option selected disabled="">seleccionar servicio</option>
+<?php 
+require_once("modelos/modelo-servicios.php");
+  $servi = Servicios::getServicios();
 
-                      ?>  
-              </select>
-          </div>
+  for($i=0;$i<count($servi); $i++){
+
+      echo('
+           
+           <option value="'.$servi[$i]["id_tipo_servicio"].'">'.$servi[$i]["tipo_servicio"].'</option>
+         
+        
+');
+
+  }
+
+?>  
+</select>
+    </div>
     
   </div>
 
@@ -70,14 +82,19 @@
   <label for="">Detalle</label>
   <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" name="detalle-publi" rows="7"></textarea>
 </div>
+   
+    
+ <?php
+          echo ('<input type="hidden" placeholder="'.$_GET["id"].'" name="id-usuario" value="'.$_GET["id"].'">');   
+?>
     <input type="hidden" name="op" value="publicarServicio">
-    <input type="hidden" name="id-usuario" value="1">
     <input type="hidden" name="tipo-publicacion" value="1">
     <button type="submit" class="btn btn-success float-right mb-5 btn-publicar-servicio" id="btn-publicar-servicio">Publicar problema</button>
 
 </form>
+
 </div>
-    
+   
 <!-- FIN DEL FORMULARIO -->
 
 
@@ -87,62 +104,10 @@
   </div>
   <!-- /#wrapper -->
 
-<?php require_once 'componentes/footer.php'; ?>
+<?php require_once 'componentes/footer.php';?>
 
 
 
-
-<script>
-  $('[data-toggle="popover-hover"]').popover({
-  html: true,
-  trigger: 'hover',
-  title: 'Informacion',
-  placement: 'right',
-  content: function () { return 'No te preocupes, la informacion puesta aqui no sera guardada o utilizada.'; }
-});
-  </script>
-
-
-<script>
- $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
-
-
-
-  <script>
-    
-  $("#btn-enviarservicios").on("click", function(){
-
-
-  toastr.info("Espere a que un Maestro acepte su solicitud, esto puede tardar, sea paciente.", "Gracias",{
-
-  "closeButton": true,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": true,
-  "positionClass": "toast-top-right",
-  "preventDuplicates": true,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "10000",
-  "extendedTimeOut": "10000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-
-
-  })
-
-
-  });
-
-
-
-  </script>
 
 </body>
 
