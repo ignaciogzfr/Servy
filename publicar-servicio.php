@@ -38,7 +38,7 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="titulopubli"> Titulo</label>
-      <input type="text" class="form-control" name="titulo-publi" placeholder="Titulo">
+      <input type="text" class="form-control" name="titulo-publi" placeholder="Titulo" required="">
     </div>
 
   </div>
@@ -46,7 +46,7 @@
   <div class="form-group">
     <label for="dir">Direccion</label>
     <button class="btn btn-secondary btn-sm">Geolocalizar</button>
-    <input type="text" class="form-control" name="direccion-publi" placeholder="Avenida Siempreviva 2001">
+    <input type="text" class="form-control" name="direccion-publi" placeholder="Avenida Siempreviva 2001" required="">
   </div>
 
 
@@ -55,7 +55,7 @@
    
     <div class="form-group col-md-12">
       <label for="inputState">Tipo de servicio</label>
-                <select class="custom-select" id="select-tipo-servicio" name="tipo-serv">
+                <select class="custom-select" id="select-tipo-servicio" name="tipo-serv" required="">
             <option selected disabled="">seleccionar servicio</option>
 <?php 
 require_once("modelos/modelo-servicios.php");
@@ -80,7 +80,7 @@ require_once("modelos/modelo-servicios.php");
 
        <div class="form-group">
   <label for="">Detalle</label>
-  <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" name="detalle-publi" rows="7"></textarea>
+  <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" name="detalle-publi" rows="7" required=""></textarea>
 </div>
    
     
