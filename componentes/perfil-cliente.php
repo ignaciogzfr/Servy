@@ -18,7 +18,7 @@
              ?>
 <?php
 if($sesion == true){
-  echo '<button class="btn btn-md btn-primary btn-modal-fp" value="'.$_GET['id'].'" data-toggle="modal" data-target="#modal-editar-fp"><i class="fas fa-edit"></i> Modificar Foto de Perfil</button>';}
+  echo '<button class="btn btn-md btn-primary btn-modal-fp" value="'.$_GET['id'].'" data-toggle="modal" data-target="#modal-editar-fp"><i class="fas fa-image"></i> Cambiar Foto de Perfil</button>';}
 ?>
           </div>
             <div class="col-md-2">

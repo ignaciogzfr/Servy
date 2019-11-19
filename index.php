@@ -29,7 +29,7 @@
   <p class="lead">Servy es una aplicacion que provee servicios tecnicos a quienes lo necesiten.</p>
   <hr class="my-4">
   <p>Busca al Maestro que mas te tinque</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Empecemos!</a>
+  <a class="btn btn-primary btn-lg" href="vista-servicios.php" role="button">Empecemos!</a>
   </div> 
 
 
