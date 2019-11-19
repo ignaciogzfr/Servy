@@ -1,9 +1,10 @@
 <?php 
 require_once 'conexion.php';
 
-	$mail = $_POST["mail"];
-	$pass = $_POST["pass"];
-	if(isset($_POST['id'])){
+	if(isset($_POST['mail']) && isset($_POST['pass'])){
+	$mail = $_POST['mail'];
+	$pass = $_POST['pass'];
+	}elseif(isset($_POST['id'])){	
 	$id = $_POST['id'];	
 	}
 	
@@ -35,7 +36,7 @@ require_once 'conexion.php';
 		echo('<script> location.href="../login.php?error=1"</script>');
 	}
 
-	}else{
+	}elseif(isset($_POST['id'])){
 	$sql = $con->prepare("SELECT * FROM usuario WHERE id_usuario = :id");
 	$sql->bindParam(":id",$id,PDO::PARAM_INT);
 
@@ -52,8 +53,7 @@ require_once 'conexion.php';
 		$_SESSION['estado'] = $datos[0]['estado_usuario'];
 		$_SESSION['direccion'] = $datos[0]['direccion_usuario'];
 
-		return 'Sesion actualizada';
-
+		echo('<script> location.href="../perfil.php?id='.$datos[0]['id_usuario'].'"</script>');
 
 	}
 	else{

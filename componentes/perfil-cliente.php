@@ -42,6 +42,9 @@ if($sesion == true){
                 echo '<input type="hidden" name="id" value="'.$datos[0]['id_usuario'].'">';
               } ?>
 </form>
+<form action="modelos/modelo-login.php" method="POST" id="form-editar-sesion">
+  <?php echo '<input type="hidden" name="id" value="'.$datos[0]['id_usuario'].'">'; ?>
+</form>
             </div>
 
         </div>

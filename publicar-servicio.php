@@ -37,9 +37,9 @@
   <form id="form-publicar-servicios" method="POST" autocomplete="off">
   <div class="form-row">
     <div class="form-group col-md-6">
-      <label for="titulopubli"> Titulo</label>
+      <label for="titulopubli">Titulo</label>
       <input type="text" class="form-control" name="titulo-publi" placeholder="Titulo">
-    </div>
+  </div>
 
   </div>
 
@@ -55,8 +55,8 @@
    
     <div class="form-group col-md-12">
       <label for="inputState">Tipo de servicio</label>
-                <select class="custom-select" id="select-tipo-servicio" name="tipo-serv">
-            <option selected disabled="">seleccionar servicio</option>
+          <select class="custom-select" id="select-tipo-servicio" name="tipo-serv" style="width: 100%">
+            <option selected disabled="">Seleccionar servicio</option>
 <?php 
 require_once("modelos/modelo-servicios.php");
   $servi = Servicios::getServicios();
@@ -85,10 +85,11 @@ require_once("modelos/modelo-servicios.php");
    
     
  <?php
-          echo ('<input type="hidden" placeholder="'.$_GET["id"].'" name="id-usuario" value="'.$_GET["id"].'">');   
+          echo ('<input type="hidden" placeholder="'.$_SESSION["id"].'" name="id-usuario" value="'.$_SESSION["id"].'">');   
 ?>
+    <?php echo '<input type="hidden" value="'.$_SESSION['tipo'].'" id="tipo-usuario-post">' ?>
     <input type="hidden" name="op" value="publicarServicio">
-    <input type="hidden" name="tipo-publicacion" value="1">
+    <input type="hidden" name="tipo-publicacion" id="tipo-publicacion-post" value="">
     <button type="submit" class="btn btn-success float-right mb-5 btn-publicar-servicio" id="btn-publicar-servicio">Publicar problema</button>
 
 </form>
