@@ -22,7 +22,7 @@
 
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
 
-<?php require_once 'componentes/sidenav.php'; ?>
+<?php require_once 'componentes/sidenav-cliente.php'; ?>
     <!-- Page Content -->
     <div id="page-content-wrapper">
       

@@ -53,21 +53,17 @@ $(document).ready(function(){
 				cache: false,
     			contentType: false,
     			processData: false,
-    			success:function(response){
+				success:function(response){
 					console.log(response)
-					}
-				/*success:function(response){
 	        		if(response!=''){
 	        			swal({
-						title : '¡Tu publicacion ha sido enviada con excito!',
+						title : '¡Tu publicación ha sido enviada con éxito!',
 						text : 'Ahora solo hay que esperar que se apruebe y que un Maestro la tome.',
 						icon : 'success'
 					})
-					.then(function(){
-						location.href = 'index.php'
-					})
+					
 	        		}
-	        	}*/
+	        	}
 			})
 	}
 
