@@ -7,8 +7,9 @@
         <img class="rounded" src="img/placeholder.png" height="80px">
       </div>
       <div class="list-group list-group-flush text-white pt-5">
-        <a href="servicios-pendientes.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Servicios pendientes</a>
-        <?php echo('<a href="publicar-servicio.php?id='.$_GET['id'].'" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Pedir servicio</a>'); ?>
+      
+        <?php echo('<a href="servicios-pendientes.php?id='.$_GET['id'].'" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Servicios pendientes</a>
+        <a href="publicar-servicio.php?id='.$_GET['id'].'" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Pedir servicio</a>'); ?>
 
         <a href="#" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Informacion</a>
         <a href="#" class="list-group-item list-group-item-action mdb-color lighten-2 text-white ">Cerrar sesion <i class="fas fa-power-off"></i></a>

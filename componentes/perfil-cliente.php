@@ -1,4 +1,4 @@
-<div class="container w-75 mb-5">
+<div class="container w-80 mb-5">
 
         <div class="row mt-4">
           
@@ -18,11 +18,11 @@
             <p class="text-muted my-3">Direccion:</p>
             </div>
             <div class="col-md-8">
-<form class="form-editar-cliente">
-  <?php echo '<input type="text" name="nombre" class="form-control my-1 input-dato-basico nombre-editar-perfil" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" name="mail" class="form-control my-1 input-dato-basico mail-editar-perfil" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" name="fono" class="form-control my-1 input-dato-basico fono-editar-perfil" value="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" name="dir" class="form-control my-1 input-dato-basico dir-editar-perfil" value="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
+<form class="form-editar-cliente ">
+  <?php echo '<input type="text" name="nombre" class="form-control my-1 col-6 input-dato-basico nombre-editar-perfil" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" name="mail" class="form-control my-1 col-6 input-dato-basico mail-editar-perfil" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" name="fono" class="form-control my-1 col-6  input-dato-basico fono-editar-perfil" value="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" name="dir" class="form-control my-1  col-6 input-dato-basico dir-editar-perfil" value="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
   <input type="hidden" value="Cliente" id="tipo-editar-perfil">
   <input type="hidden" value="editarPerfilBasicoC" name="op">
             <?php
