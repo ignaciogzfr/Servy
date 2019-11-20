@@ -56,13 +56,9 @@
 
         <div class="row">
           
-            <div class="col">
-              <h6>Usuario <p class="text-success">[Moderador]</p></h6>
-               <img src="img/placeholder.png" width="150" class="rounded" />
-            </div>
+  
             <div class="col">
                 <div class="btn-group-vertical">
-                <button class="btn btn-md btn-primary"><i class="fas fa-edit"></i> Editar mi perfil</button>
                 <button class="btn btn-md btn-primary">Buscar usuarios</button>
                 <button class="btn btn-md btn-primary">Buscar publicaciones</button>
         

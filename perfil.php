@@ -17,8 +17,9 @@
 
 <?php require_once 'componentes/navbar.php'; ?>
 
-<div class="container">
-  <h1 class="text-center mt-2"> Perfil</h1>
+<div class="container text-center">
+  <h1 class="text-center mt-2"> Perfil </h1>
+  <p class="text-danger"> Administrador</p>
   <hr class="featurette-divider">
 </div>
 <?php
@@ -31,6 +32,8 @@ if(isset($perfil[0])){
       require_once 'componentes/perfil-cliente.php';
     }elseif($perfil[0]['tipo_usuario']=='Maestro'){
       require_once 'componentes/perfil-maestro.php';
+    }elseif ($perfil[0]['tipo_usuario']=='Administrador') {
+     require_once 'componentes/perfil-admin.php';
     }
     
 }
