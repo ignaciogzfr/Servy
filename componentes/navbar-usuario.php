@@ -6,9 +6,13 @@
         <li class="nav-item">
         <a class="nav-link" href="index.php">Inicio</a>
         </li>
-
+        
         <li class="nav-item">
-        <?php echo '<a class="nav-link" href="perfil.php?id='.$_SESSION['id'].'">Mi Perfil</a>' ?>
+        <?php if($_SESSION['tipo']!='Administrador'){
+            echo '<a class="nav-link" href="perfil.php?id='.$_SESSION['id'].'">Mi Perfil</a>';
+        }else{
+            echo '<a class="nav-link" href="panel-control.php">Panel de Control</a>';
+        } ?>
         
         </li>
 

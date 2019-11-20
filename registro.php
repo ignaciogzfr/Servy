@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<title>Registro</title>
 </head>
-<body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
+<body>
 
 
 	<?php require_once 'componentes/sidenav.php'; ?>		
