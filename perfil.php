@@ -12,7 +12,7 @@
 
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
   <?php require_once 'componentes/links.php'; ?>
-  <?php require_once 'componentes/sidenav-cliente.php'; ?>
+
 <div id="page-content-wrapper">
 
 <?php require_once 'componentes/navbar.php'; ?>
@@ -30,8 +30,10 @@ if(isset($perfil[0])){
 
     if($perfil[0]['tipo_usuario']=='Cliente'){
       require_once 'componentes/perfil-cliente.php';
+      require_once 'componentes/sidenav-cliente.php';
     }elseif($perfil[0]['tipo_usuario']=='Maestro'){
       require_once 'componentes/perfil-maestro.php';
+      require_once 'componentes/sidenav-cliente.php';
     }elseif ($perfil[0]['tipo_usuario']=='Administrador') {
      require_once 'componentes/perfil-admin.php';
     }

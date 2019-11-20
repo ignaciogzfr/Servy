@@ -81,7 +81,7 @@
                 <th>Email</th>
                 <th>Tipo usuario</th>
                 <th>Estado</th>
-                <th>Perfil</th>
+                <th>Perfil/denuncias</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -92,6 +92,7 @@
 require_once("modelos/modelo-usuarios.php");
 
 $user= usuarios::getUsuarios();
+
 
 
 if(count($user)){
@@ -114,7 +115,7 @@ if(count($user)){
                 </td>');
   }else{
     echo(' <td>
-                    <a class="btn btn-sm btn-info" href="perfil.php?id='.$user[$i]['id_usuario'].'" target="_blank" >Ver perfil </a><span class="badge badge-danger ml-2" >'.count($den).'</span>
+                    <a class="btn btn-sm btn-info" href="vista-usuario.php?id='.$user[$i]['id_usuario'].'" target="_blank" >Ver perfil </a><span class="badge badge-danger ml-2" >'.count($den).'</span>
                 </td>');
   }
                
