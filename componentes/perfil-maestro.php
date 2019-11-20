@@ -17,7 +17,7 @@
                ?>
 <?php
 if($sesion == true){
-  echo '<button class="btn btn-md btn-primary btn-modal-fp" value="'.$_GET['id'].'" data-toggle="modal" data-target="#modal-editar-fp">Cambiar Foto de Perfil</button>';
+  echo '<button class="btn btn-md btn-primary btn-modal-fp" value="'.$_GET['id'].'" data-toggle="modal" data-target="#modal-editar-fp"><i class="fas fa-edit"></i> Cambiar Foto de Perfil</button>';
 }
 ?>
             </div>
@@ -170,6 +170,7 @@ if($sesion == true){
 
       </div>
 
+<form action="modelos/modelo-login.php" method="POST" id="form-editar-sesion">
+<?php echo '<input type="hidden" value="'.$_GET['id'].'" id="id-perfil-edit" name="id">'; ?>
+</form>
 
-
-<?php echo '<input type="hidden" value="'.$_GET['id'].'" id="id-perfil-edit">'; ?>

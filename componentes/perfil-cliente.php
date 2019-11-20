@@ -18,7 +18,7 @@
              ?>
 <?php
 if($sesion == true){
-  echo '<button class="btn btn-md btn-primary btn-modal-fp" value="'.$_GET['id'].'" data-toggle="modal" data-target="#modal-editar-fp"><i class="fas fa-edit"></i> Modificar Foto de Perfil</button>';}
+  echo '<button class="btn btn-md btn-primary btn-modal-fp" value="'.$_GET['id'].'" data-toggle="modal" data-target="#modal-editar-fp"><i class="fas fa-image"></i> Cambiar Foto de Perfil</button>';}
 ?>
           </div>
             <div class="col-md-2">
@@ -41,6 +41,9 @@ if($sesion == true){
                 echo '<div class="text-center div-botones-editar"><button type="button" class="btn btn-md btn-primary btn-preparar-edit" value="'.$_GET['id'].'"><i class="fas fa-edit"></i> Editar</button></div>';
                 echo '<input type="hidden" name="id" value="'.$datos[0]['id_usuario'].'">';
               } ?>
+</form>
+<form action="modelos/modelo-login.php" method="POST" id="form-editar-sesion">
+  <?php echo '<input type="hidden" name="id" value="'.$datos[0]['id_usuario'].'">'; ?>
 </form>
             </div>
 

@@ -245,6 +245,7 @@ $('.input-dato-basico').attr('disabled','disabled');
 
 
 function editarPerfil(e){
+var id = $('#id-perfil-edit').val();
 if($('#tipo-editar-perfil').val()==='Cliente'){
 	console.log(1)
 	var datos = $('.form-editar-cliente').serialize();
@@ -262,7 +263,8 @@ $.ajax({
 		if(response=='OK'){
 			console.log('CAMBIADO');
 			$('.input-dato-basico').attr('disabled','disabled');
-			alert('Fue cambiado con exito!')
+			alert('Fue cambiado con exito! Vamos a reiniciar sesion para efectuar los cambios');
+			$('#form-editar-sesion').submit();
 		}
 	}
 
@@ -274,6 +276,10 @@ $.ajax({
 function editarPerfilFP(e){
 e.preventDefault();
 var imagen = new FormData(this);
+if (imagen.get('fp')==''){
+	alert('No se pueden realizar cambios si el campo está vacio')
+}
+else{
 $.ajax({
 	method: 'POST',
 	url: 'controladores/usuarios-controller.php',
@@ -283,8 +289,12 @@ $.ajax({
 	processData: false,
 	success:function(r){
 		console.log(r)
+		if(r=='OK'){
+			$('#form-editar-sesion').submit();
+		}
 	}
 })
+}
 }
 
 

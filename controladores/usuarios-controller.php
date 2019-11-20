@@ -130,9 +130,7 @@ if (isset($_POST['certificados'])) {
 	$certificados = json_decode($_POST['certificados']);
 }
 
-if (isset($_POST['servicios'])) {
-	$servicios = json_decode($_POST['servicios']);
-} 
+$op = $_POST["op"];
 switch ($op) {
 // segun su contenido se llama a las funciones de la clase gestor de usuario y envia los parametros
 // obtenidos a traves del metodo post(inputs)
@@ -151,6 +149,8 @@ switch ($op) {
 
 		break;
 		}else{
+		$servicios = json_decode($_POST['servicios']);
+		$certificados = json_decode($_POST['certificados']);
 		$response = new GestorUsuarios();
 
 		if(isset($_FILES['fp-registro'])){
@@ -186,12 +186,21 @@ switch ($op) {
 
 		case 'editarPerfilServicios':
 		$response = new GestorUsuarios();
+		$servicios = json_decode($_POST['servicios']);
 		$response->editarPerfilServicios($_POST['id'],$servicios);
 		break;
 
 		case 'editarPerfilCertificados':
 		$response = new GestorUsuarios();
+		$certificados = json_decode($_POST['certificados']);
 		$response->editarPerfilCertificados($_POST['id'],$certificados);	
 		break;
 
+		case '':
+					
+		break; 	
+
+		default:
+ 		# code...
+ 		break;
  } ?>
