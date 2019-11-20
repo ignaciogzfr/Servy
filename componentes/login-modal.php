@@ -2,7 +2,7 @@
     <div class="modal-dialog pt-4 mx-auto">
         <div class="modal-content" style="height: 450px; width: 500px;">
 
-            <div class="modal-header mdb-color">
+            <div class="modal-header mdb-color text-center">
 
                 <h3 id="titulo-loginregistro" class="text-white">Inicia sesion</h3>
 
@@ -16,13 +16,13 @@
 
 
                             <div class="form-group">
-                            <label for="mail-login-modal"><h4>Correo electrónico</h4></label>
+                            <label for="mail-login-modal"><h5>Correo electrónico</h4></label>
                             <input type="text" id="mail-login-modal" class="form-control" placeholder="Correo" name="mail">
                             </div>
 
 
                             <div class="form-group">
-                            <label for="pass-login-modal"><h4>Contraseña</h4></label>
+                            <label for="pass-login-modal"><h5>Contraseña</h4></label>
                             <input id="pass-login-modal" class="form-control mt-3" placeholder="contraseña" type="password" name="pass">
                             </div>
                             <button class="btn btn-success btn-md" type="submit">Iniciar</button>
