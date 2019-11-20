@@ -19,7 +19,7 @@
 
 <div class="container text-center">
   <h1 class="text-center mt-2"> Perfil </h1>
-  <p class="text-danger"> Administrador</p>
+
   <hr class="featurette-divider">
 </div>
 <?php
