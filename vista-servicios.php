@@ -85,6 +85,7 @@ require_once("modelos/modelo-servicios.php");
 						<div class="list-group">
               
 						 <?php
+              /* existen 2 tipos de publicaciones oferta y demanda y a partir de este dato que se obitne a traves el metodo get se puede mostrar que tipo de publicacion desea el usuario */
              require_once("modelos/modelo-publicaciones.php");
              if(isset($_GET['tipo'])){
               if($_GET['tipo']=='oferta'){
@@ -95,6 +96,7 @@ require_once("modelos/modelo-servicios.php");
               }else{
                   $publi = Publicaciones::getPublicaciones();
               }
+              /*en caso de que no existan publicaciones se creara un recuadro que alerte al usuario la inexistencia de publicaciones*/
                   if(count($publi)==0){
 
                       echo('<div class="alert alert-primary" role="alert">
@@ -102,7 +104,7 @@ require_once("modelos/modelo-servicios.php");
                                   </div>');
 
                   }else{
-
+                  /*si la variable contiene datos se carga cada uno de la matriz recien asignada*/
                       for ($i=0; $i<count($publi); $i++){
 
                         echo (' 

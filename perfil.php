@@ -22,11 +22,11 @@
   <hr class="featurette-divider">
 </div>
 <?php
+/*se importan los metodos de medelo usaurio y se obitne a traves del metodo get su id esta se utiliza para buscar al usuario a traves de su identificador, todo lo arrojado por la consulta es guardado en una matriz de datos llamado perfil, y segun su tipo(tambien obtenido por la consulta) se carga el componente para ese cleinte en especifico*/
 require_once 'modelos/modelo-usuarios.php';
 $id = $_GET['id'];
 $perfil = Usuarios::getPerfilUsuario($id);
 if(isset($perfil[0])){
-
     if($perfil[0]['tipo_usuario']=='Cliente'){
       require_once 'componentes/perfil-cliente.php';
     }elseif($perfil[0]['tipo_usuario']=='Maestro'){
@@ -37,6 +37,7 @@ if(isset($perfil[0])){
     }
     
 }
+/*caso de que no exista ningun dato en la variable perfil se creara un recuadroa lertando de que el usuario no existe*/
 elseif(!isset($perfil[0])){
   echo '<h1 class="alert alert-danger offset-3 col-md-6 text-center">Esta cuenta no existe..</h1>';
 }

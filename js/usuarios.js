@@ -2,7 +2,6 @@
 //y a traves de este metodo puede obtener informacion del formulario o campos y carga una funcion para administrarla
 //correctamente
 $(document).ready(function(){
-console.log("se llama a usuarios.js");
 $('#serv-maestro').select2({
 	width : 'resolve'
 })
@@ -39,7 +38,6 @@ $('#form-cambiar-fp').on('submit',editarPerfilFP);
 
 // funciones de usuarios
 function registrarUsuario(event){
-	console.log("se funcion js llamada correctamente");
 	event.preventDefault();
 	var datos = new FormData(this);
 	var fpc = $('#fp-registro-cliente')[0].files[0];

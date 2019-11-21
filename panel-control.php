@@ -8,16 +8,19 @@
   <meta name="author" content="">
 <link rel="shortcut icon" href="img/logo.png" />
   <title>Panel de control</title>
+
+
+
 <?php require_once 'componentes/links.php'; ?>
 </head>
 
 <body>
-<?php require_once 'componentes/verificar-admin.php'; ?>
-<?php require_once 'componentes/sidenav.php'; ?>
+<?php   require_once 'componentes/verificar-admin.php';
+       require_once 'componentes/sidenav.php'; ?>
     <!-- /#sidebar-wrapper -->
 
     
-    
+    <div id="page-content-wrapper">
     <!-- navegador superior-->
   <?php require_once 'componentes/navbar.php' ?>
     <!-- fin navegador superior-->
@@ -33,13 +36,13 @@
       <div class="container text-center w-75">
 
         <div class="row">
-          
+          <!--se cargan los datos basicos del perfil del administrador-->
             <div class="col-md-5">
               <?php echo '<h6>'.$_SESSION['nombre'].'<p class="text-success">[Moderador]</p></h6>'; ?>
               <?php echo '<img src="'.$_SESSION['fp'].'" width="150" height="150" class="rounded-circle">' ?>
             </div>
 
-
+            <!-- para que el modearador pueda acceder a cambiar sus datos basicos debe seleccionar editar mi perfil el que lo llevara junto con su id a traves del emtodo GET -->
             <div class="col-md-7">
                 <div class="btn-group-vertical">
                 <?php echo '<a class="btn btn-md btn-primary" href="perfil.php?id='.$_SESSION['id'].'"><i class="fas fa-edit"></i> Editar mi perfil</a>'; ?>
@@ -59,9 +62,11 @@
 
     </div>
     <!-- /#page-content-wrapper -->
-
+    </div>
   </div>
   <!-- /#wrapper -->
+
+  
 <?php require_once 'componentes/footer.php' ?>
 <?php require_once 'componentes/scripts.php'; ?>
 	

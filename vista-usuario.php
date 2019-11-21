@@ -27,13 +27,16 @@
 
 
         <?php 
+
             require_once("modelos/modelo-usuarios.php");
+            //datos base de usuario
             $user = Usuarios::verUsuarioCliente($_GET["usuario"]);
             $userm = Usuarios::verUsuarioMaestro($_GET["usuario"]);
+            //datos anexos al maestro 
             $certificados = Usuarios::getCertificadosMaestro($_GET["usuario"]);
             $experiencia = Usuarios::getExperienciaMaestro($_GET["usuario"]);
             $servicios = Usuarios::getServiciosMaestro($_GET["usuario"]);
-
+                 //caso cliente
             if($user[0]["tipo_usuario"]=='Cliente'){
 
            echo('<div class="row">
@@ -59,7 +62,7 @@
                   </div>');
 
             }else{
-
+              //caso maestro
                 echo ('<div class="row">
                     
                       <div class="col">

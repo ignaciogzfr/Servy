@@ -57,12 +57,13 @@
           </thead>
          <tbody>
 <?php 
-
+/*se importan los metodos del modelo de publicaciones y se crea un constructor de un metodo los resultados se almacenan en una variable que servira como una matriz*/
 require_once("modelos/modelo-publicaciones.php");
 
 $publi = Publicaciones::getPublicaciones();
+/*si existe almenos una publicacion o mas*/
 if(count($publi)){
-
+  //para tupla en nuestra matriz se podra mostrar cada ves que se repita este ciclo
   for($i=0;$i<count($publi); $i++){
 
   echo(' 
@@ -98,6 +99,8 @@ if(count($publi)){
 
 
  ?>
+
+ <!-- sirve por si el usuario baja mucho y no puede destingir cual datos pertenece a cual fila-->
         </tbody>
         
         <tfoot>

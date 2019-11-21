@@ -1,3 +1,6 @@
+//cuando se llama a este archivo, este se encarga de "escuchar" las funciones del docuemnto donde esta siendo llamado
+//y a traves de este metodo puede obtener informacion del formulario o campos y carga una funcion para administrarla
+//correctamente
 $(document).ready(function(){
 $('#serv-maestro-edit').select2({
 	width : 'resolve'

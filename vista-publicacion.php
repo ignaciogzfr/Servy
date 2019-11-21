@@ -43,6 +43,7 @@
 
 
         <?php 
+        /*se importa el metodo ver publicacione de los modelos publicaciones y se le pasa el paraemtro de la id de publicacion, al ejecutarse la consulta los datos de respuesta se almacenan en una variable local la cual es utilizada para cargar el contenido de la pagina*/
             require_once("modelos/modelo-publicaciones.php");
 
             $publi = publicaciones::verPublicacion($_GET["publicacion"]);

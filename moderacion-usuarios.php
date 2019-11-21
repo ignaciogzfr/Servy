@@ -2,10 +2,6 @@
 <html lang="en">
 <head>
 	
-
-
- 
-
 <?php require_once("componentes/links.php");?>
 <?php require_once 'componentes/verificar-admin.php'; ?>
 
@@ -16,12 +12,7 @@
   <link rel="shortcut icon" href="img/logo.png" />
   <title>Moderacion de usuarios</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
-
+ 
 </head>
 
 <body>
@@ -52,12 +43,12 @@
          <tbody>
 
 <?php 
-
+/*se importan los metodos del modelo de publicaciones y se crea un constructor de un metodo los resultados se almacenan en una variable que servira como una matriz*/
 require_once("modelos/modelo-usuarios.php");
-
 $user= usuarios::getUsuarios();
+/*si existe almenos una publicacion o mas*/
 if(count($user)){
-
+  //para tupla en nuestra matriz se podra mostrar cada ves que se repita este ciclo
   for($i=0;$i<count($user); $i++){
 
   echo(' <tr>
@@ -89,11 +80,7 @@ if(count($user)){
 
 
  ?>
-
-         
-       
-           
-           
+ <!-- sirve por si el usuario baja mucho y no puede destingir cual datos pertenece a cual fila-->
         </tbody>
         <tfoot>
             <tr>
