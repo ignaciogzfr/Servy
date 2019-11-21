@@ -12,6 +12,25 @@ Class Publicaciones{
 		return $sql->fetchAll(PDO::FETCH_ASSOC); 
 	}
 
+	static public function getDenunciasPublicacion($id){
+
+		$con = Conexion::conectar();
+		$sql = $con->prepare("SELECT * FROM denuncias_publicacion WHERE publicacion = :id");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->execute();
+	return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
+
+	static public function getDenuncias($id){
+
+		$con = Conexion::conectar();
+		$sql = $con->prepare("SELECT d.*, u.nombre_usuario, t.tipo_denuncia FROM denuncias_publicacion d, usuario u, tipos_denuncia t 	WHERE publicacion = :id and d.denunciante = u.id_usuario and d.tipo_denuncia = t.id_tipo_denuncia");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->execute();
+	return $sql->fetchAll(PDO::FETCH_ASSOC);
+
+	}
 	static public function getPublicacionesDemanda(){
 	// 
 		$con = Conexion::conectar();

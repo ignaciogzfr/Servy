@@ -16,9 +16,7 @@ Class Usuarios{
 	static public function getMisPublicacionesDemanda($id){
 	$con = Conexion::conectar();
 	$sql = $con->prepare('SELECT p.*, t.tipo_servicio FROM publicacion p, tipo_servicio t  WHERE p.id_usuario = :id and p.id_tipo_servicio = t.id_tipo_servicio');
-	$sql->bindParam(":id",$id,PDO::PARAM_INT);
-	$sql->execute();
-	return $sql->fetchAll(PDO::FETCH_ASSOC);
+
 	}
 
 	static public function getMisPublicacionesOferta($id){
@@ -57,6 +55,15 @@ Class Usuarios{
 	$sql->bindParam(":id",$id,PDO::PARAM_INT);
 	$sql->execute();
 	return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	static public function getDenuncias($id){
+		$con = Conexion::conectar();
+	$sql = $con->prepare("SELECT d.*, u.nombre_usuario, t.tipo_denuncia FROM denuncias_usuario d, usuario u, tipos_denuncia t WHERE id_denunciado = :id and d.id_denunciante = u.id_usuario and d.id_tipo_denuncia = t.id_tipo_denuncia");
+	$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->execute();
+	return $sql->fetchAll(PDO::FETCH_ASSOC);
+
 	}
 
 

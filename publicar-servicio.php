@@ -22,7 +22,7 @@
 
 <body>
 
-<?php require_once 'componentes/sidenav.php'; ?>
+<?php require_once 'componentes/sidenav-cliente.php'; ?>
     <!-- Page Content -->
     <div id="page-content-wrapper">
       
@@ -46,7 +46,7 @@
   <div class="form-group">
     <label for="dir">Direccion</label>
     <button class="btn btn-secondary btn-sm">Geolocalizar</button>
-    <input type="text" class="form-control" name="direccion-publi" placeholder="Avenida Siempreviva 2001">
+    <input type="text" class="form-control" name="direccion-publi" placeholder="Avenida Siempreviva 2001" required="">
   </div>
 
 
@@ -80,7 +80,7 @@ require_once("modelos/modelo-servicios.php");
 
        <div class="form-group">
   <label for="">Detalle</label>
-  <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" name="detalle-publi" rows="7"></textarea>
+  <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" name="detalle-publi" rows="7" required=""></textarea>
 </div>
    
     
