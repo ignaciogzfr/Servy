@@ -116,7 +116,7 @@ $.ajax({
 	success:function(response){
 		if(response == 'OK'){
 			alert('LOS CAMBIOS FUERON REALIZADOS');
-			location.reload()
+			$('#form-editar-sesion').submit();
 		}
 	}
 })
@@ -138,7 +138,7 @@ $.ajax({
 function editarPerfilServicios(e){
 var id = $('#id-perfil-edit').val();
 var servicios = new Array()
-$('.servicios-edit .listado-servicios').each(function(i){
+$('.servicios-edit .listado-servicio').each(function(i){
 	servicios.push($(this).val())
 })
 $.ajax({
@@ -146,7 +146,7 @@ $.ajax({
 	url : 'controladores/usuarios-controller.php',
 	data : 'op=editarPerfilServicios&id='+id+'&servicios='+JSON.stringify(servicios),
 	success:function(r){
-		console.log(r)
+		$('#form-editar-sesion').submit();
 	}
 })
 $('.btn-eliminar-servicio').css('display','none')

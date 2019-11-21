@@ -36,7 +36,7 @@
 
 </head>
 
-<body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
+<body>
 
 <?php require_once 'componentes/sidenav.php' ?>
     <!-- /#sidebar-wrapper -->

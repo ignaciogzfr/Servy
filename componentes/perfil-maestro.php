@@ -170,6 +170,7 @@ if($sesion == true){
 
       </div>
 
+<form action="modelos/modelo-login.php" method="POST" id="form-editar-sesion">
+<?php echo '<input type="hidden" value="'.$_GET['id'].'" id="id-perfil-edit" name="id">'; ?>
+</form>
 
-
-<?php echo '<input type="hidden" value="'.$_GET['id'].'" id="id-perfil-edit">'; ?>

@@ -3,10 +3,6 @@
 require_once '../modelos/modelo-usuarios.php';
 
 Class GestorUsuarios{
-	public function loginUsuario($mail,$pass){
-		$respuesta = Usuarios::loginUsuario($mail,$pass);
-		echo($respuesta);
-	}
 	public function editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir){
 		$respuesta = Usuarios::editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir);
 		echo $respuesta;
@@ -114,14 +110,8 @@ Class GestorUsuarios{
 		echo ($respuesta);
 	}
 }
-$op = $_POST["op"];
-if (isset($_POST['certificados'])) {
-	$certificados = json_decode($_POST['certificados']);
-}
 
-if (isset($_POST['servicios'])) {
-	$servicios = json_decode($_POST['servicios']);
-} 
+$op = $_POST["op"];
 switch ($op) {
 
 		case 'login':
@@ -139,6 +129,8 @@ switch ($op) {
 
 		break;
 		}else{
+		$servicios = json_decode($_POST['servicios']);
+		$certificados = json_decode($_POST['certificados']);
 		$response = new GestorUsuarios();
 
 		if(isset($_FILES['fp-registro'])){
@@ -174,12 +166,21 @@ switch ($op) {
 
 		case 'editarPerfilServicios':
 		$response = new GestorUsuarios();
+		$servicios = json_decode($_POST['servicios']);
 		$response->editarPerfilServicios($_POST['id'],$servicios);
 		break;
 
 		case 'editarPerfilCertificados':
 		$response = new GestorUsuarios();
+		$certificados = json_decode($_POST['certificados']);
 		$response->editarPerfilCertificados($_POST['id'],$certificados);	
 		break;
 
+		case '':
+					
+		break; 	
+
+		default:
+ 		# code...
+ 		break;
  } ?>

@@ -19,7 +19,7 @@
 	<meta charset="UTF-8">
 	<title></title>
 </head>
-<body style="font-family: 'Noto Sans JP', sans-serif; background-color: #45526e;">
+<body style="background-color: #45526e;">
 
 <div class="container bg-white" style="padding-bottom: 200px; width: 70%;">
 	<div class="container text-center w-70" style="padding-top:70px;">

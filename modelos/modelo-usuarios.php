@@ -13,19 +13,20 @@ Class Usuarios{
 
 	}
 
-	static function getDenunciasUsuario($id){
-		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT * FROM denuncias_usuario WHERE id_denunciado = :id");
-		$sql->bindParam(":id",$id,PDO::PARAM_INT);
-	$sql->execute();
-	return $sql->fetchAll(PDO::FETCH_ASSOC);
-	}
-
-	static public function getMisPublicaciones($id){
+	static public function getMisPublicacionesDemanda($id){
 	$con = Conexion::conectar();
 	$sql = $con->prepare('SELECT p.*, t.tipo_servicio FROM publicacion p, tipo_servicio t  WHERE p.id_usuario = :id and p.id_tipo_servicio = t.id_tipo_servicio');
 
 	}
+
+	static public function getMisPublicacionesOferta($id){
+	$con = Conexion::conectar();
+	$sql = $con->prepare('SELECT  p.*, t.tipo_servicio FROM publicacion p, tipo_servicio t WHERE p.id_usuario = :id AND p.id_tipo_servicio = t.id_tipo_servicio');
+	$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->execute();
+	return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	static public function getPerfilUsuario($id){
 	$con = Conexion::conectar();
 	$sql = $con->prepare('SELECT * FROM usuario WHERE id_usuario = :id');

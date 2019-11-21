@@ -11,7 +11,7 @@
   <?php require_once 'componentes/sidenav.php'; ?>
 </head>
 
-<body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
+<body>
 
     <div id="page-content-wrapper">
 

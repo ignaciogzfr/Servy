@@ -43,8 +43,11 @@ $(document).ready(function(){
 	function publicarServicio(event){
 				event.preventDefault();
 				var datos = new FormData(this);
-				console.log(datos.get('op'));
-
+				if($('#tipo-usuario-post')=='Cliente'){
+					datos.set('tipo-publicacion-post','Demanda')
+				}else if($('#tipo-usuario-post')=='Maestro'){
+					
+				}
 			$.ajax({
 
 				method: 'POST',
@@ -54,7 +57,6 @@ $(document).ready(function(){
     			contentType: false,
     			processData: false,
 				success:function(response){
-					console.log(response)
 	        		if(response!=''){
 	        			swal({
 						title : '¡Tu publicación ha sido enviada con éxito!',

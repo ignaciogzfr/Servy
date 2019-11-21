@@ -46,6 +46,8 @@ Class Publicaciones{
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+
+
 	static public function verPublicacion($id){
 
 		$con = Conexion::conectar();
@@ -55,7 +57,13 @@ Class Publicaciones{
 			return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-
+	static public function getDenunciasPublicacion($id){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("SELECT d.* FROM denuncias_publicacion d, publicacion p, usuario u WHERE d.publicacion = p.id_publicacion AND d.denunciante = u.id_usuario AND p.id_publicacion = :id");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+		$sql->execute();
+		return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
 
 	static public function sancionarPublicacion($id){
 			//actualiza el estado de la publicacion
