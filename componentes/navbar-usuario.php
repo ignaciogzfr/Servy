@@ -24,7 +24,7 @@
         </li>';
             }  ?>
         <li class="nav-item">
-        <a class="nav-link" href="vista-servicios.php?tipo=oferta" target="_blank">Servicios</a>
+        <a class="nav-link" href="servicios-pendientes.php?tipo=oferta" target="_blank">Mis Ofertas de Servicios</a>
         </li>
 
         <li class="nav-item active">

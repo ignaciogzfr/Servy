@@ -59,11 +59,13 @@ $(document).ready(function(){
 				success:function(response){
 	        		if(response!=''){
 	        			swal({
-						title : '¡Tu publicación ha sido enviada con éxito!',
+						title : '¡Tu publicacion ha sido enviada con excito!',
 						text : 'Ahora solo hay que esperar que se apruebe y que un Maestro la tome.',
 						icon : 'success'
 					})
-					
+					.then(function(){
+						location.href = 'index.php'
+					})
 	        		}
 	        	}
 			})
