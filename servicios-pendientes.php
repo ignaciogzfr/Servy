@@ -49,7 +49,7 @@
 		$publi = Usuarios::getMisPublicacionesOferta($_SESSION['id']);	
 		}else{
 		$publi = Usuarios::getMisPublicacionesDemanda($_SESSION['id']);
-
+		}
 		if(count($publi)>0){
 
 			for($i=0;$i<count($publi);$i++){
@@ -95,7 +95,7 @@
 
 			echo ('<h6 class=" text-center alert-success w-100 py-2">No tiene servicios pendientes.</h6>');
 		}
-		}
+		
 	 ?>	
 
 							

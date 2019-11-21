@@ -4,12 +4,11 @@
         <?php echo '<img src="'.$_SESSION['fp'].'" class="rounded-circle" height="80" width="80">'; ?>
       </div>
       <div class="list-group list-group-flush text-white pt-5">
-      
-        <?php echo('<a href="servicios-pendientes.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Servicios pendientes</a>'); ?>
-        
+     
   <a href="publicar-servicio.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Pedir o Publicar Servicios</a>
   <a href="servicios-pendientes.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mis Publicaciones</a>
-        
+  <a href="servicios-pendientes.php?tipo=Demanda" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mis Peticiones</a>
+  <a href="servicios-pendientes.php?tipo=Oferta" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Publicaciones de Oferta</a>        
   <a href="modelos/logout.php" class="list-group-item list-group-item-action mdb-color lighten-2 text-white ">Cerrar sesion <i class="fas fa-power-off"></i></a>
 
       </div>
