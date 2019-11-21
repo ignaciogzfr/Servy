@@ -12,15 +12,9 @@ Class Publicaciones{
 		return $sql->fetchAll(PDO::FETCH_ASSOC); 
 	}
 
-	static public function getDenunciasPublicacion($id){
 
-		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT * FROM denuncias_publicacion WHERE publicacion = :id");
-		$sql->bindParam(":id",$id,PDO::PARAM_INT);
-	$sql->execute();
-	return $sql->fetchAll(PDO::FETCH_ASSOC);
-	}
 	
+
 
 	static public function getDenuncias($id){
 
