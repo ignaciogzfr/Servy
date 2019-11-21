@@ -69,7 +69,7 @@
 
 					<div class="col-md-6">
 							<label for="fono-registro-cliente">Numero telefonico *</label>
-							<input id="fono-registro-cliente" type="text" pattern="[0-9]" class="form-control" placeholder="99999999" style="font-style:italic" maxlength="8" name="fono-registro" required="">
+							<input id="fono-registro-cliente" type="text" pattern="[0-9].{7,8}" class="form-control" maxlength="8" placeholder="99999999" style="font-style:italic" name="fono-registro" required="">
 					</div>
 
 				</div>
@@ -149,7 +149,7 @@
 					<div class="col-md-5">
 						<div class="form-group">
 							<label for="fono-maestro">Numero telefonico *</label>
-							<input id="fono-maestro" type="text" class="form-control" placeholder="99999999" pattern="[0-9]" maxlength="8" style="font-style:italic" name="fono-registro" required>
+							<input id="fono-maestro" type="text" class="form-control" placeholder="99999999" pattern="[0-9].{7,8}" maxlength="8" style="font-style:italic" name="fono-registro" required>
 						</div>
 
 

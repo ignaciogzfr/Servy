@@ -114,7 +114,7 @@ Class Usuarios{
 		if($sql->execute()){
 		$id = $con->lastInsertId();
 
-		@session_start();
+		session_start();
 		$_SESSION['id'] = $id;
 		$_SESSION['tipo'] = $tipo;
 		$_SESSION['nombre'] = $nombre;
@@ -188,6 +188,14 @@ Class Usuarios{
 
 
 			$con->commit();
+			session_start();
+			$_SESSION['id'] = $id;
+			$_SESSION['tipo'] = $tipo;
+			$_SESSION['nombre'] = $nombre;
+			$_SESSION['fono'] = $fono;
+			$_SESSION['fp'] = $fp;
+			$_SESSION['estado'] = 'Activo';
+			$_SESSION['direccion'] = $dir;
 			return $id;
 			} catch (PDOException $e) {
 				$con->rollBack();
