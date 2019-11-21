@@ -10,8 +10,9 @@
 
   <title>Servy</title>
 
-<?php require_once 'componentes/links.php' ?>
-<?php require_once 'componentes/sidenav.php' ?>
+<?php require_once 'componentes/links.php'; ?>
+<?php require_once 'componentes/sidenav.php'; ?>
+<?php require_once 'modelos/modelo-servicios.php'; ?>
 </head>
 
 <body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
@@ -28,7 +29,7 @@
   <p class="lead">Servy es una aplicacion que provee servicios tecnicos a quienes lo necesiten.</p>
   <hr class="my-4">
   <p>Busca al Maestro que mas te tinque</p>
-  <a class="btn btn-primary btn-lg" href="#" role="button">Empecemos!</a>
+  <a class="btn btn-primary btn-lg" href="vista-servicios.php" role="button">Empecemos!</a>
   </div> 
 
 
@@ -66,22 +67,26 @@
   <div class="form-row">
    
     <div class="form-group col-md-12">
-      <label for="inputState">Tipo de servicio</label>
-      <select id="inputState" class="form-control">
-        <option selected>Seleccionar...</option>
-        <option>...</option>
+      <label for="servicio-index">Tipo de servicio</label>
+      <select id="servicio-index" class="form-control" name="tipo-servicio" style="width: 100%">
+        <option selected disabled>Seleccionar tipo de Servicio</option>
+        <?php $servicios = Servicios::getServicios();
+        for($i = 0; $i<count($servicios); $i++){
+          echo '<option value="'.$servicios[$i]['id_tipo_servicio'].'">'.$servicios[$i]['tipo_servicio'].'</option>';
+        } ?>
       </select>
     </div>
     
   </div>
 
-       <div class="form-group">
-  <label for="exampleFormControlTextarea3">Detalle</label>
-  <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" rows="7"></textarea>
-</div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea3">Detalle</label>
+    <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" rows="7"></textarea>
+  </div>
  
   <button type="button" class="btn btn-primary" id="btn-publicarProblema">Publicar Problema</button>
-  <a class="btn btn-info" data-toggle="popover-hover"><i class="fas fa-question"></i></a>
+  <button type="button" class="btn btn-info" data-toggle="popover-hover"><i class="fas fa-question"></i></button>
+
 </form>
 </div>
     
@@ -103,72 +108,10 @@
 
 <?php require_once 'componentes/login-modal.php' ?>
 <?php require_once 'componentes/modal-pedir-grua.php' ?>
-<?php require_once 'componentes/scripts.php' ?>
-
-
-
-
-
-<!-- Menu Toggle Script -->
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- JQuery -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/js/mdb.min.js"></script>
-<!-- Toastr Alerts JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-
-<script>
-  $('[data-toggle="popover-hover"]').popover({
-  html: true,
-  trigger: 'hover',
-  title: 'Informacion',
-  placement: 'right',
-  content: function () { return 'No te preocupes, la informacion puesta aqui no sera guardada o utilizada.'; }
-});
-  </script>
-
-
-
-
-  <script>
-    
-  $("#btn-enviarservicios").on("click", function(){
-
-
-  toastr.info("Espere a que un Maestro acepte su solicitud, esto puede tardar, sea paciente.", "Gracias",{
-
-  "closeButton": true,
-  "debug": false,
-  "newestOnTop": false,
-  "progressBar": true,
-  "positionClass": "toast-top-right",
-  "preventDuplicates": true,
-  "showDuration": "300",
-  "hideDuration": "1000",
-  "timeOut": "10000",
-  "extendedTimeOut": "10000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-
-
-  })
-
-
-  });
-
-
-
-  </script>
 
 </body>
 <?php require_once 'componentes/footer.php' ?>
+<script type="text/javascript" src="js/index.js"></script>
+<?php require_once 'componentes/scripts.php' ?>
 
 </html>

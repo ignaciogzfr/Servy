@@ -36,7 +36,7 @@ Class Usuarios{
 
 	static public function getServiciosMaestro($id){
 	$con = Conexion::conectar();
-	$sql = $con->prepare('SELECT t.tipo_servicio FROM usuario u, servicios_maestro s, tipo_servicio t WHERE u.id_usuario = :id AND s.id_usuario = u.id_usuario AND s.id_tipo_servicio = t.id_tipo_servicio AND s.estado_servicio_maestro = "Activo"');
+	$sql = $con->prepare('SELECT t.tipo_servicio, t.id_tipo_servicio FROM usuario u, servicios_maestro s, tipo_servicio t WHERE u.id_usuario = :id AND s.id_usuario = u.id_usuario AND s.id_tipo_servicio = t.id_tipo_servicio AND s.estado_servicio_maestro = "Activo"');
 	$sql->bindParam(":id",$id,PDO::PARAM_INT);
 	$sql->execute();
 	return $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -275,9 +275,12 @@ Class Usuarios{
 	static public function editarPerfilServicios($id,$servicios){
 	$con = Conexion::conectar();
 	try{
-	$con->beginTransaction();	
+	$con->beginTransaction();
+	$sql = $con->prepare('DELETE FROM servicios_maestro WHERE id_usuario = :id');
+	$sql->bindParam(':id',$id,PDO::PARAM_INT);
+	$sql->execute();
 	for($i = 0; $i<count($servicios);$i++){
-	$sql = $con->prepare('UPDATE ');
+	$sql = $con->prepare('INSERT INTO servicios_maestro(id_usuario,id_tipo_servicio,estado_servicio_maestro) VALUES (:id,:servicio,"Activo") ');
 	$sql->bindParam(":id",$id,PDO::PARAM_INT);
 	$sql->bindParam(':servicio',$servicios[$i],PDO::PARAM_INT);
 	$sql->execute();
@@ -299,9 +302,13 @@ Class Usuarios{
 	static public function editarPerfilCertificados($id,$certificados){
 	$con = Conexion::conectar();
 	try{
-	$con->beginTransaction();	
+	$con->beginTransaction();
+	$sql = $con->prepare('DELETE FROM certificados_maestro WHERE id_usuario = :id');
+	$sql->bindParam(':id',$id,PDO::PARAM_INT);
+	$sql->execute();	
+		
 	for($i = 0; $i<count($certificados);$i++){
-	$sql = $con->prepare('UPDATE ');
+	$sql = $con->prepare('INSERT INTO certificados_maestro(id_usuario,nombre_certificado) VALUES(:id, :certificado)');
 	$sql->bindParam(":id",$id,PDO::PARAM_INT);
 	$sql->bindParam(':certificado',$certificados[$i],PDO::PARAM_STR);
 	$sql->execute();
