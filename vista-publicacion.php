@@ -44,7 +44,7 @@
             require_once("modelos/modelo-publicaciones.php");
 
             $publi = publicaciones::verPublicacion($_GET["publicacion"]);
-          
+            $denuncias = publicaciones::getDenuncias($_GET["publicacion"]);
 
               echo('
   <div class="container text-center">
@@ -59,8 +59,47 @@
           <h3>'.$publi[0]["titulo_publicacion"].'</h3>
       <p>'.$publi[0]["detalle_publicacion"].'</p>
           <p>'.$publi[0]["direccion_publicacion"].'</p>
-   </div>');
-            
+          <hr class="featurette-divider">
+                 <h3 class="text-center"> Denuncias <i class="fas fa-bullhorn"></i> </h3>
+                 <hr class="featurette-divider">  
+   </div>
+   ');
+            if (count($denuncias)== 0) {
+                  echo ('<div class="container"><h6 class=" text-center alert-success w-100 py-2">Esta publicacion no contiene denuncias :)</h6></div>');
+           }else{
+            echo ('
+
+                          <div class=" container mt-4 ">
+                      
+                      <table class="table table-hover table-borderer">
+                      <thead class=" mdb-color text-white">
+                        <tr>
+                          <th scope="col">Denunciante</th>
+                          <th scope="col">Tipo denuncia</th>
+                          <th scope="col">Descripcion</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+
+
+
+              ');
+
+           for($i=0;$i<count($denuncias);$i++){
+
+            echo('        <tr>
+                          <td>'.$denuncias[$i]["nombre_usuario"].'</td>
+                          <td>'.$denuncias[$i]["tipo_denuncia"].'</td>
+                          <td>'.$denuncias[$i]["comentarios_denuncia"].'</td>
+                        </tr>
+                       
+                      ');
+           }
+
+            echo ('</tbody>
+                </table></div>');
+          }
 
          ?>
 
@@ -79,7 +118,7 @@
 <?php require_once 'componentes/footer.php' ?>
 <!-- Footer -->
 
-
+<div class="container"></div>
 	
 </body>
 </html>

@@ -100,17 +100,27 @@ if(count($publi)){
 
   for($i=0;$i<count($publi); $i++){
 
+    $denuncias = $publi[$i]["id_publicacion"];
+  $den = Publicaciones::getDenunciasPublicacion($denuncias);
+
   echo(' <tr>
                 <td>'.$publi[$i]["nombre_usuario"].'</td>
                 <td>'.$publi[$i]["tipo_servicio"].'</td>
                 <td>'.$publi[$i]["tipo_publicacion"].'</td>
-                <td>'.$publi[$i]["estado_publicacion"].'
+                <td>'.$publi[$i]["estado_publicacion"].'</td>
+');
 
+   if (count($den)==0) {
+    echo(' <td>
+                    <a class="btn btn-sm btn-info" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank" >Ver publicacion</a>
+                </td>');
+  }else{
+    echo(' <td>
+                    <a class="btn btn-sm btn-info" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank" >Ver publicacion </a><span class="badge badge-danger ml-2" >'.count($den).'</span>
+                </td>');
+  }
 
-                <td>
-                    <a class="btn btn-sm btn-info" type="button" href="vista-publicacion.php?publicacion='.$publi[$i]["id_publicacion"].'" target="_blank">ver publicacion</a>
-                </td>
-
+             echo('
                 <td>     
                          <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>
                         <div class="dropdown-menu">
@@ -120,9 +130,8 @@ if(count($publi)){
                         </div>
                </td>
                
-            </tr>
-    ');
-
+            </tr>');   
+    
   }
 
 
