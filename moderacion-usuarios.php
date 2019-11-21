@@ -6,10 +6,8 @@
 
  
 
-<?php require_once("componentes/links.php");
-      require_once("componentes/scripts.php");
-  ?>
-
+<?php require_once("componentes/links.php");?>
+<?php require_once 'componentes/verificar-admin.php'; ?>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,13 +24,8 @@
 
 </head>
 
-<body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
-
-  <div class="d-flex" id="wrapper">
-
-    <!-- Sidebar -->
-    <?php require_once('componentes/sidenav.php'); ?>
-    <!-- /#sidebar-wrapper -->
+<body>
+<?php require_once 'componentes/sidenav.php' ?>
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
@@ -124,54 +117,6 @@ if(count($user)){
   </div>
   <!-- /#wrapper -->
 
-
-
-
-
-<div id="resumen-maestro-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <div class="modal-header mdb-color">
-
-                <h4 id="titulo-loginregistro " class="text-center text-white"> Usuario</h4>
-
-                <button type="button" class="close text-white" data-dismiss="modal" aria-hidden="true">×</button>
-
-            </div>
-
-            <div class="modal-body mx-auto text-center ">
-                   
-
-                        <div class="row">
-                           
-                           <div class="col">
-                             
-                           <img src="img/placeholder.png" width="100" class="rounded" />
-
-                           </div> 
-
-                            <div class="col text-left">
-                              Nombre: usuario
-                              correo: usuario@usuario.com
-                            </div>
-
-                            <div class="col text-left">
-                              Telefono: +569 123423424
-
-                            </div>
-
-
-
-                        </div>
-
-                    <div class="mt-3"> <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal" >Cerrar</button>
-                     <button type="button" class="btn btn-sm btn-info" data-dismiss="modal" >ver detalles</button></div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Footer -->
 <?php require_once 'componentes/footer.php' ?>
 <!-- Footer -->
@@ -179,4 +124,5 @@ if(count($user)){
 
 	
 </body>
+<?php require_once 'componentes/scripts.php' ?>
 </html>

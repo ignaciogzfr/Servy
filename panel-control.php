@@ -2,33 +2,19 @@
 <html lang="en">
 <head>
 	
-
-<?php require_once("componentes/links.php");
-      require_once("componentes/scripts.php");
-  ?>
-
-
-
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" href="img/logo.png" />
+<link rel="shortcut icon" href="img/logo.png" />
   <title>Panel de control</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
-
+<?php require_once 'componentes/links.php'; ?>
 </head>
 
-<body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
-    <!--  sidenav -->
-<?php require_once 'componentes/sidenav-cliente.php' ?>
-    <!-- fin sidenav -->
+<body>
+<?php require_once 'componentes/verificar-admin.php'; ?>
+<?php require_once 'componentes/sidenav.php'; ?>
+    <!-- /#sidebar-wrapper -->
 
     
     
@@ -39,7 +25,7 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
 				<div class="container">
-					<h1 class="text-center mt-2"> Panel de control</h1>
+					<h1 class="text-center my-3"> Panel de control</h1>
 					<hr class="featurette-divider">
 				</div>
 
@@ -48,17 +34,18 @@
 
         <div class="row">
           
-            <div class="col">
-              <h6>Usuario <p class="text-success">[Moderador]</p></h6>
-               <img src="img/placeholder.png" width="150" class="rounded" />
+            <div class="col-md-5">
+              <?php echo '<h6>'.$_SESSION['nombre'].'<p class="text-success">[Moderador]</p></h6>'; ?>
+              <?php echo '<img src="'.$_SESSION['fp'].'" width="150" height="150" class="rounded-circle">' ?>
             </div>
-            <div class="col">
+
+
+            <div class="col-md-7">
                 <div class="btn-group-vertical">
-                <button class="btn btn-md btn-primary"><i class="fas fa-edit"></i> Editar mi perfil</button>
-                <button class="btn btn-md btn-primary">Buscar usuarios</button>
-                <button class="btn btn-md btn-primary">Buscar publicaciones</button>
-        
-            </div>
+                <?php echo '<a class="btn btn-md btn-primary" href="perfil.php?id='.$_SESSION['id'].'"><i class="fas fa-edit"></i> Editar mi perfil</a>'; ?>
+                <a class="btn btn-md btn-primary" href="moderacion-usuarios.php" target="_blank">Buscar usuarios</a>
+                <a class="btn btn-md btn-primary" href="moderacion-publicaciones.php" target="_blank">Buscar publicaciones</a>
+              </div>
 
             </div>
 
@@ -75,24 +62,8 @@
 
   </div>
   <!-- /#wrapper -->
-
-
-
-
-    <!-- Footer -->
-    <?php require_once('componentes/footer.php'); ?>
-    <!-- Footer -->
-
-
-    <!--modal resumen maestro-->
-    <?php require_once('componentes/modal-resumen-maestro'); ?>
-    <!-- fin de modal resumen maestro-->
-<script>
- $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
+<?php require_once 'componentes/footer.php' ?>
+<?php require_once 'componentes/scripts.php'; ?>
 	
 </body>
 </html>

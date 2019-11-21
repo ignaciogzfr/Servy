@@ -15,7 +15,7 @@
 <?php require_once 'modelos/modelo-servicios.php'; ?>
 </head>
 
-<body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
+<body>
 
 
     <!-- Page Content -->

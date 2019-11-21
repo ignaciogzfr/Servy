@@ -55,10 +55,7 @@ $(document).ready(function(){
 				cache: false,
     			contentType: false,
     			processData: false,
-    			success:function(response){
-					console.log(response)
-					}
-				/*success:function(response){
+				success:function(response){
 	        		if(response!=''){
 	        			swal({
 						title : '¡Tu publicacion ha sido enviada con excito!',
@@ -69,7 +66,7 @@ $(document).ready(function(){
 						location.href = 'index.php'
 					})
 	        		}
-	        	}*/
+	        	}
 			})
 	}
 

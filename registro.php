@@ -6,7 +6,7 @@
 	<link rel="shortcut icon" href="img/logo.png" />
 	<title>Registro</title>
 </head>
-<body style="font-family: 'Noto Sans JP', sans-serif; background-color: #fafafa;">
+<body>
 
 
     
