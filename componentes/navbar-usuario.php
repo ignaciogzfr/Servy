@@ -20,11 +20,17 @@
         if($_SESSION['tipo']=='Maestro'){
         echo '
         <li class="nav-item">
-        <a class="nav-link" href="vista-servicios.php?tipo=demanda" target="_blank">Solicitudes de Servicios</a>
+        <a class="nav-link" href="servicios-pendientes.php?tipo=oferta" target="_blank">Mis Ofertas de Servicios</a>
         </li>';
             }  ?>
         <li class="nav-item">
-        <a class="nav-link" href="servicios-pendientes.php?tipo=oferta" target="_blank">Mis Ofertas de Servicios</a>
+        <?php 
+        if ($_SESSION['tipo']!='Administrador'){ 
+        echo '<a class="nav-link" href="vista-servicios.php?tipo=demanda" target="_blank">Solicitudes de Servicios</a>';
+        } ?>
+        
+        
+        
         </li>
 
         <li class="nav-item active">

@@ -1,10 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-	
-
-
- 
 
 <?php require_once("componentes/links.php");?>
 <?php require_once 'componentes/verificar-admin.php'; ?>
@@ -15,12 +11,6 @@
   <meta name="author" content="">
 
   <title>Servy 2</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
 
 </head>
 
@@ -36,14 +26,14 @@
 					<hr class="featurette-divider">
 				</div>
  <div class="container">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
+  <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>Nombre de usuario</th>
                 <th>Email</th>
                 <th>Tipo usuario</th>
                 <th>Estado</th>
-                <th>Perfil</th>
+                <th>Perfil/denuncias</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -54,45 +44,49 @@
 require_once("modelos/modelo-usuarios.php");
 
 $user= usuarios::getUsuarios();
+
+
+
 if(count($user)){
 
   for($i=0;$i<count($user); $i++){
+  $den = usuarios::getDenunciasUsuario($user[$i]["id_usuario"]);
 
-  echo(' <tr>
-                <td>'.$user[$i]["nombre_usuario"].'</td>
-                <td>'.$user[$i]["email_usuario"].'</td>
-                <td>'.$user[$i]["tipo_usuario"].'</td>
-                 <td>'.$user[$i]["estado_usuario"].'</td>
+  echo('
+    <tr>
+      <td>'.$user[$i]["nombre_usuario"].'</td>
+      <td>'.$user[$i]["email_usuario"].'</td>
+      <td>'.$user[$i]["tipo_usuario"].'</td>
+      <td>'.$user[$i]["estado_usuario"].'</td>
+');
 
+      if (count($den)==0) {
+    echo('
+    <td>
+    <a class="btn btn-sm btn-info" href="vista-usuario.php?id='.$user[$i]['id_usuario'].'" target="_blank" >Ver perfil</a>
+    </td>');
+      }else{
+    echo('
+    <td>
+    <a class="btn btn-sm btn-info" href="vista-usuario.php?id='.$user[$i]['id_usuario'].'" target="_blank" >Ver perfil </a><span class="badge badge-danger ml-2" >'.count($den).'</span>
+    </td>');
+      }
+        echo(' 
+    <td>     
+      <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>
 
-                <td>
-                    <a class="btn btn-sm btn-info" href="perfil.php?id='.$user[$i]['id_usuario'].'" target="_blank" >Ver perfil</a>
-                </td>
+      <div class="dropdown-menu">
+      <button class="dropdown-item btn-sancionar-usuario" type="button" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-ban"></i> Sancionar</button>
+      <button class="dropdown-item btn-quitar-sancion-usuario" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-lock-open"></i> Quitar sancion</button>
+      </div>
 
-                <td>     
-                         <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>
-                        <div class="dropdown-menu">
-                        <button class="dropdown-item btn-sancionar-usuario" type="button" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-ban"></i> Sancionar</button>
-                        <button class="dropdown-item btn-quitar-sancion-usuario" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-lock-open"></i> Quitar sancion</button>
-                        </div>
-               </td>
-               
-            </tr>
-    ');
-
+    </td>
+                   
+    </tr>');
   }
-
-
 }
-
-
  ?>
-
-         
-       
-           
-           
-        </tbody>
+    </tbody>
         <tfoot>
             <tr>
                 <th>Nombre de usuario</th>
@@ -104,10 +98,6 @@ if(count($user)){
         </tfoot>
     </table>
           </div>
-
-
-	           
-
 
     </div>
     <!-- /#page-content-wrapper -->
