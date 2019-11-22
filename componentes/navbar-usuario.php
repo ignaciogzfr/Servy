@@ -25,20 +25,18 @@
             }  ?>
         <li class="nav-item">
         <?php 
-        if ($_SESSION['tipo']!='Administrador'){ 
+        if ($_SESSION['tipo']=='Cliente'){ 
+        echo '<a class="nav-link" href="vista-servicios.php?tipo=oferta" target="_blank">Ofertas de Servicios</a>';
+        }elseif($_SESSION['tipo']=='Maestro'){
         echo '<a class="nav-link" href="vista-servicios.php?tipo=demanda" target="_blank">Solicitudes de Servicios</a>';
         } ?>
-        
-        
-        
         </li>
 
         <li class="nav-item active">
-
-        <a class="nav-link" href="modelos/logout.php">
-        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-        </a>
-
+            <a class="nav-link" href="modelos/logout.php">
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </a>
         </li>
+
       </ul>
 </div>  

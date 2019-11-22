@@ -43,11 +43,6 @@ $(document).ready(function(){
 	function publicarServicio(event){
 				event.preventDefault();
 				var datos = new FormData(this);
-				if($('#tipo-usuario-post')=='Cliente'){
-					datos.set('tipo-publicacion','Demanda')
-				}else if($('#tipo-usuario-post')=='Maestro'){
-					datos.set('tipo-publicacion','Oferta')
-				}
 			$.ajax({
 
 				method: 'POST',

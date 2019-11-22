@@ -81,13 +81,13 @@
 					<div class="row mt-5">
 
 						<div class="col-md-2 text-center">
-						<img src="img/placeholder.png" width="100" class="rounded" id="fp-cliente-preview" />
+						<img src="img/placeholder-person.jpg" class="rounded-circle" id="fp-cliente-preview" width="150" height="150"/>
 						</div>
 
 
 						<div class="col-md-10"> 
 							<div class="custom-file mt-4">
-							<input type="file" class="custom-file-input fp-registro" id="fp-registro-cliente" lang="es" name="fp-registro" value="img/placeholder.png" accept="image/png,image/jpeg,image/jpg">
+							<input type="file" class="custom-file-input fp-registro" id="fp-registro-cliente" lang="es" name="fp-registro" value="img/placeholder-person.jpg" accept="image/png,image/jpeg,image/jpg">
 							<label class="custom-file-label" for="fp-registro-cliente">Seleccionar Imagen</label>
 							</div>
 						</div>
@@ -173,13 +173,13 @@
 						<div class="container row mt-5">
 							
 							<div class="col text-center">
-								 	<img src="img/placeholder.png" width="100" class="rounded" id="fp-maestro-preview">
+								 	<img src="img/placeholder-person.jpg" width="150" height="150" class="rounded-circle" id="fp-maestro-preview">
 							</div>
 
 
 							<div class="col"> 
 								<div class="custom-file mt-3">
-								  <input type="file" class="custom-file-input fp-registro" id="fp-registro-maestro" lang="es" name="fp-registro" accept="image/x-png,image/jpeg" value="img/placeholder.png">
+								  <input type="file" class="custom-file-input fp-registro" id="fp-registro-maestro" lang="es" name="fp-registro" accept="image/x-png,image/jpeg" value="img/placeholder-person.jpg">
 								  <label class="custom-file-label" for="fp-registro-maestro">Seleccionar Imagen</label>
 								</div>
 							</div>
