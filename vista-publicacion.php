@@ -4,8 +4,7 @@
 	
 
 
-<?php require_once("componentes/links.php");
-      require_once("componentes/scripts.php"); ?>
+<?php require_once("componentes/links.php"); ?>
 
 
 
@@ -18,12 +17,6 @@
   <link rel="shortcut icon" href="img/logo.png" />
   <title>Publicaciones</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -32,40 +25,49 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-<?php require_once 'componentes/navbar.php'; ?>
-
+<?php require_once 'componentes/navbar.php';
+      require_once("modelos/modelo-publicaciones.php"); ?>
+<?php $publi = Publicaciones::verPublicacion($_GET['publicacion']); ?>
 
 				<div class="container">
-					<h1 class="text-center mt-2"> Ver publicacion</h1>
-					<hr class="featurette-divider">
+<?php if(count($publi)>0){echo '<h3 class="my-3 text-center">'.$publi[0]["titulo_publicacion"].'</h3>';}
+      else{echo '<h3 class="alert alert-danger text-center my-3">Lo sentimos...</h3>';} ?> 
+          <hr class="featurette-divider">
 				</div>
 
 
-
-        <?php 
-        /*se importa el metodo ver publicacione de los modelos publicaciones y se le pasa el paraemtro de la id de publicacion, al ejecutarse la consulta los datos de respuesta se almacenan en una variable local la cual es utilizada para cargar el contenido de la pagina*/
-            require_once("modelos/modelo-publicaciones.php");
-
-            $publi = publicaciones::verPublicacion($_GET["publicacion"]);
-          
-
-              echo('
   <div class="container text-center">
+<?php 
+if(count($publi)>0){
+
+  echo('
+
 
       <div class="row">
-        <div class="col"> pedido por: '.$publi[0]["nombre_usuario"].'</div>
-        <div class="col">tipo servicio: '.$publi[0]["tipo_servicio"].' </div>
-        <div class="col">'.$publi[0]["fecha_hora_publicacion"].'</div>
+        <div class="col">Pedido por: '.$publi[0]["nombre_usuario"].'</div>
+        <div class="col">Tipo de servicio: '.$publi[0]["tipo_servicio"].' </div>
+        <div class="col">Fecha y hora de Publicacion: '.$publi[0]["fecha_hora_publicacion"].'</div>
 
       </div>
   <hr class="featurette-divider">
-          <h3>'.$publi[0]["titulo_publicacion"].'</h3>
+
       <p>'.$publi[0]["detalle_publicacion"].'</p>
-          <p>'.$publi[0]["direccion_publicacion"].'</p>
-   </div>');
+      <p class="text-muted">Problema localizado en: '.$publi[0]["direccion_publicacion"].'</p>
+   ');
+  }else{
+    echo '<p class="alert alert-info">Esta publicacion no se encuentra disponible, o no existe dentro de nuestra base de datos.</p>';
+  }
             
 
          ?>
+
+</div>
+<div class="text-right">
+  <button class="btn btn-md btn-danger" data-toggle="modal" data-target="modal-denuncias"><i class="fas fa-ban"></i> Denunciar esta publicacion</button>
+</div>  
+         
+       
+
 
     </div>
     <!-- /#page-content-wrapper -->
@@ -74,7 +76,8 @@
   <!-- /#wrapper -->
 
 <!-- Footer -->
-<?php require_once 'componentes/footer.php' ?>
+<?php require_once 'componentes/footer.php';
+      require_once 'componentes/scripts.php'; ?>
 <!-- Footer -->
 
 

@@ -44,7 +44,7 @@
 
       <div class="col col-sm" >
           <select class="custom-select">
-            <option selected>seleccionar servicio</option>
+            <option selected>Seleccionar Area de Servicio</option>
 <?php 
 require_once("modelos/modelo-servicios.php");
   $servi = Servicios::getServicios();
@@ -65,18 +65,15 @@ require_once("modelos/modelo-servicios.php");
         </div>
 				
 			<div class="col col-sm">		
-        		 <input type="date" class="form-control" id="" name="">
-         	 </div>
+        		 <input type="date" class="form-control" id="" name="" placeholder="Buscar por Fecha">
+     	 </div>
 
 
-         	<div class="col col-sm">
+       	<div class="col col-sm">
          		<div class="form-inline">
  				 <i class="fas fa-search" aria-hidden="true"></i>
   					<input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="buscar">
 				</div>
-
-         	</<div></div>
-
 		</div>
 	</div>	
 

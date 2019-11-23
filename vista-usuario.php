@@ -29,15 +29,14 @@
         <?php 
 
             require_once("modelos/modelo-usuarios.php");
-            //datos base de usuario
-            $user = Usuarios::verUsuarioCliente($_GET["usuario"]);
-            $userm = Usuarios::verUsuarioMaestro($_GET["usuario"]);
-            //datos anexos al maestro 
-            $certificados = Usuarios::getCertificadosMaestro($_GET["usuario"]);
-            $experiencia = Usuarios::getExperienciaMaestro($_GET["usuario"]);
-            $servicios = Usuarios::getServiciosMaestro($_GET["usuario"]);
-                 //caso cliente
-            if($user[0]["tipo_usuario"]=='Cliente'){
+            $user = Usuarios::getPerfilUsuario($_GET["id"]);
+            $userm = Usuarios::getPerfilUsuario($_GET["id"]);
+            $certificados = Usuarios::getCertificadosMaestro($_GET["id"]);
+            $experiencia = Usuarios::getExperienciaMaestro($_GET["id"]);
+            $servicios = Usuarios::getServiciosMaestro($_GET["id"]);
+            $denuncias =Usuarios::getDenunciasUsuario($_GET["id"]);
+
+            if($user[0]["tipo_usuario"]=='Cliente'|| $user[0]["tipo_usuario"]=='Administrador'){
 
            echo('<div class="row">
                     
@@ -59,8 +58,46 @@
 
                       </div>
 
-                  </div>');
+                  </div>
+                 <hr class="featurette-divider">
+                 <h3 class="text-center"> Denuncias <i class="fas fa-bullhorn"></i> </h3>
+                 <hr class="featurette-divider">  ');
 
+           if (count($denuncias)== 0) {
+                  echo ('<h6 class=" text-center alert-success w-100 py-2">Este usuario no cuenta con denuncias :)</h6>');
+           }else{
+            echo ('
+
+                          <div class=" mt-4 ">
+                      
+                      <table class="table table-hover table-borderer">
+                      <thead class=" mdb-color text-white">
+                        <tr>
+                          <th scope="col">Denunciante</th>
+                          <th scope="col">Tipo denuncia</th>
+                          <th scope="col">Descripcion</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+
+
+
+              ');
+
+           for($i=0;$i<count($denuncias);$i++){
+
+            echo('        <tr>
+                          <td>'.$denuncias[$i]["nombre_usuario"].'</td>
+                          <td>'.$denuncias[$i]["tipo_denuncia"].'</td>
+                          <td>'.$denuncias[$i]["comentarios_denuncia"].'</td>
+                        </tr>
+                       
+                      ');
+           }
+
+            echo ('</tbody>
+                </table></div>');}
             }else{
               //caso maestro
                 echo ('<div class="row">
@@ -92,16 +129,57 @@
                   for($i=0;$i<count($certificados);$i++){
                        echo(' <input type="text" class="form-control mb-2 col-4" placeholder="'.$certificados[$i]["nombre_certificado"].'" disabled>');
               }
+                  for($i=0;$i<count($experiencia);$i++){   
+              echo(' <p>experiencias:</p>
                   
-                   echo(' <p>experiencias:</p>
-                <textarea type="text" class="form-control mb-2" disabled rows="3">'.$experiencia[0]["detalle_experiencia"].'</textarea>
+                <textarea type="text" class="form-control mb-2" disabled rows="3">'.$experiencia[$i]["detalle_experiencia"].'</textarea>
                 <p>Servicios proporcionados:</p>');
+            }
+                
                  
              
 
                 for($i = 0; $i < count($servicios); $i++){
                      echo ('<input type="text" class="form-control mb-2 col-2" placeholder="'.$servicios[$i]["tipo_servicio"].'" disabled>');
                    }
+
+                      echo('<hr class="featurette-divider">
+                 <h3 class="text-center"> Denuncias <i class="fas fa-bullhorn"></i> </h3>
+                 <hr class="featurette-divider"> ');
+                    if (count($denuncias)== 0) {
+                  echo ('<h6 class=" text-center alert-success w-100 py-2">Este usuario no cuenta con denuncias :)</h6>');
+           }else{
+            echo ('
+                          <div class=" mt-4 ">
+                      
+                      <table class="table table-hover table-borderer">
+                      <thead class=" mdb-color text-white">
+                        <tr>
+                          <th scope="col">Denunciante</th>
+                          <th scope="col">Tipo denuncia</th>
+                          <th scope="col">Descripcion</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+
+
+
+              ');
+
+           for($i=0;$i<count($denuncias);$i++){
+
+            echo('        <tr>
+                          <td>'.$denuncias[$i]["nombre_usuario"].'</td>
+                          <td>'.$denuncias[$i]["tipo_denuncia"].'</td>
+                          <td>'.$denuncias[$i]["comentarios_denuncia"].'</td>
+                        </tr>
+                       
+                      ');
+           }
+
+            echo ('</tbody>
+                </table></div>');}
 
             }
 
@@ -114,11 +192,13 @@
  
           
       </div>
-             
+            
 
 
     </div>
     <!-- /#page-content-wrapper -->
+
+
 
   </div>
   <!-- /#wrapper -->

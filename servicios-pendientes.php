@@ -42,35 +42,35 @@
 		$publi = Usuarios::getMisPublicacionesOferta($_SESSION['id']);	
 		}else{
 		$publi = Usuarios::getMisPublicacionesDemanda($_SESSION['id']);
-
+		}
 		if(count($publi)>0){
 
 			for($i=0;$i<count($publi);$i++){
 
 			$denuncias = Publicaciones::getDenunciasPublicacion($publi[$i]['id_publicacion']);
-			echo '<script>console.log("Publicacion numero "+'.$publi[$i]['id_publicacion'].'+" && Denuncias "+'.count($denuncias).')</script>';
+			if($publi[$i]['tipo_publicacion']=='Demanda'){
 			if(count($denuncias)>0){
-			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank">
 
 							    <div class="d-flex w-100 justify-content-between">
-							      <h5 class="mb-2 h5">'.$publi[$i]["titulo_publicacion"].'</h5>
-							      <small>'.$publi[$i]["tipo_servicio"].'</small>
-							      <small>'.$publi[$i]["fecha_hora_publicacion"].'</small>
+							      <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
+							      <small>Tipo de Servicio: '.$publi[$i]["tipo_servicio"].'</small>
+							      <small>Fecha y hora de Publicacion: '.$publi[$i]["fecha_hora_publicacion"].'</small>
 							    </div>
-							    <p class="mb-2">'.$publi[$i]["detalle_publicacion"].'</p>
+							    <p class="mb-2 text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias asperiores nostrum optio nam praesentium obcaecati sequi repellendus corrupti, cum temporibus culpa explicabo. Nobis reprehenderit tenetur accusantium repellendus ipsum esse minus!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus odio animi esse, sequi maxime recusandae similique. Expedita deleniti nemo adipisci at eveniet molestiae molestias accusantium fuga, eum, perferendis ipsam fugiat.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus aperiam, aliquam beatae, deleniti possimus iure velit architecto excepturi quaerat ipsa nemo doloremque laborum? Laborum commodi odio, magni dicta facilis amet.'.$publi[$i]["detalle_publicacion"].'</p>
 							    <small>Ofertas: <button class="btn btn-info btn-sm" data-target="#resumen-maestro-modal" data-toggle="modal">0</button></small>
 							    <div><small>'.count($denuncias).'</small></div>
 
 							  </a>');		
 			}else{
-			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank">
 
 							    <div class="d-flex w-100 justify-content-between">
-							      <h5 class="mb-2 h5">'.$publi[$i]["titulo_publicacion"].'</h5>
-							      <small>'.$publi[$i]["tipo_servicio"].'</small>
-							      <small>'.$publi[$i]["fecha_hora_publicacion"].'</small>
+							      <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
+							      <small>Tipo de Servicio: '.$publi[$i]["tipo_servicio"].'</small>
+							      <small>Fecha y hora de Publicacion: '.$publi[$i]["fecha_hora_publicacion"].'</small>
 							    </div>
-							    <p class="mb-2">'.$publi[$i]["detalle_publicacion"].'</p>
+							    <p class="mb-2 text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique saepe nostrum doloremque exercitationem, facere officiis ducimus error nihil, delectus dicta suscipit dolorum praesentium aspernatur inventore, qui quod facilis tempore a.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia labore dignissimos dolore in, fugiat harum quaerat cum adipisci iste aliquid provident facilis, consectetur distinctio sapiente nostrum. Asperiores a obcaecati ipsam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae quasi, rerum, officiis inventore eos, asperiores aliquam labore, commodi facilis nulla temporibus. Quibusdam, atque, cupiditate? Necessitatibus est esse, ratione fuga natus.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus inventore laboriosam laudantium reprehenderit in magnam voluptates modi. Officia minus, ea molestias necessitatibus modi, tenetur sint nam quae qui provident sed.'.$publi[$i]["detalle_publicacion"].'</p>
 							    
 							    <small>Ofertas:<button class="btn btn-info btn-sm" data-target="#resumen-maestro-modal" data-toggle="modal">0</button></small>
 							    <div><small>Espacio Denuncias</small></div>
@@ -78,6 +78,37 @@
 
 							  </a>');				
 			}
+
+
+
+		}else{
+			if(count($denuncias)>0){
+			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank">
+
+							    <div class="d-flex w-100 justify-content-between">
+							      <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
+							      <small>Tipo de Servicio: '.$publi[$i]["tipo_servicio"].'</small>
+							      <small>Fecha y hora de Publicacion: '.$publi[$i]["fecha_hora_publicacion"].'</small>
+							    </div>
+							    <p class="mb-2 text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias asperiores nostrum optio nam praesentium obcaecati sequi repellendus corrupti, cum temporibus culpa explicabo. Nobis reprehenderit tenetur accusantium repellendus ipsum esse minus!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus odio animi esse, sequi maxime recusandae similique. Expedita deleniti nemo adipisci at eveniet molestiae molestias accusantium fuga, eum, perferendis ipsam fugiat.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus aperiam, aliquam beatae, deleniti possimus iure velit architecto excepturi quaerat ipsa nemo doloremque laborum? Laborum commodi odio, magni dicta facilis amet.'.$publi[$i]["detalle_publicacion"].'</p>
+							    <div><small>'.count($denuncias).'</small></div>
+
+							  </a>');		
+			}else{
+			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank">
+
+							    <div class="d-flex w-100 justify-content-between">
+							      <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
+							      <small>Tipo de Servicio: '.$publi[$i]["tipo_servicio"].'</small>
+							      <small>Fecha y hora de Publicacion: '.$publi[$i]["fecha_hora_publicacion"].'</small>
+							    </div>
+							    <p class="mb-2 text-truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique saepe nostrum doloremque exercitationem, facere officiis ducimus error nihil, delectus dicta suscipit dolorum praesentium aspernatur inventore, qui quod facilis tempore a.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia labore dignissimos dolore in, fugiat harum quaerat cum adipisci iste aliquid provident facilis, consectetur distinctio sapiente nostrum. Asperiores a obcaecati ipsam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae quasi, rerum, officiis inventore eos, asperiores aliquam labore, commodi facilis nulla temporibus. Quibusdam, atque, cupiditate? Necessitatibus est esse, ratione fuga natus.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus inventore laboriosam laudantium reprehenderit in magnam voluptates modi. Officia minus, ea molestias necessitatibus modi, tenetur sint nam quae qui provident sed.'.$publi[$i]["detalle_publicacion"].'</p>
+							    <div><small>Espacio Denuncias</small></div>
+							    
+
+							  </a>');				
+			}
+		}
 
 
 		}
@@ -88,7 +119,7 @@
 
 			echo ('<h6 class=" text-center alert-success w-100 py-2">No tiene servicios pendientes.</h6>');
 		}
-		}
+		
 	 ?>	
 
 							
