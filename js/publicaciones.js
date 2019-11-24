@@ -57,6 +57,7 @@ $(document).ready(function(){
     			contentType: false,
     			processData: false,
 				success:function(response){
+					console.log(response);
 	        		if(response!=''){
 	        			swal({
 						title : '¡Tu publicación ha sido enviada con éxito!',

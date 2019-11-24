@@ -100,13 +100,19 @@ Class Publicaciones{
 				id_tipo_servicio,
 				detalle_publicacion,
 				fecha_hora_publicacion,
-				estado_publicacion) VALUES (:idus,:tipopu,:direccion,:direccion,:tiposerv,:detalle,NOW(),'Pendiente')");
+				estado_publicacion,
+				lat_publicacion,
+				lng_publicacion) VALUES (:idus,:tipopu,:direccion,:direccion,:tiposerv,:detalle,NOW(),'Pendiente',:lat,:lng)");
 			$sql->bindParam(":idus",$idus,PDO::PARAM_INT);
 			$sql->bindParam(":tipopu",$tipopu,PDO::PARAM_INT);
 			$sql->bindParam(":titulo",$direccion,PDO::PARAM_STR);
 			$sql->bindParam(":direccion",$direccion,PDO::PARAM_STR);
 			$sql->bindParam(":tiposerv",$tiposerv,PDO::PARAM_INT);
 			$sql->bindParam(":detalle",$detalle,PDO::PARAM_STR);
+			$sql->bindParam(":lat",$lat,PDO::PARAM_STR);
+			$sql->bindParam(":lng",$lng,PDO::PARAM_STR);
+
+
 			if($sql->execute()){
 			return "ok";
 		}else{

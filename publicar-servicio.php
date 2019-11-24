@@ -47,20 +47,18 @@
     <label for="dir">Direccion</label>
 
     <div id="floating-panel">
-      <input id="latlng" type="text" value="">
-      <input id="submit" type="button" class="btn btn-secondary" value="Reverse Geocode">
+      <input id="latlng" type="text" hidden="" value="">
+      <input id="submit" type="button" class="btn btn-secondary btn-sm" value="obtener mi ubicación">
     </div>
     
     <div type="hidden" id="map"></div>
           
-          <style> #map {
-        height: 50%;
-        width: 50%;
-      }</style>
 
-       <input type="text" class="form-control" name="direccion-publi" placeholder="Avenida Siempreviva 2001" required="">
+
+       <input type="text" class="form-control" name="direccion-publi" placeholder="Avenida Siempreviva 2001" id="direccion-post" required="">
   </div>
-
+  <input type="" name="lat-publicacion" value="" id="lat-publicacion">
+    <input type="" name="lng-publicacion" value="" id="lng-publicacion">
 
 <hr class="featurette-divider">
   <div class="form-row">
@@ -102,6 +100,7 @@ require_once("modelos/modelo-servicios.php");
     <?php echo '<input type="hidden" value="'.$_SESSION['tipo'].'" id="tipo-usuario-post">' ?>
     <input type="hidden" name="op" value="publicarServicio">
     <input type="hidden" name="tipo-publicacion" id="tipo-publicacion-post" value="">
+  
     <button type="submit" class="btn btn-success float-right mb-5 btn-publicar-servicio" id="btn-publicar-servicio">Publicar problema</button>
 
 
@@ -134,18 +133,7 @@ require_once("modelos/modelo-servicios.php");
             var lng = pos.lng;
              console.log(lat);
              console.log(lng);
-              
-
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-         
-
-
-
-        }
-        
-        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+                var latlng = {lat,lng};
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
             if (results[0]) {
@@ -158,6 +146,9 @@ require_once("modelos/modelo-servicios.php");
               infowindow.setContent(results[0].formatted_address);
              var direccion = results[0].formatted_address;
              console.log(direccion);
+             $('#direccion-post').val(direccion);
+             $('#lat-publicacion').val(lat);
+             $('#lng-publicacion').val(lng);  
 
               infowindow.open(map, marker);
             } else {
@@ -167,6 +158,17 @@ require_once("modelos/modelo-servicios.php");
             window.alert('Geocoder failed due to: ' + status);
           }
         });
+
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+         
+
+
+
+        }
+        
+      
       }
     </script>
     <script async defer
