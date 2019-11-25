@@ -38,7 +38,7 @@ $op= $_POST["op"];
 
 		case'publicarServicio';
 		$response = new gestorPublicaciones();
-		$response-> publicarServicio($_POST["id-usuario"],$_POST["tipo-publicacion"],$_POST["titulo-publi"],$_POST["direccion-publi"],$_POST["tipo-serv"],$_POST["detalle-publi"],$_POST["lat-publicacion"],$_POST["lng-publicacion"]);
+		$response-> publicarServicio($_POST["id-usuario"],$_POST["tipo-publicacion"],$_POST["titulo-publi"],$_POST["direccion-publi"],$_POST["tipo-serv"],$_POST["detalle-publi"],$_POST["lat"],$_POST["lng"]);
 		break;
 
 		case '':

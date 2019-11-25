@@ -19,4 +19,8 @@
 <script type="text/javascript" src="js/publicaciones.js" ></script>
 <script type="text/javascript" src="js/datatable.js"></script>
 <script type="text/javascript" src="js/usuarios.js"></script>
+<script type="text/javascript" src="js/google-maps.js"></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=Miposicion">
+    </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>

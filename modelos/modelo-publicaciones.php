@@ -86,7 +86,7 @@ Class Publicaciones{
 	}
 
 	
-	static public function publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle){
+	static public function publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle,$lat,$lng){
 
 	
 
@@ -102,10 +102,10 @@ Class Publicaciones{
 				fecha_hora_publicacion,
 				estado_publicacion,
 				lat_publicacion,
-				lng_publicacion) VALUES (:idus,:tipopu,:direccion,:direccion,:tiposerv,:detalle,NOW(),'Pendiente',:lat,:lng)");
+				lng_publicacion) VALUES (:idus,:tipopu,:titulo,:direccion,:tiposerv,:detalle,NOW(),'Pendiente',:lat,:lng)");
 			$sql->bindParam(":idus",$idus,PDO::PARAM_INT);
 			$sql->bindParam(":tipopu",$tipopu,PDO::PARAM_INT);
-			$sql->bindParam(":titulo",$direccion,PDO::PARAM_STR);
+			$sql->bindParam(":titulo",$titulo,PDO::PARAM_STR);
 			$sql->bindParam(":direccion",$direccion,PDO::PARAM_STR);
 			$sql->bindParam(":tiposerv",$tiposerv,PDO::PARAM_INT);
 			$sql->bindParam(":detalle",$detalle,PDO::PARAM_STR);
