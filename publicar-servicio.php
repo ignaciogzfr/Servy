@@ -47,20 +47,17 @@
     <label for="dir">Direccion</label>
 
     <div id="floating-panel">
-      <input id="latlng" type="text" value="">
-      <input id="submit" type="button" class="btn btn-secondary" value="Reverse Geocode">
+      <input id="latlng" type="text" hidden="" value="">
+      <input id="submit" type="button" class="btn btn-secondary btn-sm" value="obtener mi ubicación">
     </div>
     
     <div type="hidden" id="map"></div>
           
-          <style> #map {
-        height: 50%;
-        width: 50%;
-      }</style>
 
-       <input type="text" class="form-control" name="direccion-publi" placeholder="Avenida Siempreviva 2001" required="">
+
+       <input type="text" class="form-control" name="direccion-publi" placeholder="Avenida Siempreviva 2001" id="direccion-post" required="">
   </div>
-
+    
 
 <hr class="featurette-divider">
   <div class="form-row">
@@ -102,76 +99,15 @@ require_once("modelos/modelo-servicios.php");
     <?php echo '<input type="hidden" value="'.$_SESSION['tipo'].'" id="tipo-usuario-post">' ?>
     <input type="hidden" name="op" value="publicarServicio">
     <input type="hidden" name="tipo-publicacion" id="tipo-publicacion-post" value="">
+    <input type="hidden" name="lat" value="" id="lat-publicacion">
+    <input type="hidden" name="lng" value="" id="lng-publicacion">
     <button type="submit" class="btn btn-success float-right mb-5 btn-publicar-servicio" id="btn-publicar-servicio">Publicar problema</button>
 
 
 
 </form>
 
- <script>
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 18,
-          center: {lat: 40.731, lng: -73.997}
-        });
-        var geocoder = new google.maps.Geocoder;
-        var infowindow = new google.maps.InfoWindow;
-     
-        document.getElementById('submit').addEventListener('click', function() {
-          geocodeLatLng(geocoder, map, infowindow);
-        });
-      }
-  
-      function geocodeLatLng(geocoder, map, infowindow) {
-
-            if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            var lat = pos.lat;
-            var lng = pos.lng;
-             console.log(lat);
-             console.log(lng);
-              
-
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-         
-
-
-
-        }
-        
-        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-        geocoder.geocode({'location': latlng}, function(results, status) {
-          if (status === 'OK') {
-            if (results[0]) {
-              map.setZoom(18);
-              var marker = new google.maps.Marker({
-                position: latlng,
-                map: map
-              });
-           
-              infowindow.setContent(results[0].formatted_address);
-             var direccion = results[0].formatted_address;
-             console.log(direccion);
-
-              infowindow.open(map, marker);
-            } else {
-              window.alert('No results found');
-            }
-          } else {
-            window.alert('Geocoder failed due to: ' + status);
-          }
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=initMap">
-    </script>
+    
 </div>
    
 <!-- FIN DEL FORMULARIO -->
@@ -186,7 +122,9 @@ require_once("modelos/modelo-servicios.php");
 <?php require_once 'componentes/footer.php';?>
 
 
-
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=Miposicion">
+    </script>
 
 </body>
 

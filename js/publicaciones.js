@@ -38,8 +38,15 @@ $('#select-tipo-servicio').select2({
 	}
 
 	function publicarServicio(event){
-	event.preventDefault();
-	var datos = new FormData(this);
+				event.preventDefault();
+				var datos = new FormData(this);
+				console.log(datos.get('lat'));
+				console.log(datos.get('titulo-publi'));
+				if($('#tipo-usuario-post')=='Cliente'){
+					datos.set('tipo-publicacion-post','Demanda')
+				}else if($('#tipo-usuario-post')=='Maestro'){
+					
+				}
 			$.ajax({
 
 				method: 'POST',
@@ -49,6 +56,7 @@ $('#select-tipo-servicio').select2({
     			contentType: false,
     			processData: false,
 				success:function(response){
+					console.log(response);
 	        		if(response!=''){
 	        			swal({
 						title : '¡Tu publicacion ha sido enviada con excito!',

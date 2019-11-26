@@ -4,19 +4,7 @@
 	
 
 
- <link rel="stylesheet" href="styles/styles.css">
-<!-- Gooogle Fonts API-->
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet"> 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet">
 
-
-<!-- Toastr Alerts CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 
 
@@ -28,17 +16,15 @@
 
   <title>Servy 2</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-<?php require_once 'componentes/sidenav.php' ?>
+<?php require_once 'componentes/sidenav.php';
+require_once'componentes/scripts.php';
+require_once'componentes/links.php'; ?>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
@@ -53,40 +39,34 @@
 <div class="container">
 
 		
-
+				
 
 					<div class="container mt-2"><!-- INICIO LISTA DE SERVICIOS-->
 						<div class="list-group">
 
-						  <a data-target="#map-modal" data-toggle="modal" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
-						    <div class="d-flex w-100 justify-content-between">
-						      <h5 class="mb-2 h5">Titulo</h5>
-						      <small>tipo de servicio</small>
-						      <small> fecha</small>
-						    </div>
-						    <p class="mb-2">DESCRIPCION: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat blanditiis sint mollitia quam veniam quod harum, sequi, animi, voluptatum impedit ex maxime cumque magni eius ipsam facere dolorum laudantium laborum.</p>
-						    <small>Pedido por : Usuario</small>
-						  </a>
+						<?php require_once'modelos/modelo-gruas.php';
 
-						 <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
-						    <div class="d-flex w-100 justify-content-between">
-						      <h5 class="mb-2 h5">Titulo</h5>
-						      <small>tipo de servicio</small>
-						      <small> fecha</small>
-						    </div>
-						    <p class="mb-2">DESCRIPCION: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat blanditiis sint mollitia quam veniam quod harum, sequi, animi, voluptatum impedit ex maxime cumque magni eius ipsam facere dolorum laudantium laborum.</p>
-						    <small>Pedido por : Usuario</small>
-						  </a>
+								$grua = Gruas::getGruas();
+										if (count($grua)== 0) {
+										echo'<div class="container"><h6 class=" text-center alert-success w-100 py-2">Esta publicacion no contiene denuncias :)</h6></div>';
+										}else{			for($i=0;$i<count($grua);$i++){
 
-						   <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+				echo(' <a data-target="#map-modal" data-toggle="modal" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
 						    <div class="d-flex w-100 justify-content-between">
-						      <h5 class="mb-2 h5">Titulo</h5>
-						      <small>tipo de servicio</small>
-						      <small> fecha</small>
+						      <h5 class="mb-2 h5">'.$grua[$i]["direccion_grua"].'</h5>
+						      <small>'.$grua[$i]["tipo_vehiculo"].'</small>
+						      <small> '.$grua[$i]["fecha_grua"].'</small>
 						    </div>
-						    <p class="mb-2">DESCRIPCION: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat blanditiis sint mollitia quam veniam quod harum, sequi, animi, voluptatum impedit ex maxime cumque magni eius ipsam facere dolorum laudantium laborum.</p>
-						    <small>Pedido por : Usuario</small>
-						  </a>
+						    <p class="mb-2">'.$grua[$i]["detalle_grua"].'</p>
+						    <small>'.$grua[$i]["nombre_usuario_grua"].'</small>
+						  </a>');
+								}
+}
+
+					
+						 ?>
+
+						 
 				</div>
 			</div><!-- FINLISTA DE SERVICIOS-->
 
@@ -135,26 +115,7 @@
 </div>
 
 
-<!-- Menu Toggle Script -->
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- JQuery -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/js/mdb.min.js"></script>
-<!-- Toastr Alerts JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-
-<script>
- $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
+			
 	
 </body>
 </html>

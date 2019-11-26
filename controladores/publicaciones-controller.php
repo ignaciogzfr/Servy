@@ -15,8 +15,8 @@ require_once("../modelos/modelo-publicaciones.php");
 			}
 
 
-			public function publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle){
-		$respuesta = Publicaciones::publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle);
+			public function publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle,$lat,$lng){
+		$respuesta = Publicaciones::publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle,$lat,$lng);
 		echo($respuesta);
 			}
 			public function denunciarP($publicacion,$tipo,$detalle,$denunciante){
@@ -41,7 +41,7 @@ $op= $_POST["op"];
 
 		case'publicarServicio';
 		$response = new gestorPublicaciones();
-		$response-> publicarServicio($_POST["id-usuario"],$_POST["tipo-publicacion"],$_POST["titulo-publi"],$_POST["direccion-publi"],$_POST["tipo-serv"],$_POST["detalle-publi"]);
+		$response-> publicarServicio($_POST["id-usuario"],$_POST["tipo-publicacion"],$_POST["titulo-publi"],$_POST["direccion-publi"],$_POST["tipo-serv"],$_POST["detalle-publi"],$_POST["lat"],$_POST["lng"]);
 		break;
 
 		case 'denunciarP':
