@@ -3,7 +3,12 @@
 require_once("conexion.php");
 
 Class Usuarios{
-
+/**
+ * @author Ignacio Gonzales
+ * @since 1.0.0 08-10-2019 20:27
+ * @version esta es la verc de ahora
+ * 
+ * */
 	static public function getUsuarios(){
 		//obtiene todos los datos de la  tabla usuario
 		$con = Conexion::conectar();

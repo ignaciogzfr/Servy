@@ -1,14 +1,18 @@
 <?php
 /**
+		 * Esta clase controla el objeto e conexión
 		 * 
-		 * Se utiliza para concetar con la base de datos remota para acceder a esta se necesita crear una cuenta en la apgian principal y iniciar una base de datos, luego se crea un objeto de conección que sera utilizado en componentes y modelos para obtener datos y relizar consultas
-		 * 
-		 * @author Ignacio
-		 * @param $link se almacena el objeto de conexión con los parametros del servidor requeridos 
-		 * @return $link objeto para establece una conexión a la base de datos
+		 * @author Ignacio Gonzales.
+		 * @since 1.0 08-10-2019 20:27.
+		 * @version 1.1 19-11-2019 18:03.
 		 * 
 		 * */
 class Conexion{
+	/**
+	 * Metodo conectar, que al ser llamada retorna un objeto de conexión con la cual se podran realizar consultas a la base de datos remota.
+	 * @var string $link A este objeto se le asigna el objeto de conexión .
+	 * @return Objeto de conexión de nombre link.
+	 * */
 	static public function conectar(){
 		$link = new PDO("mysql:host=remotemysql.com:3306;dbname=hd8LHE0bKS",'hd8LHE0bKS','DqLSfCRNXs',
 			array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
