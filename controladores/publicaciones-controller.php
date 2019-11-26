@@ -1,7 +1,19 @@
 <?php 
-/*Se cargan las consultas y sus exepciones*/
 require_once("../modelos/modelo-publicaciones.php");
 
+
+	/**
+	 * Esta clase se encarga de obtener los datos de los formulario a traves del metodo post y obtener el tipo de operacion para llamar a funcionalidades de los modelos para manejar los datos y para emitir respuestas a las clases javascript
+	 * 
+	 * @author Johan Hernandez.
+	 * @author Ignacio Gonzales.
+	 * @since 1.0 08-10-2019 20:27. 
+	 * @version 1.0 20-11-2019 14:33.
+	 * 
+	 * @var $op de tipo string, alamcena el tipo de operacion comunmente obtenido a traves del metodo POST
+	 * 
+	 * 
+	 * */
 	Class gestorPublicaciones{
 
 			public function sancionarPublicacion($id){
@@ -23,7 +35,7 @@ require_once("../modelos/modelo-publicaciones.php");
 
 	}
 
-/*Segun la operacion obtenida del formulario podemos llamar a los constructores y enviarle parametros de este mismo*/
+
 $op= $_POST["op"];
 
 	switch ($op) {

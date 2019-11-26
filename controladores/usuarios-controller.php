@@ -1,10 +1,22 @@
 <?php 
 
 require_once '../modelos/modelo-usuarios.php';
-
+/**
+ *
+ * 
+ * esta clase controla las condiciones sobre los datos y sus posibles incongruencias,enviando una respuesta de cada consulta ejecutada en los modelos a usuarios.js para que maneje los datos de la respuesta y se redireccione a las pagina correctas 
+ * 
+ *
+ * @version 1.0 20-11-2019 14:33.
+ * @since 1.0 08-10-2019 20:27.
+ * @author Ignacio Gonzalez
+ * @author Johan Hernandez
+ * 
+ * @var $op de tipo string, alamcena el tipo de operacion comunmente obtenido a traves del metodo POST
+ * 
+ * */
 Class GestorUsuarios{
-	//esta clase controla las condiciones sobre los datos y sus posibles incongruencias
-	//enviando una respuesta de cada consulta ejecutada en los modelos a usuarios.js para que maneje los datos de la respuesta y se redireccione a las pagina correctas 
+	
 	public function loginUsuario($mail,$pass){
 		$respuesta = Usuarios::loginUsuario($mail,$pass);
 		echo($respuesta);
@@ -66,8 +78,6 @@ Class GestorUsuarios{
 
 			$ruta_imagen = "";
 			$filename = md5($fp['tmp_name']).$extension;
-			/*Se asigna a la variable la ruta que contiene la localizacion en las carpetas de las iamgenes
-			de usuarios y su nombre encriptado ademas de su extencion */
 			$ruta_imagen = 'img/fotos-usuarios/'.$filename;
 			if(move_uploaded_file($fp['tmp_name'],"../".$ruta_imagen)){
 			$respuesta = Usuarios::registrarCliente($mail,$pass,$nombre,$fono,$ruta_imagen,$dir,$tipo);
@@ -93,11 +103,8 @@ Class GestorUsuarios{
 			}else{
 				echo("ERROR EXTENSION");
 			}
-			//se inicia una variable
 			$ruta_imagen = "";
 			$filename = md5($fp['tmp_name']).$extension;
-			/*Se asigna a la variable la ruta que contiene la localizacion en las carpetas de las iamgenes
-			de usuarios y su nombre encriptado ademas de su extencion */
 			$ruta_imagen = 'img/fotos-usuarios/'.$filename;
 
 			if(move_uploaded_file($fp['tmp_name'],"../".$ruta_imagen)){
@@ -122,9 +129,6 @@ Class GestorUsuarios{
 	}
 }
 
-//al ser llamado este componente carga el metodo post con la operacion de donde esta ciendo llamado
-
-//Se asigna a $op el contenido de la operacion del formulado de donde esta siendo llamado
 $op = $_POST["op"];
 if (isset($_POST['certificados'])) {
 	$certificados = json_decode($_POST['certificados']);
@@ -132,8 +136,6 @@ if (isset($_POST['certificados'])) {
 
 $op = $_POST["op"];
 switch ($op) {
-// segun su contenido se llama a las funciones de la clase gestor de usuario y envia los parametros
-// obtenidos a traves del metodo post(inputs)
 		case 'login':
 		$response = new GestorUsuarios();
 		$response->loginUsuario($_POST["mail-login"],$_POST["pass-login"]);
