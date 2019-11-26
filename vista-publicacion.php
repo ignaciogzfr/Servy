@@ -37,8 +37,7 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-<?php require_once 'componentes/navbar.php';
-       ?>
+
 				<div class="container">
 					<h1 class="text-center mt-2"> Ver publicacion</h1>
 
@@ -92,7 +91,7 @@ echo '';
 
 }else{
 
-echo '<div id="floating-panel " class="container text-center">
+echo '<div id="floating-panel" class="container text-center">
       <input id="latlng" type="text" hidden="" value="">
       <input id="submit" type="button" class="btn btn-secondary btn-sm" data-target="#modal-ver-ruta" data-toggle="modal" value="ver ruta">
     </div>
