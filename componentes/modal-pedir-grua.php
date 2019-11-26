@@ -11,39 +11,68 @@
             </div>
 
             <div class="modal-body  text-center">
+
+            <form method="POST"  autocomplete="off" id="form-pedir-grua">
                       <h5 class="text-center"> direccion</h5>
 
-                          <div class="container"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d53259.30717784582!2d-70.6576384!3d-33.4569472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2scl!4v1566338608491!5m2!1ses-419!2scl" width="400" height="350" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+                          
+                                <div class="container" id="map"></div>
+                               
 
-                         <div class="row text-center">
-                           
-                            <div class="col pt-2">
-                              <p> ¿Esta es su ubicacion actual?</p>
-                            </div>
-                            <div class="col"> <button class=" btn btn-sm btn-info"><i class="fas fa-globe-americas"></i> No, desubicao </button> </div>
+                                      
+
+
+                         <div id="floating-panel">
+                          <input id="latlng" type="text" hidden="" value="">
+                          <input id="submit" type="button" class="btn btn-secondary btn-sm" value="obtener mi ubicación">
                          </div>
 
                           <div class="form-group">
-                         <input type="email" class="form-control"  placeholder="Nombre">
+                         <input type="text" class="form-control" name="nombre" placeholder="Nombre">
                           </div>
                                 <div class="form-group">
-                         <input type="email" class="form-control"  placeholder="Telefono">
+                         <input type="text" class="form-control" name="fono" placeholder="Telefono">
                           </div>
                           <div class="form-group">
-                         <textarea name="" class="form-control" id="" cols="30" rows="3" placeholder="Breve descripcion"></textarea>
+                         <textarea name="descripcion" class="form-control" id="" cols="30" rows="3" placeholder="Breve descripcion"></textarea>
                           </div>
 
                         
-                            <select id="inputState" class="form-control">
-                              <option selected>tipo de automovil...</option>
-                              <option>...</option>
+                            <select id="select-tipo-vehiculo" name="tipo-vehiculo" class="form-control">
+                                      <option selected require="">tipo de automovil...</option>
+                              <?php 
+
+                                require_once 'modelos/modelo-gruas.php';
+
+                                $gruas = Gruas::getTipoVehiculo();
+
+                                for($i = 0;$i<count($gruas);$i++){
+
+                                  echo '<option value="'.$gruas[$i]["id_vehiculo"].'" >'.$gruas[$i]["tipo_vehiculo"].'</option>';
+                                }
+
+                               ?>
+                              
+                              
                             </select>
                              
 
-
-
-                     <button type="button" class="btn btn-sm btn-secondary pt-2" data-dismiss="modal" >Enviar</button>
+                      <input type="hidden"  name="direccion" class="form-control" id="direccion-post" value="">
+                      <input type="hidden" name="lat" value="" id="lat-publicacion" value="">
+                      <input type="hidden" name="lng" value="" id="lng-publicacion" value="">
+                      <input type="hidden" name="op" value="pedirGrua">
+                      <button type="submit" class="btn btn-sm btn-secondary pt-2"  >Enviar</button>
+                     </form>
+      
+    <?php require_once 'componentes/scripts.php' ?>
             </div>
         </div>
     </div>
 </div>
+
+<style> #map {
+        height: 400px;
+        width: 350px;
+      }
+
+    </style>

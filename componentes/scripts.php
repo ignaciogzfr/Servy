@@ -19,6 +19,7 @@
 <script type="text/javascript" src="js/publicaciones.js" ></script>
 <script type="text/javascript" src="js/datatable.js"></script>
 <script type="text/javascript" src="js/usuarios.js"></script>
+<script type="text/javascript" src="js/gruas.js"></script>
 <script type="text/javascript" src="js/google-maps.js"></script>
 
 
