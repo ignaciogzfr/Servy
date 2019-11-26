@@ -1,5 +1,5 @@
 <?php 
-
+@session_start();
 require_once("../modelos/modelo-publicaciones.php");
 
 	Class gestorPublicaciones{
@@ -19,7 +19,10 @@ require_once("../modelos/modelo-publicaciones.php");
 		$respuesta = Publicaciones::publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle);
 		echo($respuesta);
 			}
-
+			public function denunciarP($publicacion,$tipo,$detalle,$denunciante){
+			$respuesta = Publicaciones::denunciarP($publicacion,$tipo,$detalle,$denunciante);
+			echo($respuesta);
+			}
 
 	}
 
@@ -41,8 +44,9 @@ $op= $_POST["op"];
 		$response-> publicarServicio($_POST["id-usuario"],$_POST["tipo-publicacion"],$_POST["titulo-publi"],$_POST["direccion-publi"],$_POST["tipo-serv"],$_POST["detalle-publi"]);
 		break;
 
-		case '':
-					
+		case 'denunciarP':
+			$response = new gestorPublicaciones();
+			$response-> denunciarP($_POST['publicacion'],$_POST['tipo_denuncia'],$_POST['detalle'],$_SESSION['id']);	
 		break; 	
 
 		default:

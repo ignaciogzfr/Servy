@@ -3,32 +3,29 @@ $(document).ready(function(){
 	$(".btn-sancionar-publicacion").on("click",sancionarPublicacion)
 	$(".btn-quitar-sancion-publicacion").on("click",quitarSancionPublicacion)
 	$('#form-publicar-servicios').on('submit',publicarServicio);
-	$('#select-tipo-servicio').select2({
+	$('#form-denunciar-p').on('submit',denunciarP);
+
+
+$('#select-tipo-servicio').select2({
 	width : 'resolve'
 })
 
 
 	function sancionarPublicacion(event){
-				var id = $(this).val();
-				console.log(id);
+	var id = $(this).val();
+	console.log(id);
 
 
 		$.ajax({
-
 			method: 'POST',
 			url: 'controladores/publicaciones-controller.php',
 			data: 'op=sancionarPublicacion&id='+id
-
-
-
-
 		})
 	}
 
 	function quitarSancionPublicacion(event){
-
-		var id = $(this).val();
-		console.log(id);
+	var id = $(this).val();
+	console.log(id);
 
 		$.ajax({
 
@@ -41,8 +38,8 @@ $(document).ready(function(){
 	}
 
 	function publicarServicio(event){
-				event.preventDefault();
-				var datos = new FormData(this);
+	event.preventDefault();
+	var datos = new FormData(this);
 			$.ajax({
 
 				method: 'POST',
@@ -67,4 +64,19 @@ $(document).ready(function(){
 	}
 
 
+	function denunciarP(e){
+	event.preventDefault();
+	var datos = $(this).serialize();
+	console.log(datos);
+	$.ajax({
+
+		method: 'POST',
+		url: 'controladores/publicaciones-controller.php',
+		data: datos,
+		success:function(response){
+			console.log(response)
+		}
+
+	})
+	}
 })

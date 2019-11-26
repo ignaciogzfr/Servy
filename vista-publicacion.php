@@ -61,10 +61,13 @@ if(count($publi)>0){
          ?>
 
 </div>
-<div class="text-right">
-  <button class="btn btn-md btn-danger" data-toggle="modal" data-target="modal-denuncias"><i class="fas fa-ban"></i> Denunciar esta publicacion</button>
+<?php if(isset($_SESSION['id'])){
+  echo '<div class="text-right">
+  <button class="btn btn-md btn-danger" data-toggle="modal" data-target="#modal-denuncias-p"><i class="fas fa-ban"></i> Denunciar esta publicacion</button>
 </div>  
-         
+';
+} ?>
+
        
 
 
@@ -75,8 +78,10 @@ if(count($publi)>0){
   <!-- /#wrapper -->
 
 <!-- Footer -->
-<?php require_once 'componentes/footer.php';
-      require_once 'componentes/scripts.php'; ?>
+<?php 
+require_once 'componentes/modal-denuncias-publicacion.php';
+require_once 'componentes/footer.php';
+require_once 'componentes/scripts.php'; ?>
 <!-- Footer -->
 
 

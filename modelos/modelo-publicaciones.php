@@ -27,7 +27,13 @@ Class Publicaciones{
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-
+	static public function getTiposDenunciaP(){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("SELECT * FROM tipos_denuncia WHERE entidades_admitidas = 'Publicacion' OR entidades_admitidas = 'Ambos' ");
+		$sql->execute();
+		return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
 
 	static public function verPublicacion($id){
 
@@ -101,9 +107,20 @@ Class Publicaciones{
 		}
 
 	}
-
+	static public function denunciarP($publicacion,$tipo,$detalle,$denunciante){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("INSERT INTO denuncias_publicacion(publicacion,denunciante,tipo_denuncia,comentarios_denuncia) VALUES (:publicacion,:denunciante,:tipo,:detalle)");
+		$sql->bindParam(":publicacion",$publicacion,PDO::PARAM_INT);
+		$sql->bindParam(":denunciante",$denunciante,PDO::PARAM_INT);
+		$sql->bindParam(":tipo",$tipo,PDO::PARAM_INT);
+		$sql->bindParam(":detalle",$detalle,PDO::PARAM_STR);
+		$sql->execute();
+		return 'ok';
+	}
 	}
 		
+
+
 
 
  ?>
