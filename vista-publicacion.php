@@ -54,7 +54,7 @@
             require_once("modelos/modelo-publicaciones.php");
 
             $publi = publicaciones::verPublicacion($_GET["publicacion"]);
-            $denuncias = publicaciones::getDenuncias($_GET["publicacion"]);
+            $denuncias = publicaciones::getDenunciasPublicacion($_GET["publicacion"]);
 
               echo('
   <div class="container text-center">
