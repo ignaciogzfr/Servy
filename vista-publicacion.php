@@ -28,8 +28,8 @@
 
 <body>
 <style> #map {
-        height: 50%;
-        width: 50%;
+        height: 400px;
+        width: 350px;
       }
 
     </style>
@@ -86,76 +86,29 @@
 
          ?>
 
- <div id="floating-panel " class="container text-center">
+<?php if($publi[0]["lat_publicacion"] == ""){
+
+echo '';
+
+}else{
+
+echo '<div id="floating-panel " class="container text-center">
       <input id="latlng" type="text" hidden="" value="">
       <input id="submit" type="button" class="btn btn-secondary btn-sm" data-target="#modal-ver-ruta" data-toggle="modal" value="ver ruta">
     </div>
-    <div id="map" class="container text-center"> 
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1692060.859147454!2d-70.95888735007692!3d-34.10948903305172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x96626f6a7df81e51%3A0x60cdc26d444b83da!2sRegi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1574657753763!5m2!1ses!2scl"frameborder="0" style="border:0; height: 100%; width: 100%;" allowfullscreen=""></iframe></div>
+    <div id="map" class="container text-center"></div>';
+
+}
+
+
+
+ ?>
+ 
+  
      
-          <script>
-            function initMap(){
-              var  directionsDisplay = new google.maps.DirectionsRenderer();
-              var  directionsService = new google.maps.DirectionsService();
-              var geocoder = new google.maps.Geocoder();
-              var infowindow = new google.maps.InfoWindow();
-              var DistanceMatrix = new google.maps.DistanceMatrixService();
-              var map;
-
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            
-              var origen = new google.maps.LatLng(pos.lat, pos.lng );
-              var destino = new google.maps.LatLng(document.getElementById('lat-publicacion').value, document.getElementById('lng-publicacion').value);
-
-              var mapOptions = {
-                zoom: 14,
-                center: origen
-              };
-
-              map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-              directionsDisplay.setMap(map);
-
-              function CalcularRuta(){
-
-                var request = {
-                  origin: origen,
-                  destination: destino,
-                  travelMode: 'DRIVING',
+         
 
 
-                };
-
-                directionsService.route(request, function(result, status){
-
-                    if(status = "OK"){
-                        //hace la ruta
-                      directionsDisplay.setDirections(result);
-                    }
-                });
-
-              }
-
-                document.getElementById('submit').onclick=function(){
-                  CalcularRuta();
-                }
-
-          },function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        }  
-            }
-          </script>
-
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=initMap">
-    </script>
 
 
 
@@ -211,7 +164,9 @@
 <!-- Footer -->
 
 <!-- Footer -->
-
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=initMap">
+    </script>
 	
 </body>
 </html>

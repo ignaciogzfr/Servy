@@ -122,7 +122,9 @@ require_once("modelos/modelo-servicios.php");
 <?php require_once 'componentes/footer.php';?>
 
 
-
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=Miposicion">
+    </script>
 
 </body>
 
