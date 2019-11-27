@@ -29,11 +29,11 @@
 
       <!--caja de bienvenida-->
   <div class="jumbotron text-center mt-3  mdb-color lighten-2 text-white">
-        <h2 class="display-4">Bienvenido a Servy!</h2>
-        <p class="lead">Servy es una aplicacion que provee servicios tecnicos a quienes lo necesiten.</p>
-        <hr class="my-4">
-        <p>Busca al Maestro que mas te tinque</p>
-        <a class="btn btn-primary btn-lg" href="vista-servicios.php" role="button">Empecemos!</a>
+  <h2 class="display-4">Bienvenido a Servy!</h2>
+  <p class="lead">Servy es una aplicacion que provee servicios tecnicos a quienes lo necesiten.</p>
+  <hr class="my-4">
+  <p>Busca al Maestro que mas te tinque</p>
+  <a class="btn btn-primary btn-lg" href="registro.php" role="button">Empecemos!</a>
   </div> 
         <div class="container-fluid text-center mb-4"> 
              <h3>¿Necesitas ayuda rapida?</h3> Puedes usarlo sin registrarte ;)
@@ -87,10 +87,23 @@
   </div>
  
   <button type="button" class="btn btn-primary" id="btn-publicarProblema">Publicar Problema</button>
-  <button type="button" class="btn btn-info" data-toggle="popover-hover"><i class="fas fa-question"></i></button>
+  <button type="button" class="btn btn-info" ><i class="fas fa-question"></i></button>
 
   </form>
 </div>
+    
+<!-- FIN DEL FORMULARIO -->
+               <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=Miposicion">
+    </script>
+
+    </div>
+    <!-- /#page-content-wrapper -->
+  </div>
+
+  <!-- /#wrapper -->
+
+
 
 </div>
 <!-- FIN DEL FORMULARIO -->
@@ -108,8 +121,7 @@
 </body>
 <!--footer-->
 <?php require_once 'componentes/footer.php' ?>
-<!-- Footer -->
 
-
+<?php require_once 'componentes/scripts.php' ?>
 
 </html>

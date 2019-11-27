@@ -1,4 +1,5 @@
 <?php 
+@session_start();
 require_once("../modelos/modelo-publicaciones.php");
 
 
@@ -27,11 +28,14 @@ require_once("../modelos/modelo-publicaciones.php");
 			}
 
 
-			public function publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle){
-		$respuesta = Publicaciones::publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle);
+			public function publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle,$lat,$lng){
+		$respuesta = Publicaciones::publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle,$lat,$lng);
 		echo($respuesta);
 			}
-
+			public function denunciarP($publicacion,$tipo,$detalle,$denunciante){
+			$respuesta = Publicaciones::denunciarP($publicacion,$tipo,$detalle,$denunciante);
+			echo($respuesta);
+			}
 
 	}
 
@@ -50,11 +54,12 @@ $op= $_POST["op"];
 
 		case'publicarServicio';
 		$response = new gestorPublicaciones();
-		$response-> publicarServicio($_POST["id-usuario"],$_POST["tipo-publicacion"],$_POST["titulo-publi"],$_POST["direccion-publi"],$_POST["tipo-serv"],$_POST["detalle-publi"]);
+		$response-> publicarServicio($_POST["id-usuario"],$_POST["tipo-publicacion"],$_POST["titulo-publi"],$_POST["direccion-publi"],$_POST["tipo-serv"],$_POST["detalle-publi"],$_POST["lat"],$_POST["lng"]);
 		break;
 
-		case '':
-					
+		case 'denunciarP':
+			$response = new gestorPublicaciones();
+			$response-> denunciarP($_POST['publicacion'],$_POST['tipo_denuncia'],$_POST['detalle'],$_SESSION['id']);	
 		break; 	
 
 		default:

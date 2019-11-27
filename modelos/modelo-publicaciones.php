@@ -45,6 +45,15 @@ Class Publicaciones{
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
+	
+
+	static public function getTiposDenunciaP(){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("SELECT * FROM tipos_denuncia WHERE entidades_admitidas = 'Publicacion' OR entidades_admitidas = 'Ambos' ");
+		$sql->execute();
+		return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+	
 	/**
 	 * Este metodo permite obtener de la base de datos los datos de una publicacion en especifico segun el id de la publicacion.
 	 * 
@@ -117,7 +126,7 @@ Class Publicaciones{
 	 * @return Si la consulta se ejecuto corretamente retornara la "ok" en caso opuesto retornara "error"
 	 * 
 	 * */	
-	static public function publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle){
+	static public function publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle,$lat,$lng){
 			$con = Conexion::conectar();
 			$sql = $con->prepare("INSERT INTO publicacion(
 				id_usuario,
@@ -127,13 +136,19 @@ Class Publicaciones{
 				id_tipo_servicio,
 				detalle_publicacion,
 				fecha_hora_publicacion,
-				estado_publicacion) VALUES (:idus,:tipopu,:titulo,:direccion,:tiposerv,:detalle,NOW(),'Pendiente')");
+				estado_publicacion,
+				lat_publicacion,
+				lng_publicacion) VALUES (:idus,:tipopu,:titulo,:direccion,:tiposerv,:detalle,NOW(),'Pendiente',:lat,:lng)");
 			$sql->bindParam(":idus",$idus,PDO::PARAM_INT);
 			$sql->bindParam(":tipopu",$tipopu,PDO::PARAM_INT);
-			$sql->bindParam(":titulo",$direccion,PDO::PARAM_STR);
+			$sql->bindParam(":titulo",$titulo,PDO::PARAM_STR);
 			$sql->bindParam(":direccion",$direccion,PDO::PARAM_STR);
 			$sql->bindParam(":tiposerv",$tiposerv,PDO::PARAM_INT);
 			$sql->bindParam(":detalle",$detalle,PDO::PARAM_STR);
+			$sql->bindParam(":lat",$lat,PDO::PARAM_STR);
+			$sql->bindParam(":lng",$lng,PDO::PARAM_STR);
+
+
 			if($sql->execute()){
 			return "ok";
 		}else{
@@ -141,9 +156,20 @@ Class Publicaciones{
 		}
 
 	}
-
+	static public function denunciarP($publicacion,$tipo,$detalle,$denunciante){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("INSERT INTO denuncias_publicacion(publicacion,denunciante,tipo_denuncia,comentarios_denuncia) VALUES (:publicacion,:denunciante,:tipo,:detalle)");
+		$sql->bindParam(":publicacion",$publicacion,PDO::PARAM_INT);
+		$sql->bindParam(":denunciante",$denunciante,PDO::PARAM_INT);
+		$sql->bindParam(":tipo",$tipo,PDO::PARAM_INT);
+		$sql->bindParam(":detalle",$detalle,PDO::PARAM_STR);
+		$sql->execute();
+		return 'ok';
+	}
 	}
 		
+
+
 
 
  ?>

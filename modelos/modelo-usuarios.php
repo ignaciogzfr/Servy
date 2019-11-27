@@ -36,7 +36,7 @@ Class Usuarios{
 	 * */
 	static public function getMisPublicacionesDemanda($id){
 	$con = Conexion::conectar();
-	$sql = $con->prepare('SELECT p.*, t.tipo_servicio FROM publicacion p, tipo_servicio t  WHERE p.id_usuario = :id and p.id_tipo_servicio = t.id_tipo_servicio');
+	$sql = $con->prepare('SELECT p.*, t.tipo_servicio FROM publicacion p, tipo_servicio t  WHERE p.id_usuario = :id and p.id_tipo_servicio = t.id_tipo_servicio AND p.tipo_publicacion = "Demanda" ');
 	$sql->bindParam(":id",$id,PDO::PARAM_INT);
 	$sql->execute();
 	return $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -51,7 +51,7 @@ Class Usuarios{
 	 * */
 	static public function getMisPublicacionesOferta($id){
 	$con = Conexion::conectar();
-	$sql = $con->prepare('SELECT  p.*, t.tipo_servicio FROM publicacion p, tipo_servicio t WHERE p.id_usuario = :id AND p.id_tipo_servicio = t.id_tipo_servicio');
+	$sql = $con->prepare('SELECT  p.*, t.tipo_servicio FROM publicacion p, tipo_servicio t WHERE p.id_usuario = :id AND p.id_tipo_servicio = t.id_tipo_servicio AND p.tipo_publicacion = "Oferta" ');
 	$sql->bindParam(":id",$id,PDO::PARAM_INT);
 	$sql->execute();
 	return $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -212,7 +212,7 @@ Class Usuarios{
 		if($sql->execute()){
 		$id = $con->lastInsertId();
 
-		session_start();
+		@session_start();
 		$_SESSION['id'] = $id;
 		$_SESSION['tipo'] = $tipo;
 		$_SESSION['nombre'] = $nombre;

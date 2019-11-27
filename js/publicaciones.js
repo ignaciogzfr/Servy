@@ -4,7 +4,10 @@ $(document).ready(function(){
 	$(".btn-sancionar-publicacion").on("click",sancionarPublicacion)
 	$(".btn-quitar-sancion-publicacion").on("click",quitarSancionPublicacion)
 	$('#form-publicar-servicios').on('submit',publicarServicio);
-	$('#select-tipo-servicio').select2({
+	$('#form-denunciar-p').on('submit',denunciarP);
+
+
+$('#select-tipo-servicio').select2({
 	width : 'resolve'
 })
 
@@ -42,6 +45,13 @@ $(document).ready(function(){
 	function publicarServicio(event){
 				event.preventDefault();
 				var datos = new FormData(this);
+				console.log(datos.get('lat'));
+				console.log(datos.get('titulo-publi'));
+				if($('#tipo-usuario-post')=='Cliente'){
+					datos.set('tipo-publicacion-post','Demanda')
+				}else if($('#tipo-usuario-post')=='Maestro'){
+					
+				}
 			$.ajax({
 
 				method: 'POST',
@@ -51,6 +61,7 @@ $(document).ready(function(){
     			contentType: false,
     			processData: false,
 				success:function(response){
+					console.log(response);
 	        		if(response!=''){
 	        			swal({
 						title : '¡Tu publicacion ha sido enviada con excito!',
@@ -66,4 +77,19 @@ $(document).ready(function(){
 	}
 
 
+	function denunciarP(e){
+	event.preventDefault();
+	var datos = $(this).serialize();
+	console.log(datos);
+	$.ajax({
+
+		method: 'POST',
+		url: 'controladores/publicaciones-controller.php',
+		data: datos,
+		success:function(response){
+			console.log(response)
+		}
+
+	})
+	}
 })

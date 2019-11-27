@@ -64,12 +64,12 @@ if(count($user)){
       if (count($den)==0) {
     echo('
     <td>
-    <a class="btn btn-sm btn-info" href="vista-usuario.php?id='.$user[$i]['id_usuario'].'" target="_blank" >Ver perfil</a>
+    <a class="btn btn-sm btn-info" href="perfil.php?id='.$user[$i]['id_usuario'].'" target="_blank" >Ver perfil</a>
     </td>');
       }else{
     echo('
     <td>
-    <a class="btn btn-sm btn-info" href="vista-usuario.php?id='.$user[$i]['id_usuario'].'" target="_blank" >Ver perfil </a><span class="badge badge-danger ml-2" >'.count($den).'</span>
+    <a class="btn btn-sm btn-info" href="perfil.php?id='.$user[$i]['id_usuario'].'" target="_blank" >Ver perfil </a><span class="badge badge-danger ml-2" >'.count($den).'</span>
     </td>');
       }
         echo(' 

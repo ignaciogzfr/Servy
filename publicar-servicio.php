@@ -27,52 +27,41 @@
 <?php require_once 'componentes/navbar.php'; ?>
 
 <?php @session_start(); ?>
-<?php require_once 'componentes/verificar-sesion.php' ?>
 
-<div class="text-center my-5">
-  <strong><h3>Crear Publicación</h3></strong>
-</div>
+
 <!-- INICIO DEL FORMULARIO -->
 <div class="container my-4" style="width: 70%;">
      
   <form id="form-publicar-servicios" method="POST" autocomplete="off">
   <div class="form-row">
-  <?php if($_SESSION['tipo']=='Maestro'){
-    echo('  
-        <div class="form-group col-md-6">
-            <label for="titulo-publi">Titulo</label>
-            <input type="text" class="form-control" name="titulo-publi" placeholder="Ofrezco mis Servicios... / Necesito urgentemente un --------" id="titulo-publi">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="tipo-publicacion-post">Tipo de Publicacion</label>
-          <select name="tipo-publicacion" id="tipo-publicacion-post" class="form-control">
-          <option value="Oferta">Ofrezco...</option>
-          <option value="Demanda">Necesito...</option>
-          </select>
-        </div>'); 
-  }else{
-    echo('
-      <div class="form-group col-md-12">
-        <label for="titulo-publi">Titulo</label>
-        <input type="text" class="form-control" name="titulo-publi" placeholder="Necesito urgentemente un --------">
-      </div>');
-  } ?>
-
+    <div class="form-group col-md-6">
+      <label for="titulopubli">Titulo</label>
+      <input type="text" class="form-control" name="titulo-publi" placeholder="Titulo">
+  </div>
 
   </div>
 
   <div class="form-group">
-    <label for="dir-publi">Direccion</label>
-    <button class="btn btn-secondary btn-sm">Geolocalizar</button>
-    <input type="text" class="form-control" name="direccion-publi" placeholder="Avenida Siempreviva 2001" id="dir-publi">
-  </div>
+    <label for="dir">Direccion</label>
 
+    <div id="floating-panel">
+      <input id="latlng" type="text" hidden="" value="">
+      <input id="submit" type="button" class="btn btn-secondary btn-sm" value="obtener mi ubicación">
+    </div>
+    
+    <div type="hidden" id="map"></div>
+          
+
+
+       <input type="text" class="form-control" name="direccion-publi" placeholder="Avenida Siempreviva 2001" id="direccion-post" required="">
+  </div>
+    
 
 <hr class="featurette-divider">
   <div class="form-row">
    
     <div class="form-group col-md-12">
-      <label for="select-tipo-servicio">Tipo de servicio</label>
+      <label for="inputState">Tipo de servicio</label>
           <select class="custom-select" id="select-tipo-servicio" name="tipo-serv" style="width: 100%">
             <option selected disabled="">Seleccionar servicio</option>
 <?php 
@@ -80,7 +69,14 @@ require_once("modelos/modelo-servicios.php");
   $servi = Servicios::getServicios();
 
   for($i=0;$i<count($servi); $i++){
-      echo('<option value="'.$servi[$i]["id_tipo_servicio"].'">'.$servi[$i]["tipo_servicio"].'</option>');
+
+      echo('
+           
+           <option value="'.$servi[$i]["id_tipo_servicio"].'">'.$servi[$i]["tipo_servicio"].'</option>
+         
+        
+');
+
   }
 
 ?>  
@@ -89,26 +85,27 @@ require_once("modelos/modelo-servicios.php");
     
   </div>
 
- <div class="form-group">
-  <label for="detalle-publi">Detalle</label>
-  <?php if($_SESSION['tipo']=='Maestro'){
-    echo ' <textarea class="form-control" placeholder="Agregue detalles de lo que necesita u ofrece" name="detalle-publi" rows="7" id="detalle-publi"></textarea>';}
-    else{
-    echo '<textarea class="form-control" placeholder="Agregue detalles de lo que necesita" name="detalle-publi" rows="7" id="detalle-publi"></textarea>';
-    } ?>
-
+       <div class="form-group">
+  <label for="">Detalle</label>
+  <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" name="detalle-publi" rows="7" required=""></textarea>
 </div>
    
     
  <?php
-    echo ('<input type="hidden" placeholder="'.$_SESSION["id"].'" name="id-usuario" value="'.$_SESSION["id"].'">');   
+          echo ('<input type="hidden" placeholder="'.$_SESSION["id"].'" name="id-usuario" value="'.$_SESSION["id"].'">');   
 ?>
     <?php echo '<input type="hidden" value="'.$_SESSION['tipo'].'" id="tipo-usuario-post">' ?>
     <input type="hidden" name="op" value="publicarServicio">
+    <input type="hidden" name="tipo-publicacion" id="tipo-publicacion-post" value="">
+    <input type="hidden" name="lat" value="" id="lat-publicacion">
+    <input type="hidden" name="lng" value="" id="lng-publicacion">
     <button type="submit" class="btn btn-success float-right mb-5 btn-publicar-servicio" id="btn-publicar-servicio">Publicar problema</button>
+
+
 
 </form>
 
+    
 </div>
    
 <!-- FIN DEL FORMULARIO -->
@@ -123,7 +120,9 @@ require_once("modelos/modelo-servicios.php");
 <?php require_once 'componentes/footer.php';?>
 
 
-
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=Miposicion">
+    </script>
 
 </body>
 
