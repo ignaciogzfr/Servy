@@ -26,7 +26,7 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
       
-<?php require_once 'componentes/navbar.php'; ?>
+
 
 <?php @session_start(); ?>
 
@@ -48,7 +48,7 @@
 
     <div id="floating-panel">
       <input id="latlng" type="text" hidden="" value="">
-     <button class="btn btn-secondary mt-4" id="submit">obtener mi ubicacion <i class="fas fa-map-marked-alt"></i></button>
+      <input id="submit" type="button" class="btn btn-secondary btn-sm" value="obtener mi ubicación">
     </div>
     
     <div type="hidden" id="map"></div>
