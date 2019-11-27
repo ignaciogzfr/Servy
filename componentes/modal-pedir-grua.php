@@ -63,14 +63,15 @@
                       <input type="hidden" name="op" value="pedirGrua">
                       <button type="submit" class="btn btn-sm btn-secondary pt-2"  >Enviar</button>
                      </form>
-      
-    <?php require_once 'componentes/scripts.php' ?>
+                    <?php require_once 'componentes/scripts.php' ?>
+  
+   
             </div>
         </div>
     </div>
 </div>
 
-<style> #map {
+<style> #map{
         height: 400px;
         width: 350px;
       }

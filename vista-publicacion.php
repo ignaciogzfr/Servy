@@ -27,17 +27,15 @@
 </head>
 
 <body>
-<style> #map {
-        height: 400px;
-        width: 350px;
-      }
-
+<style> 
     </style>
 <?php require_once 'componentes/sidenav.php'; ?>
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
+<?php require_once 'componentes/ver-ruta-modal.php';
 
+       ?>
 				<div class="container">
 					<h1 class="text-center mt-2"> Ver publicacion</h1>
 
@@ -93,9 +91,9 @@ echo '';
 
 echo '<div id="floating-panel" class="container text-center">
       <input id="latlng" type="text" hidden="" value="">
-      <input id="submit" type="button" class="btn btn-secondary btn-sm" data-target="#modal-ver-ruta" data-toggle="modal" value="ver ruta">
+      <button class="btn btn-secondary mt-4" data-target="#modal-ver-ruta" data-toggle="modal" id="submit">ver ruta <i class="fas fa-map-marked-alt"></i></button>
     </div>
-    <div id="map" class="container text-center"></div>';
+    ';
 
 }
 
@@ -166,6 +164,7 @@ echo '<div id="floating-panel" class="container text-center">
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=initMap">
     </script>
+
 	
 </body>
 </html>

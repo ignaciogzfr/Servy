@@ -70,19 +70,20 @@ function Miposicion() {
               var infowindow = new google.maps.InfoWindow();
               var DistanceMatrix = new google.maps.DistanceMatrixService();
               var map;
+ 
+              function CalcularRuta(){
 
-      if (navigator.geolocation) {
+if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
             var pos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
 
-            
-              var origen = new google.maps.LatLng(pos.lat, pos.lng );
+             var origen = new google.maps.LatLng(pos.lat, pos.lng );
               var destino = new google.maps.LatLng(document.getElementById('lat-publicacion').value, document.getElementById('lng-publicacion').value);
-
-              var mapOptions = {
+              console.log(destino);
+               var mapOptions = {
                 zoom: 14,
                 center: origen
               };
@@ -90,8 +91,6 @@ function Miposicion() {
               map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
               directionsDisplay.setMap(map);
-
-              function CalcularRuta(){
 
                 var request = {
                   origin: origen,
@@ -109,16 +108,22 @@ function Miposicion() {
                     }
                 });
 
+},function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+
+}
+
+
+
               }
 
                 document.getElementById('submit').onclick=function(){
                   CalcularRuta();
                 }
 
-          },function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        }  
+          
+          
             }
 
 
