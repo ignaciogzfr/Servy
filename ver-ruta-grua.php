@@ -14,14 +14,14 @@
         width: 70%;
       }</style>
 
- <div id="map" class="container text-center">
- 	<button class="btn btn-secondary mt-4" id="submit">ver ruta <i class="fas fa-map-marked-alt"></i></button>
- </div>
+<div class="text-center" style="background-color: #45526e;">
+    <button class="btn btn-success mt-4" id="submit">ver ruta <i class="fas fa-map-marked-alt"></i></button>
+ <div id="map" class="container text-center"></div>
                           
-			
-     
-            </div>	
-	
+		
+</div>	
             <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=initMap">
-    </script>
+    </script> 
+
+

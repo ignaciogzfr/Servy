@@ -126,7 +126,9 @@ if(count($publi)){
                         <div class="dropdown-menu">
                         <button class="dropdown-item btn-sancionar-publicacion" type="button" value="'.$publi[$i]["id_publicacion"].'"><i class="fas fa-ban"></i> Sancionar</button>
                         
-                        <button class="dropdown-item btn-quitar-sancion-publicacion" value="'.$publi[$i]["id_publicacion"].'"><i class="fas fa-lock-open"></i> Quitar sancion</button>
+                        <button class="dropdown-item btn-quitar-sancion-publicacion" value="'.$publi[$i]["id_publicacion"].'"><i class="fas fa-lock-open"></i> Quitar sancion/Aprobar</button>
+
+
                         </div>
                </td>
                

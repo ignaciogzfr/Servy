@@ -28,13 +28,13 @@
                          </div>
 
                           <div class="form-group">
-                         <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                         <input type="text" class="form-control" name="nombre" placeholder="Nombre" required="">
                           </div>
                                 <div class="form-group">
-                         <input type="text" class="form-control" name="fono" placeholder="Telefono">
+                         <input type="text" class="form-control" name="fono" placeholder="Telefono" required="">
                           </div>
                           <div class="form-group">
-                         <textarea name="descripcion" class="form-control" id="" cols="30" rows="3" placeholder="Breve descripcion"></textarea>
+                         <textarea name="descripcion" class="form-control" id="" cols="30" rows="3"  required="" placeholder="Breve descripcion"></textarea>
                           </div>
 
                         
