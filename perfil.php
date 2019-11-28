@@ -27,12 +27,11 @@ require_once 'modelos/modelo-usuarios.php';
 $id = $_GET['id'];
 $perfil = Usuarios::getPerfilUsuario($id);
 if(isset($perfil[0])){
-
-    if($perfil[0]['tipo_usuario']=='Cliente' || 'Administrador'){
+      echo "<script>console.log('usuario es de tipo " . $perfil[0]['tipo_usuario'] . "' );</script>";
+    if($perfil[0]['tipo_usuario']=='Cliente'){
       require_once 'componentes/perfil-cliente.php';
     }elseif($perfil[0]['tipo_usuario']=='Maestro'){
       require_once 'componentes/perfil-maestro.php';
-
     }elseif ($perfil[0]['tipo_usuario']=='Administrador') {
        require_once 'componentes/perfil-admin.php';
     }

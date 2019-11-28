@@ -4,6 +4,8 @@
           
             <div class="col-md-4 text-center">
              <?php
+            echo "<script>console.log('y llega correctamente pefil.maestro.php');</script>";
+
              $Sesion = '';
              if(isset($_SESSION['id']) && $_GET['id'] == $_SESSION['id']){
               $sesion = true;
