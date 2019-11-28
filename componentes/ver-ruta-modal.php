@@ -1,5 +1,5 @@
 
-         <div id="modal-marcar-ruta" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+         <div id="modal-ver-ruta" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
@@ -13,11 +13,16 @@
 
             <div class="modal-body  text-center">
                      
-                        <div id="map" style=" height: 100%;"></div>
+                        <div id="map" class="container text-center"></div>
                           
 
- 
+                         <?php require_once 'componentes/scripts.php' ?>
             </div>
         </div>
     </div>
 </div>
+
+<style>#map{
+        height: 400px;
+        width: 350px;
+      }</style>

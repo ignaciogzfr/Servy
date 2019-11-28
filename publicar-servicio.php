@@ -22,9 +22,9 @@
 
 <?php require_once 'componentes/sidenav.php'; ?>
     <!-- Page Content -->
-  
-      <div id="page-content-wrapper"> 
-<?php require_once 'componentes/navbar.php'; ?>
+    <div id="page-content-wrapper">
+      
+
 
 <?php @session_start(); ?>
 

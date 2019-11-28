@@ -36,8 +36,9 @@ Class Gruas{
 				id_vehiculo,
 				lat_grua,	
 				lng_grua,
-				fecha_grua
-				) VALUES (:nombre,:direccion,:fono,:descripcion,:tipo,:lat,:lng,NOW())");
+				fecha_grua,
+				estado_grua
+				) VALUES (:nombre,:direccion,:fono,:descripcion,:tipo,:lat,:lng,NOW(),'Aprobada')");
 			$sql->bindParam(":nombre",$nombre,PDO::PARAM_STR);
 			$sql->bindParam(":direccion",$direccion,PDO::PARAM_STR);
 			$sql->bindParam(":fono",$fono,PDO::PARAM_STR);
