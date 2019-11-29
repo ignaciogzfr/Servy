@@ -236,11 +236,12 @@ $('.input-dato-basico').attr('disabled','disabled');
 function editarPerfil(e){
 var id = $('#id-perfil-edit').val();
 if($('#tipo-editar-perfil').val()==='Cliente'){
-	console.log(1)
+	console.log(1);
 	var datos = $('.form-editar-cliente').serialize();
 }else if($('#tipo-editar-perfil').val()==='Maestro'){
-	console.log(2)
+	console.log(2);
 	var datos = $('.form-editar-maestro').serialize();
+	console.table(datos);
 }
 	//envio de paquete con los datos obtenido del controlador para que se ejecuten las consultas en modelo-usuarios
 $.ajax({

@@ -44,7 +44,7 @@ if($('.btn-agregar-certificados-edit').attr('total')==0){
 }
 $('.certificados-edit').append(`
 	<div class="row fila-input-c">
-	<input class="form-control col-md-8 mt-2 certificado-agregar-edit" type="text" value="Escriba su certificado aqui">
+	<input class="form-control col-md-8 mt-2 certificado-agregar-edit" type="text" placeholder="Escriba su certificado aqui">
 	<button class="btn btn-sm btn-success btn-agregar-fila-c" type="button"><i class="fas fa-check"></i></button>
 	<button class="btn btn-sm btn-danger btn-eliminar-fila-c" type="button"><i class="fas fa-times"></i></button></div>`)
 }

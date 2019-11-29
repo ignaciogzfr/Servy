@@ -140,6 +140,7 @@ switch ($op) {
 		$response = new GestorUsuarios();
 		$response->loginUsuario($_POST["mail-login"],$_POST["pass-login"]);
 		break;
+
 		case 'registrarUsuario':
 		if($_POST['tipo-registro']=='Cliente'){
 		$response = new GestorUsuarios();
@@ -148,7 +149,6 @@ switch ($op) {
 		}else{
 		$response->registrarCliente($_POST["mail-registro"],$_POST["pass-registro"],$_POST["nombre-registro"],$_POST["fono-registro"],$_POST["fp-registro"],$_POST["dir-registro"],$_POST["tipo-registro"]);
 		}
-
 		break;
 		}else{
 		$servicios = json_decode($_POST['servicios']);
@@ -161,6 +161,9 @@ switch ($op) {
 		$response->registrarMaestro($_POST["mail-registro"],$_POST["pass-registro"],$_POST["nombre-registro"],$_POST["fono-registro"],$_POST["fp-registro"],$_POST["dir-registro"],$_POST["tipo-registro"],$servicios,$certificados,$_POST['exp-registro']);
 		}
 		break;
+
+
+		
 		}
 		case 'sancionarUsuario':
 		$response = new GestorUsuarios();

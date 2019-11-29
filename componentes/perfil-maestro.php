@@ -36,7 +36,11 @@ if($sesion == true){
 <form class="form-editar-maestro">
   <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="nombre" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
   <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="mail" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="fono" value="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
+  <?php echo 
+  '<input type="text" required="" class="form-control my-1 input-dato-basico" pattern="[0-9].{7,8}" maxlength="8" name="fono" value="'.$datos[0]['fono_usuario'].'" disabled>
+  ';
+
+   ?>
   <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="dir" value="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
   <input type="hidden" value="Maestro" id='tipo-editar-perfil'>
   <input type="hidden" value="editarPerfilBasicoM" name="op">

@@ -33,7 +33,7 @@ if(isset($perfil[0])){
     }elseif($perfil[0]['tipo_usuario']=='Maestro'){
       require_once 'componentes/perfil-maestro.php';
     }elseif ($perfil[0]['tipo_usuario']=='Administrador') {
-       require_once 'componentes/perfil-admin.php';
+       require_once 'componentes/perfil-cliente.php';
     }
     
 }
