@@ -8,8 +8,8 @@ require_once("conexion.php");
  * @author Johan Hernandez
  * @since 1.0 08-10-2019 20:27 inicio de actividades de tipo programación
  * @version 1.5 23-11-2019 09:19 cambio de metodo en la semana 5.
- * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
- * @var $sql objeto de consulta que requiere del objeto de conexion y una consulta o un string que contenga una. 
+ * 
+ * 
  * 
  * */
 Class Usuarios{
@@ -18,7 +18,9 @@ Class Usuarios{
 	/**
 	 * Con esta funcion se obtiene una tabla con todos los datos de la tabla de usuario.
 	 * 
-	 * @return devuelve una tabla de datos con todos los usario registrados desde la base de datos remota.
+	 * @return $sql devuelve una tabla de datos con todos los usario registrados desde la base de datos remota.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * 
 	 * */
 	static public function getUsuarios(){
 		$con = Conexion::conectar();
@@ -32,7 +34,8 @@ Class Usuarios{
 	 * Obtiene las publicaciones relacionadas a un usuario de tipo Cliente  segun su identificador de tipo integer, los resultados se entregaran en forma de una matriz que contiene las publicaciones de tipo demanda.
 	 * 
 	 * @param $id identificador del maestro al que se le quiere obtener sus publicaciones
-	 * @return devuelve una tabla de datos con todas las publicaciones registradas bajo el tipo "demanda" desde la base de datos remota
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * @return $sql devuelve una tabla de datos con todas las publicaciones registradas bajo el tipo "demanda" desde la base de datos remota
 	 * */
 	static public function getMisPublicacionesDemanda($id){
 	$con = Conexion::conectar();
@@ -47,7 +50,8 @@ Class Usuarios{
 	 * Obtiene las publicaciones relacionadas a un usuario de tipo Maestro segun su identificador de tipo integer, los resultados se entregaran en forma de una matriz que contiene las publicaciones de tipo oferta.
 	 * 
 	 * @param $id de tipo integer, identificador de un Cliente al cual se le queire obtener sus publicaciones
-	 * @return devuelve una tabla de datos con todas las publicaciones registradas bajo el tipo "oferta" desde la base de datos remota.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * @return $sql devuelve una tabla de datos con todas las publicaciones registradas bajo el tipo "oferta" desde la base de datos remota.
 	 * */
 	static public function getMisPublicacionesOferta($id){
 	$con = Conexion::conectar();
@@ -60,8 +64,9 @@ Class Usuarios{
 	/**
 	 * Con esta funcion se obtienen los parametros para rellenar el formulario de perfil, para esto se utilizara un identificador del usuario, usualmente obtenido a traves del metodo GET en los formularios de registro o login
 	 * 
-	 * @param $id de tipo integer, identificador de un usaurio registrado sea "Cliente" o "Maestro"
-	 * @return devuelve una tabla de datos con los parametros necesarios para rellenar con información el formulaio perfil.php. 
+	 * @param $id de tipo integer, identificador de un usaurio registrado sea "Cliente" o "Maestro".
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * @return $sql devuelve una tabla de datos con los parametros necesarios para rellenar con información el formulaio perfil.php. 
 	 * */
 	static public function getPerfilUsuario($id){
 	$con = Conexion::conectar();
@@ -73,8 +78,10 @@ Class Usuarios{
 
 	/**
  	 * Con esta funcion se obtienen los servicios al que el Maestro puede realizar, segun su registro siempre y cuando su estado este "Activo"
+ 	 * 
  	 * @param $id de tipo integer, identificador del Maestro.
- 	 * @return debuelve una tabal de datos que contiene los resultados de los servicios del maestro que se encuentran en estado "Activo".
+ 	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+ 	 * @return $sql debuelve una tabla de datos que contiene los resultados de los servicios del maestro que se encuentran en estado "Activo".
 	 * */
 	static public function getServiciosMaestro($id){
 	$con = Conexion::conectar();
@@ -87,7 +94,8 @@ Class Usuarios{
 	/**
 	 * Con esta funcion se obtienen las experiencias de un maestro, es un cuadro de texto que relata sus experiencias en trabajos realizados, se carga en el perfil y ve visualiza en vista-maestro por los clientes
 	 * @param $id de tipo integer, identificador del maestro.
-	 * @return un vector de datos que contiene el texto de una experiencia que tubo el usuario.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * @return $sql que es un vector de datos que contiene el texto de una experiencia que tubo el usuario.
 	 * */
 	static public function getExperienciaMaestro($id){
 	$con = Conexion::conectar();
@@ -101,7 +109,8 @@ Class Usuarios{
 	/**
 	 * Funcion que obtiene los certificados del maestro registrado, se pide un identificador del maestro.
 	 * @param $id de tipo integer, identificador del maestro.
-	 * @return debieobe una matriz de datos que contiene los certificados pertenecientes al usuario registrado de tipo "Maestro".
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * @return $sql que es una matriz de datos que contiene los certificados pertenecientes al usuario registrado de tipo "Maestro".
 	 * */
 	static public function getCertificadosMaestro($id){
 	$con = Conexion::conectar();
@@ -113,8 +122,9 @@ Class Usuarios{
 
 	/**
 	 * Funcion que permite obtener todas las denuncias relacionadas de un usuario mestro o cliente y de que tipo son.
-	 * @param $id de tipo integer, identificador del usuario 
-	 * @return matriz de datos que contiene las denuncias hacia un usuario en especifico.
+	 * @param $id de tipo integer, identificador del usuario.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * @return $sql matriz de datos que contiene las denuncias hacia un usuario en especifico.
 	 * */
 	static public function getDenunciasUsuario($id){
 		$con = Conexion::conectar();
@@ -135,8 +145,10 @@ Class Usuarios{
 
 	/**
 	 * Funcion que permite sancionar a una usuario utilizando su identificador del usuario en cuestion cambiando su estado a "Sancionado".
-	 * @param $id de tipo integer, identificador de el usuario que va a ser sancionado por un administrador
-	 * @return string de datos como "ok" si la funcion se ejecuto correctamente o "error" si no se pudo ejecutar la consulta
+	 * @param $id de tipo integer, identificador de el usuario que va a ser sancionado por un administrador.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * @return OK si la funcion se ejecuto correctamente. 
+	 * @return ERROR si no se pudo ejecutar la consulta.
 	 * */
 	static public function sancionarUsuario($id){
 		$con = Conexion::conectar();
@@ -152,8 +164,10 @@ Class Usuarios{
 
 	/**
 	 * Funcion que permite sancionar a una usuario utilizando su identificador del usuario en cuestion cambiando sus estad a "Activo"
-	 * @param $id de tipo integer, identificador de el usuario que va a ser sancionado por un administrador
-	 * @return string de datos como "ok" si la funcion se ejecuto correctamente o "error" si no se pudo ejecutar la consulta
+	 * @param $id de tipo integer, identificador de el usuario que va a ser sancionado por un administrador.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * @return OK si la funcion se ejecuto correctamente. 
+	 * @return ERROR si no se pudo ejecutar la consulta.
 	 * */
 	static public function quitarSancionUsuario($id){
 		$con = Conexion::conectar();
@@ -181,9 +195,13 @@ Class Usuarios{
 	 * @param $dir de tipo string, direccion porporiconada por ele usuario no registrado.
 	 * @param $tipo de tipo string, tipo de usuario que desea hacer un registro.
 	 * 
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * 
 	 * @global $_SESSION variable global que almacena una matriz de datos con los parametros del usuario recien creado. 
 	 * 
-	 * @return $id el identificador del ultimo usuario registrado en la pagina, el usuario actual
+	 * @return $id el identificador del ultimo usuario registrado en la pagina, el usuario actual.
+	 * 
+	 * @return ERROR mensaje de error en caso de que falle la consulta.
 	 * 
 	 * */
 	static public function registrarCliente($mail,$pass,$nombre,$fono,$fp,$dir,$tipo){
@@ -241,7 +259,11 @@ Class Usuarios{
 	 * @param $certificados vector de datos que contiene los datos con los certificados proporcionados por el maestro.
 	 * @param $experiencias de tipo string, texto que relata las experiencias del maestro.
 	 * 
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * 
 	 * @global $_SESSION variable global que almacena una matriz de datos con los parametros del usuario recien creado. 
+	 * 
+	 * @return $e de tipo string, almacena el error arrojado por el metodo try catch, una excepcion PDOexception. 
 	 * 
 	 * @return $id el identificador del ultimo usuario registrado en la pagina, el usuario actual
 	 * 
@@ -327,7 +349,9 @@ Class Usuarios{
 	 * @param $fono de tipo string, numero telefonico del usuario registrado de tipo cliente.
 	 * @param $dir de tipo string, ubicación del usuario registrado.
 	 * 
-	 * @return mensaje "ok" si se ejecuta la consulta correctamente.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * 
+	 * @return OK mensaje si se ejecuta la consulta correctamente.
 	 * 
 	 * */
 	static public function editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir){
@@ -354,9 +378,11 @@ Class Usuarios{
 	 * @param $dir de tipo string, ubicación del usuario registrado.
 	 * @param $exp de tipo string, texto que describe una experiencia por parte del maestro.
 	 * 
-	 * @var $e de tipo string, almacena el error arrojado por el metodo try catch, una excepcion PDOexception.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
 	 * 
-	 * @return mensaje "ok" si se ejecuta la consulta correctamente.
+	 * @return $e de tipo string, almacena el error arrojado por el metodo try catch, una excepcion PDOexception.
+	 * 
+	 * @return OK mensaje si se ejecuta la consulta correctamente.
 	 * 
 	 * */
 	static public function editarPerfilBasicoM($id,$nombre,$mail,$fono,$dir,$exp){
@@ -389,9 +415,11 @@ Class Usuarios{
 	 * @param $id de tipo integer, identificador del usaurio registrado.
 	 * @param $fp de tipo  string, que contiene la ruta de la ubicacion de la imagen de portade de un usuario.
 	 * 
-	 * @var $e de tipo string, almacena el error arrojado por el metodo try catch, una excepcion PDOexception. 
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
 	 * 
-	 * @return mensaje "ok" si se ejecuta la consulta correctamente.
+	 * @return $e de tipo string, almacena el error arrojado por el metodo try catch, una excepcion PDOexception. 
+	 * 
+	 * @return OK mensaje si se ejecuta la consulta correctamente.
 	 * */
 	static public function editarPerfilFP($id,$fp){
 	$con = Conexion::conectar();
@@ -407,11 +435,13 @@ Class Usuarios{
 	 * Esta funcion permite editar los servicios relacionados con un usuario de tipo maestro para esto requiere un identificador de usuario y un vector con los servicios que contenga la modificacion.
 	 * 
 	 * @param $id de tipo integer, identificador del usaurio registrado de tipo maestro
-	 * @param $servicios vector de tipo integer, contiene los identificadores de los servicios al que el maestro afirma estar relacionado 
+	 * @param $servicios vector de tipo integer, contiene los identificadores de los servicios al que el maestro afirma estar relacionado.
 	 * 
-	 * @var $e de tipo string, almacena el error arrojado por el metodo try catch, una excepcion PDOexception. 
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php. 
 	 * 
-	 * @return mensaje "ok" si se ejecuta la consulta correctamente.
+	 * @return $e de tipo string, almacena el error arrojado por el metodo try catch, una excepcion PDOexception. 
+	 * 
+	 * @return OK mensaje si se ejecuta la consulta correctamente.
 	 * */
 	static public function editarPerfilServicios($id,$servicios){
 	$con = Conexion::conectar();
@@ -441,9 +471,11 @@ Class Usuarios{
 	 * @param $id de tipo integer, identificador del usaurio registrado de tipo maestro.
 	 * @param $servicios vector de tipo string, que contiene los nombres de los certificados.
 	 * 
-	 * @var $e de tipo string, almacena el error arrojado por el metodo try catch, una excepcion PDOexception. 
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
 	 * 
-	 * @return mensaje "ok" si se ejecuta la consulta correctamente.
+	 * @return $e de tipo string, almacena el error arrojado por el metodo try catch, una excepcion PDOexception. 
+	 * 
+	 * @return OK mensaje si se ejecuta la consulta correctamente.
 	 * */
 	static public function editarPerfilCertificados($id,$certificados){
 	$con = Conexion::conectar();
