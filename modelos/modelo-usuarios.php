@@ -13,13 +13,6 @@ Class Usuarios{
 
 	}
 
-	static function getDenunciasUsuario($id){
-		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT * FROM denuncias_usuario WHERE id_denunciado = :id");
-		$sql->bindParam(":id",$id,PDO::PARAM_INT);
-	$sql->execute();
-	return $sql->fetchAll(PDO::FETCH_ASSOC);
-	}
 
 
 	static public function getMisPublicacionesDemanda($id){
@@ -76,6 +69,8 @@ Class Usuarios{
 	}
 
 
+
+
 // FIN CONSULTAS GET
 
 
@@ -113,6 +108,24 @@ Class Usuarios{
 
 
 // CONSULTAS INSERT/REGISTRO
+
+	static public function setSuscripcion($id,$idtran,$idcliente){
+		$con = conexion::conectar();
+		$sql = $con->prepare("INSERT INTO suscripcion_usuario(id_usuario,nro_transaccion,nro_cliente) values (:id,:idtran,:idcliente)
+			");
+
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+		$sql->bindParam(":idtran",$idtran,PDO::PARAM_STR);
+		$sql->bindParam(":idcliente",$idcliente,PDO::PARAM_STR);
+		if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
+
+	}
+
+
 	static public function registrarCliente($mail,$pass,$nombre,$fono,$fp,$dir,$tipo){
 
 

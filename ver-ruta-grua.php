@@ -15,7 +15,7 @@
       }</style>
 
 <div class="text-center" style="background-color: #45526e;">
-    <button class="btn btn-success mt-4" id="submit">ver ruta <i class="fas fa-map-marked-alt"></i></button>
+    <button class="btn btn-success btn-lg mt-4" id="submit">ver ruta <i class="fas fa-map-marked-alt"></i></button>
  <div id="map" class="container text-center"></div>
                           
 		

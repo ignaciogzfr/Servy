@@ -21,6 +21,10 @@
 <script type="text/javascript" src="js/usuarios.js"></script>
 <script type="text/javascript" src="js/gruas.js"></script>
 <script type="text/javascript" src="js/google-maps.js"></script>
+<script
+    src="https://www.paypal.com/sdk/js?client-id=AdStEbB-LFz_Lb_UN5pAVpzCyi6JjTIvyvZdZfygJF-oTpK7098BiMG3Jbap59GrTvxg9AnLh1j_Tx5e"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+  </script>
 
+ <script type="text/javascript" src="js/paypal.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>

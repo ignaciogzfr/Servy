@@ -2,6 +2,12 @@
 
 
       <ul class="navbar-nav ml-auto mt-2">
+            
+            <li class="nav-item">
+                
+               <?php  echo'<a class="btn btn-warning btn-sm text-white" href="paypal.php?id='.$_SESSION['id'].'&nombre='.$_SESSION['nombre'].'">Subcribete!</a>';?> 
+            </li>
+
 
         <li class="nav-item">
         <a class="nav-link" href="index.php">Inicio</a>
@@ -15,7 +21,7 @@
         } ?>
         
         </li>
-
+            
         <li class="nav-item">
         <a class="nav-link" href="vista-servicios.php?tipo=oferta" target="_blank">Servicios</a>
         </li>
