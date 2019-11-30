@@ -42,11 +42,6 @@ $('#select-tipo-servicio').select2({
 				var datos = new FormData(this);
 				console.log(datos.get('lat'));
 				console.log(datos.get('titulo-publi'));
-				if($('#tipo-usuario-post')=='Cliente'){
-					datos.set('tipo-publicacion-post','Demanda')
-				}else if($('#tipo-usuario-post')=='Maestro'){
-					
-				}
 			$.ajax({
 
 				method: 'POST',

@@ -27,13 +27,10 @@ $id = $_GET['id'];
 $perfil = Usuarios::getPerfilUsuario($id);
 if(isset($perfil[0])){
 
-    if($perfil[0]['tipo_usuario']=='Cliente' || 'Administrador'){
+    if($perfil[0]['tipo_usuario']!='Maestro'){
       require_once 'componentes/perfil-cliente.php';
     }elseif($perfil[0]['tipo_usuario']=='Maestro'){
       require_once 'componentes/perfil-maestro.php';
-
-    }elseif ($perfil[0]['tipo_usuario']=='Administrador') {
-       require_once 'componentes/perfil-admin.php';
     }
     
 }

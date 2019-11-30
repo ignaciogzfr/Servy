@@ -65,7 +65,7 @@ if($sesion == true){
           <div class="row my-3">
             <div class="col-md-7">
               <div class="text-center">
-              <p class="mt-2">Certificados <?php if($sesion == true){echo '<button class="btn btn-md btn-success btn-agregar-certificados-edit" value="'.$_GET['id'].'" total="'.count($certificados).'"><i class="fas fa-plus"></i></button>';} ?></p>
+              <p class="mt-2">Certificados <?php if($sesion == true){echo '<button class="btn btn-success btn-agregar-certificados-edit" value="'.$_GET['id'].'" total="'.count($certificados).'"  style="border-radius=2px;"><i class="fas fa-plus"></i></button>';} ?></p>
               
               </div>
               <div class="certificados-edit list-unstyled">
@@ -102,7 +102,7 @@ if($sesion == true){
 
 
               <div class="text-center">
-              <p class="mt-3">Servicios que proporciona <?php if($sesion == true){echo '<button class="btn btn-md btn-success btn-agregar-servicios-edit" total="'.count($servicios).'"><i class="fas fa-plus"></i></button>';} ?></p>
+              <p class="mt-3">Servicios que proporciona <?php if($sesion == true){echo '<button class="btn btn-success btn-agregar-servicios-edit" total="'.count($servicios).'" style="border-radius=2px;"><i class="fas fa-plus"></i></button>';} ?></p>
               </div>
                  <div class="serv-maestro-div row" style="display: none;"> 
 
@@ -164,6 +164,9 @@ if($sesion == true){
                
 </div>
             </div>
+<?php if($_SESSION['tipo']=='Administrador'){
+  require_once 'componentes/vista-usuario.php';
+} ?>
            </div>
         </div>
 

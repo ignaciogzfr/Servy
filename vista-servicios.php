@@ -33,49 +33,40 @@
 
 
 				<div class="container">
-					<h1 class="text-center mt-2"> Servicios - todos</h1>
+					<h1 class="text-center mt-2">Servicios - Todos</h1>
 					<hr class="featurette-divider">
 				</div>
 
 
 <div class="container">
+  <form>
+  		<div class="form-row text-center">
 
-		<div class="row text-center">
-
-      <div class="col col-sm" >
-          <select class="custom-select">
-            <option selected>Seleccionar Area de Servicio</option>
-<?php 
-require_once("modelos/modelo-servicios.php");
-  $servi = Servicios::getServicios();
-
-  for($i=0;$i<count($servi); $i++){
-
-      echo('
-           
-           <option>'.$servi[$i]["tipo_servicio"].'</option>
-         
-        
-');
-
-  }
-
-?>  
-</select>
+        <div class="form-group col-md-5" >
+            <select class="custom-select">
+              <option selected>Seleccionar Area de Servicio</option>
+                <?php 
+                require_once("modelos/modelo-servicios.php");
+                  $servi = Servicios::getServicios();
+                  for($i=0;$i<count($servi); $i++){
+                      echo('<option>'.$servi[$i]["tipo_servicio"].'</option>');}
+                ?>  
+            </select>
         </div>
-				
-			<div class="col col-sm">		
-        		 <input type="date" class="form-control" id="" name="" placeholder="Buscar por Fecha">
-     	 </div>
+  				
+  			<div class="form-group col-md-5">		
+          		 <input type="date" class="form-control" id="" name="" placeholder="Buscar por Fecha">
+       	 </div>
+
+        <div class="form-group col-md-2 mb-3">
+            <button class="btn btn-sm btn-primary"><i class="fas fa-search"></i> Filtrar</button>
+        </div>
+
+  		</div>
 
 
-       	<div class="col col-sm">
-         		<div class="form-inline">
- 				 <i class="fas fa-search" aria-hidden="true"></i>
-  					<input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="buscar">
-				</div>
-		</div>
-	</div>	
+  </form>
+</div>	
 
 
 					<div class="container mt-2"><!-- INICIO LISTA DE SERVICIOS-->
@@ -83,28 +74,30 @@ require_once("modelos/modelo-servicios.php");
               
 						 <?php
              require_once("modelos/modelo-publicaciones.php");
+
              if(isset($_GET['tipo'])){
-              if($_GET['tipo']=='oferta'){
+              if($_GET['tipo']=='Oferta' || $_GET['tipo']=='oferta'){
                   $publi = Publicaciones::getPublicacionesOferta();
-              }elseif($_GET['tipo']=='demanda'){
+              }elseif($_GET['tipo']=='Demanda' || $_GET['tipo']=='demanda'){
                   $publi = Publicaciones::getPublicacionesDemanda();
               }
               }else{
-                  $publi = Publicaciones::getPublicaciones();
+                if(isset($_GET['servicio']) && !isset($_GET['fecha_min'])){
+                  $publi = Publicaciones::getPublicacionesServicio();
+                }elseif(isset($_GET['servicio'])&& isset($_GET['fecha_min'])){
+                  $publi = Publicaciones::getPublicacionesServicioFecha();
+                }elseif(!isset($_GET['servicio'])&&isset($_GET['fecha_min'])){
+                  $publi = Publicaciones::getPublicacionesFecha();
+                }
               }
-                  if(count($publi)==0){
-
-                      echo('<div class="alert alert-primary" role="alert">
-                                          No hay publicaciones 
-                                  </div>');
-
-                  }else{
-
-                      for ($i=0; $i<count($publi); $i++){
-
-                        echo (' 
-              
-              <a href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+            if(count($publi)==0){
+            echo('<div class="alert alert-primary" role="alert">No hay publicaciones</div>');
+            }
+            else{
+              for ($i=0; $i<count($publi); $i++){
+                if($_GET['tipo']=='oferta'){
+echo '
+                <button data-toggle="modal" data-target="#resumen-maestro-modal" class="card list-group-item list-group-item-action flex-column align-items-start mt-3">
 
                 <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
@@ -114,9 +107,21 @@ require_once("modelos/modelo-servicios.php");
 
                 <p class="mb-2">DESCRIPCION: '.$publi[$i]["detalle_publicacion"].'</p>
                 <small>Pedido por : '.$publi[$i]["nombre_usuario"].'</small>
-              </a>');
+              </button>';
+                }else{
+                  echo '
+              <a href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" class="card list-group-item list-group-item-action flex-column align-items-start mt-3">
 
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
+                  <small>'.$publi[$i]["tipo_servicio"].'</small>
+                  <small> '.$publi[$i]["fecha_hora_publicacion"].'</small>
+                </div>
 
+                <p class="mb-2">DESCRIPCION: '.$publi[$i]["detalle_publicacion"].'</p>
+                <small>Pedido por : '.$publi[$i]["nombre_usuario"].'</small>
+              </a>';
+                }
                       }
                   }
 
@@ -126,9 +131,6 @@ require_once("modelos/modelo-servicios.php");
 
 				</div>
 			</div><!-- FINLISTA DE SERVICIOS-->
-
-
-				<div class="text-center mb-3"><button class="btn btn-primary"> ver mas</button></div>
 </div>
 
 
@@ -146,6 +148,7 @@ require_once("modelos/modelo-servicios.php");
 
 <!-- Footer -->
 <?php require_once 'componentes/footer.php' ?>
+<?php require_once 'componentes/modal-resumen-maestro.php'; ?>
 <!-- Footer -->
 
 	

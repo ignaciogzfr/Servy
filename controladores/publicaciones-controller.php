@@ -16,8 +16,8 @@ require_once("../modelos/modelo-publicaciones.php");
 
 
 			public function publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle,$lat,$lng){
-		$respuesta = Publicaciones::publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle,$lat,$lng);
-		echo($respuesta);
+			$respuesta = Publicaciones::publicarServicio($idus,$tipopu,$titulo,$direccion,$tiposerv,$detalle,$lat,$lng);
+			echo($respuesta);
 			}
 			public function denunciarP($publicacion,$tipo,$detalle,$denunciante){
 			$respuesta = Publicaciones::denunciarP($publicacion,$tipo,$detalle,$denunciante);
