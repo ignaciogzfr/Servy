@@ -26,7 +26,7 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
       
-<?php require_once 'componentes/navbar.php'; ?>
+
 
 <?php @session_start(); ?>
 

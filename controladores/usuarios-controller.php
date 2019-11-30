@@ -109,6 +109,11 @@ Class GestorUsuarios{
 		$respuesta = Usuarios::quitarSancionUsuario($id);
 		echo ($respuesta);
 	}
+
+	public function iniciartransaccion($id,$idtran,$idcliente){
+		$respuesta = Usuarios::setSuscripcion($id,$idtran,$idcliente);
+		echo($respuesta);
+	}
 }
 
 $op = $_POST["op"];
@@ -176,7 +181,10 @@ switch ($op) {
 		$response->editarPerfilCertificados($_POST['id'],$certificados);	
 		break;
 
-		case '':
+		case 'iniciartransaccion':
+
+			$response = new GestorUsuarios();
+			$response->iniciartransaccion($_POST['id'],$_POST['idtran'],$_POST['idcliente']);
 					
 		break; 	
 

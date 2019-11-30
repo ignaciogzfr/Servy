@@ -7,6 +7,41 @@ $('#select-tipo-vehiculo').select2({
 })
 
 
+function sancionarGrua(e){
+		var id = $(this).val();
+		console.log(id);
+
+
+$.ajax({
+	method: 'POST',
+	url: 'controladores/gruas-controller.php',
+	data: 'op=sancionarGrua&id='+id
+
+
+
+
+})
+}
+// FIN FUNCION
+
+
+
+function quitarSancionGrua(e){
+
+var id = $(this).val();
+console.log(id);
+
+$.ajax({
+
+	method: 'POST',
+	url:'controladores/gruas-controller.php',
+	data: 'op=quitarSancionGrua&id='+id
+
+
+})
+}
+
+
 function pedirGrua(event){
 				event.preventDefault();
 				var datos = new FormData(this);

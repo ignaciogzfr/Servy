@@ -15,14 +15,14 @@ Class Publicaciones{
 	static public function getPublicacionesDemanda(){
 	// 
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT p.*, u.nombre_usuario, t.tipo_servicio FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario AND p.id_tipo_servicio = t.id_tipo_servicio AND p.tipo_publicacion = 'Demanda' ORDER BY fecha_hora_publicacion DESC");
+		$sql = $con->prepare("SELECT p.*, u.nombre_usuario, t.tipo_servicio FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario AND p.id_tipo_servicio = t.id_tipo_servicio AND p.tipo_publicacion = 'demanda' and p.estado_publicacion = 'Aprobada' ORDER BY fecha_hora_publicacion DESC");
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
 	static public function getPublicacionesOferta(){
 	// 
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT p.*, u.nombre_usuario, t.tipo_servicio FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario AND p.id_tipo_servicio = t.id_tipo_servicio AND p.tipo_publicacion = 'Oferta' ORDER BY fecha_hora_publicacion DESC");
+		$sql = $con->prepare("SELECT p.*, u.nombre_usuario, t.tipo_servicio FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario AND p.id_tipo_servicio = t.id_tipo_servicio AND p.tipo_publicacion = 'oferta' and p.estado_publicacion = 'Aprobada'  ORDER BY fecha_hora_publicacion DESC");
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
@@ -68,7 +68,7 @@ Class Publicaciones{
 	static public function quitarSancionPublicacion($id){
 			//actualiza el estado de la publicacion
 		$con = Conexion::conectar();
-		$sql = $con->prepare("UPDATE publicacion SET estado_publicacion = 'Verificada' WHERE id_publicacion = :id");
+		$sql = $con->prepare("UPDATE publicacion SET estado_publicacion = 'Aprobada' WHERE id_publicacion = :id");
 		$sql->bindParam(":id",$id,PDO::PARAM_INT);
 		if($sql->execute()){
 			return "ok";
