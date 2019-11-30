@@ -135,6 +135,8 @@ Class Usuarios{
 	}
 
 
+
+
 // FIN CONSULTAS GET
 
 
@@ -185,6 +187,24 @@ Class Usuarios{
 
 
 // CONSULTAS INSERT/REGISTRO
+
+	static public function setSuscripcion($id,$idtran,$idcliente){
+		$con = conexion::conectar();
+		$sql = $con->prepare("INSERT INTO suscripcion_usuario(id_usuario,nro_transaccion,nro_cliente) values (:id,:idtran,:idcliente)
+			");
+
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+		$sql->bindParam(":idtran",$idtran,PDO::PARAM_STR);
+		$sql->bindParam(":idcliente",$idcliente,PDO::PARAM_STR);
+		if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
+
+	}
+
+
 	/**
 	 * Funcion de registro para tipo cliente que al ser llamada se crea una consulta, se le asigan los parametros correspondientes para su ejecución y si tubo exito al ejecutar la consulta crea una variable de tipo global que almacenara los datos del usaurio recien registrado.
 	 * @param $mail de tipo string, correo de un usuario no registrado.

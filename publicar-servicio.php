@@ -20,11 +20,10 @@
 
 <body>
 
-<?php require_once 'componentes/sidenav.php'; ?>
     <!-- Page Content -->
     <div id="page-content-wrapper">
       
-
+<h3 class="text-muted text-center my-5">Crear una Publicacion</h3>
 
 <?php @session_start(); ?>
 
@@ -34,10 +33,26 @@
      
   <form id="form-publicar-servicios" method="POST" autocomplete="off">
   <div class="form-row">
+    <?php if($_SESSION['tipo']=='Maestro'){
+      echo '
     <div class="form-group col-md-6">
       <label for="titulopubli">Titulo</label>
       <input type="text" class="form-control" name="titulo-publi" placeholder="Titulo">
-  </div>
+    </div>    
+    <div class="form-group col-md-6">
+      <label for="titulopubli">Tipo de Publicacion</label>
+      <select name="tipo-publicacion" class="form-control">
+      <option value="Oferta">Busco...</option>
+      <option value="Demanda">Necesito...</option></select>
+    </div>';
+    }else{
+      echo '    
+      <div class="form-group col-md-12">
+      <label for="titulopubli">Titulo</label>
+      <input type="text" class="form-control" name="titulo-publi" placeholder="Titulo">
+      <input type="hidden" value="Demanda" name="tipo-publicacion">
+    </div>';
+    } ?>
 
   </div>
 
@@ -96,9 +111,9 @@ require_once("modelos/modelo-servicios.php");
 ?>
     <?php echo '<input type="hidden" value="'.$_SESSION['tipo'].'" id="tipo-usuario-post">' ?>
     <input type="hidden" name="op" value="publicarServicio">
-    <input type="hidden" name="tipo-publicacion" id="tipo-publicacion-post" value="">
     <input type="hidden" name="lat" value="" id="lat-publicacion">
     <input type="hidden" name="lng" value="" id="lng-publicacion">
+    <a href="perfil.php?id=<?php echo($_SESSION['id']); ?>" class="btn btn-md btn-secondary"><i class="fas fa-undo-alt"></i> Volver</a>
     <button type="submit" class="btn btn-success float-right mb-5 btn-publicar-servicio" id="btn-publicar-servicio">Publicar problema</button>
 
 
@@ -116,8 +131,6 @@ require_once("modelos/modelo-servicios.php");
 
   </div>
   <!-- /#wrapper -->
-
-<?php require_once 'componentes/footer.php';?>
 
 
 <script async defer
