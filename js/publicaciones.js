@@ -60,6 +60,7 @@ $('#select-tipo-servicio').select2({
 				cache: false,
     			contentType: false,
     			processData: false,
+    			
 				success:function(response){
 					console.log(response);
 	        		if(response!=''){
@@ -73,6 +74,7 @@ $('#select-tipo-servicio').select2({
 					})
 	        		}
 	        	}
+
 			})
 	}
 

@@ -74,16 +74,38 @@ if(count($user)){
       }
         echo(' 
     <td>     
-      <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>
+      <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>');
 
-      <div class="dropdown-menu">
-      <button class="dropdown-item btn-sancionar-usuario" type="button" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-ban"></i> Sancionar</button>
-      <button class="dropdown-item btn-quitar-sancion-usuario" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-lock-open"></i> Quitar sancion</button>
-      </div>
 
-    </td>
+        if($user[$i]['estado_usuario'] ==  "Activo" ){
+           echo('
+           <div class="dropdown-menu">
+
+             <button class="dropdown-item btn-sancionar-usuario" type="button" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-ban"></i> Sancionar</button>
+
+           </div>
+
+       </td>
                    
-    </tr>');
+      </tr>');
+
+        }elseif($user[$i]['estado_usuario'] == "Sancionado" ){
+          echo('
+           <div class="dropdown-menu">
+
+             
+             <button class="dropdown-item btn-quitar-sancion-usuario" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-lock-open"></i> Quitar sancion</button>
+           </div>
+
+       </td>
+                   
+      </tr>');
+
+
+        }
+   
+
+
   }
 }
  ?>

@@ -106,7 +106,7 @@ require_once("modelos/modelo-servicios.php");
 
                         echo (' 
               
-              <a href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+                <a href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
 
                 <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>

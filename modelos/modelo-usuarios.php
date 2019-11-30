@@ -24,7 +24,7 @@ Class Usuarios{
 	 * */
 	static public function getUsuarios(){
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT * FROM usuario");
+		$sql = $con->prepare('SELECT * FROM usuario WHERE tipo_usuario = "Maestro" or tipo_usuario = "Cliente" ');
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC); 
 	}

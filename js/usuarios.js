@@ -69,7 +69,16 @@ function registrarUsuario(event){
 			//1) se crea el usuario y obtiene su id de usuario lo que carga su pagina de perfil
 			//2) no se registra o obtubo un error lo que muestra un error a traves del metodo get
 			if($.isNumeric(response)){
-				location.href="perfil.php?id="+response
+
+				swal({
+						title : '¡te has registrado exitosamente!',
+						text : 'bienvenido a nuestra familia de trabajadores.',
+						icon : 'success'
+					})
+					.then(function(){
+						location.href="perfil.php?id="+response;
+					})
+				
 			}else{
 				location.href= 'registro.php?error=1';
 			}
@@ -118,7 +127,14 @@ function registrarUsuario(event){
 			//1) se crea el usuario y obtiene su id de usuario lo que carga su pagina de perfil
 			//2) no se registra o obtubo un error lo que muestra un error a traves del metodo get
 			if($.isNumeric(response)){
-				location.href= 'perfil.php?id='+response;
+					swal({
+						title : '¡te has registrado exitosamente!',
+						text : 'bienvenido a nuestra familia de trabajadores.',
+						icon : 'success'
+					})
+					.then(function(){
+						location.href="perfil.php?id="+response;
+					})
 			}else{
 				location.href= 'registro.php?error=1';
 			}
@@ -158,7 +174,8 @@ function previewFP(input){
 
 
 
-function sancionarUsuario(e){
+function sancionarUsuario(event){
+		event.preventDefault();
 		var id = $(this).val();
 		console.log(id);
 	//Llamada a el controlador para que este obtenga los datos del formulario y esta realize
@@ -166,7 +183,39 @@ function sancionarUsuario(e){
 $.ajax({
 	method: 'POST',
 	url: 'controladores/usuarios-controller.php',
-	data: 'op=sancionarUsuario&id='+id
+	data: 'op=sancionarUsuario&id='+id,
+	cache: false,
+    contentType: false,
+    processData: false,
+	
+	success:function(response){
+		console.log(response);
+		if(response == 'ok'){
+
+			swal({
+						title : '¡Sancion existosa!',
+						text : 'El usuario fue sancionado con exito.',
+						icon : 'success'
+					})
+					.then(function(){
+						location.href = 'moderacion-usuarios.php'
+					})
+		}else{
+
+			swal({
+						title : '¡Esto no deberia pasar!',
+						text : 'error interno, contacta con el programador.',
+						icon : 'error'
+					})
+					.then(function(){
+						location.href = 'moderacion-usuarios.php'
+					})
+		}
+
+
+	}
+
+
 })
 }
 
