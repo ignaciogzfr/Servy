@@ -20,22 +20,16 @@
 
 </head>
 
-<body>
+<body style="background-color:#45526e">
 <?php   require_once 'componentes/modal-denuncias-publicacion.php'; ?>
 <?php require_once 'componentes/ver-ruta-modal.php';?>  
     <!-- Page Content -->
-    <div id="page-content-wrapper">
+    <div id="page-content-wrapper" class="bg-white container mt-5">
 
-				<div class="container">
-					<h1 class="text-center mt-2">Ver publicacion</h1>
-
-       
-        
-
-          
-					<hr class="featurette-divider">
+				<div class="text-center">
+					<h1>Ver publicacion</h1>
 				</div>
-
+<hr class="featurette-divider">
 
 
         <?php 
@@ -83,12 +77,11 @@ echo
 
 }
   echo "</div>";         
-
          ?>
 
 
 
-<?php if(isset($_SESSION['tipo']) && $_SESSION['tipo']!='Nada'){
+<?php if(isset($_SESSION['tipo'])){
 
   echo '<div class="text-right"><button class="btn btn-md btn-danger" data-toggle="modal" data-target="#modal-denuncias-p"><i class="fas fa-ban" ></i> Denunciar Publicacion</button></div>';
 } ?>

@@ -69,7 +69,7 @@
 </div>	
 
 
-					<div class="container mt-2"><!-- INICIO LISTA DE SERVICIOS-->
+					<div class="container mt-2 lista-publicaciones"><!-- INICIO LISTA DE SERVICIOS-->
 						<div class="list-group">
               
 						 <?php
@@ -91,18 +91,20 @@
                 }
               }
             if(count($publi)==0){
+
             echo('<div class="alert alert-primary" role="alert">No hay publicaciones</div>');
             }
             else{
               for ($i=0; $i<count($publi); $i++){
-                if($_GET['tipo']=='oferta'){
+                if($_GET['tipo']=='oferta' || $_GET['tipo']=='Oferta'){
 echo '
-                <button data-toggle="modal" data-target="#resumen-maestro-modal" class="card list-group-item list-group-item-action flex-column align-items-start mt-3">
+                <button type="button" data-toggle="modal" data-target="#resumen-maestro-modal" publicacion="'.$publi[$i]['id_publicacion'].'" maestro="'.$publi[$i]['id_usuario'].'" class="card list-group-item list-group-item-action flex-column align-items-start mt-3 card-resumen-maestro">
 
                 <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
                   <small>'.$publi[$i]["tipo_servicio"].'</small>
                   <small> '.$publi[$i]["fecha_hora_publicacion"].'</small>
+                  <input type="hidden" value="" id="id-resumen-maestro">
                 </div>
 
                 <p class="mb-2">DESCRIPCION: '.$publi[$i]["detalle_publicacion"].'</p>
@@ -116,6 +118,7 @@ echo '
                   <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
                   <small>'.$publi[$i]["tipo_servicio"].'</small>
                   <small> '.$publi[$i]["fecha_hora_publicacion"].'</small>
+
                 </div>
 
                 <p class="mb-2">DESCRIPCION: '.$publi[$i]["detalle_publicacion"].'</p>
@@ -123,6 +126,7 @@ echo '
               </a>';
                 }
                       }
+
                   }
 
 

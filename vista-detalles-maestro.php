@@ -2,26 +2,17 @@
 <html lang="en">
 <head>
 
-		 <link rel="stylesheet" href="styles/styles.css">
-<!-- Gooogle Fonts API-->
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet"> 
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.3/css/mdb.min.css" rel="stylesheet">
-
-
-<!-- Toastr Alerts CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<?php require_once 'componentes/links.php'; ?>
 
 	<meta charset="UTF-8">
 	<title></title>
 </head>
 <body style="background-color: #45526e;">
 
-<div class="container bg-white" style="padding-bottom: 200px; width: 70%;">
+<div class="container bg-white my-4" style="min-height: 700px">
+	<?php require_once 'modelos/modelo-usuarios.php';
+		  $user = Usuarios::getPerfilUsuario($_GET['id']);
+	 ?>
 	<div class="container text-center w-70" style="padding-top:70px;">
 		<h3> Usuario</h3>
 		<hr class="featurette-divider">
@@ -37,10 +28,10 @@
 
 		</div>
 
-		<div class="col"> Email: usuario@usuario.com</div>
+		<div class="col"> Email: <?php echo $user[0]['email_usuario']; ?></div>
 
 
-		<div class="col"><h6>Telefono: +56912345678 </h6></div>
+		<div class="col"><h6>Telefono: +56 9 <?php echo $user[0]['fono_usuario']; ?> </h6></div>
 
 		</div>
 		
@@ -51,7 +42,7 @@
 
 			<div class="row mt-4">
 				
-				<div class="col"><h6> Certificados</h6></div>
+				<div class="col"><h6>Certificados</h6></div>
 				<div class="col"><h6>Experiencias</h6></div>
 			</div>
 				
@@ -60,16 +51,15 @@
 				 <div class="col mt-4">
 				 		
 				 	<ul class="list-group list-group-flush">
-						  <li class="list-group-item bg-transparent">Cras justo odio</li>
-						  <li class="list-group-item bg-transparent">Dapibus ac facilisis in</li>
-						  <li class="list-group-item bg-transparent">Morbi leo risus</li>
-						  <li class="list-group-item bg-transparent">Porta ac consectetur ac</li>
-						  <li class="list-group-item bg-transparent">Vestibulum at eros</li>
-					</ul>
+				 		  <?php $certificados = Usuarios::getCertificadosMaestro($_GET['id']);
+				 		  $experiencia = Usuarios::getExperienciaMaestro($_GET['id']);
+				 		  for ($i=0; $i <count($certificados) ; $i++){
+				 		  	echo '<li class="list-group list-group-item bg-transparent">'.$certificados[$i]['nombre_certificado'].'</li>';
+						  } ?>
 				 </div>
 
 				 <div class="col mt-4 border-left">
-				 	<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam nulla, impedit velit. Impedit tenetur beatae rem minima commodi maiores, accusantium totam! Facere, quia, voluptatum sapiente mollitia cumque quam. Assumenda, pariatur?</p>
+				 	<p><?php echo $experiencia[0]['detalle_experiencia']; ?></p>
 				 </div>
 			</div>
 				

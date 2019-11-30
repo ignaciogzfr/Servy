@@ -45,10 +45,23 @@
 		
 		require_once 'modelos/modelo-usuarios.php';
 		require_once 'modelos/modelo-publicaciones.php';
-		if(isset($_GET['tipo']) && $_GET['tipo']=='Oferta'){
-		$publi = Usuarios::getMisPublicacionesOferta($_SESSION['id']);	
+		if(isset($_GET['tipo'])){
+			switch ($_GET['tipo']) {
+				case 'Oferta':
+				$publi = Usuarios::getMisPublicacionesOferta($_SESSION['id']);	
+					break;
+				case 'oferta':
+				$publi = Usuarios::getMisPublicacionesOferta($_SESSION['id']);	
+					break;
+				case 'Demanda':
+				$publi = Usuarios::getMisPublicacionesDemanda($_SESSION['id']);					
+				break;
+				case 'demanda':
+				$publi = Usuarios::getMisPublicacionesDemanda($_SESSION['id']);
+				break;
+			}
 		}else{
-		$publi = Usuarios::getMisPublicacionesDemanda($_SESSION['id']);
+			$publi = Usuarios::getMisPublicaciones($_SESSION['id']);
 		}
 		if(count($publi)>0){
 
@@ -57,7 +70,7 @@
 			$denuncias = Publicaciones::getDenunciasPublicacion($publi[$i]['id_publicacion']);
 			if($publi[$i]['tipo_publicacion']=='Demanda'){
 			if(count($denuncias)>0){
-			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank">
+			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3 card" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank">
 
 							    <div class="d-flex w-100 justify-content-between">
 							      <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
@@ -70,7 +83,7 @@
 
 							  </a>');		
 			}else{
-			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank">
+			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3 card" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank">
 
 							    <div class="d-flex w-100 justify-content-between">
 							      <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
@@ -90,7 +103,7 @@
 
 		}else{
 			if(count($denuncias)>0){
-			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank">
+			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3 card" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank">
 
 							    <div class="d-flex w-100 justify-content-between">
 							      <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
@@ -102,7 +115,7 @@
 
 							  </a>');		
 			}else{
-			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank">
+			echo (' <a class="list-group-item list-group-item-action flex-column align-items-start mt-3 card" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank">
 
 							    <div class="d-flex w-100 justify-content-between">
 							      <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>

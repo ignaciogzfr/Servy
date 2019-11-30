@@ -3,6 +3,11 @@
 require_once '../modelos/modelo-usuarios.php';
 
 Class GestorUsuarios{
+
+	public function getResumenMaestro($id){
+		$respuesta = Usuarios::getPerfilUsuario($id);
+		echo json_encode($respuesta);
+	}
 	public function editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir){
 		$respuesta = Usuarios::editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir);
 		echo $respuesta;
@@ -119,6 +124,10 @@ Class GestorUsuarios{
 $op = $_POST["op"];
 switch ($op) {
 
+		case 'getResumenMaestro':
+		$response = new GestorUsuarios();
+		$response->getResumenMaestro($_POST['id']);
+		break;
 		case 'login':
 		$response = new GestorUsuarios();
 		$response->loginUsuario($_POST["mail-login"],$_POST["pass-login"]);

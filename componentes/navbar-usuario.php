@@ -2,12 +2,12 @@
 
 
       <ul class="navbar-nav ml-auto mt-2">
-            
+            <?php if($_SESSION['tipo']!='Administrador')
+            echo ' 
             <li class="nav-item">
-                
-               <?php  echo'<a class="btn btn-warning btn-sm text-white" href="paypal.php?id='.$_SESSION['id'].'&nombre='.$_SESSION['nombre'].'">Subcribete!</a>';?> 
-            </li>
-
+            <a class="btn btn-warning btn-sm text-white" href="paypal.php?id='.$_SESSION['id'].'&nombre='.$_SESSION['nombre'].'">Subcribete!</a>
+            </li>'; ?>
+            
 
         <li class="nav-item">
         <a class="nav-link" href="index.php">Inicio</a>

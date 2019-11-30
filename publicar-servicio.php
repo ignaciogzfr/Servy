@@ -44,7 +44,7 @@
     <div class="form-group col-md-6">
       <label for="titulopubli">Tipo de Publicacion</label>
       <select name="tipo-publicacion" class="form-control">
-      <option value="Oferta">Busco...</option>
+      <option value="Oferta">Ofrezco...</option>
       <option value="Demanda">Necesito...</option></select>
     </div>';
     }else{
