@@ -49,12 +49,12 @@
 
 					<div class="col-md-7">
 						<label for="mail-registro-cliente">Correo Electrónico *</label>
-						<input type="mail-registro-cliente" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="">
+						<input id="mail-registro-cliente" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{5,}$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="" maxlength="60" minlength="5">
 					</div>
 
-					<div class="col-md-4">
+					<div class="col-md-5">
 						<label for="pass-registro-cliente">Contraseña *</label>
-						<input id="pass-registro-cliente" class="form-control" type="password" pattern="^(?!.* ).{6,20}$"  name="pass-registro" required="" maxlength="20" >
+						<input id="pass-registro-cliente" class="form-control" type="password" placeholder="************" pattern="^(?!.* ).{6,20}$"  name="pass-registro" required="" maxlength="20" minlength="6" >
 					</div>
 
 
@@ -64,7 +64,7 @@
 
 					<div class="col-md-6">
 						<label for="nombre-registro-cliente">Tu Nombre *</label>
-						<input id="nombre-registro-cliente" type="text" class="form-control"  placeholder="Nombre" name="nombre-registro" required="">
+						<input id="nombre-registro-cliente" type="text" class="form-control"  placeholder="Nombre" name="nombre-registro" required="" minlength="5" maxlength="40">
 					</div>
 
 					<div class="col-md-6">
@@ -75,7 +75,7 @@
 				</div>
 				<div class="form-group">
 					<label for="dir-registro-cliente">Dirección *</label>
-					<input id="dir-registro-cliente" type="text" class="form-control" name="dir-registro" required="">
+					<input id="dir-registro-cliente" type="text" class="form-control" placeholder="Calle siempre viva #752" name="dir-registro" required=""  maxlength="80" minlength="5">
 				</div>
 				<div class="containe mt-3">
 					<h6 class="text-center">Foto de Perfil</h6>
@@ -123,25 +123,26 @@
 					
 					<div class="form-group">
 						<label for="mail-registro-maestro">Correo Electrónico *</label>
-						<input id="mail-registro-maestro" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required>						
+						<input id="mail-registro-maestro" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="" maxlength="40" minlength="5">						
 					</div>
 
 
 					  <div class="form-row">
 
-						 <div class="form-group">
+						 <div class="form-group col-md-3">
 					   		<label for="pass-maestro">Contraseña *</label>
-					    	<input type="password" id="pass-maestro" pattern="[0-9a-zA-Z_.-]*.{6,}" class="form-control" name="pass-registro" required>
+					    	<input type="password" id="pass-maestro" pattern="[0-9a-zA-Z_.-]*.{6,}" class="form-control" name="pass-registro" required="" maxlength="30" minlength="6" placeholder="************">
 					 	</div>
-					    <div class="form-group col-md-6">
+					    <div class="form-group col-md-9">
 					      <label for="nombre-maestro">Tu Nombre *</label>
-					      <input id="nombre-maestro" type="text" class="form-control"  placeholder="Nombre" name="nombre-registro" required>
+					      <input id="nombre-maestro" type="text" class="form-control"  placeholder="Nombre"
+					      name="nombre-registro" required=""  minlength="5" maxlength="50" >
 					    </div>
 					  </div>
 
 					  <div class="form-group">
 					    <label for="dir-maestro">Direccion *</label>
-					    <input id="dir-maestro" type="text" id="dir-maestro" class="form-control"  name="dir-registro" required>
+					    <input id="dir-maestro" type="text" id="dir-maestro" placeholder="Calle siempre viva #752" class="form-control" maxlength="80" minlength="5" name="dir-registro" required="">
 					  </div>
 
 					<div class="row">
@@ -195,7 +196,7 @@
 			 	<div class="form-group">
 					    <label for="cert-maestro">Certificados</label>
 					    <div class="container row">
-					    <input id="cert-maestro" type="text" class="form-control col-md-11 mt-2"  placeholder="Titulado en..." name="certificados-registro">
+					    <input id="cert-maestro" type="text" class="form-control col-md-11 mt-2"  placeholder="Ingrese nombre del titulo....." name="certificados-registro" minlength="7" maxlength="40">
 						<button type="button" class="btn btn-success btn-agregar-certificado"><i class="fas fa-plus-circle" style="font-size: 20px"></i></button>
 						<div class="container">
 							<ul id="lista-certificados-maestro">
@@ -207,7 +208,7 @@
 
 				<div class="form-group mt-5">
   							<label for="exp-maestro">Experiencias</label>
- 							 <textarea class="form-control" id="exampleFormControlTextarea3" rows="4" name="exp-registro" placeholder="Describa las labores que ha completado, años de experiencia, datos extra, etc..."></textarea>
+ 							 <textarea class="form-control" id="exampleFormControlTextarea3" rows="4"  maxlength="200" cols="10" name="exp-registro" placeholder="Describa las labores que ha completado, años de experiencia, datos extra, etc..."></textarea>
 				</div>
 
 

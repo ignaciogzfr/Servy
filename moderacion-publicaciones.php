@@ -5,13 +5,9 @@
 
 
 <?php require_once("componentes/links.php");
-
+      require_once("componentes/verificar-admin.php");
 
   ?>
-
-
-
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -87,21 +83,43 @@ if(count($publi)){
 
              echo('
                 <td>     
+
                          <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>
+'); 
+
+if($publi[$i]['estado_publicacion'] == "Aprobada"){
+
+echo('
                         <div class="dropdown-menu">
                         <button class="dropdown-item btn-sancionar-publicacion" type="button" value="'.$publi[$i]["id_publicacion"].'"><i class="fas fa-ban"></i> Sancionar</button>
-                        
-                        <button class="dropdown-item btn-quitar-sancion-publicacion" value="'.$publi[$i]["id_publicacion"].'"><i class="fas fa-lock-open"></i> Quitar sancion/Aprobar</button>
-
-
                         </div>
                </td>
-               
-            </tr>');   
-    
+            </tr>  
+    ');
+
+}elseif($publi[$i]['estado_publicacion'] == "Pendiente"){
+
+echo('
+                        <div class="dropdown-menu">
+                        <button class="dropdown-item btn-quitar-sancion-publicacion" value="'.$publi[$i]["id_publicacion"].'"><i class="fas fa-check"></i> Aprobar publicacion</button>
+                        </div>
+               </td>
+            </tr>  
+    ');
+
+
+}elseif($publi[$i]['estado_publicacion'] == "Sancionada"){
+
+echo('
+                        <div class="dropdown-menu">
+                        <button class="dropdown-item btn-quitar-sancion-publicacion" value="'.$publi[$i]["id_publicacion"].'"><i class="fas fa-lock-open"></i> Quitar sancion/Aprobar</button>
+                        </div>
+               </td>
+            </tr>  
+    ');
+
+   }
   }
-
-
 }
 
 

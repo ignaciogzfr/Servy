@@ -5,7 +5,13 @@
             
             <li class="nav-item">
                 
-               <?php  echo'<a class="btn btn-warning btn-sm text-white" href="paypal.php?id='.$_SESSION['id'].'&nombre='.$_SESSION['nombre'].'">Subcribete!</a>';?> 
+               <?php 
+
+              if($_SESSION['tipo'] == "Cliente" || $_SESSION['tipo'] == "Maestro"){
+                echo('<a class="btn btn-warning btn-sm text-white" href="paypal.php?id='.$_SESSION['id'].'&nombre='.$_SESSION['nombre'].'">Subcribete!</a>');
+                }
+                ?>
+            
             </li>
 
 
