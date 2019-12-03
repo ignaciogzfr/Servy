@@ -15,6 +15,7 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
 
 <?php require_once("componentes/links.php");
       require_once("componentes/scripts.php");
+      require_once('componentes/verificar-no-admin.php');
   ?>
 
 
@@ -32,9 +33,12 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-      
-<h3 class="text-muted text-center my-5">Crear una Publicacion</h3>
-
+<div class="text-center my-5">
+<h3 class="text-muted ">Crear una Publicacion</h3>
+<code class="text-center">Cada campo aca es obligatorio, ya que son necesarios para que otros sepan lo que estan viendo.</code>
+<br>
+<code>Puede escribir manualmente la direccion en la cual se refiere esta publicacion.</code>
+</div>
 
 
 
@@ -46,8 +50,8 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
     <?php if($_SESSION['tipo']=='Maestro'){
       echo '
     <div class="form-group col-md-6">
-      <label for="titulopubli">Titulo *</label>
-      <input type="text" class="form-control" maxlength="50" name="titulo-publi" placeholder="Titulo" required>
+      <label for="titulopubli">Titulo</label>
+      <input type="text" class="form-control" maxlength="50" name="titulo-publi" placeholder="Titulo" required pattern="^\b(?!.*?\s{2})[A-Za-z]{1,60}\b$">
     </div>    
     <div class="form-group col-md-6">
       <label for="titulopubli">Tipo de Publicacion</label>
@@ -58,8 +62,8 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
     }else{
       echo '    
       <div class="form-group col-md-12">
-      <label for="titulopubli">Titulo *</label>
-      <input type="text" class="form-control" maxlength="50" name="titulo-publi" placeholder="Titulo" required>
+      <label for="titulopubli">Titulo</label>
+      <input type="text" class="form-control" minlength="5" maxlength="50" name="titulo-publi" placeholder="Titulo" required pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,60}\b$">
       <input type="hidden" value="Demanda" name="tipo-publicacion">
     </div>';
     } ?>
@@ -67,18 +71,18 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
   </div>
 
   <div class="form-group">
-    <label for="dir">Direccion *</label>
+    <label for="dir">Direccion</label>
 
     <div id="floating-panel">
       <input id="latlng" type="text" hidden="" value="">
-      <input id="submit" type="button" class="btn btn-secondary btn-sm" maxlength="500" value="obtener mi ubicación">
+      <input id="submit" type="button" class="btn btn-secondary btn-sm" maxlength="500" value="obtener mi ubicación" required="">
     </div>
     
     <div type="hidden" id="map"></div>
           
 
 
-       <input type="text" class="form-control" name="direccion-publi" placeholder="Obtenga su ubicacion presionando el boton de arriba" id="direccion-post" required="">
+       <input type="text" minlength="20" class="form-control" maxlength="70" name="direccion-publi" placeholder="Obtenga su ubicacion presionando el boton de arriba" id="direccion-post" required="">
   </div>
     
 
@@ -87,7 +91,7 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
    
     <div class="form-group col-md-12">
       <label for="inputState">Tipo de servicio</label>
-          <select class="custom-select" required="" id="select-tipo-servicio" name="tipo-serv" style="width: 100%">
+          <select class="custom-select" required="" id="select-tipo-servicio" name="tipo-serv" style="width: 100%" required="">
             <option selected disabled="">Seleccionar servicio</option>
 <?php 
 require_once("modelos/modelo-servicios.php");
@@ -112,7 +116,7 @@ require_once("modelos/modelo-servicios.php");
 
        <div class="form-group">
   <label for="">Detalle</label>
-  <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" name="detalle-publi" rows="7" required=""></textarea>
+  <textarea class="form-control" placeholder="Describa brevemente su problema..." minlength="20" maxlength="1000" name="detalle-publi" rows="7" required=""></textarea>
 </div>
    
     

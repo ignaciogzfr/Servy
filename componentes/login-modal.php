@@ -17,13 +17,13 @@
 
                             <div class="form-group">
                             <label for="mail-login-modal"><h5>Correo electrónico</h4></label>
-                            <input type="text" id="mail-login-modal" class="form-control" placeholder="Correo" name="mail">
+                            <input type="text" id="mail-login-modal" class="form-control" placeholder="Correo" name="mail" pattern="[a-z0-9._%+-]+@([a-z0-9.-].{1,20})+(\.[a-z].{1,7})">
                             </div>
 
 
                             <div class="form-group">
                             <label for="pass-login-modal"><h5>Contraseña</h4></label>
-                            <input id="pass-login-modal" class="form-control mt-3" placeholder="contraseña" type="password" name="pass">
+                            <input id="pass-login-modal" class="form-control mt-3" placeholder="contraseña" type="password" name="pass" pattern="^[a-zA-Z0-9\d]{6,20}$">
                             </div>
                             <button class="btn btn-success btn-md" type="submit">Iniciar</button>
                 </form>

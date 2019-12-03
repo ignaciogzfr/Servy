@@ -170,7 +170,7 @@ Class Publicaciones{
 				fecha_hora_publicacion,
 				estado_publicacion,
 				lat_publicacion,
-				lng_publicacion) VALUES (:idus,:tipopu,:titulo,:direccion,:tiposerv,:detalle,NOW(),'Pendiente',:lat,:lng)");
+				lng_publicacion) VALUES (:idus,:tipopu,:titulo,:direccion,:tiposerv,:detalle,NOW(),'Aprobada',:lat,:lng)");
 			$sql->bindParam(":idus",$idus,PDO::PARAM_INT);
 			$sql->bindParam(":tipopu",$tipopu,PDO::PARAM_INT);
 			$sql->bindParam(":titulo",$titulo,PDO::PARAM_STR);

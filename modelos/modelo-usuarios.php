@@ -415,7 +415,6 @@ Class Usuarios{
 	$sql = $con->prepare('UPDATE usuario SET nombre_usuario = :nombre, fono_usuario = :fono, direccion_usuario = :dir WHERE id_usuario = :id');
 	$sql->bindParam(':id',$id,PDO::PARAM_INT);
 	$sql->bindParam(':nombre',$nombre,PDO::PARAM_STR);
-	$sql->bindParam(':mail',$mail,PDO::PARAM_STR);
 	$sql->bindParam(':fono',$fono,PDO::PARAM_STR);
 	$sql->bindParam(':dir',$dir,PDO::PARAM_STR);
 	$sql->execute();

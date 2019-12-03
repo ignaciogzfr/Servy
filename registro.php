@@ -55,7 +55,7 @@
 
 					<div class="col-md-5">
 						<label for="pass-registro-cliente">Contraseña *</label>
-						<input id="pass-registro-cliente" class="form-control" type="password" placeholder="************" pattern="^[a-zA-Z\d]{6,20}$"  name="pass-registro" required="" maxlength="20" minlength="6">
+						<input id="pass-registro-cliente" class="form-control" type="password" placeholder="************" pattern="^^[a-zA-Z0-9\d]{6,20}$"  name="pass-registro" required="" maxlength="20" minlength="6">
 					</div>
 
 
@@ -132,7 +132,7 @@
 
 						 <div class="form-group col-md-3">
 					   		<label for="pass-maestro">Contraseña *</label>
-					    	<input type="password" id="pass-maestro" pattern="^[a-zA-Z\d]{6,20}$" class="form-control" name="pass-registro" required="" maxlength="30" minlength="6" placeholder="************">
+					    	<input type="password" id="pass-maestro" pattern="^[a-zA-Z0-9\d]{6,20}$" class="form-control" name="pass-registro" required="" maxlength="30" minlength="6" placeholder="************">
 					 	</div>
 					    <div class="form-group col-md-9">
 					      <label for="nombre-maestro">Tu Nombre *</label>

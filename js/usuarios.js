@@ -201,56 +201,32 @@ $.ajax({
 	method: 'POST',
 	url: 'controladores/usuarios-controller.php',
 	data: 'op=sancionarUsuario&id='+id,
-	cache: false,
-    contentType: false,
-    processData: false,
-	
 	success:function(response){
 		console.log(response);
 		if(response == 'ok'){
-
 			swal({
 						title : '¡Sancion existosa!',
 						text : 'El usuario fue sancionado con exito.',
 						icon : 'success'
 					})
 					.then(function(){
-						location.href = 'moderacion-usuarios.php'
+						location.reload()
 					})
-		}else{
-
+		}
+		else{
 			swal({
 						title : '¡Esto no deberia pasar!',
 						text : 'error interno, contacta con el programador.',
 						icon : 'error'
 					})
 					.then(function(){
-						location.href = 'moderacion-usuarios.php'
+						location.reload();
 					})
 		}
-
-
 	}
-
-
 })
 }
 
-
-
-
-function sancionarUsuario(event){
-	//al sancionar un usuario su id se encuentra en el boton
-		var id = $(this).val();
-		console.log(id);
-	//Llamada a el controlador para que este obtenga los datos del formulario y esta realize
-	//la llamada al modelo para que realize la consulta con el id obtenido del boton
-$.ajax({
-	method: 'POST',
-	url: 'controladores/usuarios-controller.php',
-	data: 'op=sancionarUsuario&id='+id
-})
-}
 
 
 function quitarSancionUsuario(event){
@@ -262,7 +238,14 @@ console.log(id);
 $.ajax({
 	method: 'POST',
 	url:'controladores/usuarios-controller.php',
-	data: 'op=quitarSancionUsuario&id='+id
+	data: 'op=quitarSancionUsuario&id='+id,
+	success:function(response){
+		swal({
+			title : '¡Sancion levantada!',
+			text : 'El usuario fue reintegrado al sistema de nuevo con exito.',
+			icon : 'success'
+		})		
+	}
 })
 }
 
@@ -298,6 +281,7 @@ $('.input-dato-basico').attr('disabled','disabled');
 	$('.nombre-editar-perfil').val($('.nombre-editar-perfil').attr('original'))
 	$('.fono-editar-perfil').val($('.fono-editar-perfil').attr('original'))
 	$('.dir-editar-perfil').val($('.dir-editar-perfil').attr('original'))
+	$('.exp-maestro').val($('.exp-maestro').attr('original'))
 }
 
 

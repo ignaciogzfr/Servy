@@ -21,12 +21,12 @@
 					
 					<div class="form-group text-left">
 						<label for="mail-login">Correo Electronico</label>
-						<input id="mail-login" name="mail"class="form-control" type="text" placeholder="E-Mail" required>
+						<input id="mail-login" name="mail"class="form-control" type="text" placeholder="E-Mail" pattern="[a-z0-9._%+-]+@([a-z0-9.-].{1,20})+(\.[a-z].{1,7})" required>
 					</div>
 					
 					<div class="form-group text-left">
 						<label for="pass-login">Contraseña</label>
-						<input id="pass-login" name="pass"class="form-control" type="password" placeholder="Contraseña" required>	
+						<input id="pass-login" name="pass"class="form-control" type="password" placeholder="Contraseña" required pattern="^[a-zA-Z0-9\d]{6,20}$">	
 					</div>
 
 					<div class="text-center mt-2">

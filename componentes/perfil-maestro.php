@@ -34,14 +34,13 @@ if($sesion == true){
         </div>
             <div class="col-md-6">
 <form class="form-editar-maestro">
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="nombre" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="email" class="form-control my-1 input-dato-basico" name="mail" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
-  <?php echo 
-  '<input type="number" required="" class="form-control my-1 input-dato-basico" pattern="[0-9].{7,8}" maxlength="8" name="fono" value="'.$datos[0]['fono_usuario'].'" disabled>
-  ';
+  <?php echo '<input type="text" required="" pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,60}\b$" minlength="1" maxlength="60" class="form-control my-1 input-dato-basico nombre-editar-perfil" name="nombre" original="'.$datos[0]['nombre_usuario'].'" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
 
-   ?>
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="dir" value="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="email" class="form-control my-1 input-dato-basico " name="mail" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
+
+  <?php echo '<input type="text" required="" class="form-control my-1 input-dato-basico fono-editar-perfil" required="" pattern="^[9876543]\d{7}$" minlength="3" maxlength="15" name="fono" original="'.$datos[0]['fono_usuario'].'" value="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
+
+  <?php echo '<input type="text" class="form-control my-1 input-dato-basico dir-editar-perfil" name="dir" original="'.$datos[0]['direccion_usuario'].'" value="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
   
   <input type="hidden" value="Maestro" id='tipo-editar-perfil'>
   <input type="hidden" value="editarPerfilBasicoM" name="op">
@@ -57,7 +56,7 @@ if($sesion == true){
                 $servicios = Usuarios::getServiciosMaestro($id);
                 $certificados = Usuarios::getCertificadosMaestro($id);
                 $experiencia = Usuarios::getExperienciaMaestro($id);
-            echo '<textarea class="form-control exp-maestro input-dato-basico" disabled rows="3" name="exp">'.$experiencia[0]['detalle_experiencia'].'</textarea>';
+            echo '<textarea class="form-control exp-maestro input-dato-basico" disabled rows="3" name="exp" original="'.$experiencia[0]['detalle_experiencia'].'">'.$experiencia[0]['detalle_experiencia'].'</textarea>';
             echo '<input type="hidden" name="id" value="'.$datos[0]['id_usuario'].'">';
 ?>
 </form>

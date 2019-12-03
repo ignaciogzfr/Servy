@@ -5,7 +5,6 @@ $(document).ready(function(){
 	$(".btn-quitar-sancion-publicacion").on("click",quitarSancionPublicacion)
 	$('#form-publicar-servicios').on('submit',publicarServicio);
 	$('#form-publicar-servicio-invitado').on('submit',publicarServicioInvitado);
-	$('#select-tipo-servicio').select2({
 	$('#form-denunciar-p').on('submit',denunciarP);
 
 $('#select-tipo-servicio').select2({
@@ -14,17 +13,27 @@ $('#select-tipo-servicio').select2({
 
 	//funciones de publicaciones
 	function sancionarPublicacion(event){
-				//al obtener el formulario completo su valor siempre es el id al cual se le
-				//asigna a una varaible local
-				var id = $(this).val();
-				//validamos de que el campo que se toma sea correcto
-				console.log(id);
+		//al obtener el formulario completo su valor siempre es el id al cual se le
+		//asigna a una varaible local
+		var id = $(this).val();
+		//validamos de que el campo que se toma sea correcto
+		console.log(id);
 		//Llamada a el controlador que arrojara una respuesta y segun lo retornado se realizaran acciones en la 
 		//pagina
 		$.ajax({
 			method: 'POST',
 			url: 'controladores/publicaciones-controller.php',
-			data: 'op=sancionarPublicacion&id='+id
+			data: 'op=sancionarPublicacion&id='+id,
+			success:function(r){
+				console.log(r)
+				swal({
+					title: 'Ahi va',
+					text: 'La publicacion seleccionada ha sido efectivamente sancionada',
+					icon: 'info'
+				}).then(function(){
+					location.reload()
+				})
+			}
 		})
 	}
 
@@ -39,7 +48,20 @@ $('#select-tipo-servicio').select2({
 		$.ajax({
 			method: 'POST',
 			url:'controladores/publicaciones-controller.php',
-			data: 'op=quitarSancionPublicacion&id='+id
+			data: 'op=quitarSancionPublicacion&id='+id,
+			success:function(response){
+			if(response='ok'){
+				swal({
+					title: 'Todo hecho',
+					text: 'La publicacion ha sido modificada',
+					icon: 'info'
+				}).then(()=>{
+					location.reload();
+				})
+			}
+			}
+		
+
 		})
 	}
 	//funcion en proceso
@@ -62,12 +84,10 @@ $('#select-tipo-servicio').select2({
 	        		if(response!=''){
 	        			swal({
 						title : '¡Tu publicacion ha sido enviada con excito!',
-						text : 'Ahora solo hay que esperar que se apruebe y que un Maestro la tome.',
 						icon : 'success'
-					})
-					.then(function(){
-						location.href = 'index.php'
-					})
+						}).then(function(){
+							location.href = 'servicios-pendientes.php'
+						})
 	        		}
 	        	}
 
