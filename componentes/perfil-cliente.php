@@ -25,15 +25,15 @@ if($sesion == true){
 
             <p class="text-muted my-3">Nombre:</p>
             <p class="text-muted my-3">Email:</p>
-            <p class="text-muted my-3">Telefono:</p>
+            <p class="text-muted my-3">Telefono: +56 9</p>
             <p class="text-muted my-3">Direccion:</p>
             </div>
             <div class="col-md-6">
 <form class="form-editar-cliente">
-  <?php echo '<input type="text" name="nombre" class="form-control my-1 input-dato-basico nombre-editar-perfil" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" name="mail" class="form-control my-1 input-dato-basico mail-editar-perfil" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" name="fono" class="form-control my-1 input-dato-basico fono-editar-perfil" value="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" name="dir" class="form-control my-1 input-dato-basico dir-editar-perfil" value="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" name="nombre" required="" pattern="" minlength="" maxlength="" class="form-control my-1 input-dato-basico nombre-editar-perfil" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="mail" name="mail" required="" pattern="[a-z0-9._%+-]+@([a-z0-9.-].{1,20})+(\.[a-z].{1,7})$" minlength="" maxlength="" class="form-control my-1 input-dato-basico mail-editar-perfil" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="tel" name="fono" required="" pattern="^(+?56)?(\s?)(0?9)(\s?)[9876543]\d{7}$" minlength="3" maxlength="15" class="form-control my-1 input-dato-basico fono-editar-perfil" value="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" name="dir" required="" pattern="" minlength="" maxlength="" class="form-control my-1 input-dato-basico dir-editar-perfil" value="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
   <input type="hidden" value="Cliente" id="tipo-editar-perfil">
   <input type="hidden" value="editarPerfilBasicoC" name="op">
             <?php

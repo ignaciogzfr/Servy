@@ -24,6 +24,7 @@
 		<h6 class="text-primary">Los campos que contienen el simbolo * son obligatorios.</h6>
 		<h6 class="text-primary">Para iniciar sesión, necesitamos que tu correo electronico sea autentico</h6>
 		<h6 class="text-primary">Las contraseñas deben tener un minimo de 6 caracteres, recomendamos uso de Mayusculas y numeros. No se permiten espacios ni caracteres especiales(!"#$%-_ etc...)</h6>
+		<h6 class="text-primary">El número de telefono asume que está utilizando un telefono movil, o "Smartphone", asi que por defecto es +56 9 (Numero)</h6>
 		<h6 class="text-primary">Si eres un Maestro/Profesional, necesitamos minimo 1 tipo de servicio que ofrezca.</h6>
 
 		</div>
@@ -69,7 +70,7 @@
 
 					<div class="col-md-6">
 							<label for="fono-registro-cliente">Numero telefonico *</label>
-							<input id="fono-registro-cliente" type="text" pattern="[0-9].{7,8}" class="form-control" maxlength="8" placeholder="99999999" style="font-style:italic" name="fono-registro" required="">
+							<input id="fono-registro-cliente" type="tel" pattern="^[9876543]\d{7}$" class="form-control" maxlength="15" placeholder="1234 5678" style="font-style:italic" name="fono-registro" required="">
 					</div>
 
 				</div>
@@ -208,9 +209,8 @@
 
 				<div class="form-group mt-5">
   							<label for="exp-maestro">Experiencias</label>
- 							 <textarea class="form-control" id="exampleFormControlTextarea3" rows="4"  maxlength="600" cols="10" name="exp-registro" placeholder="Describa las labores que ha completado, años de experiencia, datos extra, etc..."></textarea>
+ 							 <textarea class="form-control" id="exampleFormControlTextarea3" rows="4"  maxlength="1000" cols="5" name="exp-registro" placeholder="Describa las labores que ha completado, años de experiencia, datos extra, etc..." required=""></textarea>
 				</div>
-
 
 
 					<hr class="featurette-divider">

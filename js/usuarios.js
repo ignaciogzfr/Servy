@@ -346,7 +346,14 @@ $.ajax({
 	success:function(r){
 		console.log(r)
 		if(r=='OK'){
-			$('#form-editar-sesion').submit();
+			swal({
+				title : 'Se ve bien!',
+				text : 'Se realizo el cambio de foto sin problemas, vamos a recargar la pagina para comprobarlo.',
+				icon : 'success'
+			}).then(function(){
+				$('#form-editar-sesion').submit();
+			})
+			
 		}
 	}
 })
