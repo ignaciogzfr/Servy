@@ -14,7 +14,23 @@ Class Publicaciones{
 
 
 	
+	static function verPublicacionInvitado($id){
 
+			$con = Conexion::conectar();
+		$sql = $con->prepare("SELECT p.*, t.tipo_servicio FROM publicacion_invitado p, tipo_servicio t WHERE p.id_invitado = :id and p.id_tipo_servicio = t.id_tipo_servicio ");
+			$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->execute();
+	return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	static function getPublicacionesInvitado(){
+
+		$con = Conexion::conectar();
+		$sql = $con->prepare("SELECT p.*, t.tipo_servicio FROM publicacion_invitado p, tipo_servicio t WHERE p.id_tipo_servicio = t.id_tipo_servicio ");
+		$sql->execute();
+		return $sql->fetchAll(PDO::FETCH_ASSOC); 
+
+	}
 
 	static public function getDenuncias($id){
 

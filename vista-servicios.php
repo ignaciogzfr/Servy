@@ -44,7 +44,7 @@
 
       <div class="col col-sm" >
           <select class="custom-select">
-            <option selected>seleccionar servicio</option>
+            <option selected disabled="">seleccionar servicio</option>
 <?php 
 require_once("modelos/modelo-servicios.php");
   $servi = Servicios::getServicios();
@@ -67,17 +67,6 @@ require_once("modelos/modelo-servicios.php");
 			<div class="col col-sm">		
         		 <input type="date" class="form-control" id="" name="">
          	 </div>
-
-
-         	<div class="col col-sm">
-         		<div class="form-inline">
- 				 <i class="fas fa-search" aria-hidden="true"></i>
-  					<input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="buscar">
-				</div>
-
-         	</<div></div>
-
-		</div>
 	</div>	
 
 
@@ -125,13 +114,37 @@ require_once("modelos/modelo-servicios.php");
 
 
               ?>
+                
+                <?php require_once("modelos/modelo-publicaciones.php");
 
+                    $publiinvitado = Publicaciones::getPublicacionesInvitado();
+
+                      for($i=0;$i<count($publiinvitado); $i++){
+                           echo (' 
+              
+              <a href="vista-publicacion-invitado.php?publicacion='.$publiinvitado[$i]['id_invitado'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3 mb-3">
+
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-2">'.$publiinvitado[$i]["titulo_invitado"].'</h5>
+                  <small>'.$publiinvitado[$i]["tipo_servicio"].'</small>
+                  <small> '.$publiinvitado[$i]["fecha_hora_invitado"].'</small>
+                </div>
+
+                <p class="mb-2">DESCRIPCION: '.$publiinvitado[$i]["detalle_invitado"].'</p>
+                <small>Pedido por : '.$publiinvitado[$i]["nombre_invitado"].'</small>
+              </a>');
+                      }
+
+
+
+
+                 ?>
 
 				</div>
 			</div><!-- FINLISTA DE SERVICIOS-->
 
 
-				<div class="text-center mb-3"><button class="btn btn-primary"> ver mas</button></div>
+
 </div>
 
 
