@@ -42,7 +42,20 @@ function registrarUsuario(event){
 	var datos = new FormData(this);
 	var fpc = $('#fp-registro-cliente')[0].files[0];
 	var fpm = $('#fp-registro-maestro')[0].files[0];
+	var mail = datos.get('mail-registro')
 		//Registro caso cliente
+	$.ajax({
+		method : 'POST',
+		url : 'controladores/usuarios-controller.php',
+		data: "op=verificarMail&mail-registro="+mail,
+		success:function(r){
+			if(r==1){
+			swal({
+				title : 'Espera un momento',
+				text : 'Esta direccion de correo ya está en uso, verifica si te has creado una cuenta antes',
+				icon : 'warning'
+			})
+			}else{
 	if($(this).find(".tipo-registro").val()=="Cliente"){
 		//Animacion del boton registro
 	$('#btn-registro-cliente').attr('disabled','disabled');
@@ -71,8 +84,8 @@ function registrarUsuario(event){
 			if($.isNumeric(response)){
 
 				swal({
-						title : '¡te has registrado exitosamente!',
-						text : 'bienvenido a nuestra familia de trabajadores.',
+						title : '¡Te has registrado exitosamente!',
+						text : 'Bienvenido a nuestra familia de trabajadores.',
 						icon : 'success'
 					})
 					.then(function(){
@@ -141,7 +154,11 @@ function registrarUsuario(event){
 		}
 	})
 
-	}
+	}			
+			}
+		}
+	})
+	
 
 }
 

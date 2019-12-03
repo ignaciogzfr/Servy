@@ -61,7 +61,10 @@ Class GestorUsuarios{
 		$respuesta = Usuarios::editarPerfilCertificados($id,$certificados);
 		echo $respuesta;
 	}
-	
+	public function verificarMail($mail){
+		$respuesta = Usuarios::verificarMail($mail);
+		echo $respuesta;
+	}
 	public function registrarCliente($mail,$pass,$nombre,$fono,$fp,$dir,$tipo){
 
 		if(is_array($fp)){
@@ -135,17 +138,15 @@ Class GestorUsuarios{
 }
 
 $op = $_POST["op"];
-if (isset($_POST['certificados'])) {
-	$certificados = json_decode($_POST['certificados']);
-}
-
+switch($op){
 		case 'getResumenMaestro':
 		$response = new GestorUsuarios();
 		$response->getResumenMaestro($_POST['id']);
 		break;
-		case 'login':
+
+		case 'verificarMail':
 		$response = new GestorUsuarios();
-		$response->loginUsuario($_POST["mail-login"],$_POST["pass-login"]);
+		$response->verificarMail($_POST['mail-registro']);
 		break;
 
 		case 'registrarUsuario':
@@ -206,10 +207,8 @@ if (isset($_POST['certificados'])) {
 		break;
 
 		case 'iniciartransaccion':
-
 			$response = new GestorUsuarios();
-			$response->iniciartransaccion($_POST['id'],$_POST['idtran'],$_POST['idcliente']);
-					
+			$response->iniciartransaccion($_POST['id'],$_POST['idtran'],$_POST['idcliente']);					
 		break; 	
 
 		default:

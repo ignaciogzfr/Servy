@@ -203,6 +203,13 @@ Class Usuarios{
 
 	}
 
+	static public function verificarMail($mail){
+	$con = Conexion::conectar();
+	$sql = $con->prepare("SELECT * FROM usuario WHERE email_usuario = :mail");
+	$sql->bindParam(":mail",$mail,PDO::PARAM_STR);
+	$sql->execute();
+	return count($sql->fetchAll(PDO::FETCH_ASSOC));
+	}
 
 	/**
 	 * Funcion de registro para tipo cliente que al ser llamada se crea una consulta, se le asigan los parametros correspondientes para su ejecución y si tubo exito al ejecutar la consulta crea una variable de tipo global que almacenara los datos del usaurio recien registrado.

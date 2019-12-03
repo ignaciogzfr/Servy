@@ -13,16 +13,15 @@
 
 <!--funcionalidades y verificaciones-->
 <?php require_once 'componentes/links.php'; ?>
-<?php require_once 'componentes/scripts.php' ?>
 <?php require_once 'componentes/sidenav.php'; ?>
 <?php require_once 'modelos/modelo-servicios.php'; ?>
-<script type="text/javascript" src="js/index.js"></script>
+
 <!-- //funcionalidades y verificaciones-->
 </head>
 
 <body>
     <!-- Page Content -->    
-<div class="container-fluid">
+<div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
         <!--navegador-->
     <?php require_once 'componentes/navbar.php' ?>
     <!-- fin navegador-->
@@ -49,19 +48,19 @@
 
             <div class="form-group col-md-6">
               <label for="inputEmail4">Tu Nombre</label>
-              <input type="email" class="form-control"  placeholder="Nombre">
+              <input type="email" class="form-control"  placeholder="Nombre" required="">
             </div>
 
             <div class="form-group col-md-6">
               <label for="inputPassword4">Fono de Contacto</label>
-              <input type="text" class="form-control" placeholder="+569 11223344">
+              <input type="text" class="form-control" placeholder="+56 9 11223344" required="">
           </div>
 
       </div>
 
           <div class="form-group">
             <label for="inputAddress">Direccion</label>
-            <input type="text" class="form-control"  placeholder="Avenida Siempreviva 2001">
+            <input type="text" class="form-control"  placeholder="Avenida Siempreviva 2001" required="">
           </div>
 
 
@@ -83,7 +82,7 @@
 
   <div class="form-group">
     <label for="exampleFormControlTextarea3">Detalle</label>
-    <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" rows="7"></textarea>
+    <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" rows="7" required="" minlength="20" maxlength="1000"></textarea>
   </div>
  
   <button type="button" class="btn btn-primary" id="btn-publicarProblema">Publicar Problema</button>
@@ -96,7 +95,7 @@
   
     
 <!-- FIN DEL FORMULARIO -->
-               <script async defer
+   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=Miposicion">
     </script>
 
@@ -126,5 +125,5 @@
 <?php require_once 'componentes/footer.php' ?>
 
 <?php require_once 'componentes/scripts.php' ?>
-
+<script type="text/javascript" src="js/index.js"></script>
 </html>
