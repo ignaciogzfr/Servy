@@ -371,7 +371,6 @@ Class Usuarios{
 	 * Con esta función se pueden editar el perfil basico de un usuario de tipo cliente ya sea su nombre, correo, nro de telefono, dirección.
 	 * @param $id de tipo integer, identificador de un usuario de tipo cliente.
 	 * @param $nombre de tipo string, nombre del cliente en tabla usaurio.
-	 * @param $mail de tipo string, correo electronico que de un usaurio de tipo cliente.
 	 * @param $fono de tipo string, numero telefonico del usuario registrado de tipo cliente.
 	 * @param $dir de tipo string, ubicación del usuario registrado.
 	 * 
@@ -380,12 +379,11 @@ Class Usuarios{
 	 * @return OK mensaje si se ejecuta la consulta correctamente.
 	 * 
 	 * */
-	static public function editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir){
+	static public function editarPerfilBasicoC($id,$nombre,$fono,$dir){
 	$con = Conexion::conectar();
-	$sql = $con->prepare('UPDATE usuario SET nombre_usuario = :nombre, email_usuario = :mail, fono_usuario = :fono, direccion_usuario = :dir WHERE id_usuario = :id');
+	$sql = $con->prepare('UPDATE usuario SET nombre_usuario = :nombre, fono_usuario = :fono, direccion_usuario = :dir WHERE id_usuario = :id');
 	$sql->bindParam(':id',$id,PDO::PARAM_INT);
 	$sql->bindParam(':nombre',$nombre,PDO::PARAM_STR);
-	$sql->bindParam(':mail',$mail,PDO::PARAM_STR);
 	$sql->bindParam(':fono',$fono,PDO::PARAM_STR);
 	$sql->bindParam(':dir',$dir,PDO::PARAM_STR);
 	$sql->execute();
@@ -399,7 +397,6 @@ Class Usuarios{
 	 * Con esta función se pueden editar el perfil basico de un usuario de tipo cliente ya sea su nombre, correo, nro de telefono, dirección.
 	 * @param $id de tipo integer, identificador de un usuario de tipo cliente.
 	 * @param $nombre de tipo string, nombre del cliente en tabla usaurio.
-	 * @param $mail de tipo string, correo electronico que de un usaurio de tipo cliente.
 	 * @param $fono de tipo string, numero telefonico del usuario registrado de tipo cliente.
 	 * @param $dir de tipo string, ubicación del usuario registrado.
 	 * @param $exp de tipo string, texto que describe una experiencia por parte del maestro.
@@ -411,11 +408,11 @@ Class Usuarios{
 	 * @return OK mensaje si se ejecuta la consulta correctamente.
 	 * 
 	 * */
-	static public function editarPerfilBasicoM($id,$nombre,$mail,$fono,$dir,$exp){
+	static public function editarPerfilBasicoM($id,$nombre,$fono,$dir,$exp){
 	$con = Conexion::conectar();
 	try{
 	$con->beginTransaction();
-	$sql = $con->prepare('UPDATE usuario SET nombre_usuario = :nombre, email_usuario = :mail, fono_usuario = :fono, direccion_usuario = :dir WHERE id_usuario = :id');
+	$sql = $con->prepare('UPDATE usuario SET nombre_usuario = :nombre, fono_usuario = :fono, direccion_usuario = :dir WHERE id_usuario = :id');
 	$sql->bindParam(':id',$id,PDO::PARAM_INT);
 	$sql->bindParam(':nombre',$nombre,PDO::PARAM_STR);
 	$sql->bindParam(':mail',$mail,PDO::PARAM_STR);

@@ -21,12 +21,12 @@ Class GestorUsuarios{
 		$respuesta = Usuarios::getPerfilUsuario($id);
 		echo json_encode($respuesta);
 	}
-	public function editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir){
-		$respuesta = Usuarios::editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir);
+	public function editarPerfilBasicoC($id,$nombre,$fono,$dir){
+		$respuesta = Usuarios::editarPerfilBasicoC($id,$nombre,$fono,$dir);
 		echo $respuesta;
 	}
-	public function editarPerfilBasicoM($id,$nombre,$mail,$fono,$dir,$exp){
-		$respuesta = Usuarios::editarPerfilBasicoM($id,$nombre,$mail,$fono,$dir,$exp);
+	public function editarPerfilBasicoM($id,$nombre,$fono,$dir,$exp){
+		$respuesta = Usuarios::editarPerfilBasicoM($id,$nombre,$fono,$dir,$exp);
 		echo $respuesta;
 	}
 	public function editarPerfilFP($id,$fp,$actual){
@@ -46,7 +46,9 @@ Class GestorUsuarios{
 				$filename = md5($fp['tmp_name']).$extension;
 				$ruta_imagen = 'img/fotos-usuarios/'.$filename;
 				if(move_uploaded_file($fp['tmp_name'],"../".$ruta_imagen)){
-				unlink('../'.$actual);
+				if($actual != 'img/placeholder-person.jpg'){
+				unlink('../'.$actual);	
+				}
 				$respuesta = Usuarios::editarPerfilFP($id,$ruta_imagen);
 				}
 			}
@@ -181,12 +183,12 @@ switch($op){
 
 		case 'editarPerfilBasicoC':
 		$response = new GestorUsuarios();
-		$response->editarPerfilBasicoC($_POST['id'],$_POST['nombre'],$_POST['mail'],$_POST['fono'],$_POST['dir']);
+		$response->editarPerfilBasicoC($_POST['id'],$_POST['nombre'],$_POST['fono'],$_POST['dir']);
 		break;
 
 		case 'editarPerfilBasicoM':
 		$response = new GestorUsuarios();
-		$response->editarPerfilBasicoM($_POST['id'],$_POST['nombre'],$_POST['mail'],$_POST['fono'],$_POST['dir'],$_POST['exp']);
+		$response->editarPerfilBasicoM($_POST['id'],$_POST['nombre'],$_POST['fono'],$_POST['dir'],$_POST['exp']);
 		break;
 
 		case 'editarPerfilFP':

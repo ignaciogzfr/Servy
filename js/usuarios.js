@@ -295,6 +295,9 @@ $('.input-dato-basico').attr('disabled','disabled');
 		<i class="fas fa-edit"></i> Editar
 		</button>
 		`);
+	$('.nombre-editar-perfil').val($('.nombre-editar-perfil').attr('original'))
+	$('.fono-editar-perfil').val($('.fono-editar-perfil').attr('original'))
+	$('.dir-editar-perfil').val($('.dir-editar-perfil').attr('original'))
 }
 
 
@@ -315,6 +318,7 @@ $.ajax({
 	url: 'controladores/usuarios-controller.php',
 	data: datos,
 	success:function(response){
+		console.log(response)
 	//una ves que se realiza la consulta y obtiene una respuesta, los campos ya cambiados son bloqueados 
 		if(response=='OK'){
 			console.log('CAMBIADO');

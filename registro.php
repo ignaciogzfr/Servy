@@ -65,7 +65,7 @@
 
 					<div class="col-md-6">
 						<label for="nombre-registro-cliente">Tu Nombre *</label>
-						<input id="nombre-registro-cliente" type="text" class="form-control"  placeholder="Nombre" name="nombre-registro" required="" minlength="2" maxlength="60">
+						<input id="nombre-registro-cliente" type="text" class="form-control" pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,60}\b$" placeholder="Nombre" name="nombre-registro" required="" minlength="2" maxlength="60">
 					</div>
 
 					<div class="col-md-6">
