@@ -45,7 +45,17 @@ $.ajax({
 function pedirGrua(event){
 				event.preventDefault();
 				var datos = new FormData(this);
-				console.log(datos.get('lat'));
+				var lat = (datos.get('lat'));
+				
+
+
+				if(lat == ""){
+					
+						$('#error').text('Por favor, asegurese de establecer su ubicacion.');
+
+			}else{
+
+						console.log('si se hizo');
 			$.ajax({
 
 				method: 'POST',
@@ -66,6 +76,8 @@ function pedirGrua(event){
 	        		}
 	        	}
 			})
+				}
+			
 	}
 
 

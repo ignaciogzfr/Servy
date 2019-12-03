@@ -210,6 +210,40 @@ Class Publicaciones{
 		$sql->execute();
 		return 'ok';
 	}
+
+		static public function publicarServicioInvitado($nombre,$fono,$titulo,$direccion,$tiposerv,$detalle){
+
+	
+
+
+			$con = Conexion::conectar();
+			$sql = $con->prepare("INSERT INTO publicacion_invitado(
+					nombre_invitado,
+					fono_invitado,
+					titulo_invitado,
+					direccion_invitado,
+					id_tipo_servicio,
+					detalle_invitado,
+					fecha_hora_invitado,
+					estado_invitado
+				) VALUES (:nombre,:fono,:titulo,:direccion,:tiposerv,:detalle,NOW(),'Pendiente')");
+			$sql->bindParam(":nombre",$nombre,PDO::PARAM_STR);
+			$sql->bindParam(":fono",$fono,PDO::PARAM_INT);
+			$sql->bindParam(":titulo",$titulo,PDO::PARAM_STR);
+			$sql->bindParam(":direccion",$direccion,PDO::PARAM_STR);
+			$sql->bindParam(":tiposerv",$tiposerv,PDO::PARAM_INT);
+			$sql->bindParam(":detalle",$detalle,PDO::PARAM_STR);
+			
+
+
+			if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
+
+	}
+
 	}
 		
 

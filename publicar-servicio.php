@@ -87,7 +87,7 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
    
     <div class="form-group col-md-12">
       <label for="inputState">Tipo de servicio</label>
-          <select class="custom-select" id="select-tipo-servicio" name="tipo-serv" style="width: 100%">
+          <select class="custom-select" required="" id="select-tipo-servicio" name="tipo-serv" style="width: 100%">
             <option selected disabled="">Seleccionar servicio</option>
 <?php 
 require_once("modelos/modelo-servicios.php");
