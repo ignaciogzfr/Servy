@@ -5,7 +5,17 @@
       </div>
       <div class="list-group list-group-flush text-white pt-5">
      
-  <a href="publicar-servicio.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Pedir o Publicar Servicios</a>
+        <?php
+
+if($_SESSION['estado'] == "Activo"){
+echo('
+  <a href="publicar-servicio.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Pedir o Publicar Servicios</a>');
+}else{
+
+  echo('<a class="list-group-item list-group-item-action mdb-color lighten-1 text-white" disabled="" >Estas sancionado</a>');
+}
+?>
+
   <a href="servicios-pendientes.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mis Publicaciones</a>
   <a href="servicios-pendientes.php?tipo=Demanda" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mis Peticiones</a>
   <a href="servicios-pendientes.php?tipo=Oferta" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Publicaciones de Oferta</a>        

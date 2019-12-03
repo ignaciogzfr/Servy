@@ -3,10 +3,18 @@
 
 <head>
 
+<?php
+//verificacion de usuario sancionado
+ @session_start();
+      
+echo('<script> "</script>');
+if($_SESSION['estado'] == "Sancionado"){
+echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
+}
+ ?>
 
 <?php require_once("componentes/links.php");
       require_once("componentes/scripts.php");
-
   ?>
 
 
@@ -15,8 +23,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Servy 2</title>
+  <link rel="shortcut icon" href="img/logo.png" />
+  <title>Publicar servicios</title>
 
 </head>
 
@@ -27,7 +35,7 @@
       
 <h3 class="text-muted text-center my-5">Crear una Publicacion</h3>
 
-<?php @session_start(); ?>
+
 
 
 <!-- INICIO DEL FORMULARIO -->
@@ -38,8 +46,8 @@
     <?php if($_SESSION['tipo']=='Maestro'){
       echo '
     <div class="form-group col-md-6">
-      <label for="titulopubli">Titulo</label>
-      <input type="text" class="form-control" name="titulo-publi" placeholder="Titulo">
+      <label for="titulopubli">Titulo *</label>
+      <input type="text" class="form-control" maxlength="50" name="titulo-publi" placeholder="Titulo" required>
     </div>    
     <div class="form-group col-md-6">
       <label for="titulopubli">Tipo de Publicacion</label>
@@ -50,8 +58,8 @@
     }else{
       echo '    
       <div class="form-group col-md-12">
-      <label for="titulopubli">Titulo</label>
-      <input type="text" class="form-control" name="titulo-publi" placeholder="Titulo">
+      <label for="titulopubli">Titulo *</label>
+      <input type="text" class="form-control" maxlength="50" name="titulo-publi" placeholder="Titulo" required>
       <input type="hidden" value="Demanda" name="tipo-publicacion">
     </div>';
     } ?>
@@ -59,18 +67,18 @@
   </div>
 
   <div class="form-group">
-    <label for="dir">Direccion</label>
+    <label for="dir">Direccion *</label>
 
     <div id="floating-panel">
       <input id="latlng" type="text" hidden="" value="">
-      <input id="submit" type="button" class="btn btn-secondary btn-sm" value="obtener mi ubicación">
+      <input id="submit" type="button" class="btn btn-secondary btn-sm" maxlength="500" value="obtener mi ubicación">
     </div>
     
     <div type="hidden" id="map"></div>
           
 
 
-       <input type="text" class="form-control" name="direccion-publi" placeholder="Avenida Siempreviva 2001" id="direccion-post" required="">
+       <input type="text" class="form-control" name="direccion-publi" placeholder="Obtenga su ubicacion presionando el boton de arriba" id="direccion-post" required="">
   </div>
     
 

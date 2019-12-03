@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 
-<?php require_once 'componentes/links.php'; ?>
+		
+<?php require_once("componentes/links.php");
+      require_once("componentes/scripts.php");
+  ?>
 
 	<meta charset="UTF-8">
 	<title></title>

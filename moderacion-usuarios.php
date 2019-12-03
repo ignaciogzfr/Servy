@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
-<?php require_once("componentes/links.php");?>
-<?php require_once 'componentes/verificar-admin.php'; ?>
+<?php require_once ("componentes/links.php");?>
+<?php require_once ("componentes/verificar-admin.php"); ?>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <link rel="shortcut icon" href="img/logo.png" />
+  <title>Moderacion de usuarios</title>
 
-  <title>Servy 2</title>
-
+ 
 </head>
 
 <body>
@@ -19,8 +19,10 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-<?php require_once 'componentes/navbar.php' ?>
-
+    <!--navegador superior-->
+    <?php require_once('componentes/navbar.php'); ?>
+    <!--fin de navegador principal-->
+    
 				<div class="container">
 					<h1 class="text-center mt-2"> Moderacion - usuarios</h1>
 					<hr class="featurette-divider">
@@ -40,9 +42,8 @@
          <tbody>
 
 <?php 
-
+/*se importan los metodos del modelo de publicaciones y se crea un constructor de un metodo los resultados se almacenan en una variable que servira como una matriz*/
 require_once("modelos/modelo-usuarios.php");
-
 $user= usuarios::getUsuarios();
 
 
@@ -73,20 +74,43 @@ if(count($user)){
       }
         echo(' 
     <td>     
-      <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>
+      <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>');
 
-      <div class="dropdown-menu">
-      <button class="dropdown-item btn-sancionar-usuario" type="button" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-ban"></i> Sancionar</button>
-      <button class="dropdown-item btn-quitar-sancion-usuario" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-lock-open"></i> Quitar sancion</button>
-      </div>
 
-    </td>
+        if($user[$i]['estado_usuario'] ==  "Activo" ){
+           echo('
+           <div class="dropdown-menu">
+
+             <button class="dropdown-item btn-sancionar-usuario" type="button" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-ban"></i> Sancionar</button>
+
+           </div>
+
+       </td>
                    
-    </tr>');
+      </tr>');
+
+        }elseif($user[$i]['estado_usuario'] == "Sancionado" ){
+          echo('
+           <div class="dropdown-menu">
+
+             
+             <button class="dropdown-item btn-quitar-sancion-usuario" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-lock-open"></i> Quitar sancion</button>
+           </div>
+
+       </td>
+                   
+      </tr>');
+
+
+        }
+   
+
+
   }
 }
  ?>
-    </tbody>
+ <!-- sirve por si el usuario baja mucho y no puede destingir cual datos pertenece a cual fila-->
+        </tbody>
         <tfoot>
             <tr>
                 <th>Nombre de usuario</th>

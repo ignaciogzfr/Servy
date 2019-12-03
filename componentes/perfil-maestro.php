@@ -4,6 +4,8 @@
           
             <div class="col-md-4 text-center">
              <?php
+            echo "<script>console.log('y llega correctamente pefil.maestro.php');</script>";
+
              $Sesion = '';
              if(isset($_SESSION['id']) && $_GET['id'] == $_SESSION['id']){
               $sesion = true;
@@ -33,9 +35,14 @@ if($sesion == true){
             <div class="col-md-6">
 <form class="form-editar-maestro">
   <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="nombre" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="mail" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="fono" value="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="email" class="form-control my-1 input-dato-basico" name="mail" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
+  <?php echo 
+  '<input type="number" required="" class="form-control my-1 input-dato-basico" pattern="[0-9].{7,8}" maxlength="8" name="fono" value="'.$datos[0]['fono_usuario'].'" disabled>
+  ';
+
+   ?>
   <?php echo '<input type="text" class="form-control my-1 input-dato-basico" name="dir" value="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
+  
   <input type="hidden" value="Maestro" id='tipo-editar-perfil'>
   <input type="hidden" value="editarPerfilBasicoM" name="op">
 

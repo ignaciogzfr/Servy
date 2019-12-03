@@ -1,3 +1,6 @@
+
+
+    <!-- Sidebar -->
     <div class="mdb-color  text-white border-right" id="sidebar-wrapper">
       <div class="sidebar-heading mdb-color text-center"><?php echo $_SESSION['nombre']; ?></div>
       <div class="text-center">

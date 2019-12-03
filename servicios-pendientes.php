@@ -1,26 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	
-
 <?php require_once 'componentes/links.php'; ?>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Servy</title>
-
-
+  <link rel="shortcut icon" href="img/logo.png" />
+  <title>Mis servicios pendientes</title>
 </head>
 
 <body>
 <?php require_once 'componentes/verificar-sesion.php'; ?>
 <?php require_once 'componentes/sidenav.php'; ?>
-
-
-    <!-- Page Content -->
+<!--Contenido de la pagina -->
     <div id="page-content-wrapper">
 
 <?php require_once 'componentes/navbar.php'; ?>
@@ -146,12 +139,8 @@
 			</div>
 	</div><!-- FINLISTA DE SERVICIOS-->
 
-
-				
 </div>
 
-
-	
 
 
     </div>

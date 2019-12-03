@@ -12,8 +12,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Servy 2</title>
+  <link rel="shortcut icon" href="img/logo.png" />
+  <title>Servicios</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -73,6 +73,7 @@
 						<div class="list-group">
               
 						 <?php
+              /* existen 2 tipos de publicaciones oferta y demanda y a partir de este dato que se obitne a traves el metodo get se puede mostrar que tipo de publicacion desea el usuario */
              require_once("modelos/modelo-publicaciones.php");
 
              if(isset($_GET['tipo'])){
@@ -90,6 +91,7 @@
                   $publi = Publicaciones::getPublicacionesFecha();
                 }
               }
+            /*en caso de que no existan publicaciones se creara un recuadro que alerte al usuario la inexistencia de publicaciones*/
             if(count($publi)==0){
 
             echo('<div class="alert alert-primary" role="alert">No hay publicaciones</div>');

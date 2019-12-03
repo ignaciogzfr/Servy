@@ -1,7 +1,20 @@
 <?php 
 
 require_once '../modelos/modelo-usuarios.php';
-
+/**
+ *
+ * 
+ * esta clase controla las condiciones sobre los datos y sus posibles incongruencias,enviando una respuesta de cada consulta ejecutada en los modelos a usuarios.js para que maneje los datos de la respuesta y se redireccione a las pagina correctas 
+ * 
+ *
+ * @version 1.0 20-11-2019 14:33.
+ * @since 1.0 08-10-2019 20:27.
+ * @author Ignacio Gonzalez
+ * @author Johan Hernandez
+ * 
+ * @var $op de tipo string, alamcena el tipo de operacion comunmente obtenido a traves del metodo POST
+ * 
+ * */
 Class GestorUsuarios{
 
 	public function getResumenMaestro($id){
@@ -90,10 +103,10 @@ Class GestorUsuarios{
 			}else{
 				echo("ERROR EXTENSION");
 			}
-
 			$ruta_imagen = "";
 			$filename = md5($fp['tmp_name']).$extension;
 			$ruta_imagen = 'img/fotos-usuarios/'.$filename;
+
 			if(move_uploaded_file($fp['tmp_name'],"../".$ruta_imagen)){
 			$respuesta = Usuarios::registrarMaestro($mail,$pass,$nombre,$fono,$ruta_imagen,$dir,$tipo,$servicios,$certificados,$exp);
 			}
@@ -122,7 +135,9 @@ Class GestorUsuarios{
 }
 
 $op = $_POST["op"];
-switch ($op) {
+if (isset($_POST['certificados'])) {
+	$certificados = json_decode($_POST['certificados']);
+}
 
 		case 'getResumenMaestro':
 		$response = new GestorUsuarios();
@@ -132,6 +147,7 @@ switch ($op) {
 		$response = new GestorUsuarios();
 		$response->loginUsuario($_POST["mail-login"],$_POST["pass-login"]);
 		break;
+
 		case 'registrarUsuario':
 		if($_POST['tipo-registro']=='Cliente'){
 		$response = new GestorUsuarios();
@@ -140,7 +156,6 @@ switch ($op) {
 		}else{
 		$response->registrarCliente($_POST["mail-registro"],$_POST["pass-registro"],$_POST["nombre-registro"],$_POST["fono-registro"],$_POST["fp-registro"],$_POST["dir-registro"],$_POST["tipo-registro"]);
 		}
-
 		break;
 		}else{
 		$servicios = json_decode($_POST['servicios']);
