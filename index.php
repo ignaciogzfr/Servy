@@ -42,24 +42,30 @@
 
 <!-- INICIO DEL FORMULARIO -->
 <div class="container my-4" style="width: 70%;">
-  <form>
+  <form id="form-publicar-servicio-invitado" method="POST" autocomplete="off">
   <div class="form-row">
 
     <div class="form-group col-md-6">
       <label for="inputEmail4">Tu Nombre</label>
-      <input type="email" class="form-control"  placeholder="Nombre">
+      <input type="text" class="form-control" name="nombre" pattern="[a-zA-Z\s]{5,30}" placeholder="Nombre" required="">
     </div>
 
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Fono de Contacto</label>
-      <input type="text" class="form-control" placeholder="+569 11223344">
+      <label for="">Fono de Contacto</label>
+
+      <input type="tel" name="fono"   pattern="^(\+?56)?(\s?)(0?9)(\s?)[9876543]\d{7}$" class="form-control" placeholder="+569 11223344" required="">
     </div>
 
   </div>
 
+<div class="form-group">
+    <label for="inputAddress">Titulo </label>
+    <input type="text" class="form-control col-6"  pattern="[a-zA-Z\s]{5,30}" name="titulo"  placeholder="Titulo..." required="">
+  </div>
+
   <div class="form-group">
-    <label for="inputAddress">Direccion</label>
-    <input type="text" class="form-control"  placeholder="Avenida Siempreviva 2001">
+    <label for="inputAddress">Direccion </label>
+    <input type="text" class="form-control"  pattern="[a-zA-Z\s]{5,30}" name="direccion"  placeholder="Avenida Siempreviva 2001" required="">
   </div>
 
 
@@ -68,7 +74,7 @@
    
     <div class="form-group col-md-12">
       <label for="servicio-index">Tipo de servicio</label>
-      <select id="servicio-index" class="form-control" name="tipo-servicio" style="width: 100%">
+      <select id="select-tipo-servicio" class="form-control"  required="" name="tipo-servicio" style="width: 100%">
         <option selected disabled>Seleccionar tipo de Servicio</option>
         <?php $servicios = Servicios::getServicios();
         for($i = 0; $i<count($servicios); $i++){
@@ -76,16 +82,18 @@
         } ?>
       </select>
     </div>
-    
+    <div class="aler alert-danger" type="" id="error">   </div>
   </div>
 
   <div class="form-group">
-    <label for="exampleFormControlTextarea3">Detalle</label>
-    <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" rows="7"></textarea>
+    <label for="exampleFormControlTextarea3">Detalle </label>
+    <textarea class="form-control"  pattern="[a-zA-Z\s]{5,30}" name="detalle" placeholder="Describa brevemente su problema..." id="" rows="7" required=""></textarea>
   </div>
- 
-  <button type="button" class="btn btn-primary" id="btn-publicarProblema">Publicar Problema</button>
-  <button type="button" class="btn btn-info" ><i class="fas fa-question"></i></button>
+  <input type="hidden" name="tipo-publicacion" value="demanda">
+ <input type="hidden" name="op" value="publicarServicioInvitado">
+
+   <button type="submit" class="btn btn-success float-right mb-5 btn-publicar-servicio" id="btn-publicar-servicio">Publicar problema</button>
+
 
 </form>
 </div>

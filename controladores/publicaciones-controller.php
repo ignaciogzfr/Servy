@@ -20,6 +20,11 @@ require_once("../modelos/modelo-publicaciones.php");
 		echo($respuesta);
 			}
 
+			public function publicarServicioInvitado($nombre,$fono,$titulo,$direccion,$tiposerv,$detalle){
+				$respuesta = Publicaciones::publicarServicioInvitado($nombre,$fono,$titulo,$direccion,$tiposerv,$detalle);
+				echo($respuesta);
+			}
+
 
 	}
 
@@ -36,9 +41,14 @@ $op= $_POST["op"];
 			$response-> QuitarSancionPublicacion($_POST["id"]);
 			break;
 
-		case'publicarServicio';
+		case'publicarServicio':
 		$response = new gestorPublicaciones();
 		$response-> publicarServicio($_POST["id-usuario"],$_POST["tipo-publicacion"],$_POST["titulo-publi"],$_POST["direccion-publi"],$_POST["tipo-serv"],$_POST["detalle-publi"],$_POST["lat"],$_POST["lng"]);
+		break;
+
+		case'publicarServicioInvitado':
+		$response = new gestorPublicaciones();
+		$response-> publicarServicioInvitado($_POST["nombre"],$_POST["fono"],$_POST["titulo"],$_POST["direccion"],$_POST["tipo-servicio"],$_POST["detalle"]);
 		break;
 
 		case '':
