@@ -39,6 +39,8 @@
 
 
 <div class="container">
+          
+  
 
 		<div class="row text-center">
 
@@ -84,10 +86,12 @@ require_once("modelos/modelo-servicios.php");
               }else{
                   $publi = Publicaciones::getPublicaciones();
               }
-                  if(count($publi)==0){
 
-                      echo('<div class="alert alert-primary" role="alert">
-                                          No hay publicaciones 
+                       $publiinvitado = Publicaciones::getPublicacionesInvitado();
+                  if(count($publi)==0 && count($publiinvitado) == 0){
+
+                      echo('<div class="alert alert-primary text-center" role="alert">
+                                          En este momento no se han encontrado publicaciones, intente más tarde.
                                   </div>');
 
                   }else{
@@ -110,14 +114,8 @@ require_once("modelos/modelo-servicios.php");
 
 
                       }
-                  }
 
 
-              ?>
-                
-                <?php require_once("modelos/modelo-publicaciones.php");
-
-                    $publiinvitado = Publicaciones::getPublicacionesInvitado();
 
                       for($i=0;$i<count($publiinvitado); $i++){
                            echo (' 
@@ -138,8 +136,16 @@ require_once("modelos/modelo-servicios.php");
 
 
 
-                 ?>
 
+                  }
+
+
+              ?>
+                
+             
+
+
+              
 				</div>
 			</div><!-- FINLISTA DE SERVICIOS-->
 

@@ -61,7 +61,7 @@ Class Publicaciones{
 	static public function verPublicacion($id){
 
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT  p.*, u.nombre_usuario, t.tipo_servicio  FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario and p.id_tipo_servicio = t.id_tipo_servicio and id_publicacion = :id");
+		$sql = $con->prepare("SELECT  p.*, u.*, t.tipo_servicio  FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario and p.id_tipo_servicio = t.id_tipo_servicio and id_publicacion = :id");
 			$sql->bindParam(":id",$id,PDO::PARAM_INT);
 			$sql->execute();
 			return $sql->fetchAll(PDO::FETCH_ASSOC);

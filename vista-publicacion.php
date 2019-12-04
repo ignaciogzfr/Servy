@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 	
@@ -34,6 +34,7 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
 <?php require_once 'componentes/ver-ruta-modal.php';
+      require_once 'componentes/resumen-usuario-modal.php'
 
        ?>
 				<div class="container">
@@ -41,7 +42,6 @@
 
        
         
-
           
 					<hr class="featurette-divider">
 				</div>
@@ -91,7 +91,8 @@ echo '';
 
 echo '<div id="floating-panel" class="container text-center">
       <input id="latlng" type="text" hidden="" value="">
-      <button class="btn btn-secondary mt-4" data-target="#modal-ver-ruta" data-toggle="modal" id="submit">ver ruta <i class="fas fa-map-marked-alt"></i></button>
+      <button class="btn btn-secondary mt-3" data-target="#modal-ver-ruta" data-toggle="modal" id="submit">ver ruta <i class="fas fa-map-marked-alt"></i></button>
+      <button class="btn btn-primary mt-3" data-target="#modal-resumen-usuario" data-toggle="modal">Ver perfil <i class="far fa-user"></i></button>
       <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=initMap">
     </script>
