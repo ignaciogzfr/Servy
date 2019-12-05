@@ -15,7 +15,7 @@
               require_once 'modelos/modelo-usuarios.php';
               require_once 'modelos/modelo-servicios.php';
               $datos = Usuarios::getPerfilUsuario($_GET['id']); 
-              echo '<img src="'.$datos[0]['foto_perfil'].'" alt="img/placeholder-person.jpg" width="150" height="150" class="rounded-circle  my-2">'
+              echo '<img src="'.$datos[0]['foto_perfil'].'" alt="Foto de Perfil va aqui." width="150" height="150" class="rounded-circle  my-2">'
                ?>
 <?php
 if($sesion == true){

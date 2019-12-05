@@ -32,7 +32,7 @@
                          <input type="text" class="form-control" name="fono" id="fono-grua"  pattern="[0-9]{9}"  placeholder="+569 11223344" required="">
                           </div>
                           <div class="form-group">
-                         <textarea name="descripcion" pattern="^(?!.* ).{1,50}$" class="form-control" id="detalle-grua" cols="30" rows="3"  required="" placeholder="Breve descripcion"></textarea>
+                         <textarea name="descripcion" class="form-control" id="detalle-grua" cols="30" rows="3" maxlength="200" required="" placeholder="Breve descripcion"></textarea>
                           </div>
 
                         <div class="form-group">      <select id="select-tipo-vehiculo" required="" name="tipo-vehiculo" class="form-control">

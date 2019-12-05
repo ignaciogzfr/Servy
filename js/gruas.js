@@ -71,6 +71,8 @@ function pedirGrua(event){
 						title : '¡Tu publicación ha sido enviada con éxito!',
 						text : 'Ahora solo hay que esperar que se apruebe y que una grua la tome.',
 						icon : 'success'
+					}).then(function(){
+						location.href="vista-gruas.php"
 					})
 					
 	        		}
