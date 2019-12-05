@@ -68,7 +68,7 @@ function Miposicion() {
               var  directionsService = new google.maps.DirectionsService();
               var geocoder = new google.maps.Geocoder();
               var infowindow = new google.maps.InfoWindow();
-              var DistanceMatrix = new google.maps.DistanceMatrixService();
+             
               var map;
 
       if (navigator.geolocation) {
@@ -81,6 +81,14 @@ function Miposicion() {
             
               var origen = new google.maps.LatLng(pos.lat, pos.lng );
               var destino = new google.maps.LatLng(document.getElementById('lat-publicacion').value, document.getElementById('lng-publicacion').value);
+
+         
+             
+
+
+
+
+
 
               var mapOptions = {
                 zoom: 14,
@@ -106,6 +114,24 @@ function Miposicion() {
                     if(status = "OK"){
                         //hace la ruta
                       directionsDisplay.setDirections(result);
+                      
+                        var route = result.routes[0];
+                        var duration = 0;
+
+                           route.legs.forEach(function (leg){
+                            duration += leg.duration.value;
+                               });
+
+                            var duracion = duration/60;
+                            duracion = duracion.toFixed(1);
+                            duracion = duracion.toString();
+
+                             var tiempoestimado = ("El tiempo estimado de llegada es de "+duracion.substr(0,2) + " Minutos y " + duracion.substr(3) + " segundos");
+                             console.log(tiempoestimado);
+
+                             $('#h6-tiempo-aprox').text("");
+                             $('#h6-tiempo-aprox').text(tiempoestimado);
+
                     }
                 });
 

@@ -21,17 +21,87 @@ Class Publicaciones{
 	 * */
 	static public function getPublicaciones(){
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT p.*, u.nombre_usuario, t.tipo_servicio  FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario and p.id_tipo_servicio = t.id_tipo_servicio");
+		$sql = $con->prepare("SELECT p.*, u.*, t.tipo_servicio  FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario and p.id_tipo_servicio = t.id_tipo_servicio");
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC); 
 	}
 
-	/**
-	 * Con este metodo se obtiene las publicaciones que sean de tipo demanda de los usaurios de tipo cliente y invitado
-	 * @return $sql matriz de datos que contienen los resultados de la consulta de publicaciones tipo demanda.
-	 * @var $sql objeto de manejo de consultas.
-	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
-	 * */
+	static function aceptarPublicacion($id,$idp){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("UPDATE publicacion SET id_usuario_maestro = :id, estado_publicacion = 'Aceptada' WHERE id_publicacion = :idp");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+		$sql->bindParam(":idp",$idp,PDO::PARAM_INT);
+		if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
+	}
+
+	static function aceptarPublicacionInvitado($id,$idp){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("UPDATE publicacion_invitado SET id_usuario_maestro = :id, estado_invitado = 'Aceptada' WHERE id_invitado = :idp");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+		$sql->bindParam(":idp",$idp,PDO::PARAM_INT);
+		if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
+	}
+
+		static function solucionarServicio($id){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("UPDATE publicacion SET estado_publicacion = 'Solucionada' WHERE id_publicacion = :id");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+
+		if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
+	}
+
+
+		static function solucionarServicioInvitado($id){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("UPDATE publicacion_invitado SET estado_invitado = 'Solucionada' WHERE id_invitado = :id");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+
+		if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
+	}
+	
+	static function verPublicacionInvitado($id){
+
+			$con = Conexion::conectar();
+		$sql = $con->prepare("SELECT p.*, t.tipo_servicio FROM publicacion_invitado p, tipo_servicio t WHERE p.id_invitado = :id and p.id_tipo_servicio = t.id_tipo_servicio ");
+			$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->execute();
+	return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	static function getPublicacionesInvitado(){
+
+		$con = Conexion::conectar();
+		$sql = $con->prepare("SELECT p.*, t.tipo_servicio FROM publicacion_invitado p, tipo_servicio t WHERE p.id_tipo_servicio = t.id_tipo_servicio ");
+		$sql->execute();
+		return $sql->fetchAll(PDO::FETCH_ASSOC); 
+
+	}
+
+	static public function getDenuncias($id){
+
+		$con = Conexion::conectar();
+		$sql = $con->prepare("SELECT d.*, u.nombre_usuario, t.tipo_denuncia FROM denuncias_publicacion d, usuario u, tipos_denuncia t 	WHERE publicacion = :id and d.denunciante = u.id_usuario and d.tipo_denuncia = t.id_tipo_denuncia");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	$sql->execute();
+	return $sql->fetchAll(PDO::FETCH_ASSOC);
+
+	}
 	static public function getPublicacionesDemanda(){
 		$con = Conexion::conectar();
 		$sql = $con->prepare("SELECT p.*, u.nombre_usuario, t.tipo_servicio FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario AND p.id_tipo_servicio = t.id_tipo_servicio AND p.tipo_publicacion = 'Demanda' and p.estado_publicacion = 'Aprobada' ORDER BY fecha_hora_publicacion DESC");
@@ -80,7 +150,7 @@ Class Publicaciones{
 	 * */
 	static public function verPublicacion($id){
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT  p.*, u.nombre_usuario, t.tipo_servicio  FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario and p.id_tipo_servicio = t.id_tipo_servicio and id_publicacion = :id");
+		$sql = $con->prepare("SELECT  p.*, u.*, t.tipo_servicio  FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario and p.id_tipo_servicio = t.id_tipo_servicio and id_publicacion = :id");
 			$sql->bindParam(":id",$id,PDO::PARAM_INT);
 			$sql->execute();
 			return $sql->fetchAll(PDO::FETCH_ASSOC);

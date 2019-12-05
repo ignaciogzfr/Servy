@@ -1,5 +1,5 @@
 <?php 
-
+@session_start();
 require_once '../modelos/modelo-usuarios.php';
 /**
  *
@@ -156,7 +156,13 @@ Class GestorUsuarios{
 
 
 	
-	/**
+
+	public function denunciarUsuario($denunciado,$tipo,$detalle){
+		$respuesta = Usuarios::denunciarUsuario($_SESSION['id'],$denunciado,$tipo,$detalle);
+		echo $respuesta;
+	}
+
+		/**
 	 * Esta funcion sirve para controlar la imagen con la que se hara un registro de un cliente nuevo, ademas de entregarle los datos al modelo para que pueda realizar una consulta y reciba una respuesta.
 	 * 
 	 * @param $mail de tipo string, correo unico que servira para realizar login, usado por el usaurio recien registrado
@@ -316,6 +322,12 @@ switch($op){
 		}
 		break;
 		}
+
+		case 'denunciarUsuario':
+		$response = new GestorUsuarios();
+		$response->denunciarUsuario($_POST['denunciado'],$_POST['tipo_denuncia'],$_POST['detalle']);
+		break;
+
 		case 'sancionarUsuario':
 		$response = new GestorUsuarios();
 		$response->SancionarUsuario($_POST["id"]);

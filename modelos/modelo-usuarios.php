@@ -154,6 +154,12 @@ Class Usuarios{
 	return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	static public function getTiposDenunciaU(){
+	$con = Conexion::conectar();
+	$sql = $con->prepare("SELECT * FROM tipos_denuncia WHERE entidades_admitidas = 'Usuarios' OR entidades_admitidas = 'Ambos' ");
+	$sql->execute();
+	return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
 	
 
 
@@ -164,6 +170,21 @@ Class Usuarios{
 
 
 // CONSULTAS RESPECTO A SANCIONES
+
+
+
+	static public function denunciarUsuario($denunciante,$denunciado,$tipo,$detalle){
+	$con = Conexion::conectar();
+	$sql = $con->prepare("INSERT INTO denuncias_usuario(id_denunciante,id_denunciado,id_tipo_denuncia,fecha_hora,comentarios_denuncia) VALUES (:denunciante, :denunciado, :tipo, NOW(), :detalle)");
+	$sql->bindParam(":denunciante",$denunciante,PDO::PARAM_INT);
+	$sql->bindParam(":denunciado",$denunciado,PDO::PARAM_INT);
+	$sql->bindParam(":tipo",$tipo,PDO::PARAM_INT);
+	$sql->bindParam(":detalle",$detalle,PDO::PARAM_STR);
+	$sql->execute();
+	return 'Denunciado papu';
+	}
+
+
 
 
 	/**
@@ -520,10 +541,16 @@ Class Usuarios{
 	$sql = $con->prepare('INSERT INTO servicios_maestro(id_usuario,id_tipo_servicio,estado_servicio_maestro) VALUES (:id,:servicio,"Activo") ');
 	$sql->bindParam(":id",$id,PDO::PARAM_INT);
 	$sql->bindParam(':servicio',$servicios[$i],PDO::PARAM_INT);
-	$sql->execute();
-	}
+	if($sql->execute()){
 	$con->commit();
-	return 'OK';
+	return 'OK';		
+	}
+	else{
+	$con->rollBack();
+	return 'Error al editar';
+	}
+	}
+
 	}
 	catch(PDOException $e){
 		$con->rollBack();

@@ -72,35 +72,42 @@
 					<div class="container mt-2 lista-publicaciones"><!-- INICIO LISTA DE SERVICIOS-->
 						<div class="list-group">
               
-						 <?php
-              /* existen 2 tipos de publicaciones oferta y demanda y a partir de este dato que se obitne a traves el metodo get se puede mostrar que tipo de publicacion desea el usuario */
-             require_once("modelos/modelo-publicaciones.php");
+ <?php
+      /* existen 2 tipos de publicaciones oferta y demanda y a partir de este dato que se obitne a traves el metodo get se puede mostrar que tipo de publicacion desea el usuario */
+     require_once("modelos/modelo-publicaciones.php");
 
-             if(isset($_GET['tipo'])){
-              if($_GET['tipo']=='Oferta' || $_GET['tipo']=='oferta'){
-                  $publi = Publicaciones::getPublicacionesOferta();
-              }elseif($_GET['tipo']=='Demanda' || $_GET['tipo']=='demanda'){
-                  $publi = Publicaciones::getPublicacionesDemanda();
-              }
-              }else{
-                if(isset($_GET['servicio']) && !isset($_GET['fecha_min'])){
-                  $publi = Publicaciones::getPublicacionesServicio();
-                }elseif(isset($_GET['servicio'])&& isset($_GET['fecha_min'])){
-                  $publi = Publicaciones::getPublicacionesServicioFecha();
-                }elseif(!isset($_GET['servicio'])&&isset($_GET['fecha_min'])){
-                  $publi = Publicaciones::getPublicacionesFecha();
-                }
-              }
+     if(isset($_GET['tipo'])){
+      if($_GET['tipo']=='Oferta' || $_GET['tipo']=='oferta'){
+          $publi = Publicaciones::getPublicacionesOferta();
+      }elseif($_GET['tipo']=='Demanda' || $_GET['tipo']=='demanda'){
+          $publi = Publicaciones::getPublicacionesDemanda();
+      }
+      }else{
+        if(isset($_GET['servicio']) && !isset($_GET['fecha_min'])){
+          $publi = Publicaciones::getPublicacionesServicio();
+        }elseif(isset($_GET['servicio'])&& isset($_GET['fecha_min'])){
+          $publi = Publicaciones::getPublicacionesServicioFecha();
+        }elseif(!isset($_GET['servicio'])&&isset($_GET['fecha_min'])){
+          $publi = Publicaciones::getPublicacionesFecha();
+        }
+      }
             /*en caso de que no existan publicaciones se creara un recuadro que alerte al usuario la inexistencia de publicaciones*/
             if(count($publi)==0){
 
-            echo('<div class="alert alert-primary" role="alert">No hay publicaciones</div>');
-            }
-            else{
-              for ($i=0; $i<count($publi); $i++){
-                if($_GET['tipo']=='oferta' || $_GET['tipo']=='Oferta'){
-echo '
-                <button type="button" data-toggle="modal" data-target="#resumen-maestro-modal" publicacion="'.$publi[$i]['id_publicacion'].'" maestro="'.$publi[$i]['id_usuario'].'" class="card list-group-item list-group-item-action flex-column align-items-start mt-3 card-resumen-maestro">
+                       $publiinvitado = Publicaciones::getPublicacionesInvitado();
+                  if(count($publi)==0 && count($publiinvitado) == 0){
+
+                      echo('<div class="alert alert-primary text-center" role="alert">
+                                          En este momento no se han encontrado publicaciones, intente más tarde.
+                                  </div>');
+
+                  }else{
+
+                      for ($i=0; $i<count($publi); $i++){
+
+                        echo (' 
+              
+              <a href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
 
                 <div class="d-flex w-100 justify-content-between">
                   <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
@@ -129,12 +136,38 @@ echo '
                 }
                       }
 
+
+
+
+                      for($i=0;$i<count($publiinvitado); $i++){
+                           echo (' 
+              
+              <a href="vista-publicacion-invitado.php?publicacion='.$publiinvitado[$i]['id_invitado'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3 mb-3">
+
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-2">'.$publiinvitado[$i]["titulo_invitado"].'</h5>
+                  <small>'.$publiinvitado[$i]["tipo_servicio"].'</small>
+                  <small> '.$publiinvitado[$i]["fecha_hora_invitado"].'</small>
+                </div>
+
+                <p class="mb-2">DESCRIPCION: '.$publiinvitado[$i]["detalle_invitado"].'</p>
+                <small>Pedido por : '.$publiinvitado[$i]["nombre_invitado"].'</small>
+              </a>');
+                      }
+
+
+
+
+
                   }
 
 
               ?>
+                
+             
 
 
+              
 				</div>
 			</div><!-- FINLISTA DE SERVICIOS-->
 </div>

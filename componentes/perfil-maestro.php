@@ -176,7 +176,12 @@ if($sesion == true){
            </div>
         </div>
 
-
+<?php if(isset($_SESSION['id']) && $_SESSION['id']!=$_GET['id'] && $_SESSION['tipo']!='Administrador'){
+  echo '<div class="text-right">
+  <button class="btn btn-md btn-danger" data-toggle="modal" data-target="#modal-denuncias-u"><i class="fas fa-ban"></i>Denunciar Perfil</button>
+</div>';
+require_once 'componentes/modal-denuncias-usuario.php';
+} ?>
       </div>
 
 <form action="modelos/modelo-login.php" method="POST" id="form-editar-sesion">

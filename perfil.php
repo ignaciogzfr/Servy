@@ -42,7 +42,7 @@ elseif(!isset($perfil[0])){
   echo '<h1 class="alert alert-danger offset-3 col-md-6 text-center">Esta cuenta no existe..</h1>';
 }
 ?>
-      
+
 
 </div>
     <!-- /#page-content-wrapper -->

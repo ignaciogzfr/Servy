@@ -4,6 +4,10 @@
         <?php echo '<img src="'.$_SESSION['fp'].'" class="rounded-circle" height="80" width="80">'; ?>
       </div>
       <div class="list-group list-group-flush text-white pt-5">
+      
+        <?php echo('<a href="servicios-a-realizar.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Servicios a realizar</a>'); ?>
+        
+  <a href="publicar-servicio.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Pedir o Publicar Servicios</a>
      
         <?php
 
