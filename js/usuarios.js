@@ -15,6 +15,9 @@ $('.fp-registro').on('change',function(){
 	previewFP(this);
 })
 
+$('#form-denunciar-u').on('submit',denunciarUsuario);
+
+
 $('.btn-agregar-certificado').on('click',function(e){
 	var linea = '<li>'+$("#cert-maestro").val()+'<button type="button" class="btn btn-quitar-certificado btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>'+'</li>';
 	$('#lista-certificados-maestro').append(linea);
@@ -189,7 +192,20 @@ function previewFP(input){
 }
 
 
+function denunciarUsuario(e){
+	event.preventDefault();
+	var datos = $(this).serialize();
+	$.ajax({
 
+		method: 'POST',
+		url: 'controladores/usuarios-controller.php',
+		data: datos,
+		success:function(response){
+			console.log(response)
+		}
+	})
+
+}
 
 function sancionarUsuario(event){
 		event.preventDefault();

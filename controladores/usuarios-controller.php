@@ -1,5 +1,5 @@
 <?php 
-
+@session_start();
 require_once '../modelos/modelo-usuarios.php';
 /**
  *
@@ -65,6 +65,10 @@ Class GestorUsuarios{
 	}
 	public function verificarMail($mail){
 		$respuesta = Usuarios::verificarMail($mail);
+		echo $respuesta;
+	}
+	public function denunciarUsuario($denunciado,$tipo,$detalle){
+		$respuesta = Usuarios::denunciarUsuario($_SESSION['id'],$denunciado,$tipo,$detalle);
 		echo $respuesta;
 	}
 	public function registrarCliente($mail,$pass,$nombre,$fono,$fp,$dir,$tipo){
@@ -172,6 +176,12 @@ switch($op){
 		}
 		break;
 		}
+
+		case 'denunciarUsuario':
+		$response = new GestorUsuarios();
+		$response->denunciarUsuario($_POST['denunciado'],$_POST['tipo_denuncia'],$_POST['detalle']);
+		break;
+
 		case 'sancionarUsuario':
 		$response = new GestorUsuarios();
 		$response->SancionarUsuario($_POST["id"]);

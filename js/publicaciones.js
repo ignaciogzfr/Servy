@@ -5,7 +5,7 @@ $(document).ready(function(){
 	$(".btn-quitar-sancion-publicacion").on("click",quitarSancionPublicacion)
 	$('#form-publicar-servicios').on('submit',publicarServicio);
 	$('#form-publicar-servicio-invitado').on('submit',publicarServicioInvitado);
-	$('#form-denunciar-p').on('submit',denunciarP);
+	$('#form-denunciar-p').on('submit',denunciarPublicacion);
 
 $('#select-tipo-servicio').select2({
 	width : 'resolve'
@@ -95,10 +95,9 @@ $('#select-tipo-servicio').select2({
 	}
 
 
-	function denunciarP(e){
+	function denunciarPublicacion(e){
 	event.preventDefault();
 	var datos = $(this).serialize();
-	console.log(datos);
 	$.ajax({
 
 		method: 'POST',
