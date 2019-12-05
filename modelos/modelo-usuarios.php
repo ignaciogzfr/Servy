@@ -153,7 +153,7 @@ Class Usuarios{
 
 	static public function denunciarUsuario($denunciante,$denunciado,$tipo,$detalle){
 	$con = Conexion::conectar();
-	$sql = $con->prepare("INSERT INTO denuncias_usuario(id_denunciante,id_denunciado,id_tipo_denuncia,comentarios_denuncia) VALUES (:denunciante, :denunciado, :tipo, :detalle)");
+	$sql = $con->prepare("INSERT INTO denuncias_usuario(id_denunciante,id_denunciado,id_tipo_denuncia,fecha_hora,comentarios_denuncia) VALUES (:denunciante, :denunciado, :tipo, NOW(), :detalle)");
 	$sql->bindParam(":denunciante",$denunciante,PDO::PARAM_INT);
 	$sql->bindParam(":denunciado",$denunciado,PDO::PARAM_INT);
 	$sql->bindParam(":tipo",$tipo,PDO::PARAM_INT);
