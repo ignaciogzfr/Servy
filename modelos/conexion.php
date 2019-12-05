@@ -10,8 +10,8 @@
 class Conexion{
 	/**
 	 * Metodo conectar, que al ser llamada retorna un objeto de conexión con la cual se podran realizar consultas a la base de datos remota.
-	 * @var string $link A este objeto se le asigna el objeto de conexión .
-	 * @return $link Objeto de conexión de nombre link.
+	 * @var $link este objeto se le asigna el objeto de conexión .
+	 * @return $link Objeto de conexión.
 	 * */
 	static public function conectar(){
 		$link = new PDO("mysql:host=remotemysql.com:3306;dbname=hd8LHE0bKS",'hd8LHE0bKS','DqLSfCRNXs',

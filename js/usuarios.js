@@ -240,11 +240,27 @@ $.ajax({
 	url:'controladores/usuarios-controller.php',
 	data: 'op=quitarSancionUsuario&id='+id,
 	success:function(response){
-		swal({
-			title : '¡Sancion levantada!',
-			text : 'El usuario fue reintegrado al sistema de nuevo con exito.',
-			icon : 'success'
-		})		
+		console.log(response);
+		if(response == 'ok'){
+			swal({
+						title : '¡La sancion a sido levantada!',
+						text : 'El usuario puede publicar nuevamente.',
+						icon : 'success'
+					})
+					.then(function(){
+						location.reload();
+					})
+		}
+		else{
+			swal({
+						title : '¡Esto no deberia pasar!',
+						text : 'error interno, contacta con el programador.',
+						icon : 'error'
+					})
+					.then(function(){
+						location.reload();
+					})
+		}	
 	}
 })
 }

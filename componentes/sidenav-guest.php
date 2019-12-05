@@ -6,7 +6,7 @@
 
       <div class="list-group list-group-flush text-white">
 
-        <a href="servicios-pendientes.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Servicios</a>
+        <a href="vista-servicios.php?tipo=oferta" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Publicaciones</a>
         
         <button data-toggle="modal" data-target="modal-contacto" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Informacion gruas</button>
       </div>

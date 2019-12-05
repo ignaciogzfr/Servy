@@ -211,11 +211,22 @@ Class Publicaciones{
 		return 'ok';
 	}
 
+		/**
+		 * Esta funcion sirve para ingresar una publicacion de un invitado, es decir un usuario no registrado, este formulario se encuantra en el index de la pagina, y todos los usaurios pueden acceder a el, pero estas solicitudes tendran menos prioridad de ser atendidos
+		 * @param $nombre de tipo string, nombre del invitado que realiza una solicitud a servicio.
+		 * @param $fono de tipo string, telefono de 8 digitos que ingresa el invitado, para establecer un contacto.
+		 * @param $titulo de tipo string,titulo de la publicacion.
+		 * @param direccion direccion proporcionada por el invitado que indica en donde se necesita al maestro.
+		 * @param $tiposerv de tipo integer, valor que relaciona a la publicacion con un tipo de servicio.
+		 * @param $detalle de tipo string, descripcion de por que se neceista ese servicio,  lo que se requiere hacer.
+		 * 
+		 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 	 * @var $sql objeto de manejo de consultas.
+		 * 
+		 * @return ok mensaje por si la funcion se realizo correctamente.
+		 * */
+
 		static public function publicarServicioInvitado($nombre,$fono,$titulo,$direccion,$tiposerv,$detalle){
-
-	
-
-
 			$con = Conexion::conectar();
 			$sql = $con->prepare("INSERT INTO publicacion_invitado(
 					nombre_invitado,

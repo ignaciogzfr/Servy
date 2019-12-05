@@ -36,7 +36,7 @@ if($sesion == true){
 <form class="form-editar-maestro">
   <?php echo '<input type="text" required="" pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,60}\b$" minlength="1" maxlength="60" class="form-control my-1 input-dato-basico nombre-editar-perfil" name="nombre" original="'.$datos[0]['nombre_usuario'].'" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
 
-  <?php echo '<input type="email" class="form-control my-1 input-dato-basico " name="mail" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="email" class="form-control my-1" name="mail" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
 
   <?php echo '<input type="text" required="" class="form-control my-1 input-dato-basico fono-editar-perfil" required="" pattern="^[9876543]\d{7}$" minlength="3" maxlength="15" name="fono" original="'.$datos[0]['fono_usuario'].'" value="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
 
