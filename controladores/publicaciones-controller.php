@@ -42,6 +42,25 @@ require_once("../modelos/modelo-publicaciones.php");
 				echo($respuesta);
 			}
 
+			public function aceptarPublicacion($id,$idp){
+				$respuesta = Publicaciones::aceptarPublicacion($id,$idp);
+				echo($respuesta);
+			}
+
+			public function aceptarPublicacionInvitado($id,$idp){
+				$respuesta = Publicaciones::aceptarPublicacionInvitado($id,$idp);
+				echo($respuesta);
+			}
+
+			public function solucionarServicio($id){
+				$respuesta = Publicaciones::solucionarServicio($id);
+				echo($respuesta);
+			}
+
+				public function solucionarServicioInvitado($id){
+				$respuesta = Publicaciones::solucionarServicioInvitado($id);
+				echo($respuesta);
+			}
 
 	}
 
@@ -49,6 +68,27 @@ require_once("../modelos/modelo-publicaciones.php");
 $op= $_POST["op"];
 
 	switch ($op) {
+
+		case 'aceptarPublicacionInvitado':
+		$response = new gestorPublicaciones();
+		$response-> aceptarPublicacionInvitado($_POST["id"],$_POST["idp"]);
+		break; 
+
+		case 'solucionarServicio':
+		$response = new gestorPublicaciones();
+		$response-> solucionarServicio($_POST["id"]);	
+		break;
+
+		case 'solucionarServicioInvitado':
+		$response = new gestorPublicaciones();
+		$response-> solucionarServicioInvitado($_POST["id"]);	
+		break;
+
+		case 'aceptarPublicacion':
+		$response = new gestorPublicaciones();
+		$response-> aceptarPublicacion($_POST["id"],$_POST["idp"]);
+		break; 
+
 		case 'sancionarPublicacion':
 			$response = new  gestorPublicaciones();
 			$response-> SancionarPublicacion($_POST["id"]);

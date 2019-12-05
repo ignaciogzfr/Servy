@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 	
@@ -24,17 +24,24 @@
 <?php   require_once 'componentes/modal-denuncias-publicacion.php'; ?>
 <?php require_once 'componentes/ver-ruta-modal.php';?>  
     <!-- Page Content -->
-    <div id="page-content-wrapper" class="bg-white container mt-5">
+    <div id="page-content-wrapper">
+<?php require_once 'componentes/resumen-usuario-modal.php'
 
-				<div class="text-center">
-					<h1>Ver publicacion</h1>
+       ?>
+				<div class="container">
+					<h1 class="text-center mt-2"> Ver publicacion</h1>
+
+       
+        
+          
+					<hr class="featurette-divider">
 				</div>
 <hr class="featurette-divider">
 
 
         <?php 
             require_once("modelos/modelo-publicaciones.php");
-
+             @session_start();
             $publi = publicaciones::verPublicacion($_GET["publicacion"]);
             $denuncias = publicaciones::getDenunciasPublicacion($_GET["publicacion"]);
 
@@ -48,16 +55,22 @@
 
       </div>
   <hr class="featurette-divider">
-      <h3>'.$publi[0]["titulo_publicacion"].'</h3>
-      <p>'.$publi[0]["detalle_publicacion"].'</p>');
-      if($publi[0]['tipo_publicacion']=='Demanda'){
-      echo('<p>Direccion del Problema: '.$publi[0]["direccion_publicacion"].'</p>');
-      }
-      echo('
-      <input type="hidden" name="lat" value="'.$publi[0]["lat_publicacion"].'" id="lat-publicacion">
-      <input type="hidden" name="lng" value="'.$publi[0]["lng_publicacion"].'" id="lng-publicacion">
+          <h3>'.$publi[0]["titulo_publicacion"].'</h3>
+      <p>'.$publi[0]["detalle_publicacion"].'</p>
+          <p>'.$publi[0]["direccion_publicacion"].'
+          </p>
 
-      <hr class="featurette-divider">
+                         <button class="btn btn-success mt-3" id="btn-aceptar-publicacion" value="'.$_SESSION['id'].'">Aceptar publicacion</button>
+                            <button class="btn btn-primary mt-3" data-target="#modal-resumen-usuario" data-toggle="modal">Ver perfil <i class="far fa-user"></i></button> 
+                    <input  id="id-publicacion" type="hidden" value="'.$_GET["publicacion"].'">
+  
+    <input type="hidden" name="lat" value="'.$publi[0]["lat_publicacion"].'" id="lat-publicacion">
+    <input type="hidden" name="lng" value="'.$publi[0]["lng_publicacion"].'" id="lng-publicacion">
+
+          <hr class="featurette-divider">
+    
+         
+   </div>
    ');
 
 if($publi[0]["lat_publicacion"] == ""){
@@ -68,8 +81,10 @@ echo '';
 echo 
 '<div id="floating-panel" class="container text-center">
       <input id="latlng" type="text" hidden="" value="">
-      <button class="btn btn-secondary mt-4" data-target="#modal-ver-ruta" data-toggle="modal" id="submit">ver ruta <i class="fas fa-map-marked-alt"></i></button>
-    <script async defer
+
+    <button class="btn btn-secondary mt-3" data-target="#modal-ver-ruta" data-toggle="modal" id="submit">ver ruta <i class="fas fa-map-marked-alt"></i></button>
+
+      <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=initMap">
     </script>
 </div>

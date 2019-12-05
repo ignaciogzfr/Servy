@@ -5,6 +5,11 @@ $(document).ready(function(){
 	$(".btn-quitar-sancion-publicacion").on("click",quitarSancionPublicacion)
 	$('#form-publicar-servicios').on('submit',publicarServicio);
 	$('#form-publicar-servicio-invitado').on('submit',publicarServicioInvitado);
+	$('#btn-aceptar-publicacion').on('click',aceptarPublicacion);
+	$('#btn-aceptar-publicacion-invitado').on('click',aceptarPublicacionInvitado);
+	$('#btn-servicio-solucionado').on('click',solucionarServicio);
+	$('#btn-servicio-solucionado-invitado').on('click',solucionarServicioInvitado);
+	$('#select-tipo-servicio').select2({
 	$('#form-denunciar-p').on('submit',denunciarPublicacion);
 
 $('#select-tipo-servicio').select2({
@@ -20,22 +25,116 @@ $('#select-tipo-servicio').select2({
 		console.log(id);
 		//Llamada a el controlador que arrojara una respuesta y segun lo retornado se realizaran acciones en la 
 		//pagina
+	function solucionarServicio(event){
+		console.log('click');	
+		var id = $(this).val();
+		console.log(id);
+		$.ajax({
+
+			method: 'POST',
+			url:'controladores/publicaciones-controller.php',
+			data: 'op=solucionarServicio&id='+id,
+				success:function(response){
+					console.log(response);
+	        		if(response!=''){
+	        			swal({
+						title : '¡Todo listo!',
+						text : 'Este servicio se ha solucionado',
+						icon : 'success'
+					})
+					
+	        		}
+	        	}
+
+
+		})
+
+	}
+
+	function solucionarServicioInvitado(event){
+		console.log('click');	
+		var id = $(this).val();
+		console.log(id);
+		$.ajax({
+
+			method: 'POST',
+			url:'controladores/publicaciones-controller.php',
+			data: 'op=solucionarServicioInvitado&id='+id,
+				success:function(response){
+					console.log(response);
+	        		if(response!=''){
+	        			swal({
+						title : '¡Todo listo!',
+						text : 'Este servicio se ha solucionado',
+						icon : 'success'
+					})
+					
+	        		}
+	        	}
+
+
+		})
+
+	}
+
+	function aceptarPublicacion(event){
+
+		var id = $(this).val();
+		var idp = $('#id-publicacion').val();
+		console.log(idp);
+		console.log(id);
+
 		$.ajax({
 			method: 'POST',
-			url: 'controladores/publicaciones-controller.php',
-			data: 'op=sancionarPublicacion&id='+id,
-			success:function(r){
-				console.log(r)
-				swal({
-					title: 'Ahi va',
-					text: 'La publicacion seleccionada ha sido efectivamente sancionada',
-					icon: 'info'
-				}).then(function(){
-					location.reload()
-				})
-			}
+			url:'controladores/publicaciones-controller.php',
+			data: 'op=aceptarPublicacion&id='+id+'&idp='+idp,
+				success:function(response){
+					console.log(response);
+	        		if(response!=''){
+	        			swal({
+						title : '¡Has aceptado la publicacion!',
+						text : 'Ponte en contacto con tu cliente :)',
+						icon : 'success'
+					})
+					
+	        		}
+	        	}
+
+
 		})
+
 	}
+
+	function aceptarPublicacionInvitado(event){
+
+		var id = $(this).val();
+		var idp = $('#id-publicacion').val();
+		console.log(idp);
+		console.log(id);
+
+		$.ajax({
+
+			method: 'POST',
+			url:'controladores/publicaciones-controller.php',
+			data: 'op=aceptarPublicacionInvitado&id='+id+'&idp='+idp,
+				success:function(response){
+					console.log(response);
+	        		if(response!=''){
+	        			swal({
+						title : '¡Has aceptado la publicacion!',
+						text : 'Ponte en contacto con tu cliente :)',
+						icon : 'success'
+					})
+					
+	        		}
+	        	}
+
+
+		})
+
+	}
+
+
 
 	function quitarSancionPublicacion(event){
 		//al obtener el formulario completo su valor siempre es el id al cual se le

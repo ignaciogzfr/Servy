@@ -14,9 +14,13 @@
         width: 70%;
       }</style>
 
-<div class="text-center" style="background-color: #45526e;">
+<div class="text-center" style="background-color: #FFFF;">
     <button class="btn btn-success btn-lg mt-4" id="submit">ver ruta <i class="fas fa-map-marked-alt"></i></button>
+    <div class=" container w-50"><h6 class=" text-center alert-primary w-100 py-2 mt-3" id="h6-tiempo-aprox">Haga click en el boton VER RUTA</h6></div>
+     
  <div id="map" class="container text-center"></div>
+
+
                           
 		
 </div>	
