@@ -58,8 +58,9 @@
   <div class="container text-center">
 
       <div class="row">
-        <div class="col"> pedido por: '.$publi[0]["nombre_invitado"].'</div>
-        <div class="col">tipo servicio: '.$publi[0]["tipo_servicio"].' </div>
+        <div class="col">Pedido por: '.$publi[0]["nombre_invitado"].'</div>
+        <div class="col">Tipo servicio: '.$publi[0]["tipo_servicio"].' </div>
+        <div class"col">Telefono: '.$publi[0]["fono_invitado"].'</div>
         <div class="col">'.$publi[0]["fecha_hora_invitado"].'</div>
 
       </div>
@@ -73,6 +74,8 @@
           <hr class="featurette-divider">
     
          
+                         <button class="btn btn-success mt-3" id="btn-aceptar-publicacion-invitado" value="'.$_SESSION['id'].'">Aceptar publicacion</button>
+                         <input  id="id-publicacion" type="hidden" value="'.$_GET["publicacion"].'">
    </div>
    ');
             

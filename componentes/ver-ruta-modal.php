@@ -13,8 +13,11 @@
 
             <div class="modal-body  text-center">
                      
-                        <div id="map" class="container text-center"></div>
+                        <div id="map" class="container text-center">
+                            <div class="container"><h6 class=" text-center alert-warning w-100 py-2">No se ha podido cargar el mapa, recargue la página e intente nuevamente</h6></div>
+                        </div>
                           
+                          <h6 class=" text-center alert-primary w-100 py-2 mt-3" id="h6-tiempo-aprox"> </h6>
 
                          <?php require_once 'componentes/scripts.php' ?>
             </div>

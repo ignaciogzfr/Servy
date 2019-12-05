@@ -7,12 +7,59 @@ Class Publicaciones{
 	static public function getPublicaciones(){
 	 //Obtiene todo los datos  de la tabla publicacion, ademas de nombre_usuario y el tipo_servicio de sus respectivas tablas
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT p.*, u.nombre_usuario, t.tipo_servicio  FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario and p.id_tipo_servicio = t.id_tipo_servicio");
+		$sql = $con->prepare("SELECT p.*, u.*, t.tipo_servicio  FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario and p.id_tipo_servicio = t.id_tipo_servicio");
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC); 
 	}
 
+	static function aceptarPublicacion($id,$idp){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("UPDATE publicacion SET id_usuario_maestro = :id, estado_publicacion = 'Aceptada' WHERE id_publicacion = :idp");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+		$sql->bindParam(":idp",$idp,PDO::PARAM_INT);
+		if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
+	}
 
+	static function aceptarPublicacionInvitado($id,$idp){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("UPDATE publicacion_invitado SET id_usuario_maestro = :id, estado_invitado = 'Aceptada' WHERE id_invitado = :idp");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+		$sql->bindParam(":idp",$idp,PDO::PARAM_INT);
+		if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
+	}
+
+		static function solucionarServicio($id){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("UPDATE publicacion SET estado_publicacion = 'Solucionada' WHERE id_publicacion = :id");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+
+		if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
+	}
+
+
+		static function solucionarServicioInvitado($id){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("UPDATE publicacion_invitado SET estado_invitado = 'Solucionada' WHERE id_invitado = :id");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+
+		if($sql->execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
+	}
 	
 	static function verPublicacionInvitado($id){
 

@@ -5,7 +5,7 @@
       </div>
       <div class="list-group list-group-flush text-white pt-5">
       
-        <?php echo('<a href="servicios-pendientes.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Servicios pendientes</a>'); ?>
+        <?php echo('<a href="servicios-a-realizar.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Servicios a realizar</a>'); ?>
         
   <a href="publicar-servicio.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Pedir o Publicar Servicios</a>
   <a href="servicios-pendientes.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mis Publicaciones</a>
