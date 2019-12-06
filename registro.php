@@ -50,7 +50,7 @@
 
 					<div class="col-md-7">
 						<label for="mail-registro-cliente">Correo Electrónico *</label>
-						<input id="mail-registro-cliente" type="email" pattern="[a-z0-9._%+-]+@([a-z0-9.-].{1,20})+(\.[a-z].{1,7})$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="" maxlength="60" minlength="5">
+						<input id="mail-registro-cliente" type="email" pattern="[a-z0-9._%+-]+@([a-z0-9.-].{5,20})+(\.[a-z].{3,7})$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="" maxlength="60" minlength="5">
 					</div>
 
 					<div class="col-md-5">
@@ -70,7 +70,7 @@
 
 					<div class="col-md-6">
 							<label for="fono-registro-cliente">Numero telefonico *</label>
-							<input id="fono-registro-cliente" type="tel" pattern="^[9876543]\d{7}$" class="form-control" maxlength="15" placeholder="1234 5678" style="font-style:italic" name="fono-registro" required="">
+							<input id="fono-registro-cliente" type="tel" pattern="^[9876543]\d{7}$" class="form-control" maxlength="8" placeholder="1234 5678" style="font-style:italic" name="fono-registro" required="">
 					</div>
 
 				</div>
@@ -124,7 +124,7 @@
 					
 					<div class="form-group">
 						<label for="mail-registro-maestro">Correo Electrónico *</label>
-						<input id="mail-registro-maestro" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="" maxlength="40" minlength="5">						
+						<input id="mail-registro-maestro" type="email" pattern="[a-z0-9._%+-]+@([a-z0-9.-].{5,20})+(\.[a-z].{1,7})$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="" maxlength="40" minlength="5">						
 					</div>
 
 
@@ -137,7 +137,7 @@
 					    <div class="form-group col-md-9">
 					      <label for="nombre-maestro">Tu Nombre *</label>
 					      <input id="nombre-maestro" type="text" class="form-control"  placeholder="Nombre"
-					      name="nombre-registro" required=""  minlength="4" maxlength="50" pattern="[a-zA-Z]{1,30} [a-zA-Z]{1,30}">
+					      name="nombre-registro" required=""  minlength="4" maxlength="50" pattern="[a-zA-Z/s]{1,30}">
 					    </div>
 					  </div>
 

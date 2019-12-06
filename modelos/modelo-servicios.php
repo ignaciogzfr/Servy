@@ -12,7 +12,8 @@ require_once("conexion.php");
  * */
 Class Servicios{
 	/**
-	 * Con esta función se obtienen los servicios apra su carga en lso selectores de los formularios
+	 * Con esta función se obtienen los servicios apra su carga en lso selectores de los formularios.
+	 * 
 	 * @return $sql matriz de datos con los resultados de la tabla servicios
 	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php
 	 * */

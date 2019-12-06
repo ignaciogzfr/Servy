@@ -12,7 +12,7 @@ require_once("conexion.php");
  * */
 Class Publicaciones{
 	/**
-	 * Con este metodo se obtiene las publicaciones de los usuarios.
+	 * Con este metodo se obtiene las publicaciones,datos de usaurio y tipo de publicacion de los usuarios.
 	 * 
 	 * @return $sql Tabla con los resultados de la consulta.
 	 * @var $sql objeto de manejo de consultas.
@@ -26,6 +26,18 @@ Class Publicaciones{
 		return $sql->fetchAll(PDO::FETCH_ASSOC); 
 	}
 
+
+	/**
+	 * Esta funcion sirve para cuando un usuario acepte la publicacion, se cambia el estado de la publicacion a "Aceptada" en donde el identificador de la publicacion sea la misma en al base de datos.
+	 * 
+	 * @param $id de tipo integer, identificador del aceptante de la publicacion.
+	 * @param $idp de tipo integer, identificador de la publicacion que esta siendo aceptada.
+	 * 
+	 * @var $sql objeto de manejo de consultas.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * 
+	 * @return mensaje mensaje de "error" en caso de que la consulta no fuera ejecutada o "ok" si se ejecuto correctamente.
+	 * */
 	static function aceptarPublicacion($id,$idp){
 		$con = Conexion::conectar();
 		$sql = $con->prepare("UPDATE publicacion SET id_usuario_maestro = :id, estado_publicacion = 'Aceptada' WHERE id_publicacion = :idp");
@@ -38,6 +50,18 @@ Class Publicaciones{
 		}
 	}
 
+
+	/**
+	 * Esta funcion sirve para cuando un usuario acepte la publicacion del invitado, se cambia el estado de la publicacion a "Aceptada" en donde el identificador de la publicacion sea la misma en al base de datos.
+	 * 
+	 * @param $id de tipo integer, identificador del aceptante de la publicacion.
+	 * @param $idp de tipo integer, identificador de la publicacion que esta siendo aceptada.
+	 * 
+	 * @var $sql objeto de manejo de consultas.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * 
+	 * @return mensaje mensaje de "error" en caso de que la consulta no fuera ejecutada o "ok" si se ejecuto correctamente.
+	 * */
 	static function aceptarPublicacionInvitado($id,$idp){
 		$con = Conexion::conectar();
 		$sql = $con->prepare("UPDATE publicacion_invitado SET id_usuario_maestro = :id, estado_invitado = 'Aceptada' WHERE id_invitado = :idp");
@@ -50,6 +74,18 @@ Class Publicaciones{
 		}
 	}
 
+
+	/**
+	 * Esta funcion se utiliza par cambiar el estado de una publicacion de tipo demanda a "Solucionada", que significa que fue atendida.
+	 * 
+	 * @param $id de tipo integer, identificador de la publicacion atendida.
+	 * 
+	 * 
+	 * @var $sql objeto de manejo de consultas.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * 
+	 * @return mensaje mensaje de "error" en caso de que la consulta no fuera ejecutada o "ok" si se ejecuto correctamente.
+	 * */
 		static function solucionarServicio($id){
 		$con = Conexion::conectar();
 		$sql = $con->prepare("UPDATE publicacion SET estado_publicacion = 'Solucionada' WHERE id_publicacion = :id");
@@ -62,7 +98,17 @@ Class Publicaciones{
 		}
 	}
 
-
+		/**
+	 * Esta funcion se utiliza par cambiar el estado de una publicacion de invitado  de tipo demanda a "Solucionada", que significa que fue atendida con exito.
+	 * 
+	 * @param $id de tipo integer, identificador de la publicacion atendida.
+	 * 
+	 * 
+	 * @var $sql objeto de manejo de consultas.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * 
+	 * @return mensaje mensaje de "error" en caso de que la consulta no fuera ejecutada o "ok" si se ejecuto correctamente.
+	 * */
 		static function solucionarServicioInvitado($id){
 		$con = Conexion::conectar();
 		$sql = $con->prepare("UPDATE publicacion_invitado SET estado_invitado = 'Solucionada' WHERE id_invitado = :id");
@@ -75,6 +121,18 @@ Class Publicaciones{
 		}
 	}
 	
+
+	/**
+	 * Con esta funcon se obtiene los parametros necesarios apra rellenar la visualizacion de una publicacion de demanda, de un usuario invitado.
+	 * 
+	 * @param $id de tipo integer, identificador de la publicacion del invitado.
+	 * 
+	 * 
+	 * @var $sql objeto de manejo de consultas.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * 
+	 * @return mensaje mensaje de "error" en caso de que la consulta no fuera ejecutada o "ok" si se ejecuto correctamente.
+	 * */
 	static function verPublicacionInvitado($id){
 
 			$con = Conexion::conectar();
@@ -84,6 +142,16 @@ Class Publicaciones{
 	return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+
+	/**
+	 * Se obtienen las publicaciones de los invitados, de tipo demanda, para rellenar la visaulizacion de demandas de los maestro.
+	 * 
+	 * @var $sql objeto de manejo de consultas.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * 
+	 * @return $sql matriz de datos con los datos obtenidos de la base de datos y generada por al consulta.
+	 * 
+	 * */
 	static function getPublicacionesInvitado(){
 
 		$con = Conexion::conectar();
@@ -93,6 +161,18 @@ Class Publicaciones{
 
 	}
 
+
+	/**
+	 * Con esta funcion se obtienen las denuncias de una publicacion, estas se haran visibles en la vista de la misma publicaicon  cuando el administrador pueda visualizarlos por debajo de la publicacion original.
+	 * 
+	 * @param $id de tipo integer, identificador de la publicacion.
+	 * 
+	 * @var $sql objeto de manejo de consultas.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * 
+	 * @return $sql matriz de datos la cual se obtiene por la consulta recien ejecutada.
+	 * 
+	 * */
 	static public function getDenuncias($id){
 
 		$con = Conexion::conectar();
@@ -102,12 +182,25 @@ Class Publicaciones{
 	return $sql->fetchAll(PDO::FETCH_ASSOC);
 
 	}
+
+
+	/**
+	 * Con esta funcion se obtiene los datos de las publicaciones de tipo demanda para su visualizacion en el espacio de publicaciones-demanda del maestro siempre y cuando esten aprobadas.
+	 * 
+	 * @var $sql objeto de manejo de consultas.
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * 
+	 * @return $sql matriz de datos con los datos obtenidos de la base de datos y generada por al consulta.
+	 * 
+	 * */
 	static public function getPublicacionesDemanda(){
 		$con = Conexion::conectar();
 		$sql = $con->prepare("SELECT p.*, u.nombre_usuario, t.tipo_servicio FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario AND p.id_tipo_servicio = t.id_tipo_servicio AND p.tipo_publicacion = 'Demanda' and p.estado_publicacion = 'Aprobada' ORDER BY fecha_hora_publicacion DESC");
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
+
+
 	/**
 	 * Con este metodo se obtienen las publicaciones que sena de tipo oferta de los usuarios de tipo maestro.
 	 * 
@@ -281,11 +374,22 @@ Class Publicaciones{
 		return 'ok';
 	}
 
+		/**
+		 * Esta funcion sirve para ingresar una publicacion de un invitado, es decir un usuario no registrado, este formulario se encuantra en el index de la pagina, y todos los usaurios pueden acceder a el, pero estas solicitudes tendran menos prioridad de ser atendidos
+		 * @param $nombre de tipo string, nombre del invitado que realiza una solicitud a servicio.
+		 * @param $fono de tipo string, telefono de 8 digitos que ingresa el invitado, para establecer un contacto.
+		 * @param $titulo de tipo string,titulo de la publicacion.
+		 * @param direccion direccion proporcionada por el invitado que indica en donde se necesita al maestro.
+		 * @param $tiposerv de tipo integer, valor que relaciona a la publicacion con un tipo de servicio.
+		 * @param $detalle de tipo string, descripcion de por que se neceista ese servicio,  lo que se requiere hacer.
+		 * 
+		 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 	 * @var $sql objeto de manejo de consultas.
+		 * 
+		 * @return ok mensaje por si la funcion se realizo correctamente.
+		 * */
+
 		static public function publicarServicioInvitado($nombre,$fono,$titulo,$direccion,$tiposerv,$detalle){
-
-	
-
-
 			$con = Conexion::conectar();
 			$sql = $con->prepare("INSERT INTO publicacion_invitado(
 					nombre_invitado,
