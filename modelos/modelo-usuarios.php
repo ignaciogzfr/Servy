@@ -154,6 +154,14 @@ Class Usuarios{
 	return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+
+	/**
+	 * Con esta funcion se obtienen todos los datos de la tabla tipo de denuncia de los usuarios.
+	 * 
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * @return $sql matriz de datos que contiene los tipos de denuncia permitidos par los usuarios
+	 * 
+	 * */
 	static public function getTiposDenunciaU(){
 	$con = Conexion::conectar();
 	$sql = $con->prepare("SELECT * FROM tipos_denuncia WHERE entidades_admitidas = 'Usuarios' OR entidades_admitidas = 'Ambos' ");
@@ -173,6 +181,20 @@ Class Usuarios{
 
 
 
+	/**
+	 * esta funcion captura datos necesarios para hacer una denuncia del controlador y als inserta en la base de datos apra ello se necesitara un denunciante, un denunciado, que tipo de denucnia se esta haciendo y un rezonamiento por la denuncia.
+	 * 
+	 * @param $denunciante de tipo integer, identificador del denunciante.
+	 * @param $denunciado de tipo integer, identificador del usuario denunciado.
+	 * @param $tipo de tipo integer, valor de id de la tabla tipo de denuncia, para clasificar una denuncia.
+	 * @param $detalle de tipo string, razonamiento de la denuncia.
+	 * 
+	 * @var $sql objeto de consulta,sirve para almacenar la consulta y ejecutarla.
+	 * @var $con obejto de conexion, objeto de conexion obtenido de conexion.php.
+	 * 
+	 * @return mensaje mensaje "denuncaido papu" que significa que la consulta fue realizada.
+	 * 
+	 * */
 	static public function denunciarUsuario($denunciante,$denunciado,$tipo,$detalle){
 	$con = Conexion::conectar();
 	$sql = $con->prepare("INSERT INTO denuncias_usuario(id_denunciante,id_denunciado,id_tipo_denuncia,fecha_hora,comentarios_denuncia) VALUES (:denunciante, :denunciado, :tipo, NOW(), :detalle)");
@@ -189,6 +211,7 @@ Class Usuarios{
 
 	/**
 	 * Funcion que permite sancionar a una usuario utilizando su identificador del usuario en cuestion cambiando su estado a "Sancionado".
+	 * 
 	 * @param $id de tipo integer, identificador de el usuario que va a ser sancionado por un administrador.
 	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
 	 * @var $sql objeto de manejo de consultas.
@@ -208,7 +231,8 @@ Class Usuarios{
 	}
 
 	/**
-	 * Funcion que permite sancionar a una usuario utilizando su identificador del usuario en cuestion cambiando sus estad a "Activo"
+	 * Funcion que permite sancionar a una usuario utilizando su identificador del usuario en cuestion cambiando sus estad a "Activo".
+	 * 
 	 * @param $id de tipo integer, identificador de el usuario que va a ser sancionado por un administrador.
 	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
 	 * @var $sql objeto de manejo de consultas.
@@ -262,6 +286,18 @@ Class Usuarios{
 		}
 	}
 
+
+	/**
+	 * Esta funcion sirve para verificar si el dato de correo existe en la base de datos, usado para la validacion en registro e usuarios nuevos
+	 * 
+	 * @param $mail de tipo string, mail del usuario sin registrar que sirve apra realizar la comparacion en la base de datos.
+	 * 
+	 * @var $con objeto receptor del objeto de conexion en  modelos/conexion.php.
+	 * @var $sql objeto de manejo de consultas.
+	 * 
+	 * @return numero, numero de cuantas coincidencias se encontraron con el correo ingresado.
+	 * 
+	 * */
 	static public function verificarMail($mail){
 	$con = Conexion::conectar();
 	$sql = $con->prepare("SELECT * FROM usuario WHERE email_usuario = :mail");
@@ -272,6 +308,7 @@ Class Usuarios{
 
 	/**
 	 * Funcion de registro para tipo cliente que al ser llamada se crea una consulta, se le asigan los parametros correspondientes para su ejecución y si tubo exito al ejecutar la consulta crea una variable de tipo global que almacenara los datos del usaurio recien registrado.
+	 * 
 	 * @param $mail de tipo string, correo de un usuario no registrado.
 	 * @param $pass de tipo string, contraseña de un usuario no registrado.
 	 * @param $nombre de tipo string, nombre de un usuario no registrado.
@@ -431,6 +468,7 @@ Class Usuarios{
 
 	/**
 	 * Con esta función se pueden editar el perfil basico de un usuario de tipo cliente ya sea su nombre, correo, nro de telefono, dirección.
+	 * 
 	 * @param $id de tipo integer, identificador de un usuario de tipo cliente.
 	 * @param $nombre de tipo string, nombre del cliente en tabla usaurio.
 	 * @param $fono de tipo string, numero telefonico del usuario registrado de tipo cliente.
@@ -459,6 +497,7 @@ Class Usuarios{
 
 	/**
 	 * Con esta función se pueden editar el perfil basico de un usuario de tipo cliente ya sea su nombre, correo, nro de telefono, dirección.
+	 * 
 	 * @param $id de tipo integer, identificador de un usuario de tipo cliente.
 	 * @param $nombre de tipo string, nombre del cliente en tabla usaurio.
 	 * @param $fono de tipo string, numero telefonico del usuario registrado de tipo cliente.
@@ -499,6 +538,8 @@ Class Usuarios{
 
 	/**
 	 * Funcion que permite editar una ruta de la foto de perfil de una usaurio registrado.
+	 * 
+	 * 
 	 * @param $id de tipo integer, identificador del usaurio registrado.
 	 * @param $fp de tipo  string, que contiene la ruta de la ubicacion de la imagen de portade de un usuario.
 	 * @var $sql objeto de manejo de consultas.

@@ -155,14 +155,25 @@ Class GestorUsuarios{
 
 
 
-	
-
+	/**
+	 * Esta funcion sirve para controlar la respuesta que nos dara el modelo de usuarios, al denunciar un usuario, lo que hace es tomar el parametro de identificador de la bariable global y el identificador del usuario que realizo una publicacion, ademas de los datos del formulario que ingreso el mismo usaurio registrado, para enviar una respuesta a la pagina.
+	 * 
+	 * @param $denunciado de tipo integer, identificador del usuario al que se le esta inponiendo la denuncia.
+	 * @param $tipo de tipo string, tipo de denuncia permitida para ciertos usuarios.
+	 * @param $detalle de tipo string, descripcion del denunciante o razonamiento de la denuncia.
+	 * 
+	 * @global $_SESSION[] vector de datos, almacena los datos del usauroo que realizo un registro o una authentificacion.
+	 * 
+	 * @return $respuesta de tipo string, variable de respuesta que indica si la consulta se ejecuto correctamente, dada por el modelo.
+	 * 
+	 * 
+	 * */
 	public function denunciarUsuario($denunciado,$tipo,$detalle){
 		$respuesta = Usuarios::denunciarUsuario($_SESSION['id'],$denunciado,$tipo,$detalle);
 		echo $respuesta;
 	}
 
-		/**
+	/**
 	 * Esta funcion sirve para controlar la imagen con la que se hara un registro de un cliente nuevo, ademas de entregarle los datos al modelo para que pueda realizar una consulta y reciba una respuesta.
 	 * 
 	 * @param $mail de tipo string, correo unico que servira para realizar login, usado por el usaurio recien registrado

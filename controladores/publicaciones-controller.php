@@ -94,20 +94,56 @@ require_once("../modelos/modelo-publicaciones.php");
 				echo($respuesta);
 			}
 
+			/**
+			 * Esta funcion sirve para controlar la respuesta del modelo y emitir la respuesta a js, es usada par aceptar la publicacion usando el identificador del usuario que acepto y el identificador de la publicacion
+			 * 
+			 * @param $id de tipo integer, identificador del aceptante de publicacion.
+			 * @param $idp de tipo integer, identificador de la publicacion a la cual se le hace una peticion
+			 * 
+			 * @return $respuesta de tipo string, mensaje de aceptacion o mensaje de error, puede ser "ok" o "error".
+			 * */
 			public function aceptarPublicacion($id,$idp){
 				$respuesta = Publicaciones::aceptarPublicacion($id,$idp);
 				echo($respuesta);
 			}
 
+			/**
+			 * Esta funcion sirve para cuando un usuario de tipo maestro acepta una publicacion de tipo invitado, para esto se require de su identificador, y el identificador de la publicacion.
+			 * 
+			 * @param $id de tipo integer, identificador del usuario maestro que acepto la peticion de la publicacion de invitado.
+			 * @param $idp de tipo integer, identificador de la publicacion de invitado, la cual acepto el maestro.
+			 * 
+			 * @return $respuesta de tipo string, mensaje de aceptacion o mensaje de error, puede ser "ok" o "error".
+			 * 
+			 * 
+			 * */
 			public function aceptarPublicacionInvitado($id,$idp){
 				$respuesta = Publicaciones::aceptarPublicacionInvitado($id,$idp);
 				echo($respuesta);
 			}
 
+
+			/**
+			 * Con esta funcion se llama al al modelo de consultas de publicaciones para que, a traves del identificador de la publicacion, se cambie el estado de la publicacion de tipo demanda, y entregue una respuesta.
+			 * 
+			 * @param $id de tipo integer, identificador de la publicacion que ha sido resuelta, o realizada.
+			 * 
+			 * @return $respuesta de tipo string, mensaje de aceptacion o mensaje de error, puede ser "ok" o "error".
+			 * 
+			 * */
 			public function solucionarServicio($id){
 				$respuesta = Publicaciones::solucionarServicio($id);
 				echo($respuesta);
 			}
+
+			/**
+			 * Con esta funcion se hace una llamda al modelo de consulta de las publicaciones, la cual al ejecutar al funcion llamada generara una respuesta de tipo mensaje la cual sera entregada a javascript.
+			 * 
+			 * @param $id de tipo integer, identificador del usuario de tipo invitado para realizar el cambio de estado.
+			 * 
+			 * @return $respuesta de tipo string, mensaje de aceptacion o mensaje de error, puede ser "ok" o "error".
+			 * 
+			 * */
 
 				public function solucionarServicioInvitado($id){
 				$respuesta = Publicaciones::solucionarServicioInvitado($id);
