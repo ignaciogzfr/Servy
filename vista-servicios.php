@@ -38,7 +38,7 @@
 				</div>
 
 
-<div class="container">
+<div class="container" style="display: none">
   <form>
   		<div class="form-row text-center">
 
@@ -91,78 +91,48 @@
           $publi = Publicaciones::getPublicacionesFecha();
         }
       }
-            /*en caso de que no existan publicaciones se creara un recuadro que alerte al usuario la inexistencia de publicaciones*/
-            if(count($publi)==0){
-
-                       $publiinvitado = Publicaciones::getPublicacionesInvitado();
-                  if(count($publi)==0 && count($publiinvitado) == 0){
+      $publiinvitado = Publicaciones::getPublicacionesInvitado();
+            if(count($publi)==0 && count($publiinvitado) == 0){
 
                       echo('<div class="alert alert-primary text-center" role="alert">
                                           En este momento no se han encontrado publicaciones, intente más tarde.
                                   </div>');
 
-                  }else{
+              }else{
+                 for ($i=0; $i<count($publi); $i++){
 
-                      for ($i=0; $i<count($publi); $i++){
+                 echo (' 
+                
+                <a href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
 
-                        echo (' 
-              
-              <a href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
+                    <small>'.$publi[$i]["tipo_servicio"].'</small>
+                    <small> '.$publi[$i]["fecha_hora_publicacion"].'</small>
+                    <input type="hidden" value="" id="id-resumen-maestro">
+                  </div>
 
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
-                  <small>'.$publi[$i]["tipo_servicio"].'</small>
-                  <small> '.$publi[$i]["fecha_hora_publicacion"].'</small>
-                  <input type="hidden" value="" id="id-resumen-maestro">
-                </div>
-
-                <p class="mb-2">DESCRIPCION: '.$publi[$i]["detalle_publicacion"].'</p>
-                <small>Pedido por : '.$publi[$i]["nombre_usuario"].'</small>
-              </button>';
-                }else{
-                  echo '
-              <a href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" class="card list-group-item list-group-item-action flex-column align-items-start mt-3">
-
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
-                  <small>'.$publi[$i]["tipo_servicio"].'</small>
-                  <small> '.$publi[$i]["fecha_hora_publicacion"].'</small>
-
-                </div>
-
-                <p class="mb-2">DESCRIPCION: '.$publi[$i]["detalle_publicacion"].'</p>
-                <small>Pedido por : '.$publi[$i]["nombre_usuario"].'</small>
-              </a>';
-                }
-                      }
-
-
-
-
-                      for($i=0;$i<count($publiinvitado); $i++){
-                           echo (' 
-              
-              <a href="vista-publicacion-invitado.php?publicacion='.$publiinvitado[$i]['id_invitado'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3 mb-3">
-
-                <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-2">'.$publiinvitado[$i]["titulo_invitado"].'</h5>
-                  <small>'.$publiinvitado[$i]["tipo_servicio"].'</small>
-                  <small> '.$publiinvitado[$i]["fecha_hora_invitado"].'</small>
-                </div>
-
-                <p class="mb-2">DESCRIPCION: '.$publiinvitado[$i]["detalle_invitado"].'</p>
-                <small>Pedido por : '.$publiinvitado[$i]["nombre_invitado"].'</small>
-              </a>');
-                      }
-
-
-
-
-
+                  <p class="mb-2">DESCRIPCION: '.$publi[$i]["detalle_publicacion"].'</p>
+                  <small>Pedido por : '.$publi[$i]["nombre_usuario"].'</small>
+                </button>');
                   }
+                
+                for($i=0;$i<count($publiinvitado); $i++){
+                   echo (' 
+                  
+                  <a href="vista-publicacion-invitado.php?publicacion='.$publiinvitado[$i]['id_invitado'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3 mb-3">
 
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-2">'.$publiinvitado[$i]["titulo_invitado"].'</h5>
+                      <small>'.$publiinvitado[$i]["tipo_servicio"].'</small>
+                      <small> '.$publiinvitado[$i]["fecha_hora_invitado"].'</small>
+                    </div>
 
-              ?>
+                    <p class="mb-2">DESCRIPCION: '.$publiinvitado[$i]["detalle_invitado"].'</p>
+                    <small>Pedido por : '.$publiinvitado[$i]["nombre_invitado"].'</small>
+                  </a>');
+                }
+              }?>
                 
              
 

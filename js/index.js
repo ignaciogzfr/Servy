@@ -1,12 +1,39 @@
 $(document).ready(function(){
+$('#form-publicar-servicio-invitado').on('submit',publicarServicioInvitado);
+function publicarServicioInvitado(event){
+      event.preventDefault();
+      var datos = $(this).serialize();
+      console.log(datos)
+      $.ajax({
 
-$('[data-toggle="popover-hover"]').popover({
-  html: true,
-  trigger: 'hover',
-  title: 'Informacion',
-  placement: 'right',
-  content: function () { return 'No te preocupes, la informacion puesta aqui no sera guardada o utilizada.'; }
-});
+        method: 'POST',
+        url: 'controladores/publicaciones-controller.php',
+        data: datos,
+        success:function(response){
+          console.log(response);
+              if(response!=''){
+                swal({
+            title : '¡Tu publicación ha sido enviada con éxito!',
+            text : 'Ahora solo hay que esperar que se apruebe y que un Maestro la tome.',
+            icon : 'success'
+          }).then(function(){
+            location.href="vista-publicacion-invitado.php"
+          })
+          
+              }else{
+
+          swal({
+            title : 'oops, algo salio mal.',
+            text : 'Por favor rellene todos los campos.',
+            icon : 'error'
+          })
+
+
+              }
+            }
+      })
+    
+  }
 $("#btn-enviarservicios").on("click", function(){
 
 

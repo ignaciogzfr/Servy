@@ -60,7 +60,7 @@
       <div class="row">
         <div class="col">Pedido por: '.$publi[0]["nombre_invitado"].'</div>
         <div class="col">Tipo servicio: '.$publi[0]["tipo_servicio"].' </div>
-        <div class"col">Telefono: '.$publi[0]["fono_invitado"].'</div>
+        <div class"col">Telefono: +56 9 '.$publi[0]["fono_invitado"].'</div>
         <div class="col">'.$publi[0]["fecha_hora_invitado"].'</div>
 
       </div>

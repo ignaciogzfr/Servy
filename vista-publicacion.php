@@ -25,18 +25,10 @@
 <?php require_once 'componentes/ver-ruta-modal.php';?>  
     <!-- Page Content -->
     <div id="page-content-wrapper">
-<?php require_once 'componentes/resumen-usuario-modal.php'
-
-       ?>
-				<div class="container">
+<?php require_once 'componentes/resumen-usuario-modal.php'?>
+				<div class="container bg-white">
 					<h1 class="text-center mt-2"> Ver publicacion</h1>
-
-       
-        
-          
 					<hr class="featurette-divider">
-				</div>
-<hr class="featurette-divider">
 
 
         <?php 
@@ -91,19 +83,16 @@ echo
     ';
 
 }
-  echo "</div>";         
-         ?>
 
-
-
-<?php if(isset($_SESSION['tipo'])){
+if(isset($_SESSION['tipo'])){
 
   echo '<div class="text-right"><button class="btn btn-md btn-danger" data-toggle="modal" data-target="#modal-denuncias-p"><i class="fas fa-ban" ></i> Denunciar Publicacion</button></div>';
-} ?>
-<div class="container">
-<a class="btn btn-md btn-secondary" href="vista-servicios.php?tipo=<?php echo($publi[0]["tipo_publicacion"]); ?>"><i class="fas fa-undo"></i> Volver</a>
-</div>
-
+}
+echo '<div class="container">
+<a href="vista-servicios.php?tipo='.$publi[0]['tipo_publicacion'].'" class="btn btn-md btn-secondary"><i class="fas fa-undo"></i> Volver</a>
+</div>';
+  echo "</div>";         
+         ?>
     <?php 
 if(isset($_SESSION['tipo']) && $_SESSION['tipo']=='Administrador'){
         echo (' 

@@ -2,11 +2,11 @@
 
 
       <ul class="navbar-nav ml-auto mt-2">
-            <?php if($_SESSION['tipo']!='Administrador')
+            <?php if($_SESSION['tipo']!='Administrador' && $_SESSION['sub'] == 'NO PO WN'){
             echo ' 
             <li class="nav-item">
             <a class="btn btn-warning btn-sm text-white" href="paypal.php?id='.$_SESSION['id'].'&nombre='.$_SESSION['nombre'].'">Subcribete!</a>
-            </li>'; ?>
+            </li>';} ?>
             
 
         <li class="nav-item">

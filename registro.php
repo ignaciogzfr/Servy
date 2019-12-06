@@ -151,7 +151,7 @@
 					<div class="col-md-5">
 						<div class="form-group">
 							<label for="fono-maestro">Numero telefonico *</label>
-							<input id="fono-maestro" type="text" class="form-control" placeholder="99999999" pattern="[0-9].{7,8}" maxlength="8" style="font-style:italic" name="fono-registro" required>
+							<input id="fono-maestro" type="text" class="form-control" placeholder="99999999" pattern="^[9876543]\d{7}$" maxlength="8" style="font-style:italic" name="fono-registro" required>
 						</div>
 
 
@@ -197,7 +197,7 @@
 			 	<div class="form-group">
 					    <label for="cert-maestro">Certificados</label>
 					    <div class="container row">
-					    <input id="cert-maestro" type="text" class="form-control col-md-11 mt-2"  placeholder="Ingrese nombre del titulo....." name="certificados-registro" minlength="7" maxlength="40">
+					    <input id="cert-maestro" type="text" class="form-control col-md-11 mt-2"  placeholder="Ingrese nombre del titulo....." name="certificados-registro" maxlength="40">
 						<button type="button" class="btn btn-success btn-agregar-certificado"><i class="fas fa-plus-circle" style="font-size: 20px"></i></button>
 						<div class="container">
 							<ul id="lista-certificados-maestro">
@@ -209,7 +209,7 @@
 
 				<div class="form-group mt-5">
   							<label for="exp-maestro">Experiencias</label>
- 							 <textarea class="form-control" id="exampleFormControlTextarea3" rows="4"  maxlength="1000" cols="5" name="exp-registro" placeholder="Describa las labores que ha completado, años de experiencia, datos extra, etc..." required=""></textarea>
+ 							 <textarea class="form-control" id="exampleFormControlTextarea3" rows="4"  maxlength="200" cols="5" name="exp-registro" placeholder="Describa las labores que ha completado, años de experiencia, datos extra, etc..." required=""></textarea>
 				</div>
 
 

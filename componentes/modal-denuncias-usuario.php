@@ -9,7 +9,7 @@
 				<form method="POST" id="form-denunciar-u">
 					<div class="form-group">
 					<label for="tipo-denuncia-p">Eliga el Tipo de Denuncia</label>
-					<select name="tipo_denuncia" id="tipo-denuncia-p" class="form-control">
+					<select name="tipo_denuncia" id="tipo-denuncia-p" class="form-control" required="">
 						<?php require_once 'modelos/modelo-usuarios.php';
 						$tipos = Usuarios::getTiposDenunciaU();
 						for ($i=0; $i < count($tipos) ; $i++) { 
@@ -19,7 +19,7 @@
 					</div>
 					<div class="form-group">
 						<label for="detalle-denuncia-p">Escribe detalles al respecto(Opcional)</label>
-						<textarea name="detalle" id="detalle-denuncia-p" rows="5" class="form-control"></textarea>
+						<textarea name="detalle" id="detalle-denuncia-p" rows="5" class="form-control" maxlength="200"></textarea>
 					</div>
 					<input type="hidden" name="denunciado" value=<?php echo $_GET['id']; ?>>
 					<input type="hidden" name="op" value="denunciarUsuario">

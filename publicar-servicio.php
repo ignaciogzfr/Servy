@@ -51,7 +51,7 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
       echo '
     <div class="form-group col-md-6">
       <label for="titulopubli">Titulo</label>
-      <input type="text" class="form-control" maxlength="50" name="titulo-publi" placeholder="Titulo" required pattern="^\b(?!.*?\s{2})[A-Za-z]{1,60}\b$">
+      <input type="text" class="form-control" maxlength="50" name="titulo-publi" placeholder="Titulo" required pattern="[A-Za-z\s]{5,60}$">
     </div>    
     <div class="form-group col-md-6">
       <label for="titulopubli">Tipo de Publicacion</label>

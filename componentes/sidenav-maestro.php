@@ -1,5 +1,5 @@
     <div class="mdb-color  text-white border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading mdb-color text-center" ><p><?php echo substr($_SESSION['nombre'],0,strpos($_SESSION['nombre'],' '));  ?></p></div>
+      <div class="sidebar-heading mdb-color text-center" ><p><?php if(substr($_SESSION['nombre'],0,strpos($_SESSION['nombre'],' '))==''){echo ($_SESSION['nombre']);}else{echo substr($_SESSION['nombre'],0,strpos($_SESSION['nombre'],' '));}  ?></p></div>
       <div class="text-center">
         <?php echo '<img src="'.$_SESSION['fp'].'" class="rounded-circle" height="80" width="80">'; ?>
       </div>

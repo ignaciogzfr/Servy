@@ -29,6 +29,11 @@ require_once 'conexion.php';
 	$datos = $sql->fetchAll(PDO::FETCH_ASSOC);
 	if (count($datos) == 1) {
 		session_start();
+		$sql1 = $con->prepare("SELECT * FROM subscripcion_usuario where id_usuario = :id");
+		$sql1->bindParam(":id",$datos[0]['id_usuario'],PDO::PARAM_INT);
+		$sql1->execute();
+		$sub = $sql1->fetchAll(PDO::FETCH_ASSOC);
+		$_SESSION['sub'] = count($sub);
 		$_SESSION['id'] = $datos[0]['id_usuario'];
 		$_SESSION['tipo'] = $datos[0]['tipo_usuario'];
 		$_SESSION['nombre'] = $datos[0]['nombre_usuario'];
@@ -49,17 +54,24 @@ require_once 'conexion.php';
 	$sql->execute();
 	$datos = $sql->fetchAll(PDO::FETCH_ASSOC);
 	if (count($datos) == 1) {
-
+		$sql1 = $con->prepare("SELECT * FROM subscripcion_usuario where id_usuario = :id");
+		$sql1->bindParam(":id",$datos[0]['id_usuario'],PDO::PARAM_INT);
+		$sql1->execute();
+		$sub = $sql1->fetchAll(PDO::FETCH_ASSOC);
 		session_start();
 		$_SESSION['id'] = $datos[0]['id_usuario'];
+		$_SESSION['sub'] = count($sub);
 		$_SESSION['tipo'] = $datos[0]['tipo_usuario'];
 		$_SESSION['nombre'] = $datos[0]['nombre_usuario'];
 		$_SESSION['fono'] = $datos[0]['fono_usuario'];
 		$_SESSION['fp'] = $datos[0]['foto_perfil'];
 		$_SESSION['estado'] = $datos[0]['estado_usuario'];
 		$_SESSION['direccion'] = $datos[0]['direccion_usuario'];
-
+		if($_SESSION['tipo']=='Administrador'){
+		echo '<script> location.href="../panel-control.php"</script>';
+		}else{
 		echo('<script> location.href="../perfil.php?id='.$datos[0]['id_usuario'].'"</script>');
+		}
 
 	}
 	else{

@@ -126,8 +126,6 @@
 
 		}
 
-		echo ('<div class="text-center mb-3"><button class="btn btn-primary"> ver mas</button></div>');
-
 		}else{
 
 			echo ('<h6 class=" text-center alert-success w-100 py-2">No tiene servicios pendientes.</h6>');

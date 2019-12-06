@@ -19,9 +19,17 @@ $('#form-denunciar-u').on('submit',denunciarUsuario);
 
 
 $('.btn-agregar-certificado').on('click',function(e){
+	if($('#cert-maestro').val()=='' || $('#cert-maestro').val().length < 7){
+	swal({
+			title : 'Tienes que ingresar un certificado completo, o sea, más de una palabra',
+			icon : 'info'
+	})
+	}else{
 	var linea = '<li>'+$("#cert-maestro").val()+'<button type="button" class="btn btn-quitar-certificado btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button>'+'</li>';
 	$('#lista-certificados-maestro').append(linea);
 	$('#cert-maestro').val("");
+	}
+
 })
 
 $('#lista-certificados-maestro').on('click','.btn-quitar-certificado',function(e){
@@ -201,7 +209,12 @@ function denunciarUsuario(e){
 		url: 'controladores/usuarios-controller.php',
 		data: datos,
 		success:function(response){
-			console.log(response)
+			if(r='Denunciado papu'){
+			swal({
+				title : 'Denunciado con exito!',
+				icon : 'success'
+			})
+			}
 		}
 	})
 
@@ -320,6 +333,13 @@ $('.input-dato-basico').attr('disabled','disabled');
 
 function editarPerfil(e){
 var id = $('#id-perfil-edit').val();
+if($('.nombre-editar-perfil').val()=='' || $('.fono-editar-perfil').val()=='' || $('.dir-editar-perfil').val()==''){
+	swal({
+		title: 'Espera un momento',
+		text : 'No puedes ingresar datos vacios',
+		icon : 'info'
+	})
+}
 if($('#tipo-editar-perfil').val()==='Cliente'){
 	console.log(1);
 	var datos = $('.form-editar-cliente').serialize();

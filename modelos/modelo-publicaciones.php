@@ -400,7 +400,7 @@ Class Publicaciones{
 					detalle_invitado,
 					fecha_hora_invitado,
 					estado_invitado
-				) VALUES (:nombre,:fono,:titulo,:direccion,:tiposerv,:detalle,NOW(),'Pendiente')");
+				) VALUES (:nombre,:fono,:titulo,:direccion,:tiposerv,:detalle,NOW(),'Aprobada')");
 			$sql->bindParam(":nombre",$nombre,PDO::PARAM_STR);
 			$sql->bindParam(":fono",$fono,PDO::PARAM_INT);
 			$sql->bindParam(":titulo",$titulo,PDO::PARAM_STR);

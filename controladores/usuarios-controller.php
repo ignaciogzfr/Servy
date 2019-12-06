@@ -120,6 +120,7 @@ Class GestorUsuarios{
 	 * 
 	 * */
 	public function editarPerfilServicios($id,$servicios){
+		var_dump($servicios);
 		$respuesta = Usuarios::editarPerfilServicios($id,$servicios);
 		echo $respuesta;
 	}

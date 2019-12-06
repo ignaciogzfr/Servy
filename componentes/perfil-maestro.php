@@ -34,13 +34,17 @@ if($sesion == true){
         </div>
             <div class="col-md-6">
 <form class="form-editar-maestro">
-  <?php echo '<input type="text" required="" pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,60}\b$" minlength="1" maxlength="60" class="form-control my-1 input-dato-basico nombre-editar-perfil" name="nombre" original="'.$datos[0]['nombre_usuario'].'" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="text" name="nombre" required="" pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,60}\b$" minlength="1" maxlength="60" class="form-control my-1 input-dato-basico nombre-editar-perfil" original="'.$datos[0]['nombre_usuario'].'" value="'.$datos[0]['nombre_usuario'].'" disabled>'; ?>
 
-  <?php echo '<input type="email" class="form-control my-1" name="mail" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
 
-  <?php echo '<input type="text" required="" class="form-control my-1 input-dato-basico fono-editar-perfil" required="" pattern="^[9876543]\d{7}$" minlength="3" maxlength="15" name="fono" original="'.$datos[0]['fono_usuario'].'" value="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
+  <?php echo '<input type="mail" name="mail" required="" pattern="[a-z0-9._%+-]+@([a-z0-9.-].{1,20})+(\.[a-z].{1,7})$" minlength="" maxlength="" class="form-control my-1 mail-editar-perfil" original="'.$datos[0]['email_usuario'].'" value="'.$datos[0]['email_usuario'].'" disabled>'; ?>
 
-  <?php echo '<input type="text" class="form-control my-1 input-dato-basico dir-editar-perfil" name="dir" original="'.$datos[0]['direccion_usuario'].'" value="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
+
+  <?php echo '<input type="tel" name="fono" required="" pattern="^[9876543]\d{7}$" minlength="3" maxlength="15" class="form-control my-1 input-dato-basico fono-editar-perfil" original="'.$datos[0]['fono_usuario'].'" value="'.$datos[0]['fono_usuario'].'" disabled>'; ?>
+
+
+  <?php echo '<input type="text" name="dir" required="" minlength="5" maxlength="80" class="form-control my-1 input-dato-basico dir-editar-perfil" original="'.$datos[0]['direccion_usuario'].'" value="'.$datos[0]['direccion_usuario'].'" disabled>'; ?>
+
   
   <input type="hidden" value="Maestro" id='tipo-editar-perfil'>
   <input type="hidden" value="editarPerfilBasicoM" name="op">
@@ -56,7 +60,7 @@ if($sesion == true){
                 $servicios = Usuarios::getServiciosMaestro($id);
                 $certificados = Usuarios::getCertificadosMaestro($id);
                 $experiencia = Usuarios::getExperienciaMaestro($id);
-            echo '<textarea class="form-control exp-maestro input-dato-basico" disabled rows="3" name="exp" original="'.$experiencia[0]['detalle_experiencia'].'">'.$experiencia[0]['detalle_experiencia'].'</textarea>';
+            echo '<textarea class="form-control exp-maestro input-dato-basico" disabled rows="3" name="exp" original="'.$experiencia[0]['detalle_experiencia'].'">'.$experiencia[0]['detalle_experiencia'].'</textarea maxlength="300">';
             echo '<input type="hidden" name="id" value="'.$datos[0]['id_usuario'].'">';
 ?>
 </form>
@@ -74,7 +78,12 @@ if($sesion == true){
               <p class="mt-2">Certificados <?php if($sesion == true){echo '<button class="btn btn-success btn-agregar-certificados-edit" value="'.$_GET['id'].'" total="'.count($certificados).'"  style="border-radius=2px;"><i class="fas fa-plus"></i></button>';} ?></p>
               
               </div>
-              <div class="certificados-edit list-unstyled">
+              <ul class="certificados-edit list-group">
+                <div class="row fila-input-c" style="display: none;">
+                  <input class="form-control col-md-8 mt-2 certificado-agregar-edit" type="text" placeholder="Escriba su certificado aqui" maxlength="60">
+                  <button class="btn btn-sm btn-success btn-agregar-fila-c" type="button"><i class="fas fa-check"></i></button>
+                  <button class="btn btn-sm btn-danger btn-eliminar-fila-c" type="button"><i class="fas fa-times"></i></button>
+                </div>
                 <?php 
                 if(count($certificados)==0){
                 echo '<h5 class="alert alert-primary alerta-c">No se ha indicado ningun certificado al respecto de los servicios que proporciona este usuario.</h5>';
@@ -89,7 +98,7 @@ if($sesion == true){
                     <button class="btn btn-danger btn-eliminar-certificado" style="width:38px; height:40px; display: none;" value="'.$certificados[$i]['id_certificado'].'">
                     <i class="fas fa-trash"></i>
                     </button>
-                    <li class="my-3 listado-certificados">'.$certificados[$i]['nombre_certificado'].'</li>
+                    <li class="listado-certificados list-group-item list-group-item-secondary">'.$certificados[$i]['nombre_certificado'].'</li>
                     </div>';
                     }else{
                     echo '<input type="text" class="form-control mb-2" value="'.$certificados[$i]['nombre_certificado'].'" id="'.$certificados[$i]['id_certificado'].'" disabled>';
@@ -99,7 +108,7 @@ if($sesion == true){
 
                  ?>
 
-              </div>
+              </ul>
 <div class="text-center div-botones-certificado">
 </div>
 
@@ -129,7 +138,7 @@ if($sesion == true){
 
                 </div>             
 
-                <div class="servicios-edit list-unstyled offset-3">
+                <ul class="servicios-edit list-group offset-3">
 
                     <?php 
                     if(count($servicios)==0){
@@ -141,19 +150,17 @@ if($sesion == true){
 
                         if($sesion == true){
                         echo '
-                        <div class="row my-3 fila-edit-s">
-                          
-                          <li class="my-3 listado-servicios" value="'.$servicios[$i]['id_tipo_servicio'].'">
+                        <input type="hidden" class="servicio-original" value="'.$servicios[$i]['id_tipo_servicio'].'" texto="'.$servicios[$i]['tipo_servicio'].'">
+                        <div class="row my-2 fila-edit-s">
+                          <li class="col-md-8 text-center list-group-item list-group-item-secondary listado-servicios servicio-'.$servicios[$i]['id_tipo_servicio'].'" value="'.$servicios[$i]['id_tipo_servicio'].'">
                           '.$servicios[$i]['tipo_servicio'].'
                           </li>
-
-                          <button class="btn btn-danger btn-eliminar-servicio offset-1" style="width:38px; height:40px; display:none;">
+                          <button class="btn btn-danger btn-eliminar-servicio" style="width:38px; height:40px; display:none;">
                           <i class="fas fa-trash"></i>
-                          </button>
-
+                          </button> 
                         </div>';
                         }else{
-                        echo '<input type="text" class="form-control mb-2" value="'.$servicios[$i]['tipo_servicio'].'" disabled>';  
+                        echo '<input type="text" class="form-control my-2" disabled value="'.$servicios[$i]['tipo_servicio'].'">';  
                         }
 
                       }
@@ -162,7 +169,7 @@ if($sesion == true){
 
                    ?> 
 
-                 </div>
+                 </ul>
      
                 
 <div class="text-center div-botones-servicios">

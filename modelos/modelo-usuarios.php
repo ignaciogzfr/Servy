@@ -582,16 +582,10 @@ Class Usuarios{
 	$sql = $con->prepare('INSERT INTO servicios_maestro(id_usuario,id_tipo_servicio,estado_servicio_maestro) VALUES (:id,:servicio,"Activo") ');
 	$sql->bindParam(":id",$id,PDO::PARAM_INT);
 	$sql->bindParam(':servicio',$servicios[$i],PDO::PARAM_INT);
-	if($sql->execute()){
+	$sql->execute();
+	}
 	$con->commit();
-	return 'OK';		
-	}
-	else{
-	$con->rollBack();
-	return 'Error al editar';
-	}
-	}
-
+	return 'OK';	
 	}
 	catch(PDOException $e){
 		$con->rollBack();

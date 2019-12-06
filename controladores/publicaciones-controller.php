@@ -72,8 +72,8 @@ require_once("../modelos/modelo-publicaciones.php");
 			 * @return $respuesta de tipo string, respuesta que emite el modelo al ser llamado la funcion publicarServicio.
 			 * 
 			 * */
-			public function denunciarP($publicacion,$tipo,$detalle,$denunciante){
-			$respuesta = Publicaciones::denunciarP($publicacion,$tipo,$detalle,$denunciante);
+			public function denunciarP($publicacion,$tipo,$detalle){
+			$respuesta = Publicaciones::denunciarP($publicacion,$tipo,$detalle,$_SESSION['id']);
 			echo($respuesta);
 			}
 
@@ -196,8 +196,9 @@ $op= $_POST["op"];
 		$response-> publicarServicioInvitado($_POST["nombre"],$_POST["fono"],$_POST["titulo"],$_POST["direccion"],$_POST["tipo-servicio"],$_POST["detalle"]);
 		break;
 
-		case '':
-					
+		case 'denunciarP':
+		$response = new gestorPublicaciones();
+		$response-> denunciarP($_POST['publicacion'],$_POST['tipo_denuncia'],$_POST['detalle']);
 		break; 	
 
 		default:
