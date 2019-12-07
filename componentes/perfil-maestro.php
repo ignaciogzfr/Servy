@@ -60,7 +60,7 @@ if($sesion == true){
                 $servicios = Usuarios::getServiciosMaestro($id);
                 $certificados = Usuarios::getCertificadosMaestro($id);
                 $experiencia = Usuarios::getExperienciaMaestro($id);
-            echo '<textarea class="form-control exp-maestro input-dato-basico" disabled rows="3" name="exp" original="'.$experiencia[0]['detalle_experiencia'].'">'.$experiencia[0]['detalle_experiencia'].'</textarea maxlength="300">';
+            echo '<textarea class="form-control exp-maestro input-dato-basico" maxlength="200" disabled rows="3" name="exp" original="'.$experiencia[0]['detalle_experiencia'].'">'.$experiencia[0]['detalle_experiencia'].'</textarea>';
             echo '<input type="hidden" name="id" value="'.$datos[0]['id_usuario'].'">';
 ?>
 </form>
@@ -177,7 +177,7 @@ if($sesion == true){
                
 </div>
             </div>
-<?php if($_SESSION['tipo']=='Administrador'){
+<?php if(isset($_SESSION['tipo']) && $_SESSION['tipo']=='Administrador'){
   require_once 'componentes/vista-usuario.php';
 } ?>
            </div>

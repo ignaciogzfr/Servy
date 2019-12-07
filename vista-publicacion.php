@@ -50,10 +50,12 @@
           <h3>'.$publi[0]["titulo_publicacion"].'</h3>
       <p>'.$publi[0]["detalle_publicacion"].'</p>
           <p>'.$publi[0]["direccion_publicacion"].'
-          </p>
+          </p>');
 
-                         <button class="btn btn-success mt-3" id="btn-aceptar-publicacion" value="'.$_SESSION['id'].'">Aceptar publicacion</button>
-                            <button class="btn btn-primary mt-3" data-target="#modal-resumen-usuario" data-toggle="modal">Ver perfil <i class="far fa-user"></i></button> 
+if(isset($_SESSION['tipo']) && $_SESSION['tipo']=='Maestro'){
+echo('<button class="btn btn-success mt-3" id="btn-aceptar-publicacion" value="'.$_SESSION['id'].'">Aceptar publicacion</button>');
+};         
+          echo('<button class="btn btn-primary mt-3" data-target="#modal-resumen-usuario" data-toggle="modal">Ver perfil <i class="far fa-user"></i></button> 
                     <input  id="id-publicacion" type="hidden" value="'.$_GET["publicacion"].'">
   
     <input type="hidden" name="lat" value="'.$publi[0]["lat_publicacion"].'" id="lat-publicacion">

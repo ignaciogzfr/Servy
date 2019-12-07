@@ -126,8 +126,12 @@ $.ajax({
 	data : 'op=editarPerfilCertificados&id='+id+'&certificados='+JSON.stringify(certificados),
 	success:function(response){
 		if(response == 'OK'){
-			alert('LOS CAMBIOS FUERON REALIZADOS');
-			$('#form-editar-sesion').submit();
+		swal({
+			title : 'Todo bien',
+			text : 'Recargaremos la sesion para que veas los cambios',
+			icon : 'succes'
+		})			
+		$('#form-editar-sesion').submit();
 		}
 	}
 })
@@ -160,6 +164,11 @@ $.ajax({
 	url : 'controladores/usuarios-controller.php',
 	data : 'op=editarPerfilServicios&id='+id+'&servicios='+JSON.stringify(servicios),
 	success:function(r){
+		swal({
+			title : 'Todo bien',
+			text : 'Recargaremos la sesion para que veas los cambios',
+			icon : 'succes'
+		})
 		$('#form-editar-sesion').submit();
 	}
 })

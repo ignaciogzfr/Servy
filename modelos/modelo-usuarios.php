@@ -327,7 +327,7 @@ Class Usuarios{
 	 * @return ERROR mensaje de error en caso de que falle la consulta.
 	 * 
 	 * */
-	static public function registrarCliente($mail,$pass,$nombre,$fono,$fp,$dir,$tipo){
+	static public function registrarCliente($mail,$pass,$nombre,$fono,$dir,$tipo){
 
 
 	$con = Conexion::conectar();
@@ -338,7 +338,7 @@ Class Usuarios{
 			tipo_usuario,comuna,direccion_usuario,estado_usuario)
 			VALUES
 			(:mail,:nombre,:fono,
-			:pass,:fp,:tipo,
+			:pass,'img/placeholder-person.jpg',:tipo,
 			1,:direccion, 'Activo')"
 		);
 
@@ -346,7 +346,6 @@ Class Usuarios{
 		$sql->bindParam(":nombre",$nombre,PDO::PARAM_STR);
 		$sql->bindParam(":fono",$fono,PDO::PARAM_STR);
 		$sql->bindParam(":pass",$pass,PDO::PARAM_STR);
-		$sql->bindParam(":fp",$fp,PDO::PARAM_STR);
 		$sql->bindParam(":tipo",$tipo,PDO::PARAM_STR);
 		$sql->bindParam(":direccion",$dir,PDO::PARAM_STR);
 
@@ -359,7 +358,7 @@ Class Usuarios{
 		$_SESSION['tipo'] = $tipo;
 		$_SESSION['nombre'] = $nombre;
 		$_SESSION['fono'] = $fono;
-		$_SESSION['fp'] = $fp;
+		$_SESSION['fp'] = 'img/placeholder-person.jpg';
 		$_SESSION['estado'] = 'Activo';
 		$_SESSION['direccion'] = $dir;
 		return $id;
@@ -394,7 +393,7 @@ Class Usuarios{
 	 * @return $id el identificador del ultimo usuario registrado en la pagina, el usuario actual
 	 * 
 	 * */
-	static public function registrarMaestro($mail,$pass,$nombre,$fono,$fp,$dir,$tipo,$servicios,$certificados,$exp){
+	static public function registrarMaestro($mail,$pass,$nombre,$fono,$dir,$tipo,$servicios,$certificados,$exp){
 
 		try {
 			$con = Conexion::conectar();
@@ -405,7 +404,7 @@ Class Usuarios{
 				tipo_usuario,comuna,direccion_usuario,estado_usuario)
 				VALUES
 				(:mail,:nombre,:fono,
-				:pass,:fp,:tipo,
+				:pass,'img/placeholder-person.jpg',:tipo,
 				1,:direccion, 'Activo')"
 			);
 
@@ -413,7 +412,6 @@ Class Usuarios{
 			$sql->bindParam(":nombre",$nombre,PDO::PARAM_STR);
 			$sql->bindParam(":fono",$fono,PDO::PARAM_STR);
 			$sql->bindParam(":pass",$pass,PDO::PARAM_STR);
-			$sql->bindParam(":fp",$fp,PDO::PARAM_STR);
 			$sql->bindParam(":tipo",$tipo,PDO::PARAM_STR);
 			$sql->bindParam(":direccion",$dir,PDO::PARAM_STR);
 
@@ -447,12 +445,13 @@ Class Usuarios{
 
 
 			$con->commit();
-			session_start();
+			@session_start();
+			$_SESSION['sub'] = 0;
 			$_SESSION['id'] = $id;
 			$_SESSION['tipo'] = $tipo;
 			$_SESSION['nombre'] = $nombre;
 			$_SESSION['fono'] = $fono;
-			$_SESSION['fp'] = $fp;
+			$_SESSION['fp'] = 'img/placeholder-person.jpg';
 			$_SESSION['estado'] = 'Activo';
 			$_SESSION['direccion'] = $dir;
 			return $id;

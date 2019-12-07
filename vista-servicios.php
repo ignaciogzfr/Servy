@@ -114,7 +114,7 @@
 
                   <p class="mb-2">DESCRIPCION: '.$publi[$i]["detalle_publicacion"].'</p>
                   <small>Pedido por : '.$publi[$i]["nombre_usuario"].'</small>
-                </button>');
+                </a>');
                   }
                 
                 for($i=0;$i<count($publiinvitado); $i++){

@@ -8,7 +8,11 @@
 </head>
 <body>
 
-
+<?php 
+@session_start();
+if(isset($_SESSION['id'])){
+	echo '<script>location.href="index.php"</script>';
+} ?>
     
 	<?php require_once 'componentes/sidenav.php'; ?>		
 
@@ -76,26 +80,7 @@
 				</div>
 				<div class="form-group">
 					<label for="dir-registro-cliente">Dirección *</label>
-					<input id="dir-registro-cliente" type="text" class="form-control" placeholder="Calle siempre viva #752" name="dir-registro" required=""  maxlength="80" minlength="5">
-				</div>
-				<div class="containe mt-3">
-					<h6 class="text-center">Foto de Perfil</h6>
-					<div class="row mt-5">
-
-						<div class="col-md-2 text-center">
-						<img src="img/placeholder-person.jpg" class="rounded-circle" id="fp-cliente-preview" width="150" height="150"/>
-						</div>
-
-
-						<div class="col-md-10"> 
-							<div class="custom-file mt-4">
-							<input type="file" class="custom-file-input fp-registro" id="fp-registro-cliente" lang="es" name="fp-registro" value="img/placeholder-person.jpg" accept="image/png,image/jpeg,image/jpg">
-							<label class="custom-file-label" for="fp-registro-cliente">Seleccionar Imagen</label>
-							</div>
-						</div>
-
-					</div>
-
+					<input id="dir-registro-cliente" type="text" class="form-control" placeholder="Calle siempre viva #752" name="dir-registro" required   maxlength="80" minlength="5">
 				</div>
 				<br>
 				<hr>
@@ -124,7 +109,7 @@
 					
 					<div class="form-group">
 						<label for="mail-registro-maestro">Correo Electrónico *</label>
-						<input id="mail-registro-maestro" type="email" pattern="[a-z0-9._%+-]+@([a-z0-9.-].{5,20})+(\.[a-z].{1,7})$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="" maxlength="40" minlength="5">						
+						<input id="mail-registro-maestro" type="email" pattern="[a-z0-9._%+-]+@([a-z0-9.-].{2,20})+(\.[a-z].{1,7})$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="" maxlength="40" minlength="5">						
 					</div>
 
 
@@ -148,14 +133,13 @@
 
 					<div class="row">
 							
-					<div class="col-md-5">
-						<div class="form-group">
+						<div class="form-group col-md-6">
 							<label for="fono-maestro">Numero telefonico *</label>
 							<input id="fono-maestro" type="text" class="form-control" placeholder="99999999" pattern="^[9876543]\d{7}$" maxlength="8" style="font-style:italic" name="fono-registro" required>
 						</div>
 
 
-						<div class="form-group">
+						<div class="form-group col-md-6">
 						 <label for="serv-maestro">Servicio(s) que proporciona</label>
 						 
 						      <select id="serv-maestro" class="form-control" name="serv-registro" multiple="" style="width:100%" required="">
@@ -171,27 +155,7 @@
 						      	 ?>
      						 </select>
 						</div>
-					</div>
 						
-					
-					<div class="col-md-7 mt-1">
-						<h6 class="text-center">Foto de Perfil</h6>
-						<div class="container row mt-5">
-							
-							<div class="col text-center">
-								 	<img src="img/placeholder-person.jpg" width="150" height="150" class="rounded-circle" id="fp-maestro-preview">
-							</div>
-
-
-							<div class="col"> 
-								<div class="custom-file mt-3">
-								  <input type="file" class="custom-file-input fp-registro" id="fp-registro-maestro" lang="es" name="fp-registro" accept="image/x-png,image/jpeg" value="img/placeholder-person.jpg">
-								  <label class="custom-file-label" for="fp-registro-maestro">Seleccionar Imagen</label>
-								</div>
-							</div>
-					</div>
-
-					</div>
 					</div>
 
 			 	<div class="form-group">

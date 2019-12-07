@@ -51,8 +51,6 @@ $('#form-cambiar-fp').on('submit',editarPerfilFP);
 function registrarUsuario(event){
 	event.preventDefault();
 	var datos = new FormData(this);
-	var fpc = $('#fp-registro-cliente')[0].files[0];
-	var fpm = $('#fp-registro-maestro')[0].files[0];
 	var mail = datos.get('mail-registro')
 		//Registro caso cliente
 	$.ajax({
@@ -74,10 +72,6 @@ function registrarUsuario(event){
 	$('#btn-registro-cliente').append('<i class="fas fa-spinner fa-spin"></i> Registrando Cuenta...');
 		//Si la variable que se le entrego la ruta de la imagen esta sin definir o nula se asignara 
 		//al paquete de datos un valor predeterminado
-	if(fpc === undefined){
-		datos.set('fp-registro','img/placeholder-person.jpg');
-		console.log('cambiado');
-	}
 		//Se llama al componente de usuarios-controller entregandole el paquete de datos y esperar
 		//de este una respuesta
 	$.ajax({
@@ -128,10 +122,6 @@ function registrarUsuario(event){
 		certificados.push($(this).text())
 	})
 		//caso de foto de perfil nula
-	if(fpm === undefined){
-		datos.set('fp-registro','img/placeholder-person.jpg')
-		console.log('cambiado')
-	}
 		//aqui se asignan los vectores como objetos json y se almacenan el el paquete de datos
 	datos.append('servicios',JSON.stringify(servicios))
 	datos.append('certificados',JSON.stringify(certificados))
@@ -339,7 +329,7 @@ if($('.nombre-editar-perfil').val()=='' || $('.fono-editar-perfil').val()=='' ||
 		text : 'No puedes ingresar datos vacios',
 		icon : 'info'
 	})
-}
+}else{
 if($('#tipo-editar-perfil').val()==='Cliente'){
 	console.log(1);
 	var datos = $('.form-editar-cliente').serialize();
@@ -364,7 +354,9 @@ $.ajax({
 		}
 	}
 
-})
+})	
+}
+
 }
 // Fin funcion
 

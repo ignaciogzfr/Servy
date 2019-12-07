@@ -11,7 +11,7 @@
 	      <div class="modal-body text-center">
 
 			<div class="div-cambio-fp">
-			<img src="img/placeholder-person.jpg" width="150" height="150" class="rounded" id="fp-cambio-preview">
+			<img src="img/placeholder-person.jpg" width="150" height="150" class="rounded-circle" id="fp-cambio-preview">
 			</div>
 
 			<div class="custom-file mt-3 col-md-6">
@@ -25,7 +25,7 @@
 
 			<div>
 			<?php 
-	echo '<img src="'.$_SESSION['fp'].'" width="150" height="150" class="rounded">';
+	echo '<img src="'.$_SESSION['fp'].'" width="150" height="150" class="rounded-circle">';
 	echo '<input type="hidden" value="'.$_SESSION['fp'].'" name="fp-actual">';
 	?>
 			</div>
