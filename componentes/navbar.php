@@ -2,7 +2,7 @@
   <button class="btn btn-primary" id="menu-toggle" ><i class="fas fa-bars"></i></button>
 
 
-<?php if($_SERVER['REQUEST_URI']=='/Servy/index.php'){
+<?php if($_SERVER['REQUEST_URI']=='/Servy/index.php' || $_SERVER['REQUEST_URI']=='/servy/index.php'){
   echo ' <button class="btn btn-warning" data-target="#modal-pedir-grua" data-toggle="modal"><i class="fas fa-wrench" style="font-size: 15px;"></i> <i class="fas fa-truck-pickup" style="font-size: 20px;"></i></button>';
 } ?>
 

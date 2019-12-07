@@ -24,12 +24,12 @@
 
                      
                           <div class="form-group">
-                         <input type="text" class="form-control" name="nombre" id="nombre-grua" placeholder="Nombre" required="" pattern="^(?!.* ).{2,30}$" >
+                         <input type="text" class="form-control" name="nombre" id="nombre-grua" placeholder="Nombre" required="" pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,60}\b$" >
                 <script>
                 </script>
                           </div>
                                 <div class="form-group">
-                         <input type="text" class="form-control" name="fono" id="fono-grua"  pattern="[0-9]{9}"  placeholder="+569 11223344" required="">
+                         <input type="text" class="form-control" name="fono" id="fono-grua"  pattern="^[9876543]\d{7}$"  placeholder="+569 11223344" required="">
                           </div>
                           <div class="form-group">
                          <textarea name="descripcion" class="form-control" id="detalle-grua" cols="30" rows="3" maxlength="200" required="" placeholder="Breve descripcion"></textarea>
