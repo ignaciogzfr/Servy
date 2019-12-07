@@ -50,7 +50,7 @@
 
 					<div class="col-md-7">
 						<label for="mail-registro-cliente">Correo Electrónico *</label>
-						<input id="mail-registro-cliente" type="email" pattern="[a-z0-9._%+-]+@([a-z0-9.-].{5,20})+(\.[a-z].{3,7})$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="" maxlength="60" minlength="5">
+						<input id="mail-registro-cliente" type="email" pattern="[a-z0-9._%+-]+@([a-z0-9.-].{2,20})+(\.[a-z].{1,7})$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="" maxlength="60" minlength="5">
 					</div>
 
 					<div class="col-md-5">

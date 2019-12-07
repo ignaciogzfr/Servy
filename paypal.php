@@ -38,13 +38,15 @@
   <hr class="my-4 rgba-white-light">
 
   <div class="pt-2">
+<form action="modelos/modelo-login.php" method="POST" id="form-editar-sesion">
+<?php echo '<input type="hidden" name="id" value="'.$_GET['id'].'">'; ?>
+</form>
     <?php $id= $_GET['id'];
     echo ('
 
 
       <input type="hidden" id="id-usuario"  value="'.$id.'">
       <div id="paypal-button-container" class="container"></div>
-
 
       ');
  

@@ -354,6 +354,7 @@ Class Usuarios{
 		$id = $con->lastInsertId();
 
 		@session_start();
+		$_SESSION['sub'] = 0;
 		$_SESSION['id'] = $id;
 		$_SESSION['tipo'] = $tipo;
 		$_SESSION['nombre'] = $nombre;

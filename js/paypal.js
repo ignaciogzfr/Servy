@@ -25,7 +25,7 @@
               success:function(response){
           console.log(response)
           if(response = 'ok'){
-          location.href="perfil.php?id="+id
+          $('#form-editar-sesion').submit();
           }
             }
           })
