@@ -1,19 +1,24 @@
 <?php 
 require_once 'conexion.php';
+require_once 'cryptMethod.php';
 
 	if(isset($_POST['mail']) && isset($_POST['pass'])){
+		echo "<script>console.log('pasaste')</script>";
 	$mail = $_POST['mail'];
 	$pass = $_POST['pass'];
-	}elseif(isset($_POST['id'])){	
+	$ePass = encriptarContraseña::encriptar($pass);
+
+	}
+	elseif(isset($_POST['id'])){	
 	$id = $_POST['id'];	
 	}
-	
 
 	$con = Conexion::conectar();
-	if(isset($mail) && isset($pass) && !isset($id)){
+	echo "<script>console.log('pasaste')</script>";
+	if(isset($mail) && isset($ePass) && !isset($id)){
 	$sql = $con->prepare("SELECT * FROM usuario WHERE email_usuario = :mail AND pass_usuario = :pass");
 	$sql->bindParam(":mail",$mail,PDO::PARAM_STR);
-	$sql->bindParam(":pass",$pass,PDO::PARAM_STR);
+	$sql->bindParam(":pass",$ePass,PDO::PARAM_STR);
 
 	$sql->execute();
 	$datos = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -33,7 +38,9 @@ require_once 'conexion.php';
 
 	}
 	else{
+
 		echo('<script> location.href="../login.php?error=1"</script>');
+		echo "<script>console.log('error 1')</script>";
 	}
 
 	}elseif(isset($_POST['id'])){
@@ -58,6 +65,7 @@ require_once 'conexion.php';
 	}
 	else{
 		echo('<script> location.href="../login.php?error=1"</script>');
+		echo "<script>console.log('error 2')</script>";
 	}
 	}
 	

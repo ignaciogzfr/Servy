@@ -195,9 +195,6 @@
 						<button type="button" class="btn btn-success btn-agregar-certificado"><i class="fas fa-plus-circle" style="font-size: 20px"></i></button>
 						<div class="container">
 							<ul id="lista-certificados-maestro">
-								<li class="w-75">1Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet<button type="button" class="btn btn-quitar-certificado btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button></li>
-								<li>2Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet<button type="button" class="btn btn-quitar-certificado btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button></li>
-								<li>3Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet<button type="button" class="btn btn-quitar-certificado btn-outline-danger btn-sm"><i class="fas fa-trash-alt"></i></button></li>
 							</ul>
 						</div>
 						</div>

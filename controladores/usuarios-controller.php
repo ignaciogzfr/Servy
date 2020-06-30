@@ -1,6 +1,7 @@
 <?php 
 
 require_once '../modelos/modelo-usuarios.php';
+require_once '../modelos/cryptMethod.php';
 
 Class GestorUsuarios{
 	public function editarPerfilBasicoC($id,$nombre,$mail,$fono,$dir){
@@ -121,8 +122,15 @@ switch ($op) {
 
 		case 'login':
 		$response = new GestorUsuarios();
-		$response->loginUsuario($_POST["mail-login"],$_POST["pass-login"]);
+		$mail = $_POST["mail-login"];
+		$pass = $_POST["pass-login"];
+		$ePass = encriptarContraseña::encriptar($pass);
+
+		echo "<script>console.log('contraseña: ".$ePass."')</script>";
+
+		$response->loginUsuario($mail,$ePass);
 		break;
+
 		case 'registrarUsuario':
 		if($_POST['tipo-registro']=='Cliente'){
 		$response = new GestorUsuarios();
@@ -145,10 +153,12 @@ switch ($op) {
 		}
 		break;
 		}
+
 		case 'sancionarUsuario':
 		$response = new GestorUsuarios();
 		$response->SancionarUsuario($_POST["id"]);
 		break;
+		
 		case 'quitarSancionUsuario':
 		$response = new GestorUsuarios();
 		$response->QuitarSancionUsuario($_POST["id"]);

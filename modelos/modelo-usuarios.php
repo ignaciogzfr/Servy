@@ -1,8 +1,10 @@
 <?php 
 
 require_once("conexion.php");
+require_once("cryptMethod.php");
 
 Class Usuarios{
+
 
 	static public function getUsuarios(){
 				//obtiene todos los datos de la  tabla usuario
@@ -12,8 +14,6 @@ Class Usuarios{
 		return $sql->fetchAll(PDO::FETCH_ASSOC); 
 
 	}
-
-
 
 	static public function getMisPublicacionesDemanda($id){
 	$con = Conexion::conectar();
@@ -127,24 +127,24 @@ Class Usuarios{
 
 
 	static public function registrarCliente($mail,$pass,$nombre,$fono,$fp,$dir,$tipo){
-
+		echo "<script>la funcion se ejecuto</script>";
 
 	$con = Conexion::conectar();
-
+	$ePass = encriptarContraseña::encriptar($pass);
 		$sql = $con->prepare("INSERT INTO 
 			usuario(email_usuario,nombre_usuario,
 			fono_usuario,pass_usuario,foto_perfil,
 			tipo_usuario,comuna,direccion_usuario,estado_usuario)
 			VALUES
 			(:mail,:nombre,:fono,
-			:pass,:fp,:tipo,
+			:ePass,:fp,:tipo,
 			1,:direccion, 'Activo')"
 		);
 
 		$sql->bindParam(":mail",$mail,PDO::PARAM_STR);
 		$sql->bindParam(":nombre",$nombre,PDO::PARAM_STR);
 		$sql->bindParam(":fono",$fono,PDO::PARAM_STR);
-		$sql->bindParam(":pass",$pass,PDO::PARAM_STR);
+		$sql->bindParam(":ePass",$ePass,PDO::PARAM_STR);
 		$sql->bindParam(":fp",$fp,PDO::PARAM_STR);
 		$sql->bindParam(":tipo",$tipo,PDO::PARAM_STR);
 		$sql->bindParam(":direccion",$dir,PDO::PARAM_STR);
@@ -164,12 +164,6 @@ Class Usuarios{
 		}else{
 		return 'ERROR';
 		}
-
-
-
-
-
-
 	
 		}
 
@@ -178,20 +172,21 @@ Class Usuarios{
 		try {
 			$con = Conexion::conectar();
 			$con->beginTransaction();
+			$ePass = encriptarContraseña::encriptar($pass);
 			$sql = $con->prepare("INSERT INTO 
 				usuario(email_usuario,nombre_usuario,
 				fono_usuario,pass_usuario,foto_perfil,
 				tipo_usuario,comuna,direccion_usuario,estado_usuario)
 				VALUES
 				(:mail,:nombre,:fono,
-				:pass,:fp,:tipo,
+				:ePass,:fp,:tipo,
 				1,:direccion, 'Activo')"
 			);
 
 			$sql->bindParam(":mail",$mail,PDO::PARAM_STR);
 			$sql->bindParam(":nombre",$nombre,PDO::PARAM_STR);
 			$sql->bindParam(":fono",$fono,PDO::PARAM_STR);
-			$sql->bindParam(":pass",$pass,PDO::PARAM_STR);
+			$sql->bindParam(":ePass",$ePass,PDO::PARAM_STR);
 			$sql->bindParam(":fp",$fp,PDO::PARAM_STR);
 			$sql->bindParam(":tipo",$tipo,PDO::PARAM_STR);
 			$sql->bindParam(":direccion",$dir,PDO::PARAM_STR);
@@ -345,7 +340,12 @@ Class Usuarios{
 	}
 	}
 
+
+	
+
+
 	}
+
 
 
  ?>
