@@ -24,15 +24,15 @@
 
                      
                           <div class="form-group">
-                         <input type="text" class="form-control" name="nombre" id="nombre-grua" placeholder="Nombre" required="" pattern="^(?!.* ).{2,30}$" >
+                         <input type="text" class="form-control" name="nombre" id="nombre-grua" placeholder="Nombre" required="" pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,60}\b$" maxlength="60" minlength="2">
                 <script>
                 </script>
                           </div>
                                 <div class="form-group">
-                         <input type="text" class="form-control" name="fono" id="fono-grua"  pattern="[0-9]{9}"  placeholder="+569 11223344" required="">
+                         <input type="text" class="form-control" name="fono" id="fono-grua"  pattern="^[9876543]\d{7}$"  placeholder="+569 11223344" required="" maxlength="9" minlength="7">
                           </div>
                           <div class="form-group">
-                         <textarea name="descripcion" pattern="^(?!.* ).{1,50}$" class="form-control" id="detalle-grua" cols="30" rows="3"  required="" placeholder="Breve descripcion"></textarea>
+                         <textarea name="descripcion" class="form-control" id="detalle-grua" cols="30" rows="3" minlength="20" maxlength="200" required="" placeholder="Breve descripcion"></textarea>
                           </div>
 
                         <div class="form-group">      <select id="select-tipo-vehiculo" required="" name="tipo-vehiculo" class="form-control">

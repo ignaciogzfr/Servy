@@ -8,7 +8,7 @@
         </li>
 
         <li class="nav-item mr-2">
-        <a class="nav-link" href="vista-servicios.php?tipo=oferta" target="_blank">Servicios</a>
+        <a class="nav-link" href="registro.php" target="_blank">Registrese</a>
         </li>
 
         <li class="nav-item active">

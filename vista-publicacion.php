@@ -15,62 +15,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Servy 2</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
+  <link rel="shortcut icon" href="img/logo.png" />
+  <title>Publicaciones</title>
 
 </head>
 
-<body>
-<style> 
-    </style>
-<?php require_once 'componentes/sidenav.php'; ?>
-
+<body style="background-color:#45526e">
+<?php   require_once 'componentes/modal-denuncias-publicacion.php'; ?>
+<?php require_once 'componentes/ver-ruta-modal.php';?>  
     <!-- Page Content -->
     <div id="page-content-wrapper">
-<?php require_once 'componentes/ver-ruta-modal.php';
-      require_once 'componentes/resumen-usuario-modal.php'
-
-       ?>
-				<div class="container">
+<?php require_once 'componentes/resumen-usuario-modal.php'?>
+				<div class="container bg-white">
 					<h1 class="text-center mt-2"> Ver publicacion</h1>
-
-       
-        
-          
 					<hr class="featurette-divider">
-				</div>
-
 
 
         <?php 
             require_once("modelos/modelo-publicaciones.php");
              @session_start();
             $publi = publicaciones::verPublicacion($_GET["publicacion"]);
-            $denuncias = publicaciones::getDenuncias($_GET["publicacion"]);
+            $denuncias = publicaciones::getDenunciasPublicacion($_GET["publicacion"]);
 
               echo('
-  <div class="container text-center">
+  <div class="container text-center" style="min-height:500px;">
 
       <div class="row">
-        <div class="col"> pedido por: '.$publi[0]["nombre_usuario"].'</div>
-        <div class="col">tipo servicio: '.$publi[0]["tipo_servicio"].' </div>
-        <div class="col">'.$publi[0]["fecha_hora_publicacion"].'</div>
+        <div class="col">Pedido por: '.$publi[0]["nombre_usuario"].'</div>
+        <div class="col">Tipo de servicio: '.$publi[0]["tipo_servicio"].' </div>
+        <div class="col">Fecha de Publicacion: '.$publi[0]["fecha_hora_publicacion"].'</div>
 
       </div>
   <hr class="featurette-divider">
           <h3>'.$publi[0]["titulo_publicacion"].'</h3>
       <p>'.$publi[0]["detalle_publicacion"].'</p>
           <p>'.$publi[0]["direccion_publicacion"].'
-          </p>
+          </p>');
 
-                         <button class="btn btn-success mt-3" id="btn-aceptar-publicacion" value="'.$_SESSION['id'].'">Aceptar publicacion</button>
-                            <button class="btn btn-primary mt-3" data-target="#modal-resumen-usuario" data-toggle="modal">Ver perfil <i class="far fa-user"></i></button> 
+if(isset($_SESSION['tipo']) && $_SESSION['tipo']=='Maestro'){
+echo('<button class="btn btn-success mt-3" id="btn-aceptar-publicacion" value="'.$_SESSION['id'].'">Aceptar publicacion</button>');
+};         
+          echo('<button class="btn btn-primary mt-3" data-target="#modal-resumen-usuario" data-toggle="modal">Ver perfil <i class="far fa-user"></i></button> 
                     <input  id="id-publicacion" type="hidden" value="'.$_GET["publicacion"].'">
   
     <input type="hidden" name="lat" value="'.$publi[0]["lat_publicacion"].'" id="lat-publicacion">
@@ -81,48 +66,37 @@
          
    </div>
    ');
-            
 
-         ?>
-
-<?php if($publi[0]["lat_publicacion"] == ""){
+if($publi[0]["lat_publicacion"] == ""){
 
 echo '';
 
 }else{
-
-echo '<div id="floating-panel" class="container text-center">
+echo 
+'<div id="floating-panel" class="container text-center">
       <input id="latlng" type="text" hidden="" value="">
 
-
-
     <button class="btn btn-secondary mt-3" data-target="#modal-ver-ruta" data-toggle="modal" id="submit">ver ruta <i class="fas fa-map-marked-alt"></i></button>
-     
-  
 
       <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=initMap">
     </script>
-    </div>
+</div>
     ';
 
 }
 
+if(isset($_SESSION['tipo'])){
 
-
- ?>
- 
-  
-     
-         
-
-
-
-
-
-
+  echo '<div class="text-right"><button class="btn btn-md btn-danger" data-toggle="modal" data-target="#modal-denuncias-p"><i class="fas fa-ban" ></i> Denunciar Publicacion</button></div>';
+}
+echo '<div class="container">
+<a href="vista-servicios.php?tipo='.$publi[0]['tipo_publicacion'].'" class="btn btn-md btn-secondary"><i class="fas fa-undo"></i> Volver</a>
+</div>';
+  echo "</div>";         
+         ?>
     <?php 
-
+if(isset($_SESSION['tipo']) && $_SESSION['tipo']=='Administrador'){
         echo (' 
     <div class="container"><hr class="featurette-divider">
                  <h3 class="text-center"> Denuncias <i class="fas fa-bullhorn"></i> </h3>
@@ -131,8 +105,7 @@ echo '<div id="floating-panel" class="container text-center">
                   echo ('<div class="container"><h6 class=" text-center alert-success w-100 py-2">Esta publicacion no contiene denuncias :)</h6></div>');
            }else{
             echo ('
-
-                          <div class=" container mt-4 ">
+                <div class=" container mt-4 ">
                       
                       <table class="table table-hover table-borderer">
                       <thead class=" mdb-color text-white">
@@ -162,18 +135,14 @@ echo '<div id="floating-panel" class="container text-center">
 
             echo ('</tbody>
                 </table></div>');
-          } ?>
+          }
+        } ?>
     </div>
     <!-- /#page-content-wrapper -->
 
   </div>
   <!-- /#wrapper -->
 
-<!-- Footer -->
 
-<!-- Footer -->
-
-
-	
 </body>
 </html>

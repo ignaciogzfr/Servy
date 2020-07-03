@@ -3,10 +3,19 @@
 
 <head>
 
+<?php
+//verificacion de usuario sancionado
+ @session_start();
+      
+echo('<script> "</script>');
+if($_SESSION['estado'] == "Sancionado"){
+echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
+}
+ ?>
 
 <?php require_once("componentes/links.php");
       require_once("componentes/scripts.php");
-
+      require_once('componentes/verificar-no-admin.php');
   ?>
 
 
@@ -15,20 +24,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
-  <title>Servy 2</title>
+  <link rel="shortcut icon" href="img/logo.png" />
+  <title>Publicar servicios</title>
 
 </head>
 
 <body>
 
-<?php require_once 'componentes/sidenav.php'; ?>
     <!-- Page Content -->
     <div id="page-content-wrapper">
-      
+<div class="text-center my-5">
+<h3 class="text-muted ">Crear una Publicacion</h3>
+<code class="text-center">Cada campo aca es obligatorio, ya que son necesarios para que otros sepan lo que estan viendo.</code>
+<br>
+<code>Puede escribir manualmente la direccion en la cual se refiere esta publicacion.</code>
+</div>
 
-
-<?php @session_start(); ?>
 
 
 <!-- INICIO DEL FORMULARIO -->
@@ -36,10 +47,26 @@
      
   <form id="form-publicar-servicios" method="POST" autocomplete="off">
   <div class="form-row">
+    <?php if($_SESSION['tipo']=='Maestro'){
+      echo '
     <div class="form-group col-md-6">
       <label for="titulopubli">Titulo</label>
-      <input type="text" class="form-control" name="titulo-publi" placeholder="Titulo">
-  </div>
+      <input type="text" class="form-control" maxlength="50" name="titulo-publi" placeholder="Titulo" required pattern="[A-Za-z\s]{5,60}$">
+    </div>    
+    <div class="form-group col-md-6">
+      <label for="titulopubli">Tipo de Publicacion</label>
+      <select name="tipo-publicacion" class="form-control">
+      <option value="Oferta">Ofrezco...</option>
+      <option value="Demanda">Necesito...</option></select>
+    </div>';
+    }else{
+      echo '    
+      <div class="form-group col-md-12">
+      <label for="titulopubli">Titulo</label>
+      <input type="text" class="form-control" minlength="5" maxlength="50" name="titulo-publi" placeholder="Titulo" required pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,60}\b$">
+      <input type="hidden" value="Demanda" name="tipo-publicacion">
+    </div>';
+    } ?>
 
   </div>
 
@@ -48,14 +75,14 @@
 
     <div id="floating-panel">
       <input id="latlng" type="text" hidden="" value="">
-      <input id="submit" type="button" class="btn btn-secondary btn-sm" value="obtener mi ubicación">
+      <input id="submit" type="button" class="btn btn-secondary btn-sm" maxlength="500" value="obtener mi ubicación" required="">
     </div>
     
     <div type="hidden" id="map"></div>
           
 
 
-       <input type="text" class="form-control" name="direccion-publi" placeholder="Avenida Siempreviva 2001" id="direccion-post" required="">
+       <input type="text" minlength="20" class="form-control" maxlength="70" name="direccion-publi" placeholder="Obtenga su ubicacion presionando el boton de arriba" id="direccion-post" required="">
   </div>
     
 
@@ -64,7 +91,7 @@
    
     <div class="form-group col-md-12">
       <label for="inputState">Tipo de servicio</label>
-          <select class="custom-select" required="" id="select-tipo-servicio" name="tipo-serv" style="width: 100%">
+          <select class="custom-select" required="" id="select-tipo-servicio" name="tipo-serv" style="width: 100%" required="">
             <option selected disabled="">Seleccionar servicio</option>
 <?php 
 require_once("modelos/modelo-servicios.php");
@@ -89,7 +116,7 @@ require_once("modelos/modelo-servicios.php");
 
        <div class="form-group">
   <label for="">Detalle</label>
-  <textarea class="form-control" placeholder="Describa brevemente su problema..." id="" name="detalle-publi" rows="7" required=""></textarea>
+  <textarea class="form-control" placeholder="Describa brevemente su problema..." minlength="20" maxlength="1000" name="detalle-publi" rows="7" required=""></textarea>
 </div>
    
     
@@ -98,9 +125,9 @@ require_once("modelos/modelo-servicios.php");
 ?>
     <?php echo '<input type="hidden" value="'.$_SESSION['tipo'].'" id="tipo-usuario-post">' ?>
     <input type="hidden" name="op" value="publicarServicio">
-    <input type="hidden" name="tipo-publicacion" id="tipo-publicacion-post" value="">
     <input type="hidden" name="lat" value="" id="lat-publicacion">
     <input type="hidden" name="lng" value="" id="lng-publicacion">
+    <a href="perfil.php?id=<?php echo($_SESSION['id']); ?>" class="btn btn-md btn-secondary"><i class="fas fa-undo-alt"></i> Volver</a>
     <button type="submit" class="btn btn-success float-right mb-5 btn-publicar-servicio" id="btn-publicar-servicio">Publicar problema</button>
 
 
@@ -118,8 +145,6 @@ require_once("modelos/modelo-servicios.php");
 
   </div>
   <!-- /#wrapper -->
-
-<?php require_once 'componentes/footer.php';?>
 
 
 <script async defer

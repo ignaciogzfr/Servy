@@ -42,30 +42,30 @@
 
 <!-- INICIO DEL FORMULARIO -->
 <div class="container my-4" style="width: 70%;">
-  <form id="form-publicar-servicio-invitado" method="POST" autocomplete="off">
+  <form id="form-publicar-servicio-invitado" autocomplete="off">
   <div class="form-row">
 
     <div class="form-group col-md-6">
       <label for="inputEmail4">Tu Nombre</label>
-      <input type="text" class="form-control" name="nombre" pattern="[a-zA-Z\s]{5,30}" placeholder="Nombre" required="">
+      <input type="text" class="form-control" name="nombre" pattern="[a-zA-Z\s]{5,30}" placeholder="Nombre" required="" maxlength="30">
     </div>
 
     <div class="form-group col-md-6">
       <label for="">Fono de Contacto</label>
 
-      <input type="tel" name="fono"   pattern="^(\+?56)?(\s?)(0?9)(\s?)[9876543]\d{7}$" class="form-control" placeholder="+569 11223344" required="">
+      <input type="tel" name="fono"   pattern="^[9876543]\d{7}$" class="form-control" placeholder="+569 11223344" required="">
     </div>
 
   </div>
 
 <div class="form-group">
     <label for="inputAddress">Titulo </label>
-    <input type="text" class="form-control col-6"  pattern="[a-zA-Z\s]{5,30}" name="titulo"  placeholder="Titulo..." required="">
+    <input type="text" class="form-control col-6"  pattern="[a-zA-Z\s]{5,30}" name="titulo"  placeholder="Titulo..." required="" maxlength="30">
   </div>
 
   <div class="form-group">
     <label for="inputAddress">Direccion </label>
-    <input type="text" class="form-control"  pattern="[a-zA-Z\s]{5,30}" name="direccion"  placeholder="Avenida Siempreviva 2001" required="">
+    <input type="text" class="form-control" name="direccion"  placeholder="Avenida Siempreviva 2001" required="" maxlength="50" minlength="5">
   </div>
 
 
@@ -87,7 +87,7 @@
 
   <div class="form-group">
     <label for="exampleFormControlTextarea3">Detalle </label>
-    <textarea class="form-control"  pattern="[a-zA-Z\s]{5,30}" name="detalle" placeholder="Describa brevemente su problema..." id="" rows="7" required=""></textarea>
+    <textarea class="form-control"  pattern="[a-zA-Z\s]{5,30}" name="detalle" placeholder="Describa brevemente su problema..." id="" rows="7" required="" maxlength="200"></textarea>
   </div>
   <input type="hidden" name="tipo-publicacion" value="demanda">
  <input type="hidden" name="op" value="publicarServicioInvitado">
@@ -126,5 +126,5 @@
 <?php require_once 'componentes/footer.php' ?>
 
 <?php require_once 'componentes/scripts.php' ?>
-
 </html>
+<script type="text/javascript" src="js/index.js"></script>

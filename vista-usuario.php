@@ -27,13 +27,14 @@
 
 
         <?php 
+
             require_once("modelos/modelo-usuarios.php");
             $user = Usuarios::getPerfilUsuario($_GET["id"]);
             $userm = Usuarios::getPerfilUsuario($_GET["id"]);
             $certificados = Usuarios::getCertificadosMaestro($_GET["id"]);
             $experiencia = Usuarios::getExperienciaMaestro($_GET["id"]);
             $servicios = Usuarios::getServiciosMaestro($_GET["id"]);
-            $denuncias =Usuarios::getDenuncias($_GET["id"]);
+            $denuncias =Usuarios::getDenunciasUsuario($_GET["id"]);
 
             if($user[0]["tipo_usuario"]=='Cliente'|| $user[0]["tipo_usuario"]=='Administrador'){
 
@@ -98,7 +99,7 @@
             echo ('</tbody>
                 </table></div>');}
             }else{
-
+              //caso maestro
                 echo ('<div class="row">
                     
                       <div class="col">

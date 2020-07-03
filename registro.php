@@ -3,16 +3,21 @@
 <head>
 <?php require_once 'componentes/links.php'; ?>
 	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="img/logo.png" />
 	<title>Registro</title>
 </head>
 <body>
 
-
+<?php 
+@session_start();
+if(isset($_SESSION['id'])){
+	echo '<script>location.href="index.php"</script>';
+} ?>
+    
 	<?php require_once 'componentes/sidenav.php'; ?>		
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-
 	<?php require_once 'componentes/navbar.php'; ?>
 
 
@@ -23,6 +28,7 @@
 		<h6 class="text-primary">Los campos que contienen el simbolo * son obligatorios.</h6>
 		<h6 class="text-primary">Para iniciar sesión, necesitamos que tu correo electronico sea autentico</h6>
 		<h6 class="text-primary">Las contraseñas deben tener un minimo de 6 caracteres, recomendamos uso de Mayusculas y numeros. No se permiten espacios ni caracteres especiales(!"#$%-_ etc...)</h6>
+		<h6 class="text-primary">El número de telefono asume que está utilizando un telefono movil, o "Smartphone", asi que por defecto es +56 9 (Numero)</h6>
 		<h6 class="text-primary">Si eres un Maestro/Profesional, necesitamos minimo 1 tipo de servicio que ofrezca.</h6>
 
 		</div>
@@ -39,7 +45,7 @@
                 </div>
 
     		</nav>
-
+    		<!--inicio form cliente-->
   <div class="tab-pane active fade  show mx-auto w-75" id="tab-cliente" >
 
 			<form id="form-registro-cliente" autocomplete="off" method="POST">
@@ -48,12 +54,12 @@
 
 					<div class="col-md-7">
 						<label for="mail-registro-cliente">Correo Electrónico *</label>
-						<input type="mail-registro-cliente" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="">
+						<input id="mail-registro-cliente" type="email" pattern="[a-z0-9._%+-]+@([a-z0-9.-].{2,20})+(\.[a-z].{1,7})$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="" maxlength="60" minlength="5">
 					</div>
 
-					<div class="col-md-4">
+					<div class="col-md-5">
 						<label for="pass-registro-cliente">Contraseña *</label>
-						<input id="pass-registro-cliente" class="form-control" type="password" pattern="^(?!.* ).{6,20}$"  name="pass-registro" required="" maxlength="20" >
+						<input id="pass-registro-cliente" class="form-control" type="password" placeholder="************" pattern="^^[a-zA-Z0-9\d]{6,20}$"  name="pass-registro" required="" maxlength="20" minlength="6">
 					</div>
 
 
@@ -63,37 +69,18 @@
 
 					<div class="col-md-6">
 						<label for="nombre-registro-cliente">Tu Nombre *</label>
-						<input id="nombre-registro-cliente" type="text" class="form-control"  placeholder="Nombre" name="nombre-registro" required="">
+						<input id="nombre-registro-cliente" type="text" class="form-control" pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,60}\b$" placeholder="Nombre" name="nombre-registro" required="" minlength="2" maxlength="60">
 					</div>
 
 					<div class="col-md-6">
 							<label for="fono-registro-cliente">Numero telefonico *</label>
-							<input id="fono-registro-cliente" type="text" class="form-control" placeholder="+56 9 12345678" name="fono-registro" required="">
+							<input id="fono-registro-cliente" type="tel" pattern="^[9876543]\d{7}$" class="form-control" maxlength="8" placeholder="1234 5678" style="font-style:italic" name="fono-registro" required="">
 					</div>
 
 				</div>
 				<div class="form-group">
 					<label for="dir-registro-cliente">Dirección *</label>
-					<input id="dir-registro-cliente" type="text" class="form-control" name="dir-registro" required="">
-				</div>
-				<div class="containe mt-3">
-					<h6 class="text-center">Foto de Perfil</h6>
-					<div class="row mt-5">
-
-						<div class="col-md-2 text-center">
-						<img src="img/placeholder.png" width="100" class="rounded" id="fp-cliente-preview" />
-						</div>
-
-
-						<div class="col-md-10"> 
-							<div class="custom-file mt-4">
-							<input type="file" class="custom-file-input fp-registro" id="fp-registro-cliente" lang="es" name="fp-registro" value="img/placeholder.png" accept="image/png,image/jpeg,image/jpg">
-							<label class="custom-file-label" for="fp-registro-cliente">Seleccionar Imagen</label>
-							</div>
-						</div>
-
-					</div>
-
+					<input id="dir-registro-cliente" type="text" class="form-control" placeholder="Calle siempre viva #752" name="dir-registro" required   maxlength="80" minlength="5">
 				</div>
 				<br>
 				<hr>
@@ -104,7 +91,7 @@
 
 					</form>										
 		</div>	
-		<!--./Form Cliente  -->
+		<!--termino form Cliente  -->
 
 
 
@@ -116,46 +103,49 @@
 
 
 
-
+		<!--inicio de form maestro-->
 		<div class="tab-pane fade mx-auto w-75" id="tab-maestro">
 				<form id="form-registro-maestro" method="POST" autocomplete="off">
 					
 					<div class="form-group">
 						<label for="mail-registro-maestro">Correo Electrónico *</label>
-						<input id="mail-registro-maestro" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required>						
+						<input id="mail-registro-maestro" type="email" pattern="[a-z0-9._%+-]+@([a-z0-9.-].{2,20})+(\.[a-z].{1,7})$" class="form-control"  placeholder="ejemplo@gmail.com" name="mail-registro" required="" maxlength="40" minlength="5">						
 					</div>
 
 
 					  <div class="form-row">
 
-						 <div class="form-group">
+						 <div class="form-group col-md-3">
 					   		<label for="pass-maestro">Contraseña *</label>
-					    	<input type="password" id="pass-maestro" pattern="[0-9a-zA-Z_.-]*.{6,}" class="form-control" name="pass-registro" required>
+					    	<input type="password" id="pass-maestro" pattern="^[a-zA-Z0-9\d]{6,20}$" class="form-control" name="pass-registro" required="" maxlength="30" minlength="6" placeholder="************">
 					 	</div>
-					    <div class="form-group col-md-6">
+					    <div class="form-group col-md-9">
 					      <label for="nombre-maestro">Tu Nombre *</label>
-					      <input id="nombre-maestro" type="text" class="form-control"  placeholder="Nombre" name="nombre-registro" required>
+					      <input id="nombre-maestro" type="text" class="form-control"  placeholder="Nombre"
+					      name="nombre-registro" required=""  minlength="4" maxlength="50" pattern="[a-zA-Z/s]{1,30}">
 					    </div>
 					  </div>
 
 					  <div class="form-group">
 					    <label for="dir-maestro">Direccion *</label>
-					    <input id="dir-maestro" type="text" id="dir-maestro" class="form-control"  name="dir-registro" required>
+					    <input id="dir-maestro" type="text" id="dir-maestro" placeholder="Calle siempre viva #752" class="form-control" maxlength="80" minlength="5" name="dir-registro" required="">
 					  </div>
 
 					<div class="row">
 							
-						<div class="col-md-5">
-						<div class="form-group">
+						<div class="form-group col-md-6">
 							<label for="fono-maestro">Numero telefonico *</label>
-							<input id="fono-maestro" type="text" class="form-control" placeholder="+569 11223344" name="fono-registro" required>
+							<input id="fono-maestro" type="text" class="form-control" placeholder="99999999" pattern="^[9876543]\d{7}$" maxlength="8" style="font-style:italic" name="fono-registro" required>
 						</div>
 
 
-						<div class="form-group">
+						<div class="form-group col-md-6">
 						 <label for="serv-maestro">Servicio(s) que proporciona</label>
+						 
 						      <select id="serv-maestro" class="form-control" name="serv-registro" multiple="" style="width:100%" required="">
+
 						      	<option value="" disabled="">Puede escribir en la caja de texto para buscar</option>
+
 						      	<?php 
 						      	require_once 'modelos/modelo-servicios.php';
 						      	$tipos = Servicios::getServicios();
@@ -165,36 +155,17 @@
 						      	 ?>
      						 </select>
 						</div>
-					</div>
 						
-					
-					<div class="col-md-7 mt-1">
-						<h6 class="text-center">Foto de Perfil</h6>
-						<div class="container row mt-5">
-							
-							<div class="col text-center">
-								 	<img src="img/placeholder.png" width="100" class="rounded" id="fp-maestro-preview">
-							</div>
-
-
-							<div class="col"> 
-								<div class="custom-file mt-3">
-								  <input type="file" class="custom-file-input fp-registro" id="fp-registro-maestro" lang="es" name="fp-registro" accept="image/x-png,image/jpeg" value="img/placeholder.png">
-								  <label class="custom-file-label" for="fp-registro-maestro">Seleccionar Imagen</label>
-								</div>
-							</div>
-					</div>
-
-					</div>
 					</div>
 
 			 	<div class="form-group">
 					    <label for="cert-maestro">Certificados</label>
 					    <div class="container row">
-					    <input id="cert-maestro" type="text" class="form-control col-md-11 mt-2"  placeholder="Titulado en..." name="certificados-registro">
+					    <input id="cert-maestro" type="text" class="form-control col-md-11 mt-2"  placeholder="Ingrese nombre del titulo....." name="certificados-registro" maxlength="40">
 						<button type="button" class="btn btn-success btn-agregar-certificado"><i class="fas fa-plus-circle" style="font-size: 20px"></i></button>
 						<div class="container">
 							<ul id="lista-certificados-maestro">
+								<!--listado de certificados -->
 							</ul>
 						</div>
 						</div>
@@ -202,14 +173,8 @@
 
 				<div class="form-group mt-5">
   							<label for="exp-maestro">Experiencias</label>
- 							 <textarea class="form-control" id="exampleFormControlTextarea3" rows="4" name="exp-registro" placeholder="Describa las labores que ha completado, años de experiencia, datos extra, etc..."></textarea>
+ 							 <textarea class="form-control" id="exampleFormControlTextarea3" rows="4"  maxlength="200" cols="5" name="exp-registro" placeholder="Describa las labores que ha completado, años de experiencia, datos extra, etc..." required=""></textarea>
 				</div>
-
-
-
-					
-						
-
 
 
 					<hr class="featurette-divider">
@@ -217,17 +182,13 @@
 					  <button type="submit" class="btn btn-success float-right mb-5" id="btn-registro-maestro">Registrarme</button>
 					  <input type="hidden" name="op" value="registrarUsuario">
 					  <input type="hidden" class="tipo-registro" name="tipo-registro" value="Maestro">
-					</form>	<!-- ./Form-Maestro -->
+					</form>	
+
+					<!-- termino form Maestro -->
 			</div>
-		
 		</div>
 	</div>
-
 </div>
-
-
-
-
 
 <!-- Footer -->
 <?php require_once 'componentes/footer.php'; ?>

@@ -1,3 +1,6 @@
+//cuando se llama a este archivo, este se encarga de "escuchar" las funciones del docuemnto donde esta siendo llamado
+//y a traves de este metodo puede obtener informacion del formulario o campos y carga una funcion para administrarla
+//correctamente
 $(document).ready(function(){
 $('#serv-maestro-edit').select2({
 	width : 'resolve'
@@ -29,6 +32,7 @@ $('.div-botones-servicios').on('click','.btn-retroceder-s',cancelarAccionServici
 
 function prepararAgregarCertificado(e){
 $('.btn-eliminar-certificado').css('display','')
+$('.fila-input-c').css('display','')
 $('.btn-agregar-certificados-edit').css('display','none');
 $('.div-botones-certificado').empty();
 $('.div-botones-certificado').append(
@@ -39,21 +43,16 @@ $('.div-botones-certificado').append(
 if($('.btn-agregar-certificados-edit').attr('total')==0){
 	$('.alerta-c').css('display','none');
 }
-$('.certificados-edit').append(`
-	<div class="row fila-input-c">
-	<input class="form-control col-md-8 mt-2 certificado-agregar-edit" type="text" value="Escriba su certificado aqui">
-	<button class="btn btn-sm btn-success btn-agregar-fila-c" type="button"><i class="fas fa-check"></i></button>
-	<button class="btn btn-sm btn-danger btn-eliminar-fila-c" type="button"><i class="fas fa-times"></i></button></div>`)
-}
 
+}
 function cancelarAccionCertificado(e){
 var id = $('.div-botones-certificado .btn-agregar-c').val();
 console.log(id)
 $('.div-botones-certificado').empty();
-$('.fila-input-c').remove();
 $('.btn-agregar-certificados-edit').css('display','')
 $('.fila-edit-nuevo-c').remove();
 $('.btn-eliminar-certificado').css('display','none');
+$('.fila-input-c').css('display','none');
 if($('.btn-agregar-certificados-edit').attr('total')==0){
 	$('.alerta-c').css('display','');
 }
@@ -61,15 +60,27 @@ if($('.btn-agregar-certificados-edit').attr('total')==0){
 
 function agregarFilaCertificado(e){
 var cert = $('.certificado-agregar-edit').val();
+if(cert == '' || cert.length <= 10){
+		swal({
+			title : '¡Alto!',
+			text : 'No puedes ingresar certificados vacios ni de una palabra. Por favor, intente ingresar el nombre completo de su certificado',
+			icon: 'warning'
+		})
+}
+else{
 $('.certificados-edit').append(`
-                <div class="row my-3 fila-edit-nuevo-c">
+                <div class="row fila-edit-nuevo-c text-center">
                     <button class="btn btn-danger btn-eliminar-certificado" style="width:38px; height:40px;">
                     <i class="fas fa-trash"></i>
                     </button>
-                    <li class="my-3 listado-certificados">${cert}</li>
+                    <li class="my-3 listado-certificados list-group-item list-group-item-secondary">${cert}</li>
                     </div>
 `);
 $('.btn-agregar-certificado-edit').css('display','')
+$('.fila-input-c').css('display','none');
+$('.btn-agregar-certificados-edit').css('display','');	
+}
+
 }
 
 
@@ -115,8 +126,12 @@ $.ajax({
 	data : 'op=editarPerfilCertificados&id='+id+'&certificados='+JSON.stringify(certificados),
 	success:function(response){
 		if(response == 'OK'){
-			alert('LOS CAMBIOS FUERON REALIZADOS');
-			$('#form-editar-sesion').submit();
+		swal({
+			title : 'Todo bien',
+			text : 'Recargaremos la sesion para que veas los cambios',
+			icon : 'succes'
+		})			
+		$('#form-editar-sesion').submit();
 		}
 	}
 })
@@ -136,20 +151,28 @@ $.ajax({
 
 
 function editarPerfilServicios(e){
+e.preventDefault();
 var id = $('#id-perfil-edit').val();
 var servicios = new Array()
-$('.servicios-edit .listado-servicio').each(function(i){
+$('.servicios-edit .listado-servicios').each(function(i){
 	servicios.push($(this).val())
 })
+$('.btn-eliminar-servicio').css('display','none')
+console.log(servicios)
 $.ajax({
 	method : 'POST',
 	url : 'controladores/usuarios-controller.php',
 	data : 'op=editarPerfilServicios&id='+id+'&servicios='+JSON.stringify(servicios),
 	success:function(r){
+		swal({
+			title : 'Todo bien',
+			text : 'Recargaremos la sesion para que veas los cambios',
+			icon : 'succes'
+		})
 		$('#form-editar-sesion').submit();
 	}
 })
-$('.btn-eliminar-servicio').css('display','none')
+
 }
 
 function cancelarAccionServicio(e){
@@ -185,17 +208,28 @@ $('.div-botones-servicios').append(
 
 function agregarFilaServicio(e){
 var id = $('#serv-maestro-edit option:selected').val();
+var condicion = ''
 var nombre = $('#serv-maestro-edit option:selected').text();
-
+if($('.servicios-edit').has('.servicio-'+id).length){
+swal({
+	title : '¡Alto!',
+	text : 'No puedes repetir el mismo tipo de servicio',
+	icon : 'warning'
+})
+}else{
 $('.servicios-edit').append(`
                 <div class="row my-3 fila-edit-nuevo-s">
                     
-                    <li class="my-3 listado-servicio" value="${id}">${nombre}</li>
+                    <li class="listado-servicios servicio-${id} col-md-8 text-center list-group-item list-group-item-secondary" value="${id}">${nombre}</li>
                     <button class="btn btn-danger btn-eliminar-servicio" style="width:38px; height:40px;">
                     <i class="fas fa-trash"></i>
                     </button>
-                    </div>
+                 </div>
 `);
+}
+console.log(condicion);
+
+
 
 }
 
