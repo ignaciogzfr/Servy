@@ -37,7 +37,7 @@ require_once 'cryptMethod.php';
 	$datos = $sql->fetchAll(PDO::FETCH_ASSOC);
 	if (count($datos) == 1) {
 		session_start();
-		$sql1 = $con->prepare("SELECT * FROM subscripcion_usuario where id_usuario = :id");
+		$sql1 = $con->prepare("SELECT * FROM suscripcion_usuario where id_usuario = :id");
 		$sql1->bindParam(":id",$datos[0]['id_usuario'],PDO::PARAM_INT);
 		$sql1->execute();
 		$sub = $sql1->fetchAll(PDO::FETCH_ASSOC);
@@ -64,7 +64,7 @@ require_once 'cryptMethod.php';
 	$sql->execute();
 	$datos = $sql->fetchAll(PDO::FETCH_ASSOC);
 	if (count($datos) == 1) {
-		$sql1 = $con->prepare("SELECT * FROM subscripcion_usuario where id_usuario = :id");
+		$sql1 = $con->prepare("SELECT * FROM suscripcion_usuario where id_usuario = :id");
 		$sql1->bindParam(":id",$datos[0]['id_usuario'],PDO::PARAM_INT);
 		$sql1->execute();
 		$sub = $sql1->fetchAll(PDO::FETCH_ASSOC);

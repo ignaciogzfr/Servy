@@ -38,7 +38,7 @@
         <div class="row">
           <!--se cargan los datos basicos del perfil del administrador-->
             <div class="col-md-5">
-              <?php echo '<h6>'.$_SESSION['nombre'].'<p class="text-success">[Moderador]</p></h6>'; ?>
+              <?php echo '<h6>'.$_SESSION['fp'].'<p class="text-success">[Moderador]</p></h6>   '; ?>
               <?php echo '<img src="'.$_SESSION['fp'].'" width="150" height="150" class="rounded-circle">' ?>
             </div>
 

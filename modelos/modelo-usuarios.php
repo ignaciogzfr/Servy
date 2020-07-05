@@ -287,10 +287,6 @@ Class Usuarios{
 			return "error";
 		}
 	}
-
-
-	static public function registrarCliente($mail,$pass,$nombre,$fono,$fp,$dir,$tipo){
-		echo "<script>la funcion se ejecuto</script>";
 	/**
 	 * Esta funcion sirve para verificar si el dato de correo existe en la base de datos, usado para la validacion en registro e usuarios nuevos
 	 * 
@@ -331,6 +327,7 @@ Class Usuarios{
 	 * @return ERROR mensaje de error en caso de que falle la consulta.
 	 * 
 	 * */
+
 	static public function registrarCliente($mail,$pass,$nombre,$fono,$dir,$tipo){
 	$con = Conexion::conectar();
 	$ePass = encriptarContraseña::encriptar($pass);

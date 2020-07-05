@@ -83,12 +83,6 @@ $('.btn-agregar-certificados-edit').css('display','');
 
 }
 
-
-
-
-
-
-
 function eliminarInputAgregarC(e){
 $(this).parent('.fila-input-c').remove();
 $('.btn-agregar-certificado-edit').css('display','')
@@ -136,18 +130,6 @@ $.ajax({
 	}
 })
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function editarPerfilServicios(e){
@@ -228,8 +210,6 @@ $('.servicios-edit').append(`
 `);
 }
 console.log(condicion);
-
-
 
 }
 

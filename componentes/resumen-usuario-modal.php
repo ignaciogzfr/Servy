@@ -17,7 +17,6 @@
 
            echo (' 
 
-
 <div class="text-center"><img src="'.$publi[0]['foto_perfil'].'" alt="img/placeholder-person.jpg" width="150" height="150" class="rounded-circle  my-2"></div>
 
 <ul class="list-group mt-3">

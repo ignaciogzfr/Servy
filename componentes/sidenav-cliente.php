@@ -14,6 +14,7 @@ echo('
 
   echo('<a class="list-group-item list-group-item-action mdb-color lighten-1 text-white" disabled="" >Estas sancionado</a>');
 } ?>
+        <a href="verificacionMail.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">verifica tu email</a>
         <a href="servicios-pendientes.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mis publicaciones</a>
         <a href="modelos/logout.php" class="list-group-item list-group-item-action mdb-color lighten-2 text-white ">Cerrar sesion <i class="fas fa-power-off"></i></a>
       </div>
