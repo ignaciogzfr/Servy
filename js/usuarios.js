@@ -6,9 +6,9 @@ $('#serv-maestro').select2({
 	width : 'resolve'
 })
 
+$("#form-verificacion-mail").on("submit",verificarMail);
 $(".btn-sancionar-usuario").on("click",sancionarUsuario);
 $(".btn-quitar-sancion-usuario").on("click",quitarSancionUsuario);
-
 $('#form-registro-cliente').on('submit',registrarUsuario);
 $('#form-registro-maestro').on('submit',registrarUsuario);
 $('.fp-registro').on('change',function(){
@@ -45,6 +45,11 @@ $('#form-cambiar-fp').on('submit',editarPerfilFP);
 // asignacion de datos tomados del formulario registro-cliente
 
 
+
+function verificarMail(event){
+event.preventDefault();
+
+}
 
 
 // funciones de usuarios
@@ -95,15 +100,12 @@ function registrarUsuario(event){
 					})
 					.then(function(){
 						location.href="perfil.php?id="+response;
-					})
-				
+					})	
 			}else{
 				location.href= 'registro.php?error=1';
-			}
-		}
-	})
-
-
+				 }
+								}
+			})
 	}
 		//registro caso maestro
 	else{

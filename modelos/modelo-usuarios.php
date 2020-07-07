@@ -16,6 +16,35 @@ require_once("cryptMethod.php");
  * */
 Class Usuarios{
 	/**
+	*	Esta funcion cambia en la base de datos el parametro verificacion_usuario basasdo en su id
+	*	
+	**/
+	static public function setClaveUnica($id,$claveUnica,$mail){
+		$con = conexion::conectar();
+		$sql = $con->prepare("UPDATE usuario SET verificacion_usuario=:claveUnica where id_usuario = :id  ");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+		$sql->bindParam(":claveUnica",$claveUnica,PDO::PARAM_STR);
+		if($sql->execute()){
+			return "clave y correo insertados";
+		}else{
+			return "error";
+		}
+	}
+
+	/**
+	*	Esta funcion relaiza una consulta a la base de datos en busca de la clave unica basado en el id del cliente o maestro
+	*	
+	**/
+	static public function getClaveUnica($id,){
+		$con = conexion::conectar();
+		$sql = $con->prepare("SELECT verificacion_usuario FROM usuario WHERE id_usuario = :id  ");
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+		$sql->execute();
+		return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
+	static
+
+	/**
 	 * Con esta funcion se obtiene una tabla con todos los datos de la tabla de usuario.
 	 * 
 	 * @return $sql devuelve una tabla de datos con todos los usario registrados desde la base de datos remota.

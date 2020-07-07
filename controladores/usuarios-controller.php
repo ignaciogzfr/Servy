@@ -33,7 +33,10 @@ Class GestorUsuarios{
 		echo json_encode($respuesta);
 	}
 
+	public function confirmarMail(){
+		
 
+	}
 	/**
 	 * Con esta funcion se pueden editar los inputs de nombre,fono y direccion del usuario registrdo de tipo cliente.
 	 * 
@@ -275,10 +278,14 @@ switch($op){
 		$mail = $_POST["mail-login"];
 		$pass = $_POST["pass-login"];
 		$ePass = encriptarContraseña::encriptar($pass);
-		echo "<script>console.log('contraseña: ".$ePass."')</script>";
 		$response->loginUsuario($mail,$ePass);
 		break;
-
+		//------------------------//
+		case 'confirmarMail':
+		$response = new GestorUsuarios();
+		$response->confirmarMail($_POST['mail-verificacion']);
+		break;
+		//--------------------------//
 		case 'verificarMail':
 		$response = new GestorUsuarios();
 		$response->verificarMail($_POST['mail-registro']);
