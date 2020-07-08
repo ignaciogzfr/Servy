@@ -8,6 +8,16 @@ class encriptarContraseña
 		$ePass = crypt($pass,$salt);
 		return $ePass;
 	}
+	static public function generarNumero(){
+		$numeroConfirmacion = "".rand(11111,99999)."";
+		$_SESSION['verificacion'] = $numeroConfirmacion;
+		return $numeroConfirmacion;
+	}
+
+	static public function generarLink(){
+	//link contraseña
+
+	}
 }
 
 ?>

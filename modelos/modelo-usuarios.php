@@ -21,28 +21,40 @@ Class Usuarios{
 	**/
 	static public function setClaveUnica($id,$claveUnica,$mail){
 		$con = conexion::conectar();
-		$sql = $con->prepare("UPDATE usuario SET verificacion_usuario=:claveUnica where id_usuario = :id  ");
+		$sql = $con->prepare("UPDATE usuario SET verificacion_usuario = :claveUnica , email_usuario = :mail where id_usuario = :id  ");
 		$sql->bindParam(":id",$id,PDO::PARAM_INT);
 		$sql->bindParam(":claveUnica",$claveUnica,PDO::PARAM_STR);
+		$sql->bindParam(":mail",$mail,PDO::PARAM_STR);
 		if($sql->execute()){
-			return "clave y correo insertados";
+			return "ok";
 		}else{
 			return "error";
 		}
 	}
-
 	/**
 	*	Esta funcion relaiza una consulta a la base de datos en busca de la clave unica basado en el id del cliente o maestro
 	*	
 	**/
-	static public function getClaveUnica($id,){
+	static public function getClaveUnica($id){
 		$con = conexion::conectar();
 		$sql = $con->prepare("SELECT verificacion_usuario FROM usuario WHERE id_usuario = :id  ");
 		$sql->bindParam(":id",$id,PDO::PARAM_INT);
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
-	static
+
+	/**
+	*	Una ves el usuario ingresa los numeros de la base de datos se modifica la variable en la base de datos llamada verificacion_usuario
+	*	
+	**/
+
+	static public function verificacionMailCompleta($id){
+		$con = conexion::conectar();
+		$ver = 'YYYYY';
+		$sql = $con->prepare("UPDATE usuario SET verificacion_usuario = :ver where id_usuario = :id  ");
+		$sql->bindParam(":ver",$ver,PDO::PARAM_STR);
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+	}
 
 	/**
 	 * Con esta funcion se obtiene una tabla con todos los datos de la tabla de usuario.
@@ -390,6 +402,7 @@ Class Usuarios{
 		$_SESSION['fp'] = 'img/placeholder-person.jpg';
 		$_SESSION['estado'] = 'Activo';
 		$_SESSION['direccion'] = $dir;
+		$_SESSION['verificacion'] = 'XXXXX';
 		return $id;
 		}else{
 		return 'ERROR';
@@ -445,7 +458,6 @@ Class Usuarios{
 			$sql->bindParam(":fp",$fp,PDO::PARAM_STR);
 			$sql->bindParam(":tipo",$tipo,PDO::PARAM_STR);
 			$sql->bindParam(":direccion",$dir,PDO::PARAM_STR);
-
 			$sql->execute();
 			$id = $con->lastInsertId();
 
@@ -485,6 +497,7 @@ Class Usuarios{
 			$_SESSION['fp'] = 'img/placeholder-person.jpg';
 			$_SESSION['estado'] = 'Activo';
 			$_SESSION['direccion'] = $dir;
+			$_SESSION['verificacion'] = 'XXXXX';
 			return $id;
 			} catch (PDOException $e) {
 				$con->rollBack();

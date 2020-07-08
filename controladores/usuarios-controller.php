@@ -34,7 +34,7 @@ Class GestorUsuarios{
 	}
 
 	public function confirmarMail(){
-		
+		$respuesta = 
 
 	}
 	/**
@@ -283,7 +283,8 @@ switch($op){
 		//------------------------//
 		case 'confirmarMail':
 		$response = new GestorUsuarios();
-		$response->confirmarMail($_POST['mail-verificacion']);
+		$numeroUnico = encriptarContraseña::generarNumero();
+		$response->confirmarMail($_POST['id'],$_POST['mail-verificacion'],$numeroUnico);
 		break;
 		//--------------------------//
 		case 'verificarMail':

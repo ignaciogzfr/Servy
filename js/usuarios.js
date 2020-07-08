@@ -6,7 +6,7 @@ $('#serv-maestro').select2({
 	width : 'resolve'
 })
 
-$("#form-verificacion-mail").on("submit",verificarMail);
+$("#form-confirmacion-mail").on("submit",confirmarMail);
 $(".btn-sancionar-usuario").on("click",sancionarUsuario);
 $(".btn-quitar-sancion-usuario").on("click",quitarSancionUsuario);
 $('#form-registro-cliente').on('submit',registrarUsuario);
@@ -164,7 +164,6 @@ function registrarUsuario(event){
 	
 
 }
-
 
 
 function previewFP(input){
