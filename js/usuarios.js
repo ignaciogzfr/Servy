@@ -5,7 +5,7 @@ $(document).ready(function(){
 $('#serv-maestro').select2({
 	width : 'resolve'
 })
-
+console.log('se carga usuarios.js')
 //$("#form-confirmacion-mail").on("submit",confirmarMail);
 $(".btn-sancionar-usuario").on("click",sancionarUsuario);
 $(".btn-quitar-sancion-usuario").on("click",quitarSancionUsuario);
@@ -321,24 +321,35 @@ var direccion = $('.dir-editar-perfil').val();
 
 
 if(nombre == '' || fono == '' || direccion == ''){		//Casos datos vacios
+	console.log('error vacios');	
 	swal({
 		title: 'Espera un momento',
 		text : 'No puedes ingresar datos vacios',
 		icon : 'info'
 	})
-}else if(nombre.length < 3 || nombre.length > 26){		//Patrones nombres				
+}else if(nombre.length < 3 || nombre.length > 26){		//Patrones nombres	
+	console.log('error nombre');			
 	swal({
 		title: 'Error con el nombre',
 		text : 'Porfavor ingrese su nombre verdadero o alguno ni tan lago ni tan corto',
 		icon : 'info'
 	})
-}else if(fono.NaN = true || fono.length < 8 || fono.lenght > 8  ){		//patrones telefono
+}else if(isNaN(telefono)){		//patrones telefono
+	console.log('error telefono');
 	swal({
 		title: 'Error con el telefono',
-		text : 'Porfavor ingrese un numero telefonico de 8 digitos',
+		text : 'Porfavor ingrese un numero telefonico',
+		icon : 'info'
+	})
+}else if(telefono.length <= 7 && telefono.length >= 9){
+	console.log('error telefono');
+	swal({
+		title: 'Error con el telefono',
+		text : 'Porfavor ingrese un numero telefonico de 8 caracteres',
 		icon : 'info'
 	})
 }else if(direccion.length < 5 || direccion.lenght > 80 ){		//patrones direccion
+	console.log('errror direccion');
 	swal({
 		title: 'Error con la direccion',
 		text : 'Porfavor ingrese una direccion mas larga o mas corta',
