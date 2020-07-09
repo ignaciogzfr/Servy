@@ -53,7 +53,7 @@
     <div class="form-group col-md-6">
       <label for="">Fono de Contacto</label>
 
-      <input type="tel" name="fono"   pattern="^[9876543]\d{7}$" class="form-control" placeholder="+569 11223344" required="">
+      <input type="tel" name="fono"   pattern="^[9876543]\d{7}$" class="form-control" placeholder="99999999" required="" maxlength="8">
     </div>
 
   </div>

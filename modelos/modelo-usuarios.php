@@ -15,6 +15,17 @@ require_once("cryptMethod.php");
  * 
  * */
 Class Usuarios{
+//
+
+	static public function obtenerServicioM($id,$tipo_servicio){
+		$con = conexion::conectar();
+		$sql = $con->prepare('SELECT t.tipo_servicio FROM tipo_servicio t, servicios_maestro s  WHERE s.id_usuario = :id and t.id_tipo_servicio = s.id_tipo_servicio AND t.tipo_servicio = :tipo_servicio ');
+		$sql->bindParam(":id",$id,PDO::PARAM_INT);
+		$sql->bindParam(":tipo_servicio",$tipo_servicio,PDO::PARAM_STR);
+		return $sql->fetchAll(PDO::FETCH_ASSOC);
+		
+	}
+
 	/**
 	*	Esta funcion cambia en la base de datos el parametro verificacion_usuario basasdo en su id
 	*	
@@ -370,6 +381,7 @@ Class Usuarios{
 	 * */
 
 	static public function registrarCliente($mail,$pass,$nombre,$fono,$dir,$tipo){
+	$fp = 'img/placeholder-person.jpg';
 	$con = Conexion::conectar();
 	$ePass = encriptarContraseña::encriptar($pass);
 		$sql = $con->prepare("INSERT INTO 
@@ -438,6 +450,7 @@ Class Usuarios{
 	static public function registrarMaestro($mail,$pass,$nombre,$fono,$dir,$tipo,$servicios,$certificados,$exp){
 
 		try {
+			$fp = 'img/placeholder-person.jpg';
 			$con = Conexion::conectar();
 			$con->beginTransaction();
 			$ePass = encriptarContraseña::encriptar($pass);

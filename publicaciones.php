@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="shortcut icon" href="img/logo.png" />
-  <title>Mis publicaciones</title>
+  <title>Todas las publicaciones</title>
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 <?php require_once 'componentes/navbar.php'; ?>
 
 <div class="container">
-  <h1 class="text-center mt-2">~Mis publicaciones~</h1>
+  <h1 class="text-center mt-2">Todas las publicaciones</h1>
   <hr class="featurette-divider">
 </div>
 

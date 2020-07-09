@@ -69,7 +69,7 @@ if(isset($_SESSION['id'])){
 
 					<div class="col-md-6">
 						<label for="nombre-registro-cliente">Tu Nombre *</label>
-						<input id="nombre-registro-cliente" type="text" class="form-control" pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,60}\b$" placeholder="Nombre" name="nombre-registro" required="" minlength="2" maxlength="60">
+						<input id="nombre-registro-cliente" type="text" class="form-control" pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,25}\b$" placeholder="Nombre" name="nombre-registro" required="" minlength="3" maxlength="25">
 					</div>
 
 					<div class="col-md-6">
@@ -122,7 +122,7 @@ if(isset($_SESSION['id'])){
 					    <div class="form-group col-md-9">
 					      <label for="nombre-maestro">Tu Nombre *</label>
 					      <input id="nombre-maestro" type="text" class="form-control"  placeholder="Nombre"
-					      name="nombre-registro" required=""  minlength="4" maxlength="50" pattern="[a-zA-Z/s]{1,30}">
+					      name="nombre-registro" required=""  minlength="3" maxlength="25" pattern="[a-zA-Z/s]{1,25}">
 					    </div>
 					  </div>
 
@@ -192,7 +192,7 @@ if(isset($_SESSION['id'])){
 
 <!-- Footer -->
 <?php require_once 'componentes/footer.php'; ?>
-<?php require_once 'componentes/scripts.php' ?>
+<?php require_once 'componentes/scripts.php'; ?>
 
 
 </body>

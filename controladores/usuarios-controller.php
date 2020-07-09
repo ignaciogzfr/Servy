@@ -33,10 +33,6 @@ Class GestorUsuarios{
 		echo json_encode($respuesta);
 	}
 
-	public function confirmarMail(){
-		$respuesta = 
-
-	}
 	/**
 	 * Con esta funcion se pueden editar los inputs de nombre,fono y direccion del usuario registrdo de tipo cliente.
 	 * 
@@ -198,9 +194,7 @@ Class GestorUsuarios{
 	 * 
 	 * */
 	public function registrarCliente($mail,$pass,$nombre,$fono,$dir,$tipo){
-
 			$respuesta = Usuarios::registrarCliente($mail,$pass,$nombre,$fono,$dir,$tipo);
-		
 		echo $respuesta;
 	}
 
@@ -281,11 +275,11 @@ switch($op){
 		$response->loginUsuario($mail,$ePass);
 		break;
 		//------------------------//
-		case 'confirmarMail':
-		$response = new GestorUsuarios();
-		$numeroUnico = encriptarContraseña::generarNumero();
-		$response->confirmarMail($_POST['id'],$_POST['mail-verificacion'],$numeroUnico);
-		break;
+		//case 'confirmarMail':
+		//$response = new GestorUsuarios();
+		//$numeroUnico = encriptarContraseña::generarNumero();
+		//$response->confirmarMail($_POST['id'],$_POST['mail-verificacion'],$numeroUnico);
+		//break;
 		//--------------------------//
 		case 'verificarMail':
 		$response = new GestorUsuarios();

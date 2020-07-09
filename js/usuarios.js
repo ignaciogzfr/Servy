@@ -6,7 +6,7 @@ $('#serv-maestro').select2({
 	width : 'resolve'
 })
 
-$("#form-confirmacion-mail").on("submit",confirmarMail);
+//$("#form-confirmacion-mail").on("submit",confirmarMail);
 $(".btn-sancionar-usuario").on("click",sancionarUsuario);
 $(".btn-quitar-sancion-usuario").on("click",quitarSancionUsuario);
 $('#form-registro-cliente').on('submit',registrarUsuario);
@@ -17,9 +17,10 @@ $('.fp-registro').on('change',function(){
 
 $('#form-denunciar-u').on('submit',denunciarUsuario);
 
-
+//agregar lista a certificados
 $('.btn-agregar-certificado').on('click',function(e){
 	if($('#cert-maestro').val()=='' || $('#cert-maestro').val().length < 7){
+		console.log('se carga usuarios-.s')
 	swal({
 			title : 'Tienes que ingresar un certificado completo, o sea, más de una palabra',
 			icon : 'info'
@@ -29,8 +30,9 @@ $('.btn-agregar-certificado').on('click',function(e){
 	$('#lista-certificados-maestro').append(linea);
 	$('#cert-maestro').val("");
 	}
-
 })
+// termino agregar lista certificados
+
 
 $('#lista-certificados-maestro').on('click','.btn-quitar-certificado',function(e){
 	$(this).closest('li').remove();
@@ -46,10 +48,10 @@ $('#form-cambiar-fp').on('submit',editarPerfilFP);
 
 
 
-function verificarMail(event){
-event.preventDefault();
+//function verificarMail(event){
 
-}
+
+//}
 
 
 // funciones de usuarios
@@ -57,7 +59,7 @@ function registrarUsuario(event){
 	event.preventDefault();
 	var datos = new FormData(this);
 	var mail = datos.get('mail-registro')
-		//Registro caso cliente
+		//verificacion de mail identico
 	$.ajax({
 		method : 'POST',
 		url : 'controladores/usuarios-controller.php',
@@ -70,15 +72,12 @@ function registrarUsuario(event){
 				icon : 'warning'
 			})
 			}else{
+//----------------------------inicio cliente-------------------------------
 	if($(this).find(".tipo-registro").val()=="Cliente"){
 		//Animacion del boton registro
 	$('#btn-registro-cliente').attr('disabled','disabled');
 	$('#btn-registro-cliente').text("");
 	$('#btn-registro-cliente').append('<i class="fas fa-spinner fa-spin"></i> Registrando Cuenta...');
-		//Si la variable que se le entrego la ruta de la imagen esta sin definir o nula se asignara 
-		//al paquete de datos un valor predeterminado
-		//Se llama al componente de usuarios-controller entregandole el paquete de datos y esperar
-		//de este una respuesta
 	$.ajax({
 		method: 'POST',
 		url: 'controladores/usuarios-controller.php',
@@ -88,11 +87,7 @@ function registrarUsuario(event){
     	processData: false,
 		success:function(response){
 			console.log(response);
-			//una ves que obtine la respuesta puede tener 2 resultados 
-			//1) se crea el usuario y obtiene su id de usuario lo que carga su pagina de perfil
-			//2) no se registra o obtubo un error lo que muestra un error a traves del metodo get
 			if($.isNumeric(response)){
-
 				swal({
 						title : '¡Te has registrado exitosamente!',
 						text : 'Bienvenido a nuestra familia de trabajadores.',
@@ -104,10 +99,10 @@ function registrarUsuario(event){
 			}else{
 				location.href= 'registro.php?error=1';
 				 }
-								}
+								  }
 			})
 	}
-		//registro caso maestro
+		//----------------------------inicio maestro-------------------------------
 	else{
 
 		//Animacion del boton registro
@@ -157,7 +152,8 @@ function registrarUsuario(event){
 		}
 	})
 
-	}			
+	}	
+	//----------------------------fin maestro-------------------------------		
 			}
 		}
 	})
@@ -248,13 +244,10 @@ $.ajax({
 }
 
 
-
+//ini func
 function quitarSancionUsuario(event){
-	//al sancionar un usuario su id se encuentra en el boton
 var id = $(this).val();
 console.log(id);
-	//Llamada a el controlador para que este obtenga los datos del formulario y esta realize
-	//la llamada al modelo para que realize la consulta con el id obtenido del boton
 $.ajax({
 	method: 'POST',
 	url:'controladores/usuarios-controller.php',
@@ -287,11 +280,9 @@ $.ajax({
 
 
 
-
+//ini func
 function prepararFormEditar(e){
 	var id = $(this).val();
-	//Esta funcion cuando se llama del perfil, habilita los campos para que puedan ser editados, elimina el boton editar
-	//y añade los botone "cancelar" y "confirmar" en ambos de ellos se encuentra sla id del usuario para que se utilicen em modelo-usuario
 	$('.input-dato-basico').removeAttr('disabled');
 	$('.exp-maestro').removeAttr('disabled');
 	$('.div-botones-editar').children().remove();
@@ -299,10 +290,10 @@ function prepararFormEditar(e){
 		<button type="button" class="btn btn-success btn-md btn-editar-perfil" value="${id}">Confirmar</button>
 		<button type="button" class="btn btn-danger btn-md btn-cancelar-edit" value="${id}">Cancelar</button>`);
 }
+//fin func
 
 
-
-
+//ini func
 function cancelarFormEditar(e){
 var id = $(this).val()
 	//Cuando se cancela una modificacion los atributos los inputs se deshabilitan los botones de confirmar y calcelar
@@ -321,16 +312,39 @@ $('.input-dato-basico').attr('disabled','disabled');
 }
 
 
-
+//ini func
 function editarPerfil(e){
 var id = $('#id-perfil-edit').val();
-if($('.nombre-editar-perfil').val()=='' || $('.fono-editar-perfil').val()=='' || $('.dir-editar-perfil').val()==''){
+var nombre = $('.nombre-editar-perfil').val();
+var fono = $('.fono-editar-perfil').val();
+var direccion = $('.dir-editar-perfil').val();
+
+
+if(nombre == '' || fono == '' || direccion == ''){		//Casos datos vacios
 	swal({
 		title: 'Espera un momento',
 		text : 'No puedes ingresar datos vacios',
 		icon : 'info'
 	})
-}else{
+}else if(nombre.length < 3 || nombre.length > 26){		//Patrones nombres				
+	swal({
+		title: 'Error con el nombre',
+		text : 'Porfavor ingrese su nombre verdadero o alguno ni tan lago ni tan corto',
+		icon : 'info'
+	})
+}else if(fono.NaN = true || fono.length < 8 || fono.lenght > 8  ){		//patrones telefono
+	swal({
+		title: 'Error con el telefono',
+		text : 'Porfavor ingrese un numero telefonico de 8 digitos',
+		icon : 'info'
+	})
+}else if(direccion.length < 5 || direccion.lenght > 80 ){		//patrones direccion
+	swal({
+		title: 'Error con la direccion',
+		text : 'Porfavor ingrese una direccion mas larga o mas corta',
+		icon : 'info'
+	})
+}else{			//Caso comporbacion completo
 if($('#tipo-editar-perfil').val()==='Cliente'){
 	console.log(1);
 	var datos = $('.form-editar-cliente').serialize();
@@ -361,7 +375,7 @@ $.ajax({
 }
 // Fin funcion
 
-
+//ini func
 function editarPerfilFP(e){
 e.preventDefault();
 var imagen = new FormData(this);

@@ -50,10 +50,11 @@
 
         <?php 
             require_once("modelos/modelo-publicaciones.php");
-
-            $publi = publicaciones::verPublicacionInvitado($_GET["publicacion"]);
-
-
+            require_once("modelos/modelo-usuarios.php");
+            $publi = publicaciones::verPublicacionInvitado($_GET["publicacion"]); 
+            if(isset($_SESSION['id'])){
+            $servicioUsuario = Usuarios::obtenerServicioM($_SESSION['id'],$publi[0]["tipo_servicio"]);
+              }
               echo('
   <div class="container text-center">
 
@@ -71,15 +72,16 @@
           </p>
 
 
-          <hr class="featurette-divider">
-    
          
-                         <button class="btn btn-success mt-3" id="btn-aceptar-publicacion-invitado" value="'.$_SESSION['id'].'">Aceptar publicacion</button>
-                         <input  id="id-publicacion" type="hidden" value="'.$_GET["publicacion"].'">
    </div>
    ');
-            
 
+  if(isset($_SESSION['id']) && $_SESSION['tipo'] == 'Maestro' && $servicioUsuario == $publi[0]["tipo_servicio"]){
+    echo(' <hr class="featurette-divider">
+                         <button class="btn btn-success mt-3" id="btn-aceptar-publicacion-invitado" value="'.$_SESSION['id'].'">Aceptar publicacion</button>
+                         <input  id="id-publicacion" type="hidden" value="'.$_GET["publicacion"].'">');
+
+  }
          ?>
 
 
