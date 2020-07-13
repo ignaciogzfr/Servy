@@ -69,11 +69,11 @@ if(cert == '' || cert.length <= 10){
 }
 else{
 $('.certificados-edit').append(`
-                <div class="row fila-edit-nuevo-c text-center">
+                <div class="row fila-edit-nuevo-c">
                     <button class="btn btn-danger btn-eliminar-certificado" style="width:38px; height:40px;">
                     <i class="fas fa-trash"></i>
                     </button>
-                    <li class="my-3 listado-certificados list-group-item list-group-item-secondary">${cert}</li>
+                    <li class="col-md-10 mb-3 listado-certificados list-group-item list-group-item-secondary">${cert}</li>
                     </div>
 `);
 $('.btn-agregar-certificado-edit').css('display','')

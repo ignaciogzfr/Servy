@@ -5,7 +5,6 @@ function publicarServicioInvitado(event){
       var datos = $(this).serialize();
       console.log(datos)
       $.ajax({
-
         method: 'POST',
         url: 'controladores/publicaciones-controller.php',
         data: datos,
@@ -14,29 +13,22 @@ function publicarServicioInvitado(event){
               if(response!=''){
                 swal({
             title : '¡Tu publicación ha sido enviada con éxito!',
-            text : 'Ahora solo hay que esperar que se apruebe y que un Maestro la tome.',
+            text : 'Sera visualizada por todos nuestros Maestros.',
             icon : 'success'
           }).then(function(){
-            location.href="vista-publicacion-invitado.php"
+            location.href="index.php"
           })
-          
               }else{
-
           swal({
             title : 'oops, algo salio mal.',
             text : 'Por favor rellene todos los campos.',
             icon : 'error'
           })
-
-
               }
             }
       })
-    
   }
 $("#btn-enviarservicios").on("click", function(){
-
-
   toastr.info("Espere a que un Maestro acepte su solicitud, esto puede tardar, sea paciente.", "Gracias",{
 
   "closeButton": true,

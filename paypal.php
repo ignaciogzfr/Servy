@@ -3,6 +3,8 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
+  <link rel="shortcut icon" href="img/logo.png" />
+  <title>Subscripción</title>
 </head>
 
 <body style="background-color: #7f7f7f;">

@@ -7,9 +7,11 @@
 	<title>Ingreso a la pagina</title>
 	<!--titulo y configuracion de la pagina-->
 	<?php require_once 'componentes/links.php' ?>
+	<?php require_once 'componentes/verificar-sesion-login.php'; ?>
 </head>
 
 <body>
+
 	<?php require_once 'componentes/navbar.php'; ?>
 	<!--formulario login-->
 	<form id="form-login" action="modelos/modelo-login.php" method="POST">

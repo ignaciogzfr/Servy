@@ -29,7 +29,7 @@
                 </script>
                           </div>
                                 <div class="form-group">
-                         <input type="text" class="form-control" name="fono" id="fono-grua"  pattern="^[9876543]\d{7}$"  placeholder="+569 11223344" required="" maxlength="9" minlength="7">
+                         <input type="text" class="form-control" name="fono" id="fono-grua"  pattern="^[9876543]\d{7}$"  placeholder="88888888" required="" maxlength="8" minlength="7">
                           </div>
                           <div class="form-group">
                          <textarea name="descripcion" class="form-control" id="detalle-grua" cols="30" rows="3" minlength="20" maxlength="200" required="" placeholder="Breve descripcion"></textarea>
@@ -61,7 +61,7 @@
                       <input type="hidden" name="lng" value="" id="lng-publicacion" value="">
                       <input type="hidden" name="op" value="pedirGrua">
 
-                      <button type="submit" id="btn-pedir-grua" class="btn btn-sm btn-secondary pt-2"  >Enviar</button>
+                      <button type="submit" id="btn-pedir-grua" class="btn btn-sm btn-secondary pt-2">Enviar</button>
                      </form>
                     <?php require_once 'componentes/scripts.php' ?>
   

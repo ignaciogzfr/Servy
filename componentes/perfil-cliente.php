@@ -4,7 +4,6 @@
           
             <div class="col-md-4 text-center">
             <?php 
-            echo "<script>console.log('y llega correctamente pefil-cliente.php');</script>";
              $sesion = '';
              if(isset($_SESSION['id']) && $_GET['id'] == $_SESSION['id']){
               $sesion = true;
@@ -13,17 +12,20 @@
               $sesion = false;
              }
             require_once 'modelos/modelo-usuarios.php';
-              
+            //puede ser si o no
+            $puedeDenunciar = Usuarios::verificarPosibilidadDenunciar($_GET['id'],$_SESSION['id']);         
+            echo "<script>console.log('el cliente [".$puedeDenunciar."] puede denunciar');</script>";
+
+
             $datos = Usuarios::getPerfilUsuario($_GET['id']); 
             echo '<img src="'.$datos[0]['foto_perfil'].'" alt="Foto de Perfil va aqui." width="150" height="150" class="rounded-circle my-2">'
-             ?>
+             ?>             
 <?php
 if($sesion == true){
   echo '<button class="btn btn-md btn-primary btn-modal-fp" value="'.$_GET['id'].'" data-toggle="modal" data-target="#modal-editar-fp"><i class="fas fa-image"></i> Cambiar Foto de Perfil</button>';}
 ?>
           </div>
             <div class="col-md-2">
-
             <p class="text-muted my-3">Nombre:</p>
             <p class="text-muted my-3">Email:</p>
             <p class="text-muted my-3">Telefono: +56 9</p>
@@ -56,16 +58,22 @@ if($sesion == true){
 <form action="modelos/modelo-login.php" method="POST" id="form-editar-sesion">
   <?php echo '<input type="hidden" name="id" value="'.$datos[0]['id_usuario'].'">'; ?>
 </form>
-            </div>
-
-        </div>
-<?php if(isset($_SESSION['id']) && $_SESSION['id']!=$_GET['id'] && $_SESSION['tipo']!='Administrador'){
-  echo '<div class="text-right">
-  <button class="btn btn-md btn-danger" data-toggle="modal" data-target="#modal-denuncias-u"><i class="fas fa-ban"></i>Denunciar Perfil</button>
-</div>';
-require_once 'componentes/modal-denuncias-usuario.php';
-} ?>
-<?php if($_SESSION['tipo']=='Administrador'){
-  require_once 'componentes/vista-usuario.php';
-} ?>          
+</div>
+</div>
+<?php 
+if($puedeDenunciar == "si"){
+      if(isset($_SESSION['id']) && $_SESSION['id']!=$_GET['id'] && $_SESSION['tipo']!='Administrador'){
+              echo '<div class="text-center">
+              <button class="btn btn-md btn-danger" data-toggle="modal" data-target="#modal-denuncias-u"><i class="fas fa-ban"></i> Denunciar Perfil</button>
+            </div>';
+      require_once 'componentes/modal-denuncias-usuario.php';
+      }
+}else{
+  echo "
+  <br>
+  <h5 class='text-center'>Gracias por denunciar, el moderador verificara y sancionara al usuario si es necesario</h5>
+  <br>";
+}
+ ?>
+<?php require_once 'componentes/vista-denuncias-usuario.php'; ?>          
 </div>

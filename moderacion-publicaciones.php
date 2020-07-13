@@ -73,11 +73,11 @@ if(count($publi)){
 
    if (count($den)==0) {
     echo(' <td>
-                    <a class="btn btn-sm btn-info" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank" >Ver publicacion</a>
+                    <a class="btn btn-sm btn-info" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'"  >Ver publicacion</a>
                 </td>');
   }else{
     echo(' <td>
-                    <a class="btn btn-sm btn-info" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" target="_blank" >Ver publicacion </a><span class="badge badge-danger ml-2" >'.count($den).'</span>
+                    <a class="btn btn-sm btn-info" href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'"  >Ver publicacion </a><span class="badge badge-danger ml-2" >'.count($den).'</span>
                 </td>');
   }
 

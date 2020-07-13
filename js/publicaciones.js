@@ -1,8 +1,9 @@
 //listener de js que se cargan como componente en las paginas que se necesiten
 $(document).ready(function(){
+	console.log("Se carga correctamente publicaciones.js");
 	//Se referencia al elemento que debe ser escuchado, el metodo de como se escucha y la funcion a activar si se eschucha 
-	$(".btn-sancionar-publicacion").on("click",sancionarPublicacion)
-	$(".btn-quitar-sancion-publicacion").on("click",quitarSancionPublicacion)
+	$(".btn-sancionar-publicacion").on("click",sancionarPublicacion);
+	$(".btn-quitar-sancion-publicacion").on("click",quitarSancionPublicacion);
 	$('#form-publicar-servicios').on('submit',publicarServicio);
 	$('#btn-aceptar-publicacion').on('click',aceptarPublicacion);
 	$('#btn-aceptar-publicacion-invitado').on('click',aceptarPublicacionInvitado);
@@ -185,12 +186,10 @@ $(document).ready(function(){
 	}
 	//funcion en proceso
 	function publicarServicio(event){
+		console.log("Se llama a la funcion publicar");
 				event.preventDefault();
 				var datos = new FormData(this);
-				console.log(datos.get('lat'));
-				console.log(datos.get('titulo-publi'));
 			$.ajax({
-
 				method: 'POST',
 				url: 'controladores/publicaciones-controller.php',
 				data: datos,
@@ -200,17 +199,26 @@ $(document).ready(function(){
     			
 				success:function(response){
 					console.log(response);
-	        		if(response!=''){
+	        		if(response='ok'){
 	        			swal({
-						title : '¡Tu publicacion ha sido enviada con excito!',
+						title : '¡Tu publicacion ha sido enviada con exito!',
 						icon : 'success'
 						}).then(function(){
 							location.href = 'servicios-pendientes.php'
 						})
+	        		}else{
+	        			swal({
+						title : '¡Ha ocurrido un herror porfavor ingrese nuevamente!',
+						icon : 'success'
+						}).then(function(){
+							location.href = 'servicios-pendientes.php'
+						})
+
 	        		}
 	        	}
 
 			})
+			//fin caso insertar
 	}
 
 

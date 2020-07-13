@@ -11,7 +11,7 @@
 					<label for="tipo-denuncia-p">Eliga el Tipo de Denuncia</label>
 					<select name="tipo_denuncia" id="tipo-denuncia-p" class="form-control" required="">
 						<?php require_once 'modelos/modelo-usuarios.php';
-						$tipos = Usuarios::getTiposDenunciaU();
+						$tipos = Usuarios::getTiposDenunciaU($_GET['id']);
 						for ($i=0; $i < count($tipos) ; $i++) { 
 						 echo '<option value="'.$tipos[$i]['id_tipo_denuncia'].'">'.$tipos[$i]['tipo_denuncia'].'</option>';
 						 } ?>

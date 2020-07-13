@@ -32,7 +32,7 @@
                     <div class="mt-3 modal-footer footer-resumen-maestro">
                       <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cerrar</button>
                       <a type="button" class="btn btn-sm btn-secondary btn-link-publicacion" href="">Ver Publicacion</a>
-                      <a type="button" class="btn btn-sm btn-info btn-link-detalles-maestro" href="" target="_blank">Ver informacion del Maestro</a>
+                      <a type="button" class="btn btn-sm btn-info btn-link-detalles-maestro" href="">Ver informacion del Maestro</a>
                    </div>
             </div>
         </div>

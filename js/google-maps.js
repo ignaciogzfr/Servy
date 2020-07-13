@@ -83,13 +83,6 @@ function Miposicion() {
               var destino = new google.maps.LatLng(document.getElementById('lat-publicacion').value, document.getElementById('lng-publicacion').value);
 
          
-             
-
-
-
-
-
-
               var mapOptions = {
                 zoom: 14,
                 center: origen
@@ -105,8 +98,6 @@ function Miposicion() {
                   origin: origen,
                   destination: destino,
                   travelMode: 'DRIVING',
-
-
                 };
 
                 directionsService.route(request, function(result, status){

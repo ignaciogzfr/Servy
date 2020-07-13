@@ -7,13 +7,13 @@
 
   ?>
 
-
+  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="shortcut icon" href="img/logo.png" />
-  <title>Servicios</title>
+  <title>Todos los Servicios y Demandas</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -75,7 +75,7 @@
  <?php
       /* existen 2 tipos de publicaciones oferta y demanda y a partir de este dato que se obitne a traves el metodo get se puede mostrar que tipo de publicacion desea el usuario */
      require_once("modelos/modelo-publicaciones.php");
-
+  
      if(isset($_GET['tipo'])){
       if($_GET['tipo']=='Oferta' || $_GET['tipo']=='oferta'){
           $publi = Publicaciones::getPublicacionesOferta();
@@ -92,17 +92,24 @@
         }
       }
       $publiinvitado = Publicaciones::getPublicacionesInvitado();
-            if(count($publi)==0 && count($publiinvitado) == 0){
-
-                      echo('<div class="alert alert-primary text-center" role="alert">
-                                          En este momento no se han encontrado publicaciones, intente más tarde.
-                                  </div>');
-
+      //if(isset($publi))
+          //caso que no existan publicaciones
+            if(count($publi)==0){
+                if($_GET['tipo'] == "Oferta"){
+                  echo ('<h2 class="text-center mt-3">Ofertas de Servicios</h2>');
+                }else{
+                  echo ('<h2 class="text-center mt-3">Peticiones de usuarios</h2>');
+                }
+                      echo('<div class="alert alert-primary text-center" role="alert">En este momento no se han encontrado publicaciones, intente más tarde.</div>');
               }else{
+                //carga de publicaciones
+                if($_GET['tipo'] == "Oferta"){
+                  echo ('<h2 class="text-center mt-3">Ofertas de Servicios</h2>');
+                }else{
+                  echo ('<h2 class="text-center mt-3">Peticiones de usuarios</h2>');
+                }
                  for ($i=0; $i<count($publi); $i++){
-
                  echo (' 
-                
                 <a href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
 
                   <div class="d-flex w-100 justify-content-between">
@@ -115,11 +122,17 @@
                   <p class="mb-2">DESCRIPCION: '.$publi[$i]["detalle_publicacion"].'</p>
                   <small>Pedido por : '.$publi[$i]["nombre_usuario"].'</small>
                 </a>');
-                  }
-                
-                for($i=0;$i<count($publiinvitado); $i++){
+                  }      
+              }
+              //caso que no existan publicaciones de invitados
+              if(count($publiinvitado) == 0){
+                  echo ('<h2 class="text-center mt-3">Peticiones De invitados</h2>');
+                  echo('<div class="alert alert-primary text-center" role="alert">los invitados no tienen publicaciones de momento, vuelva mas tarde.</div>');
+                }else{
+                  //carga publicaciones invitado
+                   for($i=0;$i<count($publiinvitado); $i++){
+                    echo ('<h2 class="text-center mt-3">Peticiones De invitados</h2>');
                    echo (' 
-                  
                   <a href="vista-publicacion-invitado.php?publicacion='.$publiinvitado[$i]['id_invitado'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3 mb-3">
 
                     <div class="d-flex w-100 justify-content-between">
@@ -132,7 +145,11 @@
                     <small>Pedido por : '.$publiinvitado[$i]["nombre_invitado"].'</small>
                   </a>');
                 }
-              }?>
+
+                }
+
+
+              ?>
                 
              
 

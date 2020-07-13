@@ -15,13 +15,13 @@ require_once("cryptMethod.php");
  * 
  * */
 Class Usuarios{
-//
-
 	static public function obtenerServicioM($id,$tipo_servicio){
 		$con = conexion::conectar();
-		$sql = $con->prepare('SELECT t.tipo_servicio FROM tipo_servicio t, servicios_maestro s  WHERE s.id_usuario = :id and t.id_tipo_servicio = s.id_tipo_servicio AND t.tipo_servicio = :tipo_servicio ');
+		$sql = $con->prepare('SELECT tipo_servicio.tipo_servicio FROM tipo_servicio INNER JOIN servicios_maestro
+		ON  tipo_servicio.id_tipo_servicio = servicios_maestro.id_tipo_servicio WHERE servicios_maestro.id_usuario = :id and tipo_servicio = :tipo_servicio');
 		$sql->bindParam(":id",$id,PDO::PARAM_INT);
 		$sql->bindParam(":tipo_servicio",$tipo_servicio,PDO::PARAM_STR);
+		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
 		
 	}
@@ -216,11 +216,26 @@ Class Usuarios{
 	 * @return $sql matriz de datos que contiene los tipos de denuncia permitidos par los usuarios
 	 * 
 	 * */
-	static public function getTiposDenunciaU(){
+	static public function getTiposDenunciaU($iddenunciado){
 	$con = Conexion::conectar();
-	$sql = $con->prepare("SELECT * FROM tipos_denuncia WHERE entidades_admitidas = 'Usuarios' OR entidades_admitidas = 'Ambos' ");
+	$sql = $con->prepare("SELECT tipo_usuario FROM usuario WHERE id_usuario = :iddenunciado");
+	$sql->bindParam(":iddenunciado",$iddenunciado,PDO::PARAM_INT);
 	$sql->execute();
-	return $sql->fetchAll(PDO::FETCH_ASSOC);
+	$tipo_usuario = $sql->fetchAll(PDO::FETCH_ASSOC);
+	echo "<script>console.log('el usuario a denunciar es: ".$tipo_usuario[0]['tipo_usuario']."');</script>";
+	if($tipo_usuario[0]['tipo_usuario'] == "Maestro"){
+		$sql1 = $con->prepare("SELECT * FROM tipos_denuncia WHERE entidades_admitidas = 'Maestro' OR entidades_admitidas = 'Ambos' ");
+		$sql1->execute();
+		return $sql1->fetchAll(PDO::FETCH_ASSOC);
+	}elseif($tipo_usuario[0]['tipo_usuario'] == "Cliente"){
+		$sql2 = $con->prepare("SELECT * FROM tipos_denuncia WHERE entidades_admitidas = 'Cliente' OR entidades_admitidas = 'Ambos' ");
+		$sql2->execute();
+		return $sql2->fetchAll(PDO::FETCH_ASSOC);
+	}
+	//si el denunciado es un maestro
+	
+	//si el denunciado es cliente
+	
 	}
 	
 
@@ -260,8 +275,20 @@ Class Usuarios{
 	return 'Denunciado papu';
 	}
 
+	static public function verificarPosibilidadDenunciar($iddenunciado,$iddenunciante){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("SELECT * FROM denuncias_usuario WHERE id_denunciado = :iddenunciado and id_denunciante = :iddenunciante");
+		$sql->bindParam(":iddenunciado",$iddenunciado,PDO::PARAM_INT);
+		$sql->bindParam(":iddenunciante",$iddenunciante,PDO::PARAM_INT);
+		$sql->execute();
+		$num = count($sql->fetchAll(PDO::FETCH_ASSOC));
+		if($num > 0){
+			return 'no';
+		}else{
+			return 'si';
+		}
 
-
+	}
 
 	/**
 	 * Funcion que permite sancionar a una usuario utilizando su identificador del usuario en cuestion cambiando su estado a "Sancionado".

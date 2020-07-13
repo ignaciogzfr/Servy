@@ -4,8 +4,6 @@
           
             <div class="col-md-4 text-center">
              <?php
-            echo "<script>console.log('y llega correctamente pefil.maestro.php');</script>";
-
              $Sesion = '';
              if(isset($_SESSION['id']) && $_GET['id'] == $_SESSION['id']){
               $sesion = true;
@@ -15,6 +13,8 @@
               require_once 'modelos/modelo-usuarios.php';
               require_once 'modelos/modelo-servicios.php';
               $datos = Usuarios::getPerfilUsuario($_GET['id']); 
+               $puedeDenunciar = Usuarios::verificarPosibilidadDenunciar($_GET['id'],$_SESSION['id']);
+               echo "<script>console.log('el Maestro [".$puedeDenunciar."] puede denunciar');</script>";
               echo '<img src="'.$datos[0]['foto_perfil'].'" alt="Foto de Perfil va aqui." width="150" height="150" class="rounded-circle  my-2">'
                ?>
 <?php
@@ -79,8 +79,8 @@ if($sesion == true){
               
               </div>
               <ul class="certificados-edit list-group">
-                <div class="row fila-input-c" style="display: none;">
-                  <input class="form-control col-md-8 mt-2 certificado-agregar-edit" type="text" placeholder="Escriba su certificado aqui" maxlength="60">
+                <div class="row fila-input-c mb-4" style="display: none;">
+                  <input class="form-control col-md-8 mt-1 certificado-agregar-edit" type="text" placeholder="Escriba su certificado aqui" maxlength="60">
                   <button class="btn btn-sm btn-success btn-agregar-fila-c" type="button"><i class="fas fa-check"></i></button>
                   <button class="btn btn-sm btn-danger btn-eliminar-fila-c" type="button"><i class="fas fa-times"></i></button>
                 </div>
@@ -94,11 +94,11 @@ if($sesion == true){
 
                     if($sesion == true){
                     echo '
-                    <div class="row my-3 fila-edit-c">
+                    <div class="row mb-4 fila-edit-c">
                     <button class="btn btn-danger btn-eliminar-certificado" style="width:38px; height:40px; display: none;" value="'.$certificados[$i]['id_certificado'].'">
                     <i class="fas fa-trash"></i>
                     </button>
-                    <li class="listado-certificados list-group-item list-group-item-secondary">'.$certificados[$i]['nombre_certificado'].'</li>
+                    <li class="listado-certificados list-group-item list-group-item-secondary col-md-10">'.$certificados[$i]['nombre_certificado'].'</li>
                     </div>';
                     }else{
                     echo '<input type="text" class="form-control mb-2" value="'.$certificados[$i]['nombre_certificado'].'" id="'.$certificados[$i]['id_certificado'].'" disabled>';
@@ -117,9 +117,9 @@ if($sesion == true){
 
 
               <div class="text-center">
-              <p class="mt-3">Servicios que proporciona <?php if($sesion == true){echo '<button class="btn btn-success btn-agregar-servicios-edit" total="'.count($servicios).'" style="border-radius=2px;"><i class="fas fa-plus"></i></button>';} ?></p>
+              <p class="mt-2">Servicios que proporciona <?php if($sesion == true){echo '<button class="btn btn-success btn-agregar-servicios-edit" total="'.count($servicios).'" style="border-radius=2px;"><i class="fas fa-plus"></i></button>';} ?></p>
               </div>
-                 <div class="serv-maestro-div row" style="display: none;"> 
+                 <div class="serv-maestro-div row mb-4" style="display: none;"> 
 
 
                   <select id="serv-maestro-edit"  class="form-control" style="width:50%" required="">
@@ -138,7 +138,7 @@ if($sesion == true){
 
                 </div>             
 
-                <ul class="servicios-edit list-group offset-3">
+                <ul class="servicios-edit list-group">
 
                     <?php 
                     if(count($servicios)==0){
@@ -151,8 +151,8 @@ if($sesion == true){
                         if($sesion == true){
                         echo '
                         <input type="hidden" class="servicio-original" value="'.$servicios[$i]['id_tipo_servicio'].'" texto="'.$servicios[$i]['tipo_servicio'].'">
-                        <div class="row my-2 fila-edit-s">
-                          <li class="col-md-8 text-center list-group-item list-group-item-secondary listado-servicios servicio-'.$servicios[$i]['id_tipo_servicio'].'" value="'.$servicios[$i]['id_tipo_servicio'].'">
+                        <div class="row mb-4 fila-edit-s">
+                          <li class="col-md-10 text-center list-group-item list-group-item-secondary listado-servicios servicio-'.$servicios[$i]['id_tipo_servicio'].'" value="'.$servicios[$i]['id_tipo_servicio'].'">
                           '.$servicios[$i]['tipo_servicio'].'
                           </li>
                           <button class="btn btn-danger btn-eliminar-servicio" style="width:38px; height:40px; display:none;">
@@ -160,7 +160,7 @@ if($sesion == true){
                           </button> 
                         </div>';
                         }else{
-                        echo '<input type="text" class="form-control my-2" disabled value="'.$servicios[$i]['tipo_servicio'].'">';  
+                        echo '<input type="text" class="form-control mb-2" disabled value="'.$servicios[$i]['tipo_servicio'].'">';  
                         }
 
                       }
@@ -173,25 +173,39 @@ if($sesion == true){
      
                 
 <div class="text-center div-botones-servicios">
+</div>           
 </div>
-               
 </div>
-            </div>
 <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo']=='Administrador'){
   require_once 'componentes/vista-usuario.php';
 } ?>
-           </div>
-        </div>
-
-<?php if(isset($_SESSION['id']) && $_SESSION['id']!=$_GET['id'] && $_SESSION['tipo']!='Administrador'){
-  echo '<div class="text-right">
-  <button class="btn btn-md btn-danger" data-toggle="modal" data-target="#modal-denuncias-u"><i class="fas fa-ban"></i>Denunciar Perfil</button>
-</div>';
-require_once 'componentes/modal-denuncias-usuario.php';
-} ?>
-      </div>
 
 <form action="modelos/modelo-login.php" method="POST" id="form-editar-sesion">
 <?php echo '<input type="hidden" value="'.$_GET['id'].'" id="id-perfil-edit" name="id">'; ?>
 </form>
+</div>
+</div>
+<
+<?php
+if($puedeDenunciar == "si"){
+   if(isset($_SESSION['id']) && $_SESSION['id']!=$_GET['id'] && $_SESSION['tipo']!='Administrador'){
+  echo '<div class="text-center mb-5">
+  <button class="btn btn-md btn-danger" data-toggle="modal" data-target="#modal-denuncias-u"><i class="fas fa-ban"></i>Denunciar Perfil</button>
+  <br>
+  </div>';
+  require_once 'componentes/modal-denuncias-usuario.php';
+      }
+}else{
+  echo "
+  <br>
+  <h5 class='text-center'>Gracias por denunciar, el moderador verificara y sancionara al usuario si es necesario</h5>
+  <br>";
+
+}
+ ?>
+ <?php require_once 'componentes/vista-denuncias-usuario.php'; ?> 
+</div>
+
+
+
 

@@ -8,7 +8,7 @@
         </li>
 
         <li class="nav-item mr-2">
-        <a class="nav-link" href="registro.php" target="_blank">Registrese</a>
+        <a class="nav-link" href="registro.php">Registrese</a>
         </li>
 
         <li class="nav-item active">

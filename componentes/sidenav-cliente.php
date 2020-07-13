@@ -9,9 +9,8 @@
       <div class="list-group list-group-flush text-white pt-5">
 <?php if($_SESSION['estado'] == "Activo"){
 echo('
-  <a href="publicar-servicio.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Solicitar Servicios</a>');
+  <a href="publicar-servicio.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Publicar problema</a>');
 }else{
-
   echo('<a class="list-group-item list-group-item-action mdb-color lighten-1 text-white" disabled="" >Estas sancionado</a>');
 } ?>
         <a href="verificacionMail.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">verifica tu email</a>

@@ -38,7 +38,7 @@
         <div class="row">
           <!--se cargan los datos basicos del perfil del administrador-->
             <div class="col-md-5">
-              <?php echo '<h6>'.$_SESSION['fp'].'<p class="text-success">[Moderador]</p></h6>   '; ?>
+              <?php echo '<h6><p class="text-success">[Moderador]</p></h6>   '; ?>
               <?php echo '<img src="'.$_SESSION['fp'].'" width="150" height="150" class="rounded-circle">' ?>
             </div>
 
@@ -46,8 +46,8 @@
             <div class="col-md-7 mt-5">
                 <div class="btn-group-vertical">
                 <?php echo '<a class="btn btn-md btn-primary" href="perfil.php?id='.$_SESSION['id'].'" style="margin-left:0px"><i class="fas fa-edit"></i> Editar mi perfil</a>'; ?>
-                <a class="btn btn-md btn-primary" href="moderacion-usuarios.php" target="_blank"><i class="fas fa-user-circle"></i> Buscar usuarios</a>
-                <a class="btn btn-md btn-primary" href="moderacion-publicaciones.php" target="_blank"><i class="far fa-sticky-note"></i> Buscar publicaciones</a>
+                <a class="btn btn-md btn-primary" href="moderacion-usuarios.php"><i class="fas fa-user-circle"></i> Buscar usuarios</a>
+                <a class="btn btn-md btn-primary" href="moderacion-publicaciones.php"><i class="far fa-sticky-note"></i> Buscar publicaciones</a>
               </div>
 
             </div>

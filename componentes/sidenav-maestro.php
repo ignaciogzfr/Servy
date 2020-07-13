@@ -18,10 +18,10 @@ echo('
 }
 ?>
   <a href="servicios-pendientes.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mis Publicaciones</a>
-  <a href="servicios-pendientes.php?tipo=Demanda" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mis Peticiones</a>
-  <a href="servicios-pendientes.php?tipo=Oferta" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mis Ofertas</a>  
+  <a href="servicios-pendientes.php?tipo=Demanda" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mis solicitudes</a>
+  <a href="servicios-pendientes.php?tipo=Oferta" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Mis ofertas de trabajo</a>  
   <a href="verificacionMail.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Verifica tu email</a>  
-  <a href="vista-publicacion.php" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Publicaciones anonimas</a>    
+  <a href="vista-publicaciones.php?tipo=Demanda" class="list-group-item list-group-item-action mdb-color lighten-1 text-white">Buscar peticiones</a>    
   <a href="modelos/logout.php" class="list-group-item list-group-item-action mdb-color lighten-2 text-white ">Cerrar sesion <i class="fas fa-power-off"></i></a>
 
       </div>

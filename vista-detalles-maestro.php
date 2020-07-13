@@ -8,7 +8,8 @@
   ?>
 
 	<meta charset="UTF-8">
-	<title></title>
+	<link rel="shortcut icon" href="img/logo.png" />
+	<title>Detalles del maestro</title>
 </head>
 <body style="background-color: #45526e;">
 

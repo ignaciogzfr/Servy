@@ -12,29 +12,26 @@
         <li class="nav-item">
         <a class="nav-link" href="index.php">Inicio</a>
         </li>
-        
         <li class="nav-item">
         <?php if($_SESSION['tipo']!='Administrador'){
             echo '<a class="nav-link" href="perfil.php?id='.$_SESSION['id'].'">Mi Perfil</a>';
-
         }else{
             echo '<a class="nav-link" href="panel-control.php">Panel de Control</a>';
         } ?>
-        
         </li>
             <?php 
         if($_SESSION['tipo']=='Maestro'){
         echo '
         <li class="nav-item">
-        <a class="nav-link" href="servicios-pendientes.php?tipo=oferta" target="_blank">Mis Ofertas de Servicios</a>
+        <a class="nav-link" href="servicios-pendientes.php?tipo=Oferta">Mis Ofertas de Servicios</a>
         </li>';
             }  ?>
         <li class="nav-item">
         <?php 
         if ($_SESSION['tipo']=='Cliente'){ 
-        echo '<a class="nav-link" href="vista-servicios.php?tipo=oferta" target="_blank">Ofertas de Servicios</a>';
+        echo '<a class="nav-link" href="vista-publicaciones.php?tipo=Oferta">Ofertas de Servicios</a>';
         }elseif($_SESSION['tipo']=='Maestro'){
-        echo '<a class="nav-link" href="vista-servicios.php?tipo=demanda" target="_blank">Solicitudes de Servicios</a>';
+        echo '<a class="nav-link" href="vista-publicaciones.php?tipo=Demanda">Solicitudes de Servicios</a>';
         } ?>
         </li>
 

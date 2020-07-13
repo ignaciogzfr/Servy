@@ -2,12 +2,11 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
+  <link rel="shortcut icon" href="img/logo.png" />
   <title>Servy</title>
 
 <?php require_once 'componentes/links.php'; ?>
@@ -60,7 +59,7 @@
 
 <div class="form-group">
     <label for="inputAddress">Titulo </label>
-    <input type="text" class="form-control col-6"  pattern="[a-zA-Z\s]{5,30}" name="titulo"  placeholder="Titulo..." required="" maxlength="30">
+    <input type="text" class="form-control col-12"  pattern="[a-zA-Z\s]{5,30}" name="titulo"  placeholder="Titulo..." required="" maxlength="30">
   </div>
 
   <div class="form-group">

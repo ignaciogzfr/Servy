@@ -1,13 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark main-color sticky-top">
   <button class="btn btn-primary" id="menu-toggle" ><i class="fas fa-bars"></i></button>
-
-
-<?php if($_SERVER['REQUEST_URI']=='/Servy/index.php' || $_SERVER['REQUEST_URI']=='/servy/index.php'){
+<?php if($_SERVER['REQUEST_URI']=='/Servy/index.php' || $_SERVER['REQUEST_URI']=='/Servy/'){
   echo ' <button class="btn btn-warning" data-target="#modal-pedir-grua" data-toggle="modal"><i class="fas fa-wrench" style="font-size: 15px;"></i> <i class="fas fa-truck-pickup" style="font-size: 20px;"></i></button>';
 } ?>
-
-
- 
   <?php 
         @session_start();
         //Al cargar este componente se valida si eisten datos en la variable sesion, la que se asigna cuando se realiza un login o registro

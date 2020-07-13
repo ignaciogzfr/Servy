@@ -13,9 +13,10 @@
 <body>
   <?php require_once 'componentes/links.php'; ?>
   <?php require_once 'componentes/sidenav.php'; ?>
-<div id="page-content-wrapper">
+  <?php require_once 'componentes/verificar-sesion.php'; ?>
 
-<?php require_once 'componentes/navbar.php'; ?>
+    <div id="page-content-wrapper">
+    <?php require_once 'componentes/navbar.php'; ?>
 
 <div class="container">
   <h1 class="text-center mt-2"> Perfil</h1>
@@ -45,14 +46,7 @@ elseif(!isset($perfil[0])){
 
 
 </div>
-    <!-- /#page-content-wrapper -->
-
 </div>
-<!-- /#wrapper -->
-
-
-
-
 <?php require_once 'componentes/footer.php'; ?>
 <?php 
 if(isset($_SESSION['id']) && $_SESSION['id']==$_GET['id']){

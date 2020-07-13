@@ -136,9 +136,9 @@ Class Publicaciones{
 	static function verPublicacionInvitado($id){
 
 			$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT p.*, t.tipo_servicio FROM publicacion_invitado p, tipo_servicio t WHERE p.id_invitado = :id and p.id_tipo_servicio = t.id_tipo_servicio ");
+			$sql = $con->prepare("SELECT p.*, t.tipo_servicio FROM publicacion_invitado p, tipo_servicio t WHERE p.id_invitado = :id and p.id_tipo_servicio = t.id_tipo_servicio ");
 			$sql->bindParam(":id",$id,PDO::PARAM_INT);
-	$sql->execute();
+			$sql->execute();
 	return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
 
@@ -153,15 +153,11 @@ Class Publicaciones{
 	 * 
 	 * */
 	static function getPublicacionesInvitado(){
-
 		$con = Conexion::conectar();
 		$sql = $con->prepare("SELECT p.*, t.tipo_servicio FROM publicacion_invitado p, tipo_servicio t WHERE p.id_tipo_servicio = t.id_tipo_servicio ");
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC); 
-
 	}
-
-
 	/**
 	 * Con esta funcion se obtienen las denuncias de una publicacion, estas se haran visibles en la vista de la misma publicaicon  cuando el administrador pueda visualizarlos por debajo de la publicacion original.
 	 * 
@@ -176,7 +172,7 @@ Class Publicaciones{
 	static public function getDenuncias($id){
 
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT d.*, u.nombre_usuario, t.tipo_denuncia FROM denuncias_publicacion d, usuario u, tipos_denuncia t 	WHERE publicacion = :id and d.denunciante = u.id_usuario and d.tipo_denuncia = t.id_tipo_denuncia");
+		$sql = $con->prepare("SELECT d.*, u.nombre_usuario, t.tipo_denuncia FROM denuncias_publicacion d, usuario u, tipos_denuncia t 	WHERE publicacion = :id and d.id_denunciante = u.id_usuario and d.id_tipo_denuncia = t.id_tipo_denuncia");
 		$sql->bindParam(":id",$id,PDO::PARAM_INT);
 	$sql->execute();
 	return $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -195,7 +191,7 @@ Class Publicaciones{
 	 * */
 	static public function getPublicacionesDemanda(){
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT p.*, u.nombre_usuario, t.tipo_servicio FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario AND p.id_tipo_servicio = t.id_tipo_servicio AND p.tipo_publicacion = 'Demanda' and p.estado_publicacion = 'Aprobada' ORDER BY fecha_hora_publicacion DESC");
+		$sql = $con->prepare("SELECT p.*, u.nombre_usuario, t.tipo_servicio FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario AND p.id_tipo_servicio = t.id_tipo_servicio AND p.tipo_publicacion = 'Demanda' and p.estado_publicacion = 'Pendiente' ORDER BY fecha_hora_publicacion DESC");
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
@@ -211,7 +207,7 @@ Class Publicaciones{
 	 * */
 	static public function getPublicacionesOferta(){
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT p.*, u.nombre_usuario, t.tipo_servicio FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario AND p.id_tipo_servicio = t.id_tipo_servicio AND p.tipo_publicacion = 'Oferta' and p.estado_publicacion = 'Aprobada'  ORDER BY fecha_hora_publicacion DESC");
+		$sql = $con->prepare("SELECT p.*, u.nombre_usuario, t.tipo_servicio FROM publicacion p, usuario u, tipo_servicio t WHERE p.id_usuario = u.id_usuario AND p.id_tipo_servicio = t.id_tipo_servicio AND p.tipo_publicacion = 'Oferta' and p.estado_publicacion = 'Pendiente'  ORDER BY fecha_hora_publicacion DESC");
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
@@ -226,7 +222,7 @@ Class Publicaciones{
 	 * */
 	static public function getTiposDenunciaP(){
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT * FROM tipos_denuncia WHERE entidades_admitidas = 'Publicacion' OR entidades_admitidas = 'Ambos' ");
+		$sql = $con->prepare("SELECT * FROM tipos_denuncia WHERE entidades_admitidas = 'Publicacion' ");
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
@@ -259,7 +255,7 @@ Class Publicaciones{
 	 * */
 	static public function getDenunciasPublicacion($id){
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT d.* FROM denuncias_publicacion d, publicacion p, usuario u WHERE d.publicacion = p.id_publicacion AND d.denunciante = u.id_usuario AND p.id_publicacion = :id");
+		$sql = $con->prepare("SELECT d.*, u.nombre_usuario, t.tipo_denuncia FROM denuncias_publicacion d, publicacion p, usuario u, tipos_denuncia t WHERE d.id_publicacion = p.id_publicacion AND d.id_denunciante = u.id_usuario AND p.id_publicacion = :id AND d.id_tipo_denuncia = t.id_tipo_denuncia" );
 		$sql->bindParam(":id",$id,PDO::PARAM_INT);
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -296,7 +292,7 @@ Class Publicaciones{
 	 * */
 	static public function quitarSancionPublicacion($id){
 		$con = Conexion::conectar();
-		$sql = $con->prepare("UPDATE publicacion SET estado_publicacion = 'Aprobada' WHERE id_publicacion = :id");
+		$sql = $con->prepare("UPDATE publicacion SET estado_publicacion = 'Pendiente' WHERE id_publicacion = :id");
 		$sql->bindParam(":id",$id,PDO::PARAM_INT);
 		if($sql->execute()){
 			return "ok";
@@ -333,17 +329,15 @@ Class Publicaciones{
 				fecha_hora_publicacion,
 				estado_publicacion,
 				lat_publicacion,
-				lng_publicacion) VALUES (:idus,:tipopu,:titulo,:direccion,:tiposerv,:detalle,NOW(),'Aprobada',:lat,:lng)");
+				lng_publicacion) VALUES (:idus,:tipopu,:titulo,:direccion,:tiposerv,:detalle,NOW(),'Pendiente',:lat,:lng)");
 			$sql->bindParam(":idus",$idus,PDO::PARAM_INT);
-			$sql->bindParam(":tipopu",$tipopu,PDO::PARAM_INT);
+			$sql->bindParam(":tipopu",$tipopu,PDO::PARAM_STR);
 			$sql->bindParam(":titulo",$titulo,PDO::PARAM_STR);
 			$sql->bindParam(":direccion",$direccion,PDO::PARAM_STR);
 			$sql->bindParam(":tiposerv",$tiposerv,PDO::PARAM_INT);
 			$sql->bindParam(":detalle",$detalle,PDO::PARAM_STR);
 			$sql->bindParam(":lat",$lat,PDO::PARAM_STR);
 			$sql->bindParam(":lng",$lng,PDO::PARAM_STR);
-
-
 			if($sql->execute()){
 			return "ok";
 		}else{
@@ -365,7 +359,7 @@ Class Publicaciones{
 	 * */
 	static public function denunciarP($publicacion,$tipo,$detalle,$denunciante){
 		$con = Conexion::conectar();
-		$sql = $con->prepare("INSERT INTO denuncias_publicacion(publicacion,denunciante,tipo_denuncia,comentarios_denuncia) VALUES (:publicacion,:denunciante,:tipo,:detalle)");
+		$sql = $con->prepare("INSERT INTO denuncias_publicacion(id_publicacion,id_denunciante,id_tipo_denuncia,comentarios_denuncia) VALUES (:publicacion,:denunciante,:tipo,:detalle)");
 		$sql->bindParam(":publicacion",$publicacion,PDO::PARAM_INT);
 		$sql->bindParam(":denunciante",$denunciante,PDO::PARAM_INT);
 		$sql->bindParam(":tipo",$tipo,PDO::PARAM_INT);
@@ -400,16 +394,13 @@ Class Publicaciones{
 					detalle_invitado,
 					fecha_hora_invitado,
 					estado_invitado
-				) VALUES (:nombre,:fono,:titulo,:direccion,:tiposerv,:detalle,NOW(),'Aprobada')");
+				) VALUES (:nombre,:fono,:titulo,:direccion,:tiposerv,:detalle,NOW(),'Pendiente')");
 			$sql->bindParam(":nombre",$nombre,PDO::PARAM_STR);
 			$sql->bindParam(":fono",$fono,PDO::PARAM_INT);
 			$sql->bindParam(":titulo",$titulo,PDO::PARAM_STR);
 			$sql->bindParam(":direccion",$direccion,PDO::PARAM_STR);
 			$sql->bindParam(":tiposerv",$tiposerv,PDO::PARAM_INT);
 			$sql->bindParam(":detalle",$detalle,PDO::PARAM_STR);
-			
-
-
 			if($sql->execute()){
 			return "ok";
 		}else{

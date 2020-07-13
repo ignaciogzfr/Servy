@@ -5,8 +5,10 @@ $(document).ready(function(){
 $('#serv-maestro').select2({
 	width : 'resolve'
 })
-console.log('se carga usuarios.js')
+
 //$("#form-confirmacion-mail").on("submit",confirmarMail);
+$("#nav-registro-cliente").on("click",limpiarFormularioRegistro);
+$("#nav-registro-maestro").on("click",limpiarFormularioRegistro);
 $(".btn-sancionar-usuario").on("click",sancionarUsuario);
 $(".btn-quitar-sancion-usuario").on("click",quitarSancionUsuario);
 $('#form-registro-cliente').on('submit',registrarUsuario);
@@ -55,6 +57,24 @@ $('#form-cambiar-fp').on('submit',editarPerfilFP);
 
 
 // funciones de usuarios
+function limpiarFormularioRegistro(){
+	//limpia registro cliente
+$('#mail-registro-cliente').val("");
+$('#pass-registro-cliente').val("");
+$('#nombre-registro-cliente').val("");
+$('#fono-registro-cliente').val("");
+$('#dir-registro-cliente').val("");
+	//limpia registro maestro
+$('#mail-registro-maestro').val("");
+$('#pass-maestro').val("");
+$('#nombre-maestro').val("");
+$('#dir-maestro').val("");
+$('#fono-maestro').val("");
+$('#exp-registro').val("");
+$('#cert-maestro').val("");
+$('#lista-certificados-maestro').empty();
+}
+
 function registrarUsuario(event){
 	event.preventDefault();
 	var datos = new FormData(this);
@@ -140,7 +160,7 @@ function registrarUsuario(event){
 			if($.isNumeric(response)){
 					swal({
 						title : '¡te has registrado exitosamente!',
-						text : 'bienvenido a nuestra familia de trabajadores.',
+						text : 'Bienvenido a nuestra familia de trabajadores.',
 						icon : 'success'
 					})
 					.then(function(){
@@ -165,11 +185,8 @@ function registrarUsuario(event){
 function previewFP(input){
 	console.log(input.id);
 	if(input.files && input.files[0]){
-
 			console.log(input.files);
-
 			var reader = new FileReader();
-
 			reader.onload = function(e){
 				if(input.id == 'fp-registro-cliente'){
 					$('#fp-cliente-preview').attr('src', e.target.result)
@@ -191,7 +208,6 @@ function denunciarUsuario(e){
 	event.preventDefault();
 	var datos = $(this).serialize();
 	$.ajax({
-
 		method: 'POST',
 		url: 'controladores/usuarios-controller.php',
 		data: datos,
@@ -199,8 +215,11 @@ function denunciarUsuario(e){
 			if(r='Denunciado papu'){
 			swal({
 				title : 'Denunciado con exito!',
+				text : 'Muchas gracias por las molestias',
 				icon : 'success'
-			})
+			}).then(function(){
+						location.reload();
+					})
 			}
 		}
 	})
@@ -232,7 +251,7 @@ $.ajax({
 		else{
 			swal({
 						title : '¡Esto no deberia pasar!',
-						text : 'error interno, contacta con el programador.',
+						text : 'Error interno, contacta con el administrador.',
 						icon : 'error'
 					})
 					.then(function(){
@@ -334,14 +353,14 @@ if(nombre == '' || fono == '' || direccion == ''){		//Casos datos vacios
 		text : 'Porfavor ingrese su nombre verdadero o alguno ni tan lago ni tan corto',
 		icon : 'info'
 	})
-}else if(isNaN(telefono)){		//patrones telefono
+}else if(isNaN(fono)){		//patrones telefono
 	console.log('error telefono');
 	swal({
 		title: 'Error con el telefono',
 		text : 'Porfavor ingrese un numero telefonico',
 		icon : 'info'
 	})
-}else if(telefono.length <= 7 && telefono.length >= 9){
+}else if(fono.length < 7 || fono.length > 9){
 	console.log('error telefono');
 	swal({
 		title: 'Error con el telefono',
@@ -375,8 +394,14 @@ $.ajax({
 		if(response=='OK'){
 			console.log('CAMBIADO');
 			$('.input-dato-basico').attr('disabled','disabled');
-			alert('Fue cambiado con exito! Vamos a reiniciar sesion para efectuar los cambios');
-			$('#form-editar-sesion').submit();
+			swal({
+				title :'Fue cambiado con exito!',
+				text : 'Vamos a reiniciar sesion para efectuar los cambios',
+				icon: 'success'
+			}).then(function(){
+				$('#form-editar-sesion').submit();
+			})
+			
 		}
 	}
 

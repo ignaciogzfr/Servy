@@ -38,9 +38,9 @@ if(isset($_SESSION['id'])){
     		<nav>
                 <div class="nav nav-tabs nav-fill mb-4">
 
-                <a class="nav-item nav-link active" data-toggle="tab" href="#tab-cliente">Cliente</a>
+                <a class="nav-item nav-link active" id="nav-registro-cliente" name="nav-registro-cliente" data-toggle="tab" href="#tab-cliente">Cliente</a>
 
-                <a class="nav-item nav-link" data-toggle="tab" href="#tab-maestro">Maestro</a>
+                <a class="nav-item nav-link" id="nav-registro-maestro" name="nav-registro-maestro" data-toggle="tab" href="#tab-maestro">Maestro</a>
 
                 </div>
 
@@ -93,16 +93,6 @@ if(isset($_SESSION['id'])){
 		</div>	
 		<!--termino form Cliente  -->
 
-
-
-
-
-
-
-
-
-
-
 		<!--inicio de form maestro-->
 		<div class="tab-pane fade mx-auto w-75" id="tab-maestro">
 				<form id="form-registro-maestro" method="POST" autocomplete="off">
@@ -122,7 +112,7 @@ if(isset($_SESSION['id'])){
 					    <div class="form-group col-md-9">
 					      <label for="nombre-maestro">Tu Nombre *</label>
 					      <input id="nombre-maestro" type="text" class="form-control"  placeholder="Nombre"
-					      name="nombre-registro" required=""  minlength="3" maxlength="25" pattern="[a-zA-Z/s]{1,25}">
+					      name="nombre-registro" required=""  minlength="3" maxlength="25" pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,25}\b$"">
 					    </div>
 					  </div>
 
@@ -142,7 +132,7 @@ if(isset($_SESSION['id'])){
 						<div class="form-group col-md-6">
 						 <label for="serv-maestro">Servicio(s) que proporciona</label>
 						 
-						      <select id="serv-maestro" class="form-control" name="serv-registro" multiple="" style="width:100%" required="">
+						      <select id="serv-maestro" class="form-control" name="serv-registro" multiple="" style="width:100%" required="" placeholder="Mis servicios">
 
 						      	<option value="" disabled="">Puede escribir en la caja de texto para buscar</option>
 
@@ -173,7 +163,7 @@ if(isset($_SESSION['id'])){
 
 				<div class="form-group mt-5">
   							<label for="exp-maestro">Experiencias</label>
- 							 <textarea class="form-control" id="exampleFormControlTextarea3" rows="4"  maxlength="200" cols="5" name="exp-registro" placeholder="Describa las labores que ha completado, años de experiencia, datos extra, etc..." required=""></textarea>
+ 							 <textarea class="form-control" id="exp-registro" rows="4"  maxlength="200" cols="5" name="exp-registro" placeholder="Describa las labores que ha completado, años de experiencia, datos extra, etc..." required=""></textarea>
 				</div>
 
 

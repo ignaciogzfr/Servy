@@ -4,7 +4,6 @@
 <head>
 
 <?php
-//verificacion de usuario sancionado
  @session_start();
       
 echo('<script> "</script>');
@@ -80,9 +79,7 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
     
     <div type="hidden" id="map"></div>
           
-
-
-       <input type="text" minlength="20" class="form-control" maxlength="70" name="direccion-publi" placeholder="Obtenga su ubicacion presionando el boton de arriba" id="direccion-post" required="">
+       <input type="text" minlength="20"  class="form-control" maxlength="70" name="direccion-publi" placeholder="Obtenga su ubicacion presionando el boton de arriba" id="direccion-post" required="">
   </div>
     
 
@@ -96,14 +93,9 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
 <?php 
 require_once("modelos/modelo-servicios.php");
   $servi = Servicios::getServicios();
-
   for($i=0;$i<count($servi); $i++){
-
-      echo('
-           
-           <option value="'.$servi[$i]["id_tipo_servicio"].'">'.$servi[$i]["tipo_servicio"].'</option>
-         
-        
+      echo('      
+           <option value="'.$servi[$i]["id_tipo_servicio"].'">'.$servi[$i]["tipo_servicio"].'</option>    
 ');
 
   }
@@ -117,9 +109,7 @@ require_once("modelos/modelo-servicios.php");
        <div class="form-group">
   <label for="">Detalle</label>
   <textarea class="form-control" placeholder="Describa brevemente su problema..." minlength="20" maxlength="1000" name="detalle-publi" rows="7" required=""></textarea>
-</div>
-   
-    
+</div>  
  <?php
           echo ('<input type="hidden" placeholder="'.$_SESSION["id"].'" name="id-usuario" value="'.$_SESSION["id"].'">');   
 ?>
@@ -145,8 +135,6 @@ require_once("modelos/modelo-servicios.php");
 
   </div>
   <!-- /#wrapper -->
-
-
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=Miposicion">
     </script>

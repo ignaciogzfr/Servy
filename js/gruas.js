@@ -46,15 +46,9 @@ function pedirGrua(event){
 				event.preventDefault();
 				var datos = new FormData(this);
 				var lat = (datos.get('lat'));
-				
-
-
-				if(lat == ""){
-					
+			if(lat == ""){
 						$('#error').text('Por favor, asegurese de establecer su ubicacion.');
-
 			}else{
-
 						console.log('si se hizo');
 			$.ajax({
 
@@ -66,7 +60,7 @@ function pedirGrua(event){
     			processData: false,
 				success:function(response){
 					console.log(response);
-	        		if(response!=''){
+	        		if(response=='ok'){
 	        			swal({
 						title : '¡Tu publicación ha sido enviada con éxito!',
 						text : 'Ahora solo hay que esperar que se apruebe y que una grua la tome.',
@@ -74,7 +68,14 @@ function pedirGrua(event){
 					}).then(function(){
 						location.href="vista-gruas.php"
 					})
-					
+	        		}else{
+	        			swal({
+						title : 'Se produjo un error al hacer la solicutud',
+						text : 'Asegurate de ingresas el tipo de automobil',
+						icon : 'error'
+					}).then(function(){
+						location.href="index.php"
+					})
 	        		}
 	        	}
 			})

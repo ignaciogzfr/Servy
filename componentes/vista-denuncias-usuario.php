@@ -5,7 +5,7 @@ echo('<hr class="featurette-divider">
 <h3 class="text-center"> Denuncias <i class="fas fa-bullhorn"></i> </h3>
 <hr class="featurette-divider">');
 if (count($denuncias)== 0) {
-echo ('<h6 class=" text-center alert-success w-100 py-2">Este usuario no cuenta con denuncias :)</h6>');
+echo ('<h6 class=" text-center alert-success w-100 py-2">Este usuario no cuenta con denuncias.</h6>');
  }else{
 echo ('
  <div class=" mt-4 ">
