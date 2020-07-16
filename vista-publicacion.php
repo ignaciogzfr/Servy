@@ -1,14 +1,12 @@
   <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="shortcut icon" href="img/logo.png" />
   <title>Publicaciones</title>
-
 </head>
 <body class="bg-white">
 <?php require_once 'componentes/links.php'; ?>
@@ -22,12 +20,10 @@
 					<h1 class="text-center mt-2"> Ver publicacion</h1>
 					<hr class="featurette-divider">
         <?php 
+
             require_once("modelos/modelo-publicaciones.php");
-            
-            echo "<script>console.log(".$_SESSION['tipo'].");</script>";
             $publi = publicaciones::verPublicacion($_GET["publicacion"]);
             $denuncias = publicaciones::getDenunciasPublicacion($_GET["publicacion"]);
-
               echo('
   <div class="container text-center" style="min-height:300px;">
       <div class="row">
@@ -40,10 +36,15 @@
       <p>'.$publi[0]["detalle_publicacion"].'</p>
           <p>'.$publi[0]["direccion_publicacion"].'
           </p>');
+//si existe una sesion y eres un maestro y no es tu publicacion y ningun maestro la acepto
+if(isset($_SESSION['id']) && $_SESSION['tipo'] == 'Maestro' && $publi[0]['email_usuario'] != $_SESSION['email'] && $publi[0]['id_usuario_maestro'] != $_SESSION ['id']){
 
-if(isset($_SESSION['tipo']) && $_SESSION['tipo']=='Maestro'){
-echo('<button class="btn btn-success mt-3" id="btn-aceptar-publicacion" value="'.$_SESSION['id'].'">Aceptar publicacion</button>');
-};         
+  
+  echo('<button class="btn btn-success mt-3" id="btn-aceptar-publicacion" value="'.$_SESSION['id'].'">Aceptar publicacion</button>');
+  
+}else if($publi[0]['id_usuario_maestro'] != ''){
+  echo ('<small>esta publicacion ya fue tomada por un maestro</small>');
+} 
           echo('<button class="btn btn-primary mt-3" data-target="#modal-resumen-usuario" data-toggle="modal">Ver perfil <i class="far fa-user"></i></button> 
                     <input  id="id-publicacion" type="hidden" value="'.$_GET["publicacion"].'">
   
@@ -51,47 +52,49 @@ echo('<button class="btn btn-success mt-3" id="btn-aceptar-publicacion" value="'
     <input type="hidden" name="lng" value="'.$publi[0]["lng_publicacion"].'" id="lng-publicacion">
 
           <hr class="featurette-divider">
-    
-         
    </div>
    ');
 
 if($publi[0]["lat_publicacion"] == ""){
-
-echo '';
-
+echo "<script>console.log('no existen las cordenadas');</script>";
 }else{
 echo 
 '<div id="floating-panel" class="container text-center">
       <input id="latlng" type="text" hidden="" value="">
-
-    <button class="btn btn-secondary mt-3" data-target="#modal-ver-ruta" data-toggle="modal" id="submit">ver ruta <i class="fas fa-map-marked-alt"></i></button>
+      <a href="vista-publicaciones.php?tipo='.$publi[0]['tipo_publicacion'].'" class="btn btn-md btn-secondary"><i class="fas fa-undo"></i> Volver</a>
+    <button class="btn btn-secondary" data-target="#modal-ver-ruta" data-toggle="modal" id="submit">Ver ruta <i class="fas fa-map-marked-alt"></i></button>
       <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=initMap">
     </script>
-</div>
+
     ';
+  }
 
-}
-echo "<script>console.log(".$_SESSION['tipo'].");</script>";
+    //si existe sesion
 if(isset($_SESSION['tipo'])){
-  echo '<div class="text-right"><button class="btn btn-md btn-danger" data-toggle="modal" data-target="#modal-denuncias-p"><i class="fas fa-ban" ></i> Denunciar Publicacion</button></div>';
-}
-
-
-echo '<div class="container">
-<a href="vista-servicios.php?tipo='.$publi[0]['tipo_publicacion'].'" class="btn btn-md btn-secondary"><i class="fas fa-undo"></i> Volver</a>
-</div>';
-  echo "</div>";         
+  //si no eres el usuario que creo la publi o el administrador y no has denunciado
+  if ($publi[0]['email_usuario'] != $_SESSION['email'] && $_SESSION['tipo'] != 'Administrador' && $denuncias[0]['email_usuario'] != $_SESSION['email'] && $_SESSION['estado'] == 'Activo') {
+      echo '
+      <button class="btn btn-md btn-danger" data-toggle="modal" data-target="#modal-denuncias-p"><i class="fas fa-ban" ></i> Denunciar Publicacion</button>
+     ';
+    }else if($publi[0]['nombre_usuario'] != $_SESSION['nombre']){
+      //y no es tu publicacion
+      echo '<h5>Gracias por denunciar a esta publicacion, un moderador podra verla y sancionarla si fuese necesario</h5>';
+    }
+  }
+  echo "</div>
+      </div>
+  ";         
          ?>
     <?php 
-if(isset($_SESSION['tipo']) && $_SESSION['tipo'] != 'Administrador'){
+    //todos podran ver denuncias
+if(isset($_SESSION['tipo'])){
         echo (' 
     <div class="container"><hr class="featurette-divider">
                  <h3 class="text-center"> Denuncias <i class="fas fa-bullhorn"></i> </h3>
                  <hr class="featurette-divider"></div> ');
     if (count($denuncias)== 0) {
-                  echo ('<div class="container"><h6 class=" text-center alert-success w-100 py-2">Esta publicacion no contiene denuncias.</h6></div>');
+                 echo ('<div class="container"><h6 class=" text-center alert-success mb-5 w-100 py-2">Esta publicacion no contiene denuncias.</h6></div>');
            }else{
             echo ('
                 <div class=" container mt-4 ">
@@ -112,7 +115,6 @@ if(isset($_SESSION['tipo']) && $_SESSION['tipo'] != 'Administrador'){
               ');
 
            for($i=0;$i<count($denuncias);$i++){
-
             echo('        <tr>
                           <td>'.$denuncias[$i]["nombre_usuario"].'</td>
                           <td>'.$denuncias[$i]["tipo_denuncia"].'</td>
@@ -132,3 +134,4 @@ if(isset($_SESSION['tipo']) && $_SESSION['tipo'] != 'Administrador'){
   <?php require_once 'componentes/modal-resumen-usuario.php'?>
 </body>
 </html>
+

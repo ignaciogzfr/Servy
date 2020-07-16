@@ -31,7 +31,7 @@
 
 <div class="container">
 
-	<div class="container mt-2"><!-- INICIO LISTA DE SERVICIOS-->
+	<div class="container mt-2 mb-5"><!-- INICIO LISTA DE SERVICIOS-->
 		<div class="list-group">
 
 		<?php 
@@ -72,7 +72,7 @@
 							    </div>
 							    <p class="mb-2 text-truncate">'.$publi[$i]["detalle_publicacion"].'</p>
 							    <small>Ofertas: <button class="btn btn-info btn-sm" data-target="#resumen-maestro-modal" data-toggle="modal">0</button></small>
-							    <div><small>'.count($denuncias).'</small></div>
+							    <div><small>esta publicacion tiene: </small><span class="badge badge-danger ml-2" >'.count($denuncias).'</span><small> denuncias</small></div>
 
 							  </a>');		
 			}else{
@@ -104,7 +104,7 @@
 							      <small>Fecha y hora de Publicacion: '.$publi[$i]["fecha_hora_publicacion"].'</small>
 							    </div>
 							    <p class="mb-2 text-truncate">'.$publi[$i]["detalle_publicacion"].'</p>
-							    <div><small>'.count($denuncias).'</small></div>
+							    <div><small>esta publicacion tiene: </small><span class="badge badge-danger ml-2" >'.count($denuncias).'</span><small> denuncias</small></div>
 
 							  </a>');		
 			}else{

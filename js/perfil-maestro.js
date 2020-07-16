@@ -5,7 +5,6 @@ $(document).ready(function(){
 $('#serv-maestro-edit').select2({
 	width : 'resolve'
 })
-
 $('.btn-agregar-certificados-edit').on('click',prepararAgregarCertificado);
 $('.btn-agregar-servicios-edit').on('click',prepararAgregarServicio);
 
@@ -57,7 +56,6 @@ if($('.btn-agregar-certificados-edit').attr('total')==0){
 	$('.alerta-c').css('display','');
 }
 }
-
 function agregarFilaCertificado(e){
 var cert = $('.certificado-agregar-edit').val();
 if(cert == '' || cert.length <= 10){
@@ -139,8 +137,18 @@ var servicios = new Array()
 $('.servicios-edit .listado-servicios').each(function(i){
 	servicios.push($(this).val())
 })
-$('.btn-eliminar-servicio').css('display','none')
-console.log(servicios)
+$('.btn-eliminar-servicio').css('display','none');
+console.log(servicios.length);
+//
+if(servicios.length == 0){
+	swal({
+	title : '¡Alto!',
+	text : 'No puedes quedarte sin servicios que ofrecer',
+	icon : 'warning'
+}).then(function(){
+		location.reload();
+				})
+}else{
 $.ajax({
 	method : 'POST',
 	url : 'controladores/usuarios-controller.php',
@@ -149,12 +157,12 @@ $.ajax({
 		swal({
 			title : 'Todo bien',
 			text : 'Recargaremos la sesion para que veas los cambios',
-			icon : 'succes'
+			icon : 'success'
 		})
 		$('#form-editar-sesion').submit();
 	}
 })
-
+}
 }
 
 function cancelarAccionServicio(e){
@@ -202,7 +210,7 @@ swal({
 $('.servicios-edit').append(`
                 <div class="row my-3 fila-edit-nuevo-s">
                     
-                    <li class="listado-servicios servicio-${id} col-md-8 text-center list-group-item list-group-item-secondary" value="${id}">${nombre}</li>
+                    <li class="listado-servicios servicio-${id} col-md-10 text-center list-group-item list-group-item-secondary" value="${id}">${nombre}</li>
                     <button class="btn btn-danger btn-eliminar-servicio" style="width:38px; height:40px;">
                     <i class="fas fa-trash"></i>
                     </button>

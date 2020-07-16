@@ -34,6 +34,12 @@
           '); ?>
       </div>
       <div class="modal-footer">
+        <?php 
+        if(isset($_SESSION['id'])){
+          echo " <a type='button' href=perfil.php?id=".$publi[0]["id_usuario"]." class='btn btn-danger'>ver denuncias</a>";
+        }
+        
+         ?>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
    
       </div>

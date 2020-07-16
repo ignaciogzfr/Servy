@@ -22,7 +22,14 @@ Class Servicios{
 		$sql = $con->prepare("SELECT * FROM tipo_servicio");
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
+	}
 
+	static public function getServiciosMaestro($idm){
+		$con = Conexion::conectar();
+		$sql = $con->prepare("SELECT t.* FROM tipo_servicio t, servicios_maestro sm  where sm.id_usuario = :idm and t.id_tipo_servicio = sm.id_tipo_servicio");
+		$sql->bindParam(":idm",$idm,PDO::PARAM_INT);
+		$sql->execute();
+		return $sql->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 }

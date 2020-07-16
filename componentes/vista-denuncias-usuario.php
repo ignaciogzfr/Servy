@@ -8,7 +8,7 @@ if (count($denuncias)== 0) {
 echo ('<h6 class=" text-center alert-success w-100 py-2">Este usuario no cuenta con denuncias.</h6>');
  }else{
 echo ('
- <div class=" mt-4 ">
+ <div class=" mt-4 mb-5 ">
   <table class="table table-hover table-borderer">
   <thead class=" mdb-color text-white">
     <tr>

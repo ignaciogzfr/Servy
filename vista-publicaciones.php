@@ -109,7 +109,23 @@
                   echo ('<h2 class="text-center mt-3">Peticiones de usuarios</h2>');
                 }
                  for ($i=0; $i<count($publi); $i++){
-                 echo (' 
+                 
+
+                 if($_GET['tipo'] == 'Oferta'){
+                  echo (' 
+                <a href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
+
+                  <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-2">'.$publi[$i]["titulo_publicacion"].'</h5>
+                    <small>'.$publi[$i]["tipo_servicio"].'</small>
+                    <small> '.$publi[$i]["fecha_hora_publicacion"].'</small>
+                    <input type="hidden" value="" id="id-resumen-maestro">
+                  </div>
+                  <p class="mb-2">Descripcion: '.$publi[$i]["detalle_publicacion"].'</p>
+                  <small>Ofrecido por : '.$publi[$i]["nombre_usuario"].'</small>
+                </a>');
+                 }else{
+                echo (' 
                 <a href="vista-publicacion.php?publicacion='.$publi[$i]['id_publicacion'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3">
 
                   <div class="d-flex w-100 justify-content-between">
@@ -119,10 +135,11 @@
                     <input type="hidden" value="" id="id-resumen-maestro">
                   </div>
 
-                  <p class="mb-2">DESCRIPCION: '.$publi[$i]["detalle_publicacion"].'</p>
+                  <p class="mb-2">Descripcion: '.$publi[$i]["detalle_publicacion"].'</p>
                   <small>Pedido por : '.$publi[$i]["nombre_usuario"].'</small>
                 </a>');
-                  }      
+                 }
+                }      
               }
               //caso que no existan publicaciones de invitados
               if(count($publiinvitado) == 0){
@@ -130,8 +147,8 @@
                   echo('<div class="alert alert-primary text-center" role="alert">los invitados no tienen publicaciones de momento, vuelva mas tarde.</div>');
                 }else{
                   //carga publicaciones invitado
+                  echo ('<h2 class="text-center mt-3">Peticiones De invitados</h2>');
                    for($i=0;$i<count($publiinvitado); $i++){
-                    echo ('<h2 class="text-center mt-3">Peticiones De invitados</h2>');
                    echo (' 
                   <a href="vista-publicacion-invitado.php?publicacion='.$publiinvitado[$i]['id_invitado'].'" class="list-group-item list-group-item-action flex-column align-items-start mt-3 mb-3">
 

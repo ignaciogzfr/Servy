@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="page-footer mdb-color font-small lighten-1 text-white mt-5">
+<footer class="page-footer mdb-color font-small lighten-1 text-white">
 
 
   <div class="row text-center">

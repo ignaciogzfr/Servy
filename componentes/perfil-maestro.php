@@ -15,6 +15,7 @@
               $datos = Usuarios::getPerfilUsuario($_GET['id']); 
                $puedeDenunciar = Usuarios::verificarPosibilidadDenunciar($_GET['id'],$_SESSION['id']);
                echo "<script>console.log('el Maestro [".$puedeDenunciar."] puede denunciar');</script>";
+
               echo '<img src="'.$datos[0]['foto_perfil'].'" alt="Foto de Perfil va aqui." width="150" height="150" class="rounded-circle  my-2">'
                ?>
 <?php
@@ -66,7 +67,7 @@ if($sesion == true){
 </form>
 
 <?php 
-            if($sesion == true){
+            if($sesion == true && $_SESSION['tipo'] != 'Administrador'){
                 echo '<div class="text-center div-botones-editar"><button type="button" class="btn btn-sm btn-primary btn-preparar-edit" value="'.$_GET['id'].'"><i class="fas fa-edit"></i> Editar</button></div>';
               }   
 ?>
@@ -177,7 +178,7 @@ if($sesion == true){
 </div>
 </div>
 <?php if(isset($_SESSION['tipo']) && $_SESSION['tipo']=='Administrador'){
-  require_once 'componentes/vista-usuario.php';
+  require_once 'componentes/vista-denuncias-usuario.php';
 } ?>
 
 <form action="modelos/modelo-login.php" method="POST" id="form-editar-sesion">
@@ -185,7 +186,7 @@ if($sesion == true){
 </form>
 </div>
 </div>
-<
+
 <?php
 if($puedeDenunciar == "si"){
    if(isset($_SESSION['id']) && $_SESSION['id']!=$_GET['id'] && $_SESSION['tipo']!='Administrador'){
@@ -202,8 +203,12 @@ if($puedeDenunciar == "si"){
   <br>";
 
 }
+if($datos[0]['estado_usuario'] == 'Sancionado' && $_GET['id'] == $_SESSION['id']){
+  echo "<h6 class='text-center'>El usuario fue sancionado</h6>";
+}
  ?>
  <?php require_once 'componentes/vista-denuncias-usuario.php'; ?> 
+
 </div>
 
 

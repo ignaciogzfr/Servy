@@ -55,8 +55,8 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
     <div class="form-group col-md-6">
       <label for="titulopubli">Tipo de Publicacion</label>
       <select name="tipo-publicacion" class="form-control">
-      <option value="Oferta">Ofrezco...</option>
-      <option value="Demanda">Necesito...</option></select>
+      <option value="Oferta" class="boton-tipo-ofrecer">Ofrezco...</option>
+      <option value="Demanda" class="boton-tipo-necesitar">Necesito...</option></select>
     </div>';
     }else{
       echo '    
@@ -68,7 +68,6 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
     } ?>
 
   </div>
-
   <div class="form-group">
     <label for="dir">Direccion</label>
 
@@ -76,13 +75,9 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
       <input id="latlng" type="text" hidden="" value="">
       <input id="submit" type="button" class="btn btn-secondary btn-sm" maxlength="500" value="obtener mi ubicación" required="">
     </div>
-    
     <div type="hidden" id="map"></div>
-          
        <input type="text" minlength="20"  class="form-control" maxlength="70" name="direccion-publi" placeholder="Obtenga su ubicacion presionando el boton de arriba" id="direccion-post" required="">
   </div>
-    
-
 <hr class="featurette-divider">
   <div class="form-row">
    
@@ -92,14 +87,23 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
             <option selected disabled="">Seleccionar servicio</option>
 <?php 
 require_once("modelos/modelo-servicios.php");
-  $servi = Servicios::getServicios();
+if($_SESSION['tipo'] == 'Maestro'){
+//caso maestro
+  $servi = Servicios::getServiciosMaestro($_SESSION['id']);
   for($i=0;$i<count($servi); $i++){
       echo('      
            <option value="'.$servi[$i]["id_tipo_servicio"].'">'.$servi[$i]["tipo_servicio"].'</option>    
 ');
-
   }
-
+}else{
+//caso cliente
+   $servi = Servicios::getServicios();
+   for($i=0;$i<count($servi); $i++){
+      echo('      
+           <option value="'.$servi[$i]["id_tipo_servicio"].'">'.$servi[$i]["tipo_servicio"].'</option>    
+');
+  }
+}
 ?>  
 </select>
     </div>

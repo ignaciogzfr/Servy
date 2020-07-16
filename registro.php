@@ -39,7 +39,6 @@ if(isset($_SESSION['id'])){
                 <div class="nav nav-tabs nav-fill mb-4">
 
                 <a class="nav-item nav-link active" id="nav-registro-cliente" name="nav-registro-cliente" data-toggle="tab" href="#tab-cliente">Cliente</a>
-
                 <a class="nav-item nav-link" id="nav-registro-maestro" name="nav-registro-maestro" data-toggle="tab" href="#tab-maestro">Maestro</a>
 
                 </div>

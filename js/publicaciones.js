@@ -10,21 +10,15 @@ $(document).ready(function(){
 	$('#btn-servicio-solucionado').on('click',solucionarServicio);
 	$('#btn-servicio-solucionado-invitado').on('click',solucionarServicioInvitado);
 	$('#form-denunciar-p').on('submit',denunciarPublicacion);
+	//si se necesitara
+	//$('').on('click'cargarservicios);
 	$('#select-tipo-servicio').select2({
 	width : 'resolve'
 	})
 
 	function sancionarPublicacion(event){
 	        var id = $(this).val();
-    		//al obtener el formulario completo su valor siempre es el id al cual se le
-			//asigna a una varaible local
-	        console.log(id);
-
-			//validamos de que el campo que se toma sea correcto
-			//Llamada a el controlador que arrojara una respuesta y segun lo retornado se realizaran acciones en la 
-			//pagina
 	        $.ajax({
-
 	            method: 'POST',
 	            url:'controladores/publicaciones-controller.php',
 	            data: 'op=sancionarPublicacion&id='+id,
@@ -39,12 +33,10 @@ $(document).ready(function(){
            		}
 	            }
 	        })
-
 	    }
 	function solucionarServicio(event){
 		console.log('click');	
 		var id = $(this).val();
-		console.log(id);
 		$.ajax({
 
 			method: 'POST',
@@ -71,9 +63,7 @@ $(document).ready(function(){
 	function solucionarServicioInvitado(event){
 		console.log('click');	
 		var id = $(this).val();
-		console.log(id);
 		$.ajax({
-
 			method: 'POST',
 			url:'controladores/publicaciones-controller.php',
 			data: 'op=solucionarServicioInvitado&id='+id,
@@ -95,12 +85,8 @@ $(document).ready(function(){
 	}
 
 	function aceptarPublicacion(event){
-
 		var id = $(this).val();
 		var idp = $('#id-publicacion').val();
-		console.log(idp);
-		console.log(id);
-
 		$.ajax({
 			method: 'POST',
 			url:'controladores/publicaciones-controller.php',
@@ -115,15 +101,10 @@ $(document).ready(function(){
 					}).then(()=>{
 						location.href="servicios-a-realizar.php"
 					})
-					
 	        		}
 	        	}
-
-
 		})
-
 	}
-
 	function aceptarPublicacionInvitado(event){
 
 		var id = $(this).val();
@@ -226,7 +207,6 @@ $(document).ready(function(){
 	event.preventDefault();
 	var datos = $(this).serialize();
 	$.ajax({
-
 		method: 'POST',
 		url: 'controladores/publicaciones-controller.php',
 		data: datos,
@@ -236,7 +216,9 @@ $(document).ready(function(){
 				title : 'La denuncia se ha realizado con exito',
 				text : 'Solo queda esperar que un administrador observe los detalles',
 				icon : 'success'
-			})
+			}).then(function(){
+							location.href = 'servicios-pendientes.php'
+						})
 			}		
 		}
 

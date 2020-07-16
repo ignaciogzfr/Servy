@@ -255,7 +255,7 @@ Class Publicaciones{
 	 * */
 	static public function getDenunciasPublicacion($id){
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT d.*, u.nombre_usuario, t.tipo_denuncia FROM denuncias_publicacion d, publicacion p, usuario u, tipos_denuncia t WHERE d.id_publicacion = p.id_publicacion AND d.id_denunciante = u.id_usuario AND p.id_publicacion = :id AND d.id_tipo_denuncia = t.id_tipo_denuncia" );
+		$sql = $con->prepare("SELECT d.*, u.nombre_usuario, u.email_usuario, t.tipo_denuncia FROM denuncias_publicacion d, publicacion p, usuario u, tipos_denuncia t WHERE d.id_publicacion = p.id_publicacion AND d.id_denunciante = u.id_usuario AND p.id_publicacion = :id AND d.id_tipo_denuncia = t.id_tipo_denuncia" );
 		$sql->bindParam(":id",$id,PDO::PARAM_INT);
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC);

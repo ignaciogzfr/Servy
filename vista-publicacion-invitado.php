@@ -24,7 +24,7 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
 <?php require_once 'componentes/ver-ruta-modal.php';
-
+  @session_start();
        ?>
 				<div class="container">
 					<h1 class="text-center mt-2"> Ver publicacion</h1>
@@ -36,11 +36,12 @@
             //se inicia la variable serv
     
             $publi = publicaciones::verPublicacionInvitado($_GET["publicacion"]); 
+            if(isset($_SESSION['id'])){
+              $serv = Usuarios::obtenerServicioM($_SESSION['id'],$publi[0]["tipo_servicio"]);
+            }
+            
             //si existe una sesion y su tipo de usuario es Maestro entonces se llama al parametro para obtener el 
             //la profecion dependiendo del tipo de servivio de la publicacion
-            if(isset($_SESSION['id']) && $_SESSION['tipo'] == 'Maestro'){
-            $serv = Usuarios::obtenerServicioM($_SESSION['id'],$publi[0]["tipo_servicio"]);
-              }
               echo('
   <div class="container text-center">
 
@@ -57,15 +58,27 @@
       <p>'.$publi[0]["direccion_invitado"].'</p>     
    ');
 
-if ($serv[0]["tipo_servicio"] != $publi[0]["tipo_servicio"]) {
-  echo "<h4>No puedes aceptar la publicacion por que no es tu rubro</h4>";
+if($_SESSION['tipo'] == 'Maestro'){
+echo "<script>console.log('el maestro es de tiene el servicio de '".$serv[0]["tipo_servicio"].");</script>";
+}else{
+echo "<script>console.log('el usuario es de tipo cliente');</script>";
+}
+if(isset($_SESSION['id'])){
+
+  //si se hiso un login o registro
+if ($_SESSION['tipo'] != $publi[0]['tipo_servicio']) {
+  //si existe maestro y no es su rubro y existe la sesion
+  echo "<h4>No puedes aceptar la publicacion por que no es tu rubro o no te registraste</h4>";
 }else if($_SESSION['estado'] != "Activo"){
-  echo "<h4>No puedes aceptar mas trabajo estando en condicion de sancion</h4>";
-  }else{
+  //si el estado es sancionado
+  echo "<h4>No puedes aceptar el trabajo estando en condicion de sancion</h4>";
+}else if($_SESSION['tipo'] == 'Maestro' && $publi[0]['id_usuario_maestro'] != $_SESSION['id']){
+  //si el tipo de sesion es maestro y id_usuario_maestro == tu id de sesion y id_usuario_maestro 
     echo(' <hr class="featurette-divider">
                          <button class="btn btn-success mt-3" id="btn-aceptar-publicacion-invitado" value="'.$_SESSION['id'].'">Aceptar publicacion</button>
                          <input  id="id-publicacion" type="hidden" value="'.$_GET["publicacion"].'">');
   }
+}
     echo('  </div>');
          ?>  
     </div>

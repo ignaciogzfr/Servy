@@ -31,7 +31,7 @@
   <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
-                <th>Nombre de usuario</th>
+                <th>Solicitante/Maestro</th>
                 <th>Email</th>
                 <th>Tipo usuario</th>
                 <th>Estado</th>
@@ -45,11 +45,7 @@
 /*se importan los metodos del modelo de publicaciones y se crea un constructor de un metodo los resultados se almacenan en una variable que servira como una matriz*/
 require_once("modelos/modelo-usuarios.php");
 $user= usuarios::getUsuarios();
-
-
-
 if(count($user)){
-
   for($i=0;$i<count($user); $i++){
   $den = usuarios::getDenunciasUsuario($user[$i]["id_usuario"]);
 
@@ -92,20 +88,14 @@ if(count($user)){
         }elseif($user[$i]['estado_usuario'] == "Sancionado" ){
           echo('
            <div class="dropdown-menu">
-
-             
              <button class="dropdown-item btn-quitar-sancion-usuario" value="'.$user[$i]["id_usuario"].'"><i class="fas fa-lock-open"></i> Quitar sancion</button>
            </div>
-
        </td>
                    
       </tr>');
 
 
         }
-   
-
-
   }
 }
  ?>
@@ -116,7 +106,8 @@ if(count($user)){
                 <th>Nombre de usuario</th>
                 <th>Email</th>
                 <th>Tipo usuario</th>
-                <th>Perfil</th>
+                <th>Estado</th>
+                <th>Perfil/denuncias</th>
                 <th>Acciones</th>
             </tr>
         </tfoot>

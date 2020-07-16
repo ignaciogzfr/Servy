@@ -15,10 +15,10 @@ require_once("cryptMethod.php");
  * 
  * */
 Class Usuarios{
+
 	static public function obtenerServicioM($id,$tipo_servicio){
 		$con = conexion::conectar();
-		$sql = $con->prepare('SELECT tipo_servicio.tipo_servicio FROM tipo_servicio INNER JOIN servicios_maestro
-		ON  tipo_servicio.id_tipo_servicio = servicios_maestro.id_tipo_servicio WHERE servicios_maestro.id_usuario = :id and tipo_servicio = :tipo_servicio');
+		$sql = $con->prepare('SELECT t.* FROM tipo_servicio t, servicios_maestro sm WHERE sm.id_usuario = :id and t.tipo_servicio = :tipo_servicio');
 		$sql->bindParam(":id",$id,PDO::PARAM_INT);
 		$sql->bindParam(":tipo_servicio",$tipo_servicio,PDO::PARAM_STR);
 		$sql->execute();
@@ -437,6 +437,7 @@ Class Usuarios{
 		$_SESSION['id'] = $id;
 		$_SESSION['tipo'] = $tipo;
 		$_SESSION['nombre'] = $nombre;
+		$_SESSION['email'] = $mail;
 		$_SESSION['fono'] = $fono;
 		$_SESSION['fp'] = 'img/placeholder-person.jpg';
 		$_SESSION['estado'] = 'Activo';
@@ -534,6 +535,7 @@ Class Usuarios{
 			$_SESSION['tipo'] = $tipo;
 			$_SESSION['nombre'] = $nombre;
 			$_SESSION['fono'] = $fono;
+			$_SESSION['email'] = $mail;
 			$_SESSION['fp'] = 'img/placeholder-person.jpg';
 			$_SESSION['estado'] = 'Activo';
 			$_SESSION['direccion'] = $dir;

@@ -34,8 +34,6 @@ $('.btn-agregar-certificado').on('click',function(e){
 	}
 })
 // termino agregar lista certificados
-
-
 $('#lista-certificados-maestro').on('click','.btn-quitar-certificado',function(e){
 	$(this).closest('li').remove();
 })
@@ -245,7 +243,7 @@ $.ajax({
 						icon : 'success'
 					})
 					.then(function(){
-						location.reload()
+						location.reload();
 					})
 		}
 		else{
@@ -339,6 +337,7 @@ var fono = $('.fono-editar-perfil').val();
 var direccion = $('.dir-editar-perfil').val();
 
 
+
 if(nombre == '' || fono == '' || direccion == ''){		//Casos datos vacios
 	console.log('error vacios');	
 	swal({
@@ -380,17 +379,28 @@ if($('#tipo-editar-perfil').val()==='Cliente'){
 	var datos = $('.form-editar-cliente').serialize();
 }else if($('#tipo-editar-perfil').val()==='Maestro'){
 	console.log(2);
+//si experiencia
+var experiencia = $('.exp-maestro').val();
+if(experiencia == '' || experiencia.length < 20 || experiencia.length > 200 ){
+	swal({
+				title :'La experiencia sale de los rangos',
+				text : 'debe ser los suficientemente larga o no muy corta, intente nuevamente',
+				icon: 'error'
+			}).then(function(){
+				location.reload();
+			})
+}else{
 	var datos = $('.form-editar-maestro').serialize();
-	console.table(datos);
 }
-	//envio de paquete con los datos obtenido del controlador para que se ejecuten las consultas en modelo-usuarios
+}
+//envio de paquete con los datos obtenido del controlador para que se ejecuten las consultas en modelo-usuarios
 $.ajax({
 	method : 'POST',
 	url: 'controladores/usuarios-controller.php',
 	data: datos,
 	success:function(response){
 		console.log(response)
-	//una ves que se realiza la consulta y obtiene una respuesta, los campos ya cambiados son bloqueados 
+//una ves que se realiza la consulta y obtiene una respuesta, los campos ya cambiados son bloqueados 
 		if(response=='OK'){
 			console.log('CAMBIADO');
 			$('.input-dato-basico').attr('disabled','disabled');

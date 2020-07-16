@@ -43,19 +43,15 @@
             </div>
 
 
-            <div class="col-md-7 mt-5">
+            <div class="col-md-7 mt-2">
                 <div class="btn-group-vertical">
-                <?php echo '<a class="btn btn-md btn-primary" href="perfil.php?id='.$_SESSION['id'].'" style="margin-left:0px"><i class="fas fa-edit"></i> Editar mi perfil</a>'; ?>
+                <?php echo '<a class="btn btn-md btn-primary" href="perfil.php?id='.$_SESSION['id'].'" style="margin-left:0px"><i class="fa fa-address-book-o" aria-hidden="true"></i></i>Volver al perfil</a>'; ?>
                 <a class="btn btn-md btn-primary" href="moderacion-usuarios.php"><i class="fas fa-user-circle"></i> Buscar usuarios</a>
                 <a class="btn btn-md btn-primary" href="moderacion-publicaciones.php"><i class="far fa-sticky-note"></i> Buscar publicaciones</a>
+                <button class="btn btn-md btn-primary" data-toggle="modal" data-target="#modal-ingresar-grua"><i class="fa fa-user-plus"></i> Ingresar servicio de grua</button>
               </div>
-
             </div>
-
         </div>
-
-
-
       </div>
 	           
 
@@ -66,7 +62,7 @@
   </div>
   <!-- /#wrapper -->
 
-  
+<?php require_once 'componentes/modal-ingresar-grua.php' ?>
 <?php require_once 'componentes/footer.php' ?>
 <?php require_once 'componentes/scripts.php'; ?>
 	
