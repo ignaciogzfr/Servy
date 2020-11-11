@@ -13,10 +13,7 @@
 
         <li class="nav-item active">
 
-        <a class="nav-link" data-toggle='modal' data-target='#login-modal'>
-        Iniciar sesion <i class="fas fa-user-circle">
-        </i>
-        </a>
+        <a class="nav-link" data-toggle='modal' data-target='#login-modal'>Iniciar sesion<i class="fas fa-user-circle"></i></a>
 
         </li>
       </ul>

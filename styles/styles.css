@@ -150,3 +150,6 @@ body {
     margin-left: -15rem;
   }
 }
+#page-content-wrapper{
+  max-height: 1500px;
+}

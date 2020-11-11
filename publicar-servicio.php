@@ -4,7 +4,6 @@
 <head>
 
 <?php
-//verificacion de usuario sancionado
  @session_start();
       
 echo('<script> "</script>');
@@ -33,6 +32,7 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
+<?php require_once 'componentes/navbar.php'; ?>
 <div class="text-center my-5">
 <h3 class="text-muted ">Crear una Publicacion</h3>
 <code class="text-center">Cada campo aca es obligatorio, ya que son necesarios para que otros sepan lo que estan viendo.</code>
@@ -51,25 +51,24 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
       echo '
     <div class="form-group col-md-6">
       <label for="titulopubli">Titulo</label>
-      <input type="text" class="form-control" maxlength="50" name="titulo-publi" placeholder="Titulo" required pattern="[A-Za-z\s]{5,60}$">
+      <input type="text" class="form-control" maxlength="50" name="titulo-publi" placeholder="Titulo" required pattern="{5,60}">
     </div>    
     <div class="form-group col-md-6">
       <label for="titulopubli">Tipo de Publicacion</label>
       <select name="tipo-publicacion" class="form-control">
-      <option value="Oferta">Ofrezco...</option>
-      <option value="Demanda">Necesito...</option></select>
+      <option value="Oferta" class="boton-tipo-ofrecer">Ofrezco...</option>
+      <option value="Demanda" class="boton-tipo-necesitar">Necesito...</option></select>
     </div>';
     }else{
       echo '    
       <div class="form-group col-md-12">
       <label for="titulopubli">Titulo</label>
-      <input type="text" class="form-control" minlength="5" maxlength="50" name="titulo-publi" placeholder="Titulo" required pattern="^\b(?!.*?\s{2})[A-Za-z ]{1,60}\b$">
+      <input type="text" class="form-control" minlength="5" maxlength="50" name="titulo-publi" placeholder="Titulo" required pattern="{1,60}">
       <input type="hidden" value="Demanda" name="tipo-publicacion">
     </div>';
     } ?>
 
   </div>
-
   <div class="form-group">
     <label for="dir">Direccion</label>
 
@@ -77,15 +76,9 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
       <input id="latlng" type="text" hidden="" value="">
       <input id="submit" type="button" class="btn btn-secondary btn-sm" maxlength="500" value="obtener mi ubicación" required="">
     </div>
-    
     <div type="hidden" id="map"></div>
-          
-
-
-       <input type="text" minlength="20" class="form-control" maxlength="70" name="direccion-publi" placeholder="Obtenga su ubicacion presionando el boton de arriba" id="direccion-post" required="">
+       <input type="text" minlength="20"  class="form-control" maxlength="70" name="direccion-publi" placeholder="Obtenga su ubicacion presionando el boton de arriba" id="direccion-post" required="">
   </div>
-    
-
 <hr class="featurette-divider">
   <div class="form-row">
    
@@ -95,19 +88,23 @@ echo('<script> location.href="perfil.php?id='.$_SESSION['id'].'"</script>');
             <option selected disabled="">Seleccionar servicio</option>
 <?php 
 require_once("modelos/modelo-servicios.php");
-  $servi = Servicios::getServicios();
-
+if($_SESSION['tipo'] == 'Maestro'){
+//caso maestro
+  $servi = Servicios::getServiciosMaestro($_SESSION['id']);
   for($i=0;$i<count($servi); $i++){
-
-      echo('
-           
-           <option value="'.$servi[$i]["id_tipo_servicio"].'">'.$servi[$i]["tipo_servicio"].'</option>
-         
-        
+      echo('      
+           <option value="'.$servi[$i]["id_tipo_servicio"].'">'.$servi[$i]["tipo_servicio"].'</option>    
 ');
-
   }
-
+}else{
+//caso cliente
+   $servi = Servicios::getServicios();
+   for($i=0;$i<count($servi); $i++){
+      echo('      
+           <option value="'.$servi[$i]["id_tipo_servicio"].'">'.$servi[$i]["tipo_servicio"].'</option>    
+');
+  }
+}
 ?>  
 </select>
     </div>
@@ -116,10 +113,8 @@ require_once("modelos/modelo-servicios.php");
 
        <div class="form-group">
   <label for="">Detalle</label>
-  <textarea class="form-control" placeholder="Describa brevemente su problema..." minlength="20" maxlength="1000" name="detalle-publi" rows="7" required=""></textarea>
-</div>
-   
-    
+  <textarea class="form-control" placeholder="Describa brevemente su problema..." minlength="5" maxlength="1000" name="detalle-publi" rows="7" required=""></textarea>
+</div>  
  <?php
           echo ('<input type="hidden" placeholder="'.$_SESSION["id"].'" name="id-usuario" value="'.$_SESSION["id"].'">');   
 ?>
@@ -145,10 +140,8 @@ require_once("modelos/modelo-servicios.php");
 
   </div>
   <!-- /#wrapper -->
-
-
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=Miposicion">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgvLZDbhusp9lFmGeOWkIkBsjJLMUnYM&callback=Miposicion">
     </script>
 
 </body>
