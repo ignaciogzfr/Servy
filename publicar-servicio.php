@@ -111,10 +111,10 @@ if($_SESSION['tipo'] == 'Maestro'){
     
   </div>
 
-       <div class="form-group">
+  <div class="form-group">
   <label for="">Detalle</label>
   <textarea class="form-control" placeholder="Describa brevemente su problema..." minlength="5" maxlength="1000" name="detalle-publi" rows="7" required=""></textarea>
-</div>  
+ </div>  
  <?php
           echo ('<input type="hidden" placeholder="'.$_SESSION["id"].'" name="id-usuario" value="'.$_SESSION["id"].'">');   
 ?>

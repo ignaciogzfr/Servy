@@ -48,13 +48,10 @@
 
 
 
-        <?php 
+<?php 
             require_once("modelos/modelo-publicaciones.php");
-
-            $publi = publicaciones::verPublicacionInvitado($_GET["publicacion"]);
-
-
-              echo('
+            $publi = Publicaciones::getPublicacionesInvitado();
+      echo('
   <div class="container text-center">
 
       <div class="row">
@@ -64,23 +61,17 @@
         <div class="col">'.$publi[0]["fecha_hora_invitado"].'</div>
 
       </div>
-  <hr class="featurette-divider">
+        <hr class="featurette-divider">
           <h3>'.$publi[0]["titulo_invitado"].'</h3>
-      <p>'.$publi[0]["detalle_invitado"].'</p>
+          <p>'.$publi[0]["detalle_invitado"].'</p>
           <p>'.$publi[0]["direccion_invitado"].'
           </p>
-
-
-          <hr class="featurette-divider">
-    
-         
-                         <button class="btn btn-success mt-3" id="btn-aceptar-publicacion-invitado" value="'.$_SESSION['id'].'">Aceptar publicacion</button>
-                         <input  id="id-publicacion" type="hidden" value="'.$_GET["publicacion"].'">
+       <hr class="featurette-divider">');
+          <button class="btn btn-success mt-3" id="btn-aceptar-publicacion-invitado" value="'.$_SESSION['id'].'">Aceptar publicacion</button>
+          <input  id="id-publicacion" type="hidden" value="'.$_GET["publicacion"].'">
    </div>
-   ');
-            
 
-         ?>
+?>
 
 
 

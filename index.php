@@ -20,7 +20,7 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-    <?php require_once 'componentes/navbar.php' ?>
+    <?php require_once 'componentes/navbar.php'; ?>
 
       <div class="container-fluid">
 
@@ -53,7 +53,7 @@
     <div class="form-group col-md-6">
       <label for="">Fono de Contacto</label>
 
-      <input type="tel" name="fono"   pattern="^[9876543]\d{7}$" class="form-control" placeholder="+569 11223344" required="">
+      <input type="tel" name="fono" maxlength="15" class="form-control" placeholder="+569 11223344" required="">
     </div>
 
   </div>
@@ -102,7 +102,7 @@
   
     
 <!-- FIN DEL FORMULARIO -->
-               <script async defer
+    <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgvLZDbhusp9lFmGeOWkIkBsjJLMUnYM&callback=Miposicion">
     </script>
 
@@ -119,12 +119,12 @@
 <!-- Footer -->
 
 
-<?php require_once 'componentes/login-modal.php' ?>
-<?php require_once 'componentes/modal-pedir-grua.php' ?>
+<?php require_once 'componentes/login-modal.php'; ?>
+<?php require_once 'componentes/modal-pedir-grua.php'; ?>
 
 </body>
-<?php require_once 'componentes/footer.php' ?>
+<?php require_once 'componentes/footer.php'; ?>
 
-<?php require_once 'componentes/scripts.php' ?>
+<?php require_once 'componentes/scripts.php'; ?>
 </html>
 <script type="text/javascript" src="js/index.js"></script>

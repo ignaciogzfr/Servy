@@ -136,7 +136,7 @@ Class Publicaciones{
 	static function verPublicacionInvitado($id){
 
 			$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT p.*, t.tipo_servicio FROM publicacion_invitado p, tipo_servicio t WHERE p.id_invitado = :id and p.id_tipo_servicio = t.id_tipo_servicio ");
+		$sql = $con->prepare("SELECT p.*, t.tipo_servicio FROM publicacion_invitado p, tipo_servicio t WHERE p.id_invitado = :id and p.id_tipo_servicio = t.id_tipo_servicio");
 			$sql->bindParam(":id",$id,PDO::PARAM_INT);
 	$sql->execute();
 	return $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -259,7 +259,7 @@ Class Publicaciones{
 	 * */
 	static public function getDenunciasPublicacion($id){
 		$con = Conexion::conectar();
-		$sql = $con->prepare("SELECT d.* FROM denuncias_publicacion d, publicacion p, usuario u WHERE d.publicacion = p.id_publicacion AND d.denunciante = u.id_usuario AND p.id_publicacion = :id");
+		$sql = $con->prepare("SELECT d.* FROM denuncias_publicacion d, publicacion p, usuario u WHERE d.id_publicacion = p.id_publicacion AND d.id_denunciante = u.id_usuario AND p.id_publicacion = :id");
 		$sql->bindParam(":id",$id,PDO::PARAM_INT);
 		$sql->execute();
 		return $sql->fetchAll(PDO::FETCH_ASSOC);
