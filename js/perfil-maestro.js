@@ -58,7 +58,7 @@ if($('.btn-agregar-certificados-edit').attr('total')==0){
 }
 function agregarFilaCertificado(e){
 var cert = $('.certificado-agregar-edit').val();
-if(cert == '' || cert.length <= 10){
+if(cert == '' || cert.length <= 5){
 		swal({
 			title : '¡Alto!',
 			text : 'No puedes ingresar certificados vacios ni de una palabra. Por favor, intente ingresar el nombre completo de su certificado',

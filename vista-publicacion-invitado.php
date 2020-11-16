@@ -23,6 +23,7 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
+    <?php require_once('componentes/navbar.php'); ?>
 <?php require_once 'componentes/ver-ruta-modal.php';
   @session_start();
        ?>
@@ -58,7 +59,7 @@
       <p>'.$publi[0]["direccion_invitado"].'</p>     
    ');
 
-if($_SESSION['tipo'] == 'Maestro'){
+if(isset($_SESSION['tipo']) && $_SESSION['tipo'] == 'Maestro'){
 echo "<script>console.log('el maestro es de tiene el servicio de '".$serv[0]["tipo_servicio"].");</script>";
 }else{
 echo "<script>console.log('el usuario es de tipo cliente');</script>";
@@ -66,7 +67,7 @@ echo "<script>console.log('el usuario es de tipo cliente');</script>";
 if(isset($_SESSION['id'])){
 
   //si se hiso un login o registro
-if ($_SESSION['tipo'] != $publi[0]['tipo_servicio']) {
+if (!isset($_SESSION['tipo'])) {
   //si existe maestro y no es su rubro y existe la sesion
   echo "<h4>No puedes aceptar la publicacion por que no es tu rubro o no te registraste</h4>";
 }else if($_SESSION['estado'] != "Activo"){

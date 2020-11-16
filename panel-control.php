@@ -48,7 +48,6 @@
                 <?php echo '<a class="btn btn-md btn-primary" href="perfil.php?id='.$_SESSION['id'].'" style="margin-left:0px"><i class="fa fa-address-book-o" aria-hidden="true"></i></i>Volver al perfil</a>'; ?>
                 <a class="btn btn-md btn-primary" href="moderacion-usuarios.php"><i class="fas fa-user-circle"></i> Buscar usuarios</a>
                 <a class="btn btn-md btn-primary" href="moderacion-publicaciones.php"><i class="far fa-sticky-note"></i> Buscar publicaciones</a>
-                <button class="btn btn-md btn-primary" data-toggle="modal" data-target="#modal-ingresar-grua"><i class="fa fa-user-plus"></i> Ingresar servicio de grua</button>
               </div>
             </div>
         </div>

@@ -1,6 +1,5 @@
 //listener de js que se cargan como componente en las paginas que se necesiten
 $(document).ready(function(){
-	console.log("Se carga correctamente publicaciones.js");
 	//Se referencia al elemento que debe ser escuchado, el metodo de como se escucha y la funcion a activar si se eschucha 
 	$(".btn-sancionar-publicacion").on("click",sancionarPublicacion);
 	$(".btn-quitar-sancion-publicacion").on("click",quitarSancionPublicacion);
@@ -189,7 +188,7 @@ $(document).ready(function(){
 						})
 	        		}else{
 	        			swal({
-						title : '¡Ha ocurrido un herror porfavor ingrese nuevamente!',
+						title : '¡Ha ocurrido un error porfavor ingrese nuevamente!',
 						icon : 'success'
 						}).then(function(){
 							location.href = 'servicios-pendientes.php'

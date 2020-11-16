@@ -64,7 +64,7 @@ echo
       <a href="vista-publicaciones.php?tipo='.$publi[0]['tipo_publicacion'].'" class="btn btn-md btn-secondary"><i class="fas fa-undo"></i> Volver</a>
     <button class="btn btn-secondary" data-target="#modal-ver-ruta" data-toggle="modal" id="submit">Ver ruta <i class="fas fa-map-marked-alt"></i></button>
       <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgvLZDbhusp9lFmGeOWkIkBsjJLMUnYM&callback=initMap">
     </script>
 
     ';
@@ -73,7 +73,7 @@ echo
     //si existe sesion
 if(isset($_SESSION['tipo'])){
   //si no eres el usuario que creo la publi o el administrador y no has denunciado
-  if ($publi[0]['email_usuario'] != $_SESSION['email'] && $_SESSION['tipo'] != 'Administrador' && $denuncias[0]['email_usuario'] != $_SESSION['email'] && $_SESSION['estado'] == 'Activo') {
+  if ($publi[0]['email_usuario'] != $_SESSION['email'] && $_SESSION['tipo'] != 'Administrador' && $_SESSION['estado'] == 'Activo') {
       echo '
       <button class="btn btn-md btn-danger" data-toggle="modal" data-target="#modal-denuncias-p"><i class="fas fa-ban" ></i> Denunciar Publicacion</button>
      ';

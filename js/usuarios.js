@@ -21,8 +21,8 @@ $('#form-denunciar-u').on('submit',denunciarUsuario);
 
 //agregar lista a certificados
 $('.btn-agregar-certificado').on('click',function(e){
-	if($('#cert-maestro').val()=='' || $('#cert-maestro').val().length < 7){
-		console.log('se carga usuarios-.s')
+	if($('#cert-maestro').val()==''){
+		console.log('se carga usuarios')
 	swal({
 			title : 'Tienes que ingresar un certificado completo, o sea, más de una palabra',
 			icon : 'info'

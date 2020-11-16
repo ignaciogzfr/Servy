@@ -83,15 +83,16 @@ if(count($publi)){
 
              echo('
                 <td>     
-
-                         <button class="btn btn-success  btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>
+                  <button class="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Moderar</button>
 '); 
 
 if($publi[$i]['estado_publicacion'] == "Sancionada"){
 
-echo('
+      echo('
                         <div class="dropdown-menu">
+
                         <button class="dropdown-item btn-quitar-sancion-publicacion" value="'.$publi[$i]["id_publicacion"].'"><i class="fas fa-lock-open"></i> Quitar sancion/Aprobar</button>
+
                         </div>
                </td>
             </tr>  
@@ -119,6 +120,7 @@ echo('
                 <th>Nombre de usuario</th>
                 <th>Servicio</th>
                 <th>Tipo de publicacion</th>
+                <th>Estado</th>
                 <th>ver</th>
                 <th>Acciones</th>
             </tr>
@@ -136,7 +138,7 @@ echo('
 
 
 <?php require_once 'componentes/footer.php' ?>
-
+<?php require_once 'componentes/scripts.php' ?>
 
 	
 </body>

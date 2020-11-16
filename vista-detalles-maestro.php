@@ -13,6 +13,7 @@
 </head>
 <body style="background-color: #45526e;">
 
+    <?php require_once('componentes/navbar.php'); ?>
 <div class="container bg-white my-4" style="min-height: 700px">
 	<?php require_once 'modelos/modelo-usuarios.php';
 		  $user = Usuarios::getPerfilUsuario($_GET['id']);

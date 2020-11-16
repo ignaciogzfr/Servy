@@ -10,6 +10,7 @@
   <title>Servy</title>
 
 <?php require_once 'componentes/links.php'; ?>
+<?php require_once 'componentes/scripts.php'; ?>
 <?php require_once 'componentes/sidenav.php'; ?>
 <?php require_once 'modelos/modelo-servicios.php'; ?>
 </head>
@@ -52,13 +53,13 @@
     <div class="form-group col-md-6">
       <label for="">Fono de Contacto</label>
 
-      <input type="tel" name="fono"   pattern="^[9876543]\d{7}$" class="form-control" placeholder="99999999" required="" maxlength="8">
+      <input type="text" name="fono" maxlength="15" class="form-control" placeholder="99999999" required="">
     </div>
 
   </div>
 
 <div class="form-group">
-    <label for="inputAddress">Titulo </label>
+    <label for="inputAddress">Titulo</label>
     <input type="text" class="form-control col-12"  pattern="[a-zA-Z\s]{5,30}" name="titulo"  placeholder="Titulo..." required="" maxlength="30">
   </div>
 
@@ -101,9 +102,6 @@
   
     
 <!-- FIN DEL FORMULARIO -->
-               <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7fk_KsJga2Jye7iDyCvC0qTapAidpEyM&callback=Miposicion">
-    </script>
 
     </div>
     <!-- /#page-content-wrapper -->
@@ -119,11 +117,10 @@
 
 
 <?php require_once 'componentes/login-modal.php' ?>
-<?php require_once 'componentes/modal-pedir-grua.php' ?>
 
-</body>
 <?php require_once 'componentes/footer.php' ?>
+<?php require_once 'componentes/modal-pedir-grua.php'; ?>
+</body>
 
-<?php require_once 'componentes/scripts.php' ?>
 </html>
-<script type="text/javascript" src="js/index.js"></script>
+<script src="js/index.js"></script>
